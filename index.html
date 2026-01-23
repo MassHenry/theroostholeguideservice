@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Roost Hole Guide Service - Premium waterfowl hunting guided by Jonathon Goins. Book your duck and goose hunt today.">
+    <title>The Roost Hole Guide Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --forest-green: #2C3E2F;
+            --dark-brown: #3E2C23;
+            --mud-tan: #C4A876;
+            --field-tan: #D4C4A0;
+            --off-white: #F5F1E8;
+            --charcoal: #2A2A2A;
+            --moss-green: #4A5C42;
+            --shadow-green: #1A2419;
+            --light-tan: #E8DCC8;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--charcoal);
+            background: var(--off-white);
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 400;
+            color: var(--forest-green);
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
+        }
+
+        /* Hero Section - Full Width with Overlay */
+        .hero {
+            height: 85vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 8%;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--forest-green);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(26,36,25,0.85) 0%, rgba(26,36,25,0.3) 100%);
+            z-index: 1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            color: var(--off-white);
+            text-shadow: 2px 2px 25px rgba(0,0,0,0.6);
+            margin-bottom: 1rem;
+            font-size: 4.5rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: var(--light-tan);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: var(--mud-tan);
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--mud-tan);
+            font-weight: 600;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--mud-tan);
+            transform: translateY(-2px);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: var(--off-white);
+            border-color: var(--off-white);
+        }
+
+        .cta-button-secondary:hover {
+            background: var(--off-white);
+            color: var(--charcoal);
+        }
+
+        /* Quick Info Bar */
+        .info-bar {
+            background: var(--shadow-green);
+            color: var(--off-white);
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-item-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--mud-tan);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-item-label {
+            font-size: 0.9rem;
+            color: var(--field-tan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* About Section - Side by Side */
+        #about {
+            padding: 6rem 5%;
+            background: var(--off-white);
+        }
+
+        .about-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-image-container {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border: 4px solid var(--mud-tan);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .guide-name {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--forest-green);
+        }
+
+        .about-content h2 {
+            margin-bottom: 2rem;
+        }
+
+        .about-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Hunt Types - Card Grid */
+        #hunt-types {
+            background: var(--light-tan);
+            padding: 6rem 5%;
+        }
+
+        .hunt-types-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+        }
+
+        .hunt-types-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .hunt-card {
+            background: var(--off-white);
+            border-left: 4px solid var(--mud-tan);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .hunt-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .hunt-card h3 {
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .hunt-card p {
+            color: var(--moss-green);
+            margin: 0;
+        }
+
+        /* Gallery - Masonry Style */
+        #gallery {
+            padding: 6rem 5%;
+            background: var(--off-white);
+        }
+
+        .gallery-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .gallery-intro h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-intro p {
+            font-size: 1.2rem;
+            color: var(--moss-green);
+        }
+
+        .gallery-masonry {
+            column-count: 3;
+            column-gap: 1.5rem;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Testimonial Section */
+        #testimonials {
+            background: var(--forest-green);
+            padding: 5rem 5%;
+            color: var(--off-white);
+        }
+
+        .testimonials-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonials-wrapper h2 {
+            color: var(--off-white);
+            margin-bottom: 3rem;
+        }
+
+        .testimonial {
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--light-tan);
+        }
+
+        .testimonial-author {
+            font-size: 1rem;
+            color: var(--mud-tan);
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* CTA Section - Split Design */
+        #cta {
+            background: var(--shadow-green);
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .cta-image {
+            background: var(--moss-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .cta-content {
+            padding: 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: var(--off-white);
+        }
+
+        .cta-content h2 {
+            color: var(--off-white);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            color: var(--light-tan);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-phone {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--mud-tan);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            background: var(--mud-tan);
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--mud-tan);
+        }
+
+        .cta-btn:hover {
+            background: transparent;
+            color: var(--mud-tan);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--off-white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-name {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--mud-tan);
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            color: var(--field-tan);
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-link {
+            color: var(--off-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--mud-tan);
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--moss-green);
+            padding-top: 2rem;
+            border-top: 1px solid var(--moss-green);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .about-wrapper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image-container {
+                position: relative;
+                top: 0;
+            }
+
+            .about-image {
+                height: 400px;
+            }
+
+            .hunt-types-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-masonry {
+                column-count: 2;
+            }
+
+            #cta {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-image {
+                min-height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 100vh;
+                justify-content: center;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .hero-image::before {
+                background: rgba(26,36,25,0.75);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero-cta-group {
+                justify-content: center;
+            }
+
+            .info-bar {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .gallery-masonry {
+                column-count: 1;
+            }
+
+            .cta-content {
+                padding: 3rem 2rem;
+            }
+
+            .contact-phone {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cta-button,
+            .cta-btn {
+                padding: 0.9rem 1.8rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-image">
+            <img src="images/hero-hunt.jpg" alt="Waterfowl Hunting">
+        </div>
+        <div class="hero-content">
+            <h1>The Roost Hole</h1>
+            <p class="hero-tagline">Guided waterfowl hunts in Arkansas. Flooded timber, field spreads, and authentic duck and goose hunting with Jonathon Goins.</p>
+            <div class="hero-cta-group">
+                <a href="#cta" class="cta-button">Book a Hunt</a>
+                <a href="#about" class="cta-button cta-button-secondary">Meet Your Guide</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div class="info-item">
+            <span class="info-item-value">15+</span>
+            <span class="info-item-label">Years Experience</span>
+        </div>
+        <div class="info-item">
+            <span class="info-item-value">4+</span>
+            <span class="info-item-label">Hunters Per Group</span>
+        </div>
+        <div class="info-item">
+            <span class="info-item-value">100%</span>
+            <span class="info-item-label">Authentic</span>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-wrapper">
+            <div class="about-image-container">
+                <div class="about-image">
+                    <img src="images/jonathon-main.jpg" alt="Jonathon Goins">
+                </div>
+                <div class="guide-name">Jonathon Goins</div>
+            </div>
+            <div class="about-content">
+                <h2>Your Guide</h2>
+                <p>I'm Jonathon Goins, and waterfowl hunting is what I do. Not as a hobby—as a way of life. For over 15 years, I've been in the timber before sunrise, setting decoys in frozen fields, and reading the weather like it's the only language that matters.</p>
+                <p>The Roost Hole isn't a corporate operation. It's me, the land I know, and the birds that work it. I don't promise limits. I promise honest hunting—the kind where you earn it, respect it, and remember it.</p>
+                <p>We hunt flooded timber when the ducks are working the trees. We hunt field spreads when the geese are flying. We go where the birds go, and we do it right—small groups, proven setups, and no shortcuts.</p>
+                <p>If you want a real hunt with a guide who lives this life year-round, let's talk. No sales pitch. Just straight shooting.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hunt Types Section -->
+    <section id="hunt-types">
+        <div class="hunt-types-wrapper">
+            <div class="section-header">
+                <h2>Hunt Offerings</h2>
+            </div>
+            <div class="hunt-types-grid">
+                <div class="hunt-card">
+                    <h3>Flooded Timber</h3>
+                    <p>Classic Arkansas duck hunting in standing timber. Mallards, wood ducks, and pintails working decoys in the trees. This is the hunt people dream about.</p>
+                </div>
+                <div class="hunt-card">
+                    <h3>Field Spreads</h3>
+                    <p>Ducks and geese over large decoy spreads in harvested grain fields. We set up where they want to be—corn, rice, soybeans—and let them come.</p>
+                </div>
+                <div class="hunt-card">
+                    <h3>Layout Hunts</h3>
+                    <p>Low-profile field hunting for ducks and Canada geese. Get flat, stay still, and watch them lock up over the spread. Pure waterfowling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="gallery-wrapper">
+            <div class="gallery-intro">
+                <h2>From the Blind</h2>
+                <p>Real hunts. Real birds. No fluff—just what it looks like when you do it right.</p>
+            </div>
+            <div class="gallery-masonry">
+                <div class="gallery-item">
+                    <img src="images/gallery-1.jpg" alt="Duck Hunt">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-2.jpg" alt="Goose Hunt">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-3.jpg" alt="Flooded Timber">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-4.jpg" alt="Decoy Spread">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-5.jpg" alt="Hunt">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-6.jpg" alt="Waterfowl">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-7.jpg" alt="Field Hunt">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-8.jpg" alt="Hunt Setup">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery-9.jpg" alt="Successful Hunt">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="testimonials-wrapper">
+            <h2>What Hunters Say</h2>
+            <div class="testimonial">
+                "Best duck hunt I've ever been on. Jonathon knows the birds, knows the land, and puts you where you need to be. No BS—just good hunting."
+                <div class="testimonial-author">— Mark T., Little Rock</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta">
+        <div class="cta-image">
+            <img src="images/cta-hunt.jpg" alt="Book Your Hunt">
+        </div>
+        <div class="cta-content">
+            <h2>Book Your Hunt</h2>
+            <p>Ready to get in the blind? Whether it's timber, field, or layout—let's make it happen. Small groups, quality hunts, and real waterfowling.</p>
+            <div class="contact-phone">870-830-3633</div>
+            <div class="cta-buttons">
+                <a href="tel:870-830-3633" class="cta-btn">Call Now</a>
+                <a href="sms:870-830-3633" class="cta-btn">Send Text</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-name">The Roost Hole Guide Service</div>
+            <div class="footer-tagline">Arkansas Waterfowl Hunting • Jonathon Goins</div>
+            
+            <div class="footer-links">
+                <a href="https://www.facebook.com/jonathon.goins.94" target="_blank" class="footer-link">Facebook</a>
+                <a href="tel:870-830-3633" class="footer-link">Call</a>
+                <a href="sms:870-830-3633" class="footer-link">Text</a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 The Roost Hole Guide Service. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
