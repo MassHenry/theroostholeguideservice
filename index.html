@@ -31,6 +31,58 @@
             background: var(--off-white);
         }
 
+        /* Navigation Header */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 36, 25, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--mud-tan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--mud-tan);
+        }
+
+        .nav-phone {
+            color: var(--mud-tan);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
         /* Typography */
         h1, h2, h3 {
             font-family: Georgia, 'Times New Roman', serif;
@@ -64,6 +116,7 @@
         /* Hero Section - Full Width with Overlay */
         .hero {
             height: 85vh;
+            margin-top: 70px;
             position: relative;
             display: flex;
             align-items: center;
@@ -183,6 +236,47 @@
             color: var(--field-tan);
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* Lodging Section */
+        #lodging {
+            background: var(--mud-tan);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .lodging-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .lodging-container h2 {
+            color: var(--shadow-green);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .lodging-container p {
+            color: var(--charcoal);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lodging-phone {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--shadow-green);
+            color: var(--off-white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 2px solid var(--shadow-green);
+            transition: all 0.3s ease;
+        }
+
+        .lodging-phone:hover {
+            background: transparent;
+            color: var(--shadow-green);
         }
 
         /* About Section - Side by Side */
@@ -489,6 +583,10 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+
             .hero h1 {
                 font-size: 3.5rem;
             }
@@ -584,10 +682,25 @@
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">The Roost Hole</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#hunt-types">Hunt Types</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#lodging">Lodging</a></li>
+                <li><a href="#cta">Book Now</a></li>
+            </ul>
+            <a href="tel:870-830-3633" class="nav-phone">870-830-3633</a>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-image">
-            <img src="images/IMG_2052.jpeg" alt="Waterfowl Hunting">
+            <img src="images/IMG_2052.jpeg" alt="Arkansas waterfowl hunting in Stuttgart flooded rice fields">
         </div>
         <div class="hero-content">
             <h1>The Roost Hole</h1>
@@ -615,20 +728,29 @@
         </div>
     </div>
 
+    <!-- Lodging Section -->
+    <section id="lodging">
+        <div class="lodging-container">
+            <h2>Lodging Available</h2>
+            <p>Need a place to stay? We offer lodging options for hunters. Call for availability and rates.</p>
+            <a href="tel:870-830-3633" class="lodging-phone">Call for Lodging: 870-830-3633</a>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about">
         <div class="about-wrapper">
             <div class="about-image-container">
                 <div class="about-image">
-                    <img src="images/jonathon-gains-profile-picture.jpg" alt="Jonathon Goins">
+                    <img src="images/jonathon-gains-profile-picture.jpg" alt="Jonathon Goins - Stuttgart Arkansas waterfowl hunting guide">
                 </div>
                 <div class="guide-name">Jonathon Goins</div>
             </div>
             <div class="about-content">
                 <h2>Your Guide</h2>
-                <p>I'm Jonathon Goins, and waterfowl hunting is what I do. Not as a hobby—as a way of life. For over 15 years, I've been in the timber before sunrise, setting decoys in frozen fields, and reading the weather like it's the only language that matters.</p>
-                <p>The Roost Hole isn't a corporate operation. It's me, the land I know around Stuttgart, and the birds that work it. I don't promise limits. I promise honest hunting—the kind where you earn it, respect it, and remember it.</p>
-                <p>We hunt flooded rice fields when the ducks are working the crops. We hunt field spreads when the geese are flying. We go where the birds go, and we do it right—small groups, proven setups, and no shortcuts.</p>
+                <p>I'm Jonathon Goins, and waterfowl hunting is what I do. Not as a hobby, as a way of life. For over 15 years, I've been in the timber before sunrise, setting decoys in frozen fields, and reading the weather like it's the only language that matters.</p>
+                <p>The Roost Hole isn't a corporate operation. It's me, the land I know around Stuttgart, and the birds that work it. I don't promise limits. I promise honest hunting, the kind where you earn it, respect it, and remember it.</p>
+                <p>We hunt flooded rice fields when the ducks are working the crops. We hunt field spreads when the geese are flying. We go where the birds go, and we do it right: small groups, proven setups, and no shortcuts.</p>
                 <p>If you want a real hunt with a guide who lives this life year-round, let's talk. No sales pitch. Just straight shooting.</p>
             </div>
         </div>
@@ -662,7 +784,7 @@
         <div class="gallery-wrapper">
             <div class="gallery-intro">
                 <h2>From the Blind</h2>
-                <p>Real hunts. Real birds. No fluff—just what it looks like when you do it right.</p>
+                <p>Real hunts. Real birds. No fluff, just what it looks like when you do it right.</p>
             </div>
             <div class="gallery-masonry">
                 <div class="gallery-item">
@@ -672,22 +794,22 @@
                     <img src="images/IMG_1773.jpeg" alt="Goose Hunt">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/IMG_1790.jpeg" alt="Hunt">
+                    <img src="images/IMG_1790.jpeg" alt="Flooded Rice Field">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/IMG_1832.jpeg" alt="Hunt">
+                    <img src="images/IMG_1832.jpeg" alt="Decoy Spread">
                 </div>
                 <div class="gallery-item">
                     <img src="images/IMG_1851.jpeg" alt="Hunt">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/IMG_1854.jpeg" alt="Hunt">
+                    <img src="images/IMG_1854.jpeg" alt="Waterfowl">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/IMG_1860.jpeg" alt="Hunt">
+                    <img src="images/IMG_1860.jpeg" alt="Field Hunt">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/IMG_1957.jpeg" alt="Hunt">
+                    <img src="images/IMG_1957.jpeg" alt="Hunt Setup">
                 </div>
                 <div class="gallery-item">
                     <img src="images/IMG_1960.jpeg" alt="Successful Hunt">
@@ -708,7 +830,7 @@
                     <img src="images/IMG_2116.jpeg" alt="Duck Hunt">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/IMG_2117.jpeg" alt="Hunt">
+                    <img src="images/IMG_2117.jpeg" alt="Goose Hunt">
                 </div>
                 <div class="gallery-item">
                     <img src="images/IMG_2118.jpeg" alt="Hunt">
@@ -731,8 +853,8 @@
         <div class="testimonials-wrapper">
             <h2>What Hunters Say</h2>
             <div class="testimonial">
-                "Best duck hunt I've ever been on. Jonathon knows the birds, knows the land, and puts you where you need to be. No BS—just good hunting."
-                <div class="testimonial-author">— Mark T., Little Rock</div>
+                "Best duck hunt I've ever been on. Jonathon knows the birds, knows the land, and puts you where you need to be. No BS, just good hunting."
+                <div class="testimonial-author">Mark T., Little Rock</div>
             </div>
         </div>
     </section>
@@ -740,11 +862,11 @@
     <!-- CTA Section -->
     <section id="cta">
         <div class="cta-image">
-            <img src="images/IMG_2057.jpeg" alt="Book Your Hunt">
+            <img src="images/IMG_2057.jpeg" alt="Book your Stuttgart Arkansas duck hunting trip today">
         </div>
         <div class="cta-content">
             <h2>Book Your Hunt</h2>
-            <p>Ready to get in the blind? Whether it's timber, field, or layout—let's make it happen. Small groups, quality hunts, and real waterfowling.</p>
+            <p>Ready to get in the blind? Whether it's rice fields, field spreads, or layout hunts, let's make it happen. Small groups, quality hunts, and real waterfowling.</p>
             <div class="contact-phone">870-830-3633</div>
             <div class="cta-buttons">
                 <a href="tel:870-830-3633" class="cta-btn">Call Now</a>
