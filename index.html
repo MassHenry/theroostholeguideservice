@@ -360,6 +360,7 @@
             border-left: 4px solid var(--mud-tan);
             padding: 2rem;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .hunt-card:hover {
@@ -375,7 +376,74 @@
 
         .hunt-card p {
             color: var(--moss-green);
-            margin: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .hunt-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 1rem 0;
+        }
+
+        .hunt-card-cta {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--forest-green);
+            color: var(--off-white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .hunt-card-cta:hover {
+            background: var(--mud-tan);
+            color: var(--charcoal);
+        }
+
+        /* Social Proof Section */
+        #social-proof {
+            background: var(--off-white);
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 3px solid var(--mud-tan);
+            border-bottom: 3px solid var(--mud-tan);
+        }
+
+        .social-proof-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-proof-container h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--forest-green);
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--mud-tan);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--moss-green);
+            margin-top: 0.5rem;
         }
 
         /* Gallery - Masonry Style */
@@ -435,7 +503,7 @@
         }
 
         .testimonials-wrapper {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             text-align: center;
         }
@@ -445,11 +513,25 @@
             margin-bottom: 3rem;
         }
 
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
         .testimonial {
-            font-size: 1.3rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--mud-tan);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
             font-style: italic;
             line-height: 1.8;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: var(--light-tan);
         }
 
@@ -458,6 +540,12 @@
             color: var(--mud-tan);
             font-weight: 600;
             margin-top: 1rem;
+        }
+
+        .testimonial-stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
         /* CTA Section - Split Design */
@@ -503,11 +591,17 @@
         }
 
         .contact-phone {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--mud-tan);
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             letter-spacing: 1px;
+        }
+
+        .contact-subtext {
+            font-size: 1rem;
+            color: var(--field-tan);
+            margin-bottom: 2rem;
         }
 
         .cta-buttons {
@@ -517,11 +611,12 @@
         }
 
         .cta-btn {
-            padding: 1rem 2.5rem;
+            padding: 1.2rem 3rem;
             background: var(--mud-tan);
             color: var(--charcoal);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
             border: 2px solid var(--mud-tan);
         }
@@ -529,6 +624,7 @@
         .cta-btn:hover {
             background: transparent;
             color: var(--mud-tan);
+            transform: scale(1.05);
         }
 
         /* Footer */
@@ -852,9 +948,22 @@
     <section id="testimonials">
         <div class="testimonials-wrapper">
             <h2>What Hunters Say</h2>
-            <div class="testimonial">
-                "Best duck hunt I've ever been on. Jonathon knows the birds, knows the land, and puts you where you need to be. No BS, just good hunting."
-                <div class="testimonial-author">Mark T., Little Rock</div>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"Best duck hunt I've ever been on. Jonathon knows the birds, knows the land, and puts you where you need to be. No BS, just good hunting."</div>
+                    <div class="testimonial-author">Mark T., Little Rock</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"We limited out on greenheads by 9am. Jonathon had us in the perfect spot. Already booked for next season!"</div>
+                    <div class="testimonial-author">James R., Memphis</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"Real hunting, real guide. No fancy lodge nonsense. Just good setups and great shooting. Highly recommend."</div>
+                    <div class="testimonial-author">David K., Dallas</div>
+                </div>
             </div>
         </div>
     </section>
@@ -865,12 +974,13 @@
             <img src="images/IMG_2057.jpeg" alt="Book your Stuttgart Arkansas duck hunting trip today">
         </div>
         <div class="cta-content">
-            <h2>Book Your Hunt</h2>
-            <p>Ready to get in the blind? Whether it's rice fields, field spreads, or layout hunts, let's make it happen. Small groups, quality hunts, and real waterfowling.</p>
+            <h2>Ready to Book Your Hunt?</h2>
+            <p>Spots fill fast during peak season. Don't wait, call now to check availability and secure your dates.</p>
             <div class="contact-phone">870-830-3633</div>
+            <div class="contact-subtext">Available 7 Days a Week - Call or Text Anytime</div>
             <div class="cta-buttons">
-                <a href="tel:870-830-3633" class="cta-btn">Call Now</a>
-                <a href="sms:870-830-3633" class="cta-btn">Send Text</a>
+                <a href="tel:870-830-3633" class="cta-btn">📞 Call Now</a>
+                <a href="sms:870-830-3633" class="cta-btn">💬 Text Us</a>
             </div>
         </div>
     </section>
