@@ -351,6 +351,13 @@
             color: var(--shadow-green);
         }
 
+        /* Seasons Section - Calendar Container */
+        #seasons {
+            padding: 0;
+            margin: 0;
+            background: transparent;
+        }
+
         /* Sticky CTA Bar */
         .sticky-cta {
             position: fixed;
@@ -1006,6 +1013,7 @@
             <ul class="nav-links">
                 <li><a href="#about" itemprop="url">About</a></li>
                 <li><a href="#hunt-types" itemprop="url">Hunt Types</a></li>
+                <li><a href="#seasons" itemprop="url">Seasons</a></li>
                 <li><a href="#gallery" itemprop="url">Gallery</a></li>
                 <li><a href="#lodging" itemprop="url">Lodging</a></li>
                 <li><a href="#cta" itemprop="url">Book Now</a></li>
@@ -1102,6 +1110,11 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Waterfowl Seasons Calendar Section -->
+    <section id="seasons">
+        <div id="waterfowl-calendar-root"></div>
     </section>
 
     <!-- Hunt Types Section -->
@@ -1328,6 +1341,14 @@
             </div>
         </div>
     </div>
+
+    <!-- React and ReactDOM from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Import your waterfowl calendar component -->
+    <script type="text/babel" src="./waterfowl-calendar.jsx"></script>
 
     <script>
         // Smooth scrolling
