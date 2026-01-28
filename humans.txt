@@ -1,0 +1,39 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Owner/Guide: Jonathon Goins
+    Contact: 870-830-3633
+    Location: Stuttgart, Arkansas
+    Facebook: facebook.com/jonathon.goins.94
+
+# THANKS
+
+    All our hunters for their continued support
+    Arkansas Game & Fish Commission
+    Stuttgart community
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    JavaScript (React 18)
+    Google Analytics
+    Hosted on: [Your Hosting Provider]
+    
+# SITE
+
+    Last update: 2025/01/27
+    Standards: HTML5, CSS3
+    Components: Waterfowl Seasons Calendar
+    Software: Custom built
+    Languages: English
+    
+# BUSINESS
+
+    Business: The Roost Hole Guide Service
+    Services: Duck Hunting, Goose Hunting, Waterfowl Guides
+    Specialty: Flooded Rice Field Hunting
+    Location: Stuttgart, Arkansas - Duck Capital of the World
+    Phone: 870-830-3633
+    Website: theroostholeguideservice.com

@@ -1,0 +1,21 @@
+# Our security address
+Contact: mailto:jonathon@theroostholeguideservice.com
+
+# Our security policy
+Policy: https://www.theroostholeguideservice.com/security-policy
+
+# Preferred language
+Preferred-Languages: en
+
+# Expires
+Expires: 2026-12-31T23:59:59.000Z
+
+# Optional: OpenPGP key
+# Encryption: https://www.theroostholeguideservice.com/pgp-key.txt
+
+# Acknowledgments
+Acknowledgments: https://www.theroostholeguideservice.com/security-acknowledgments
+
+# Note: This is a small business website
+# For security issues, please contact us directly at the email above
+# We appreciate responsible disclosure
