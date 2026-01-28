@@ -1,0 +1,53 @@
+# robots.txt for The Roost Hole Guide Service
+# https://www.theroostholeguideservice.com/robots.txt
+
+# Allow all search engines to crawl the entire site
+User-agent: *
+Allow: /
+
+# Disallow crawling of certain file types (if any)
+# Uncomment and modify as needed:
+# Disallow: /admin/
+# Disallow: /cgi-bin/
+# Disallow: /tmp/
+# Disallow: /*.pdf$
+
+# Sitemap location
+Sitemap: https://www.theroostholeguideservice.com/sitemap.xml
+
+# Crawl-delay (optional - sets delay between requests in seconds)
+# Uncomment if you want to slow down bot crawling:
+# Crawl-delay: 10
+
+# Specific rules for common search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+# Block bad bots (optional - uncomment to activate)
+# User-agent: AhrefsBot
+# Disallow: /
+
+# User-agent: SemrushBot
+# Disallow: /
+
+# User-agent: MJ12bot
+# Disallow: /
+
+# Allow crawling of CSS and JS files (important for SEO)
+User-agent: *
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.webp$
