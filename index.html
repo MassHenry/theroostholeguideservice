@@ -1006,6 +1006,7 @@
             <ul class="nav-links">
                 <li><a href="#about" itemprop="url">About</a></li>
                 <li><a href="#hunt-types" itemprop="url">Hunt Types</a></li>
+                <li><a href="#seasons" itemprop="url">Seasons</a></li>
                 <li><a href="#gallery" itemprop="url">Gallery</a></li>
                 <li><a href="#lodging" itemprop="url">Lodging</a></li>
                 <li><a href="#cta" itemprop="url">Book Now</a></li>
@@ -1017,7 +1018,7 @@
     <!-- Hero Section -->
     <section class="hero" itemscope itemtype="https://schema.org/Service">
         <div class="hero-image">
-            <img src="images/IMG_2052.jpeg" alt="Stuttgart Arkansas waterfowl duck hunting in flooded rice fields guided by Jonathon Goins" itemprop="image">
+            <img src="images/IMG_2052.jpeg" alt="Stuttgart Arkansas waterfowl duck hunting in flooded rice fields guided by Jonathon Goins" title="Stuttgart Arkansas Duck Hunting in Flooded Rice Fields" itemprop="image">
         </div>
         <div class="hero-content">
             <h1 itemprop="name">The Roost Hole Guide Service</h1>
@@ -1059,7 +1060,7 @@
         <div class="about-wrapper">
             <div class="about-image-container">
                 <div class="about-image">
-                    <img src="images/jonathon-gains-profile-picture.jpg" alt="Jonathon Goins professional Stuttgart Arkansas waterfowl hunting guide with 15 years experience" itemprop="image">
+                    <img src="images/jonathon-gains-profile-picture.jpg" alt="Jonathon Goins professional Stuttgart Arkansas waterfowl hunting guide with 15 years experience" title="Jonathon Goins - Professional Waterfowl Guide" itemprop="image">
                 </div>
                 <div class="guide-name" itemprop="name">Jonathon Goins</div>
             </div>
@@ -1125,6 +1126,11 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Waterfowl Seasons Calendar Section -->
+    <section id="seasons" style="padding: 0; margin: 0;">
+        <div id="waterfowl-calendar-root"></div>
     </section>
 
     <!-- Gallery Section -->
@@ -1288,7 +1294,7 @@
     <!-- CTA Section -->
     <section id="cta">
         <div class="cta-image">
-            <img src="images/IMG_2057.jpeg" alt="Book your Stuttgart Arkansas duck hunting trip today">
+            <img src="images/IMG_2057.jpeg" alt="Book your Stuttgart Arkansas duck hunting trip today" title="Book Your Stuttgart Arkansas Duck Hunting Trip">
         </div>
         <div class="cta-content">
             <h2>Ready to Book Your Hunt?</h2>
@@ -1332,6 +1338,13 @@
             </div>
         </div>
     </div>
+
+    <!-- React Libraries for Waterfowl Calendar -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Waterfowl Calendar Script -->
+    <script src="waterfowl-calendar.js"></script>
 
     <script>
         // Smooth scrolling
