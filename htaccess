@@ -28,6 +28,22 @@ RewriteRule ^(.*)$ https://theroostholeguideservice.com/$1 [L,R=301]
 # </IfModule>
 
 # ============================================
+# 2A. REMOVE .HTML FROM URLS (CLEAN URLS)
+# ============================================
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Redirect .html URLs to clean URLs
+RewriteCond %{THE_REQUEST} ^GET\ /[^.]+\.html
+RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+# Serve .html files when clean URL is requested
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+</IfModule>
+
+# ============================================
 # 3. BROWSER CACHING (Speed up page loads)
 # ============================================
 <IfModule mod_expires.c>
