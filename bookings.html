@@ -287,6 +287,66 @@
             margin: 0 1rem;
         }
 
+        /* Sticky Bottom CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--shadow-green);
+            padding: 1rem 5%;
+            z-index: 999;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sticky-cta.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-cta-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .sticky-cta-text {
+            color: var(--off-white);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .sticky-cta-text span {
+            color: var(--mud-tan);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .sticky-cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .sticky-btn {
+            padding: 0.8rem 2rem;
+            background: var(--mud-tan);
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 700;
+            border: 2px solid var(--mud-tan);
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .sticky-btn:hover {
+            background: transparent;
+            color: var(--mud-tan);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .page-header h1 {
@@ -299,6 +359,19 @@
 
             .contact-phone-large {
                 font-size: 1.8rem;
+            }
+
+            .sticky-cta-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sticky-cta-text {
+                font-size: 1rem;
+            }
+
+            .sticky-cta-text span {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -314,8 +387,8 @@
 
     <!-- Page Header -->
     <div class="page-header">
-        <h1>2026-2027 Hunt Availability</h1>
-        <p>Book your Stuttgart duck hunting trip today. Dates fill fast during peak season!</p>
+        <h1>2026 Hunt Availability</h1>
+        <p>Book your waterfowl hunting trip! Spring Snow Goose Conservation Hunt Feb-Apr 2026, plus Fall/Winter Duck Season Nov 2026-Jan 2027.</p>
     </div>
 
     <!-- Main Content -->
@@ -324,6 +397,20 @@
         <div class="intro-section">
             <h2>How to Book Your Hunt</h2>
             <p>Check the calendar below for available dates during the 2026-2027 waterfowl season. Green bullets indicate available dates, while red bullets show dates that are already booked. To reserve your spot, call or text us at <strong>870-830-3633</strong>.</p>
+        </div>
+
+        <!-- Snow Goose Conservation Hunt Info -->
+        <div class="intro-section" style="background: var(--light-tan); border-left: 4px solid var(--mud-tan);">
+            <h2>🦆 Snow Goose Conservation Hunt</h2>
+            <p><strong>February 1 - April 30, 2026</strong></p>
+            <p>Take advantage of Arkansas's Snow Goose Conservation Order! Extended season with no daily bag limits and the use of electronic calls. Watch massive flocks work the decoys during spring migration. This is high-volume action hunting at its finest.</p>
+            <p><strong>What Makes It Special:</strong></p>
+            <ul style="margin-left: 2rem; line-height: 2;">
+                <li>✅ No daily bag limit</li>
+                <li>✅ Electronic calls permitted</li>
+                <li>✅ Extended season through April</li>
+                <li>✅ Prime spring migration hunting</li>
+            </ul>
         </div>
 
         <!-- Legend -->
@@ -363,8 +450,33 @@
         <p style="margin-top: 1rem; color: var(--moss-green);">&copy; 2025 The Roost Hole Guide Service. All rights reserved.</p>
     </footer>
 
+    <!-- Sticky Bottom CTA -->
+    <div class="sticky-cta" id="stickyCTA">
+        <div class="sticky-cta-content">
+            <div class="sticky-cta-text">
+                Ready to Book? Call <span>870-830-3633</span>
+            </div>
+            <div class="sticky-cta-buttons">
+                <a href="tel:870-830-3633" class="sticky-btn">📞 Call Now</a>
+                <a href="sms:870-830-3633" class="sticky-btn">💬 Text</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Load Bookings Data -->
     <script src="bookings-data.js"></script>
     <script src="bookings-calendar.js"></script>
+    
+    <script>
+        // Sticky CTA bar appears after scrolling
+        window.addEventListener('scroll', function() {
+            const stickyCTA = document.getElementById('stickyCTA');
+            if (window.scrollY > 800) {
+                stickyCTA.classList.add('visible');
+            } else {
+                stickyCTA.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
 </html>
