@@ -10,6 +10,7 @@
     <meta name="geo.region" content="US-AR">
     <meta name="geo.placename" content="Stuttgart, Arkansas">
     <meta name="geo.position" content="34.5001;-91.5526">
+    <meta name="theme-color" content="#1A2419">
     
     <!-- Open Graph for Social Media -->
     <meta property="og:title" content="The Roost Hole Guide Service - Stuttgart Arkansas Duck Hunting">
@@ -29,7 +30,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        
         gtag('config', 'G-2BTM7NT37D');
     </script>
     
@@ -74,1322 +74,1401 @@
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="images/the-roost-hole-guide-service-favicon.jpg">
     <link rel="apple-touch-icon" sizes="180x180" href="images/the-roost-hole-guide-service-favicon.jpg">
-    <link rel="icon" type="image/jpeg" sizes="32x32" href="images/the-roost-hole-guide-service-favicon.jpg">
-    <link rel="icon" type="image/jpeg" sizes="16x16" href="images/the-roost-hole-guide-service-favicon.jpg">
     
-    <!-- Performance Optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preload" as="image" href="images/IMG_2052.jpeg">
+    <!-- Performance Optimization: Preconnect & Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="images/IMG_2052.jpeg" fetchpriority="high">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    
+    <!-- Google Fonts - Optimized loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        * {
+        /* ==========================================
+           CSS ARCHITECTURE & PERFORMANCE
+           ========================================== */
+        
+        /* CSS Custom Properties for Design System */
+        :root {
+            /* Color System */
+            --color-primary: #2C3E2F;
+            --color-secondary: #C4A876;
+            --color-dark: #1A2419;
+            --color-accent: #4A5C42;
+            --color-light: #F5F1E8;
+            --color-tan: #D4C4A0;
+            --color-text: #2A2A2A;
+            
+            /* Typography Scale */
+            --font-display: 'Bitter', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            --fs-xs: 0.875rem;
+            --fs-sm: 1rem;
+            --fs-base: 1.125rem;
+            --fs-lg: 1.25rem;
+            --fs-xl: 1.5rem;
+            --fs-2xl: 2rem;
+            --fs-3xl: 2.5rem;
+            --fs-4xl: 3rem;
+            --fs-5xl: 4rem;
+            
+            /* Spacing Scale */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --space-3xl: 6rem;
+            
+            /* Layout */
+            --container-max: 1400px;
+            --container-text: 900px;
+            --nav-height: 70px;
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 350ms ease;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* CSS Reset & Base Styles */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        :root {
-            --forest-green: #2C3E2F;
-            --dark-brown: #3E2C23;
-            --mud-tan: #C4A876;
-            --field-tan: #D4C4A0;
-            --off-white: #F5F1E8;
-            --charcoal: #2A2A2A;
-            --moss-green: #4A5C42;
-            --shadow-green: #1A2419;
-            --light-tan: #E8DCC8;
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-
+        
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--font-body);
+            font-size: var(--fs-base);
             line-height: 1.7;
-            color: var(--charcoal);
-            background: var(--off-white);
+            color: var(--color-text);
+            background: var(--color-light);
+            overflow-x: hidden;
         }
-
-        /* Navigation Header */
-        nav {
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--color-primary);
+        }
+        
+        h1 { font-size: clamp(2.5rem, 5vw, var(--fs-5xl)); }
+        h2 { font-size: clamp(2rem, 4vw, var(--fs-4xl)); }
+        h3 { font-size: var(--fs-xl); }
+        
+        p {
+            margin-bottom: var(--space-md);
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        img, picture, video, canvas, svg {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        button, input, textarea, select {
+            font: inherit;
+        }
+        
+        /* Utility Classes */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin-inline: auto;
+            padding-inline: clamp(1rem, 5vw, 5%);
+        }
+        
+        /* ==========================================
+           COMPONENT STYLES
+           ========================================== */
+        
+        /* Navigation - Optimized with will-change */
+        .nav {
             position: fixed;
             top: 0;
-            width: 100%;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
             background: rgba(26, 36, 25, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 5%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+            will-change: transform;
         }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+        
+        .nav--hidden {
+            transform: translateY(-100%);
+        }
+        
+        .nav.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .nav__container {
+            height: 100%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            gap: var(--space-lg);
         }
-
-        .nav-logo {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1.5rem;
+        
+        .nav__logo {
+            font-family: var(--font-display);
+            font-size: var(--fs-xl);
             font-weight: 700;
-            color: var(--mud-tan);
+            color: var(--color-secondary);
+            flex-shrink: 0;
         }
-
-        .nav-links {
+        
+        .nav__links {
             display: flex;
-            gap: 2rem;
+            gap: var(--space-lg);
             list-style: none;
         }
-
-        .nav-links a {
-            color: var(--off-white);
-            text-decoration: none;
+        
+        .nav__link {
+            color: var(--color-light);
             font-weight: 600;
-            transition: color 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover {
-            color: var(--mud-tan);
-        }
-
-        .nav-phone {
-            color: var(--mud-tan);
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 1rem;
-        }
-
-        /* Typography */
-        h1, h2, h3 {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-weight: 400;
-            color: var(--forest-green);
-        }
-
-        h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            letter-spacing: -1px;
-        }
-
-        h2 {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.5px;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: var(--charcoal);
-        }
-
-        /* Hero Section - Full Width with Overlay */
-        .hero {
-            height: 85vh;
-            margin-top: 70px;
+            font-size: var(--fs-sm);
+            transition: color var(--transition-fast);
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 0 8%;
-            overflow: hidden;
         }
-
-        .hero-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--forest-green);
-        }
-
-        .hero-image::before {
+        
+        .nav__link::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-secondary);
+            transition: width var(--transition-base);
+        }
+        
+        .nav__link:hover,
+        .nav__link:focus-visible {
+            color: var(--color-secondary);
+            outline: none;
+        }
+        
+        .nav__link:hover::after,
+        .nav__link:focus-visible::after {
+            width: 100%;
+        }
+        
+        .nav__phone {
+            color: var(--color-secondary);
+            font-weight: 700;
+            font-size: var(--fs-sm);
+            white-space: nowrap;
+            transition: transform var(--transition-fast);
+        }
+        
+        .nav__phone:hover,
+        .nav__phone:focus-visible {
+            transform: scale(1.05);
+        }
+        
+        /* Mobile Menu Toggle */
+        .nav__toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-xs);
+            color: var(--color-light);
+        }
+        
+        .nav__toggle-icon {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: currentColor;
+            position: relative;
+            transition: background var(--transition-base);
+        }
+        
+        .nav__toggle-icon::before,
+        .nav__toggle-icon::after {
+            content: '';
+            position: absolute;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(26,36,25,0.85) 0%, rgba(26,36,25,0.3) 100%);
+            height: 2px;
+            background: currentColor;
+            transition: transform var(--transition-base);
+        }
+        
+        .nav__toggle-icon::before { top: -8px; }
+        .nav__toggle-icon::after { bottom: -8px; }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            margin-top: var(--nav-height);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero__image {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        
+        .hero__image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to right,
+                rgba(26, 36, 25, 0.85) 0%,
+                rgba(26, 36, 25, 0.5) 50%,
+                rgba(26, 36, 25, 0.3) 100%
+            );
             z-index: 1;
         }
-
-        .hero-image img {
+        
+        .hero__image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
         }
-
-        .hero-content {
+        
+        .hero__content {
             position: relative;
             z-index: 2;
             max-width: 650px;
+            animation: fadeInUp 0.8s ease-out;
         }
-
-        .hero h1 {
-            color: var(--off-white);
-            text-shadow: 2px 2px 25px rgba(0,0,0,0.6);
-            margin-bottom: 1rem;
-            font-size: 4.5rem;
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-
-        .hero-tagline {
-            font-size: 1.5rem;
-            color: var(--light-tan);
-            margin-bottom: 2rem;
+        
+        .hero__title {
+            color: var(--color-light);
+            text-shadow: 2px 2px 25px rgba(0, 0, 0, 0.6);
+            margin-bottom: var(--space-md);
+        }
+        
+        .hero__tagline {
+            font-size: var(--fs-xl);
+            color: #E8DCC8;
+            margin-bottom: var(--space-xl);
             line-height: 1.6;
         }
-
-        .hero-cta-group {
+        
+        .hero__cta-group {
             display: flex;
-            gap: 1rem;
+            gap: var(--space-sm);
             flex-wrap: wrap;
         }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 2.5rem;
-            background: var(--mud-tan);
-            color: var(--charcoal);
-            text-decoration: none;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            border: 2px solid var(--mud-tan);
+        
+        /* Button Component */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
             font-weight: 600;
+            font-size: var(--fs-sm);
+            text-align: center;
+            border: 2px solid;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
         }
-
-        .cta-button:hover {
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: currentColor;
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+        
+        .btn:hover::before {
+            opacity: 0.1;
+        }
+        
+        .btn--primary {
+            background: var(--color-secondary);
+            border-color: var(--color-secondary);
+            color: var(--color-text);
+        }
+        
+        .btn--primary:hover,
+        .btn--primary:focus-visible {
             background: transparent;
-            color: var(--mud-tan);
+            color: var(--color-secondary);
             transform: translateY(-2px);
         }
-
-        .cta-button-secondary {
+        
+        .btn--secondary {
             background: transparent;
-            color: var(--off-white);
-            border-color: var(--off-white);
+            border-color: var(--color-light);
+            color: var(--color-light);
         }
-
-        .cta-button-secondary:hover {
-            background: var(--off-white);
-            color: var(--charcoal);
+        
+        .btn--secondary:hover,
+        .btn--secondary:focus-visible {
+            background: var(--color-light);
+            color: var(--color-text);
         }
-
-        /* Quick Info Bar */
+        
+        /* Info Bar */
         .info-bar {
-            background: var(--shadow-green);
-            color: var(--off-white);
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
+            background: var(--color-dark);
+            color: var(--color-light);
+            padding: var(--space-xl) 0;
         }
-
-        .info-item {
+        
+        .info-bar__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
             text-align: center;
         }
-
-        .info-item-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--mud-tan);
-            display: block;
-            margin-bottom: 0.3rem;
+        
+        .info-bar__item {
+            padding: var(--space-md);
         }
-
-        .info-item-label {
-            font-size: 0.9rem;
-            color: var(--field-tan);
+        
+        .info-bar__value {
+            display: block;
+            font-size: var(--fs-3xl);
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .info-bar__label {
+            font-size: var(--fs-sm);
+            color: var(--color-tan);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
+        
         /* Lodging Section */
-        #lodging {
-            background: var(--mud-tan);
-            padding: 3rem 5%;
+        .lodging {
+            background: var(--color-secondary);
+            padding: var(--space-xl) 0;
             text-align: center;
         }
-
-        .lodging-container {
+        
+        .lodging__content {
             max-width: 800px;
-            margin: 0 auto;
+            margin-inline: auto;
         }
-
-        .lodging-container h2 {
-            color: var(--shadow-green);
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
+        
+        .lodging__title {
+            color: var(--color-dark);
+            margin-bottom: var(--space-md);
         }
-
-        .lodging-container p {
-            color: var(--charcoal);
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
+        
+        .lodging__description {
+            color: var(--color-text);
+            font-size: var(--fs-lg);
+            margin-bottom: var(--space-lg);
         }
-
-        .lodging-phone {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--shadow-green);
-            color: var(--off-white);
-            text-decoration: none;
+        
+        .lodging__phone {
+            display: inline-flex;
+            padding: var(--space-md) var(--space-xl);
+            background: var(--color-dark);
+            color: var(--color-light);
             font-weight: 700;
-            font-size: 1.1rem;
-            border: 2px solid var(--shadow-green);
-            transition: all 0.3s ease;
+            font-size: var(--fs-base);
+            border: 2px solid var(--color-dark);
+            transition: all var(--transition-base);
         }
-
-        .lodging-phone:hover {
+        
+        .lodging__phone:hover,
+        .lodging__phone:focus-visible {
             background: transparent;
-            color: var(--shadow-green);
+            color: var(--color-dark);
         }
-
-        /* Sticky CTA Bar */
-        .sticky-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: var(--shadow-green);
-            padding: 1rem 5%;
-            z-index: 999;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
+        
+        /* Section */
+        .section {
+            padding: var(--space-3xl) 0;
         }
-
-        .sticky-cta.visible {
-            transform: translateY(0);
+        
+        .section--alt {
+            background: #E8DCC8;
         }
-
-        .sticky-cta-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .sticky-cta-text {
-            color: var(--off-white);
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .sticky-cta-text span {
-            color: var(--mud-tan);
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .sticky-cta-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .sticky-btn {
-            padding: 0.8rem 2rem;
-            background: var(--mud-tan);
-            color: var(--charcoal);
-            text-decoration: none;
-            font-weight: 700;
-            border: 2px solid var(--mud-tan);
-            transition: all 0.3s ease;
-        }
-
-        .sticky-btn:hover {
-            background: transparent;
-            color: var(--mud-tan);
-        }
-
-        /* FAQ Section */
-        #faq {
-            background: var(--off-white);
-            padding: 6rem 5%;
-        }
-
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-container h2 {
+        
+        .section__header {
             text-align: center;
-            margin-bottom: 3rem;
-            font-size: 3rem;
+            margin-bottom: var(--space-3xl);
         }
-
-        .faq-item {
-            background: white;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--mud-tan);
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        
+        .section__title {
+            margin-bottom: var(--space-md);
         }
-
-        .faq-question {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--forest-green);
-            margin-bottom: 1rem;
+        
+        .section__subtitle {
+            font-size: var(--fs-lg);
+            color: var(--color-accent);
+            max-width: 700px;
+            margin-inline: auto;
         }
-
-        .faq-answer {
-            font-size: 1.05rem;
-            color: var(--charcoal);
-            line-height: 1.8;
-        }
-
-        /* What to Expect Section */
-        #what-to-expect {
-            background: var(--light-tan);
-            padding: 6rem 5%;
-        }
-
-        .expect-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .expect-container h2 {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 3rem;
-        }
-
-        .expect-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .expect-item {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .expect-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .expect-item h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--forest-green);
-        }
-
-        .expect-item p {
-            color: var(--moss-green);
-        }
-
-        /* About Section - Side by Side */
-        #about {
-            padding: 6rem 5%;
-            background: var(--off-white);
-        }
-
-        .about-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
+        
+        /* About Section */
+        .about__wrapper {
             display: grid;
             grid-template-columns: 400px 1fr;
-            gap: 4rem;
+            gap: var(--space-3xl);
             align-items: start;
         }
-
-        .about-image-container {
+        
+        .about__image-container {
             position: sticky;
-            top: 2rem;
+            top: calc(var(--nav-height) + var(--space-lg));
         }
-
-        .about-image {
+        
+        .about__image {
             width: 100%;
-            height: 500px;
+            aspect-ratio: 4/5;
             overflow: hidden;
-            border: 4px solid var(--mud-tan);
+            border: 4px solid var(--color-secondary);
         }
-
-        .about-image img {
+        
+        .about__image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform var(--transition-slow);
         }
-
-        .guide-name {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--forest-green);
-        }
-
-        .about-content h2 {
-            margin-bottom: 2rem;
-        }
-
-        .about-content p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
-        /* Hunt Types - Card Grid */
-        #hunt-types {
-            background: var(--light-tan);
-            padding: 6rem 5%;
-        }
-
-        .hunt-types-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: left;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-        }
-
-        .hunt-types-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .hunt-card {
-            background: var(--off-white);
-            border-left: 4px solid var(--mud-tan);
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .hunt-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .hunt-card h3 {
-            color: var(--forest-green);
-            margin-bottom: 1rem;
-            font-size: 1.6rem;
-        }
-
-        .hunt-card p {
-            color: var(--moss-green);
-            margin-bottom: 1.5rem;
-        }
-
-        .hunt-price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin: 1rem 0;
-        }
-
-        .hunt-card-cta {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: var(--forest-green);
-            color: var(--off-white);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-
-        .hunt-card-cta:hover {
-            background: var(--mud-tan);
-            color: var(--charcoal);
-        }
-
-        /* Social Proof Section */
-        #social-proof {
-            background: var(--off-white);
-            padding: 4rem 5%;
-            text-align: center;
-            border-top: 3px solid var(--mud-tan);
-            border-bottom: 3px solid var(--mud-tan);
-        }
-
-        .social-proof-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .social-proof-container h3 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: var(--forest-green);
-        }
-
-        .social-stats {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--mud-tan);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: var(--moss-green);
-            margin-top: 0.5rem;
-        }
-
-        /* Gallery - Masonry Style */
-        #gallery {
-            padding: 6rem 5%;
-            background: var(--off-white);
-        }
-
-        .gallery-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .gallery-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-        }
-
-        .gallery-intro h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .gallery-intro p {
-            font-size: 1.2rem;
-            color: var(--moss-green);
-        }
-
-        .gallery-masonry {
-            column-count: 3;
-            column-gap: 1.5rem;
-        }
-
-        .gallery-item {
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .gallery-item:hover img {
+        
+        .about__image:hover img {
             transform: scale(1.05);
         }
-
-        /* Testimonial Section */
-        #testimonials {
-            background: var(--forest-green);
-            padding: 5rem 5%;
-            color: var(--off-white);
-        }
-
-        .testimonials-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
+        
+        .about__name {
             text-align: center;
+            margin-top: var(--space-md);
+            font-size: var(--fs-lg);
+            font-weight: 600;
+            color: var(--color-primary);
         }
-
-        .testimonials-wrapper h2 {
-            color: var(--off-white);
-            margin-bottom: 3rem;
+        
+        .about__content {
+            font-size: var(--fs-base);
+            line-height: 1.8;
         }
-
-        .testimonials-grid {
+        
+        /* Expect Grid */
+        .expect__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+        }
+        
+        .expect__item {
+            text-align: center;
+            padding: var(--space-lg);
+            transition: transform var(--transition-base);
+        }
+        
+        .expect__item:hover {
+            transform: translateY(-4px);
+        }
+        
+        .expect__icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .expect__title {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .expect__description {
+            color: var(--color-accent);
+        }
+        
+        /* Hunt Types */
+        .hunt-types__grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: var(--space-xl);
         }
-
+        
+        .hunt-card {
+            background: var(--color-light);
+            border-left: 4px solid var(--color-secondary);
+            padding: var(--space-xl);
+            transition: all var(--transition-base);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .hunt-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .hunt-card__title {
+            color: var(--color-primary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .hunt-card__description {
+            color: var(--color-accent);
+        }
+        
+        /* Gallery - Optimized with lazy loading */
+        .gallery__intro {
+            text-align: center;
+            max-width: 700px;
+            margin-inline: auto;
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .gallery__masonry {
+            column-count: 3;
+            column-gap: var(--space-md);
+        }
+        
+        .gallery__item {
+            break-inside: avoid;
+            margin-bottom: var(--space-md);
+            overflow: hidden;
+            transition: transform var(--transition-base);
+        }
+        
+        .gallery__item:hover {
+            transform: scale(1.02);
+        }
+        
+        .gallery__item img {
+            width: 100%;
+            display: block;
+            transition: opacity var(--transition-base);
+        }
+        
+        .gallery__item img[loading="lazy"] {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: var(--color-primary);
+            color: var(--color-light);
+        }
+        
+        .testimonials__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+        }
+        
         .testimonial {
             background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--mud-tan);
+            padding: var(--space-xl);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-secondary);
+            transition: background var(--transition-base);
         }
-
-        .testimonial-text {
-            font-size: 1.1rem;
+        
+        .testimonial:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .testimonial__stars {
+            color: #ffd700;
+            font-size: var(--fs-lg);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .testimonial__text {
+            font-size: var(--fs-base);
             font-style: italic;
             line-height: 1.8;
-            margin-bottom: 1rem;
-            color: var(--light-tan);
+            margin-bottom: var(--space-md);
+            color: #E8DCC8;
         }
-
-        .testimonial-author {
-            font-size: 1rem;
-            color: var(--mud-tan);
+        
+        .testimonial__author {
+            color: var(--color-secondary);
             font-weight: 600;
-            margin-top: 1rem;
         }
-
-        .testimonial-stars {
-            color: #ffd700;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+        
+        /* FAQ */
+        .faq__item {
+            background: white;
+            margin-bottom: var(--space-md);
+            border-left: 4px solid var(--color-secondary);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow var(--transition-base);
         }
-
-        /* CTA Section - Split Design */
-        #cta {
-            background: var(--shadow-green);
-            padding: 0;
+        
+        .faq__item:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .faq__question {
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .faq__answer {
+            color: var(--color-text);
+            line-height: 1.8;
+        }
+        
+        /* CTA Section */
+        .cta {
             display: grid;
             grid-template-columns: 1fr 1fr;
             min-height: 500px;
         }
-
-        .cta-image {
-            background: var(--moss-green);
+        
+        .cta__image {
             position: relative;
             overflow: hidden;
         }
-
-        .cta-image img {
+        
+        .cta__image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             opacity: 0.8;
         }
-
-        .cta-content {
-            padding: 5rem;
+        
+        .cta__content {
+            background: var(--color-dark);
+            padding: var(--space-3xl);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            color: var(--off-white);
+            color: var(--color-light);
         }
-
-        .cta-content h2 {
-            color: var(--off-white);
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+        
+        .cta__title {
+            color: var(--color-light);
+            margin-bottom: var(--space-md);
         }
-
-        .cta-content p {
-            color: var(--light-tan);
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+        
+        .cta__description {
+            color: #E8DCC8;
+            font-size: var(--fs-lg);
+            margin-bottom: var(--space-xl);
         }
-
-        .contact-phone {
-            font-size: 2.5rem;
+        
+        .cta__phone {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             font-weight: 700;
-            color: var(--mud-tan);
-            margin-bottom: 1rem;
+            color: var(--color-secondary);
+            margin-bottom: var(--space-sm);
             letter-spacing: 1px;
         }
-
-        .contact-subtext {
-            font-size: 1rem;
-            color: var(--field-tan);
-            margin-bottom: 2rem;
+        
+        .cta__subtext {
+            color: var(--color-tan);
+            margin-bottom: var(--space-xl);
         }
-
-        .cta-buttons {
+        
+        .cta__buttons {
             display: flex;
-            gap: 1rem;
+            gap: var(--space-sm);
             flex-wrap: wrap;
         }
-
-        .cta-btn {
-            padding: 1.2rem 3rem;
-            background: var(--mud-tan);
-            color: var(--charcoal);
-            text-decoration: none;
+        
+        .cta__btn {
+            padding: var(--space-md) var(--space-xl);
+            background: var(--color-secondary);
+            color: var(--color-text);
             font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 2px solid var(--mud-tan);
+            font-size: var(--fs-base);
+            border: 2px solid var(--color-secondary);
+            transition: all var(--transition-base);
         }
-
-        .cta-btn:hover {
+        
+        .cta__btn:hover,
+        .cta__btn:focus-visible {
             background: transparent;
-            color: var(--mud-tan);
+            color: var(--color-secondary);
             transform: scale(1.05);
         }
-
+        
+        /* Sticky CTA Bar */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--color-dark);
+            padding: var(--space-md) 0;
+            z-index: 999;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(100%);
+            transition: transform var(--transition-base);
+            will-change: transform;
+        }
+        
+        .sticky-cta--visible {
+            transform: translateY(0);
+        }
+        
+        .sticky-cta__content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-lg);
+        }
+        
+        .sticky-cta__text {
+            color: var(--color-light);
+            font-size: var(--fs-lg);
+            font-weight: 600;
+        }
+        
+        .sticky-cta__text span {
+            color: var(--color-secondary);
+            font-size: var(--fs-xl);
+            font-weight: 700;
+        }
+        
+        .sticky-cta__buttons {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        
+        .sticky-cta__btn {
+            padding: var(--space-sm) var(--space-lg);
+            background: var(--color-secondary);
+            color: var(--color-text);
+            font-weight: 700;
+            border: 2px solid var(--color-secondary);
+            transition: all var(--transition-base);
+            white-space: nowrap;
+        }
+        
+        .sticky-cta__btn:hover,
+        .sticky-cta__btn:focus-visible {
+            background: transparent;
+            color: var(--color-secondary);
+        }
+        
         /* Footer */
-        footer {
-            background: var(--charcoal);
-            color: var(--off-white);
-            padding: 3rem 5%;
+        .footer {
+            background: var(--color-text);
+            color: var(--color-light);
+            padding: var(--space-xl) 0;
             text-align: center;
         }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
+        
+        .footer__name {
+            font-family: var(--font-display);
+            font-size: var(--fs-2xl);
+            color: var(--color-secondary);
+            margin-bottom: var(--space-xs);
         }
-
-        .footer-name {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: var(--mud-tan);
+        
+        .footer__tagline {
+            font-size: var(--fs-sm);
+            color: var(--color-tan);
+            margin-bottom: var(--space-lg);
         }
-
-        .footer-tagline {
-            font-size: 0.9rem;
-            color: var(--field-tan);
-            margin-bottom: 2rem;
-        }
-
-        .footer-links {
+        
+        .footer__links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-lg);
+            list-style: none;
         }
-
-        .footer-link {
-            color: var(--off-white);
-            text-decoration: none;
-            transition: color 0.3s ease;
+        
+        .footer__link {
+            transition: color var(--transition-fast);
         }
-
-        .footer-link:hover {
-            color: var(--mud-tan);
+        
+        .footer__link:hover,
+        .footer__link:focus-visible {
+            color: var(--color-secondary);
         }
-
-        .copyright {
-            font-size: 0.85rem;
-            color: var(--moss-green);
-            padding-top: 2rem;
-            border-top: 1px solid var(--moss-green);
+        
+        .footer__copyright {
+            font-size: var(--fs-xs);
+            color: var(--color-accent);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-accent);
         }
-
-        /* Responsive Design */
+        
+        /* ==========================================
+           RESPONSIVE DESIGN - Mobile First
+           ========================================== */
+        
         @media (max-width: 1024px) {
-            .nav-links {
+            .nav__links {
                 display: none;
             }
-
-            .sticky-cta-content {
-                flex-direction: column;
-                text-align: center;
+            
+            .nav__toggle {
+                display: block;
             }
-
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .about-wrapper {
+            
+            .about__wrapper {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: var(--space-xl);
             }
-
-            .about-image-container {
+            
+            .about__image-container {
                 position: relative;
                 top: 0;
+                max-width: 400px;
+                margin-inline: auto;
             }
-
-            .about-image {
-                height: 400px;
-            }
-
-            .hunt-types-grid {
+            
+            .hunt-types__grid {
                 grid-template-columns: 1fr;
             }
-
-            .gallery-masonry {
+            
+            .gallery__masonry {
                 column-count: 2;
             }
-
-            #cta {
+            
+            .cta {
                 grid-template-columns: 1fr;
             }
-
-            .cta-image {
+            
+            .cta__image {
                 min-height: 400px;
             }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                height: 100vh;
-                justify-content: center;
-                text-align: center;
-                padding: 2rem;
-            }
-
-            .hero-image::before {
-                background: rgba(26,36,25,0.75);
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-tagline {
-                font-size: 1.2rem;
-            }
-
-            .hero-cta-group {
-                justify-content: center;
-            }
-
-            .info-bar {
+            
+            .sticky-cta__content {
                 flex-direction: column;
-                gap: 1.5rem;
+                text-align: center;
             }
-
-            .gallery-masonry {
+        }
+        
+        @media (max-width: 768px) {
+            :root {
+                --space-3xl: 4rem;
+            }
+            
+            .hero {
+                min-height: 100vh;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .hero__image::before {
+                background: rgba(26, 36, 25, 0.75);
+            }
+            
+            .hero__content {
+                max-width: 100%;
+            }
+            
+            .hero__cta-group {
+                justify-content: center;
+            }
+            
+            .info-bar__grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery__masonry {
                 column-count: 1;
             }
-
-            .cta-content {
-                padding: 3rem 2rem;
+            
+            .cta__content {
+                padding: var(--space-xl);
             }
-
-            .contact-phone {
-                font-size: 1.5rem;
-            }
-
+            
             .sticky-cta {
                 display: none;
             }
-
-            h2 {
-                font-size: 2rem;
+        }
+        
+        /* ==========================================
+           PERFORMANCE & ACCESSIBILITY
+           ========================================== */
+        
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
         }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .cta-button,
-            .cta-btn {
-                padding: 0.9rem 1.8rem;
-                font-size: 0.95rem;
-            }
+        
+        /* Focus Visible */
+        :focus-visible {
+            outline: 2px solid var(--color-secondary);
+            outline-offset: 4px;
+        }
+        
+        /* Performance - GPU Acceleration */
+        .nav,
+        .sticky-cta,
+        .btn,
+        .gallery__item img {
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
     </style>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main" class="sr-only">Skip to main content</a>
+    
     <!-- Navigation -->
-    <nav itemscope itemtype="https://schema.org/SiteNavigationElement">
-        <div class="nav-container">
-            <div class="nav-logo">The Roost Hole</div>
-            <ul class="nav-links">
-                <li><a href="#about" itemprop="url">About</a></li>
-                <li><a href="#hunt-types" itemprop="url">Hunt Types</a></li>
-                <li><a href="#seasons" itemprop="url">Seasons</a></li>
-                <li><a href="#gallery" itemprop="url">Gallery</a></li>
-                <li><a href="#lodging" itemprop="url">Lodging</a></li>
-                <li><a href="#cta" itemprop="url">Book Now</a></li>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav__container container">
+            <div class="nav__logo" aria-label="The Roost Hole">The Roost Hole</div>
+            
+            <button class="nav__toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="nav__toggle-icon"></span>
+            </button>
+            
+            <ul class="nav__links">
+                <li><a href="#about" class="nav__link">About</a></li>
+                <li><a href="#hunt-types" class="nav__link">Hunt Types</a></li>
+                <li><a href="#gallery" class="nav__link">Gallery</a></li>
+                <li><a href="#lodging" class="nav__link">Lodging</a></li>
+                <li><a href="#cta" class="nav__link">Book Now</a></li>
             </ul>
-            <a href="tel:870-830-3633" class="nav-phone" itemprop="telephone">870-830-3633</a>
+            
+            <a href="tel:870-830-3633" class="nav__phone" aria-label="Call 870-830-3633">870-830-3633</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" itemscope itemtype="https://schema.org/Service">
-        <div class="hero-image">
-            <img src="images/IMG_2052.jpeg" alt="Stuttgart Arkansas waterfowl duck hunting in flooded rice fields guided by Jonathon Goins" title="Stuttgart Arkansas Duck Hunting in Flooded Rice Fields" itemprop="image">
-        </div>
-        <div class="hero-content">
-            <h1 itemprop="name">The Roost Hole Guide Service</h1>
-            <p class="hero-tagline" itemprop="description">Guided waterfowl hunts in Stuttgart, Arkansas. Flooded rice fields, field spreads, and authentic duck and goose hunting with Jonathon Goins.</p>
-            <div class="hero-cta-group">
-                <a href="#cta" class="cta-button">Book a Hunt</a>
-                <a href="#about" class="cta-button cta-button-secondary">Meet Your Guide</a>
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Hero Section -->
+        <section class="hero" aria-label="Hero section">
+            <div class="hero__image">
+                <img 
+                    src="images/IMG_2052.jpeg" 
+                    alt="Stuttgart Arkansas waterfowl duck hunting in flooded rice fields"
+                    title="Stuttgart Arkansas Duck Hunting in Flooded Rice Fields"
+                    width="1920"
+                    height="1080"
+                    fetchpriority="high"
+                >
             </div>
-        </div>
-    </section>
-
-    <!-- Info Bar -->
-    <div class="info-bar">
-        <div class="info-item">
-            <span class="info-item-value">15+</span>
-            <span class="info-item-label">Years Experience</span>
-        </div>
-        <div class="info-item">
-            <span class="info-item-value">4+</span>
-            <span class="info-item-label">Hunters Per Group</span>
-        </div>
-        <div class="info-item">
-            <span class="info-item-value">100%</span>
-            <span class="info-item-label">Authentic</span>
-        </div>
-    </div>
-
-    <!-- Lodging Section -->
-    <section id="lodging">
-        <div class="lodging-container">
-            <h2>Lodging Available</h2>
-            <p>Need a place to stay? We offer lodging options for hunters. Call for availability and rates.</p>
-            <a href="tel:870-830-3633" class="lodging-phone">Call for Lodging: 870-830-3633</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" itemscope itemtype="https://schema.org/Person">
-        <div class="about-wrapper">
-            <div class="about-image-container">
-                <div class="about-image">
-                    <img src="images/jonathon-gains-profile-picture.jpg" alt="Jonathon Goins professional Stuttgart Arkansas waterfowl hunting guide with 15 years experience" title="Jonathon Goins - Professional Waterfowl Guide" itemprop="image">
-                </div>
-                <div class="guide-name" itemprop="name">Jonathon Goins</div>
-            </div>
-            <div class="about-content">
-                <h2>Your Guide</h2>
-                <p itemprop="description">I'm Jonathon Goins, and waterfowl hunting is what I do. Not as a hobby, as a way of life. For over 15 years, I've been in the timber before sunrise, setting decoys in frozen fields, and reading the weather like it's the only language that matters.</p>
-                <p>The Roost Hole isn't a corporate operation. It's me, the land I know around Stuttgart, and the birds that work it. I don't promise limits. I promise honest hunting, the kind where you earn it, respect it, and remember it.</p>
-                <p>We hunt flooded rice fields when the ducks are working the crops. We hunt field spreads when the geese are flying. We go where the birds go, and we do it right: small groups, proven setups, and no shortcuts.</p>
-                <p>If you want a real hunt with a guide who lives this life year-round, let's talk. No sales pitch. Just straight shooting.</p>
-                <meta itemprop="jobTitle" content="Professional Waterfowl Hunting Guide">
-                <meta itemprop="address" content="Stuttgart, Arkansas">
-            </div>
-        </div>
-    </section>
-
-    <!-- What to Expect Section -->
-    <section id="what-to-expect">
-        <div class="expect-container">
-            <h2>What to Expect on Your Hunt</h2>
-            <div class="expect-grid">
-                <div class="expect-item">
-                    <div class="expect-icon">🌅</div>
-                    <h3>Early Start</h3>
-                    <p>We're in the blind before sunrise when ducks are most active</p>
-                </div>
-                <div class="expect-item">
-                    <div class="expect-icon">🦆</div>
-                    <h3>Proven Setups</h3>
-                    <p>Quality decoy spreads and blind placement in prime locations</p>
-                </div>
-                <div class="expect-item">
-                    <div class="expect-icon">🎯</div>
-                    <h3>Expert Calling</h3>
-                    <p>Professional calling techniques to bring birds in close</p>
-                </div>
-                <div class="expect-item">
-                    <div class="expect-icon">🏠</div>
-                    <h3>Lodging Available</h3>
-                    <p>Comfortable accommodations for out-of-town hunters</p>
+            <div class="hero__content container">
+                <h1 class="hero__title">The Roost Hole Guide Service</h1>
+                <p class="hero__tagline">Guided waterfowl hunts in Stuttgart, Arkansas. Flooded rice fields, field spreads, and authentic duck and goose hunting with Jonathon Goins.</p>
+                <div class="hero__cta-group">
+                    <a href="#cta" class="btn btn--primary">Book a Hunt</a>
+                    <a href="#about" class="btn btn--secondary">Meet Your Guide</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Hunt Types Section -->
-    <section id="hunt-types">
-        <div class="hunt-types-wrapper">
-            <div class="section-header">
-                <h2>Hunt Offerings</h2>
-            </div>
-            <div class="hunt-types-grid">
-                <div class="hunt-card">
-                    <h3>Flooded Rice Fields</h3>
-                    <p>Stuttgart's legendary rice field hunting. Mallards, pintails, and gadwall working flooded crops. This is what Arkansas waterfowling is all about.</p>
-                </div>
-                <div class="hunt-card">
-                    <h3>Field Spreads</h3>
-                    <p>Ducks and geese over large decoy spreads in harvested grain fields. We set up where they want to be—corn, rice, soybeans—and let them come.</p>
-                </div>
-                <div class="hunt-card">
-                    <h3>Layout Hunts</h3>
-                    <p>Low-profile field hunting for ducks and Canada geese. Get flat, stay still, and watch them lock up over the spread. Pure waterfowling.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Waterfowl Seasons Calendar Section -->
-    <section id="seasons" style="padding: 0; margin: 0;">
-        <div id="waterfowl-calendar-root"></div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery">
-        <div class="gallery-wrapper">
-            <div class="gallery-intro">
-                <h2>From the Blind</h2>
-                <p>Real hunts. Real birds. No fluff, just what it looks like when you do it right.</p>
-            </div>
-
-            
-     <div class="gallery-masonry">
-    <div class="gallery-item">
-        <img src="images/the-roost-hole-guide-service-favicon.jpg" alt="The Roost Hole Guide Service Logo" title="The Roost Hole Guide Service Logo">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_1773.jpeg" alt="Northern Shoveler in Duck blind" title="Northern Shoveler in the Duck Blind">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_1790.jpeg" alt="Flooded Rice Field" title="Flooded Rice Field Waterfowl Habitat">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_1832.jpeg" alt="Early Morning Duck Decoy Spread" title="Early Morning Duck Decoy Spread">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_1851.jpeg" alt="Guided Duck Hunt in Arkansas" title="Guided Duck Hunt in Arkansas">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_1854.jpeg" alt="Waterfowl" title="Mixed Bag of Harvested Waterfowl">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_1860.jpeg" alt="Field Hunt" title="Field Hunt Setup for Ducks">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_1957.jpeg" alt="Hunt Setup" title="Duck Hunting Blind and Decoy Setup">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_1960.jpeg" alt="Successful Hunt" title="Successful Guided Duck Hunt">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_1962.jpeg" alt="Duck Hunting" title="Duck Hunting Action in Flooded Fields">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_1964.jpeg" alt="Waterfowl Hunting" title="Waterfowl Hunting with The Roost Hole Guide Service">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_2057.jpeg" alt="Morning Duck Hunt Harvest" title="Morning Duck Hunt Harvest">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_2091.jpeg" alt="Happy Hunters After a Successful Duck Hunt" title="Happy Hunters After a Successful Duck Hunt">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_2116.jpeg" alt="Duck Hunt" title="Duck Hunt in Flooded Timber">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_2117.jpeg" alt="Goose Hunt" title="Goose Hunt in Agricultural Field">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_2118.jpeg" alt="Waterfowl Hunt Group Photo" title="Waterfowl Hunt Group Photo">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_2131.jpeg" alt="Waterfowl" title="Harvested Ducks After the Hunt">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_2133.jpeg" alt="Field Spread for Duck Hunting" title="Field Spread for Duck Hunting">
-    </div>
-    <div class="gallery-item">
-        <img src="images/IMG_2141.jpeg" alt="Successful Morning Waterfowl Hunt" title="Successful Morning Waterfowl Hunt">
-    </div>
-    <div class="gallery-item">
-        <img src="images/father-son-duck-hunt_arkansas.png" alt="Father and Son Duck Hunt in Arkansas" title="Father and Son Duck Hunt in Arkansas">
-    </div>
-    <div class="gallery-item">
-        <img src="images/Goose_hunt_snow-stuttgart.png" alt="Snow Goose Hunt Near Stuttgart" title="Snow Goose Hunt Near Stuttgart">
-    </div>
-    <div class="gallery-item">
-        <img src="images/Group_Hunt_Duck_Snow.png" alt="Group Duck Hunt in Snowy Conditions" title="Group Duck Hunt in Snowy Conditions">
-    </div>
-    <div class="gallery-item">
-        <img src="images/Memorable_Duck_hunt-stuttgart.png" alt="Memorable Duck Hunt Near Stuttgart" title="Memorable Duck Hunt Near Stuttgart">
-    </div>
-    <div class="gallery-item">
-        <img src="images/Duck_Blinds_trophy-duck.png" alt="Trophy Duck from Duck Blind" title="Trophy Duck from Duck Blind">
-    </div>
-    <div class="gallery-item">
-        <img src="images/Successful_duck-hunt.png" alt="Successful Duck Hunt with Limit" title="Successful Duck Hunt with Limit">
-    </div>
-    <div class="gallery-item">
-        <img src="images/Arkansas_Duck_Hunt.png" alt="Arkansas Duck Hunt Success" title="Arkansas Duck Hunt Success">
-    </div>
-    <div class="gallery-item">
-        <img src="images/duck-hual.png" alt="Duck Haul After Successful Hunt" title="Duck Haul After Successful Hunt">
-    </div>
-    <div class="gallery-item">
-        <img src="images/GroupHunt-goose-duck.png" alt="Group Hunt with Geese and Ducks" title="Group Hunt with Geese and Ducks">
-    </div>
-</div>
-
-
-
-</div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" itemscope itemtype="https://schema.org/Product">
-        <meta itemprop="name" content="The Roost Hole Guided Duck Hunting">
-        <div class="testimonials-wrapper">
-            <h2>What Hunters Say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial" itemprop="review" itemscope itemtype="https://schema.org/Review">
-                    <div class="testimonial-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-                        <meta itemprop="ratingValue" content="5">
-                        <meta itemprop="bestRating" content="5">
-                        ★★★★★
+        <!-- Info Bar -->
+        <section class="info-bar" aria-label="Quick facts">
+            <div class="container">
+                <div class="info-bar__grid">
+                    <div class="info-bar__item">
+                        <span class="info-bar__value">15+</span>
+                        <span class="info-bar__label">Years Experience</span>
                     </div>
-                    <div class="testimonial-text" itemprop="reviewBody">"Best duck hunt I've ever been on. Jonathon knows the birds, knows the land, and puts you where you need to be. No BS, just good hunting."</div>
-                    <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                        <span itemprop="name">Mark T., Little Rock</span>
+                    <div class="info-bar__item">
+                        <span class="info-bar__value">4+</span>
+                        <span class="info-bar__label">Hunters Per Group</span>
                     </div>
-                </div>
-                <div class="testimonial" itemprop="review" itemscope itemtype="https://schema.org/Review">
-                    <div class="testimonial-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-                        <meta itemprop="ratingValue" content="5">
-                        <meta itemprop="bestRating" content="5">
-                        ★★★★★
-                    </div>
-                    <div class="testimonial-text" itemprop="reviewBody">"We limited out on greenheads by 9am. Jonathon had us in the perfect spot. Already booked for next season!"</div>
-                    <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                        <span itemprop="name">James R., Memphis</span>
-                    </div>
-                </div>
-                <div class="testimonial" itemprop="review" itemscope itemtype="https://schema.org/Review">
-                    <div class="testimonial-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-                        <meta itemprop="ratingValue" content="5">
-                        <meta itemprop="bestRating" content="5">
-                        ★★★★★
-                    </div>
-                    <div class="testimonial-text" itemprop="reviewBody">"Real hunting, real guide. No fancy lodge nonsense. Just good setups and great shooting. Highly recommend."</div>
-                    <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                        <span itemprop="name">David K., Dallas</span>
+                    <div class="info-bar__item">
+                        <span class="info-bar__value">100%</span>
+                        <span class="info-bar__label">Authentic</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" itemscope itemtype="https://schema.org/FAQPage">
-        <div class="faq-container">
-            <h2>Frequently Asked Questions</h2>
-            
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">What should I bring on the hunt?</div>
-                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">Bring your shotgun, shells (steel shot required), hunting license, warm waterproof clothing, and waders. We provide decoys, blinds, and calling.</div>
+        <!-- Lodging Section -->
+        <section id="lodging" class="lodging" aria-labelledby="lodging-title">
+            <div class="container">
+                <div class="lodging__content">
+                    <h2 id="lodging-title" class="lodging__title">Lodging Available</h2>
+                    <p class="lodging__description">Need a place to stay? We offer lodging options for hunters. Call for availability and rates.</p>
+                    <a href="tel:870-830-3633" class="lodging__phone">Call for Lodging: 870-830-3633</a>
                 </div>
             </div>
-            
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">Do you offer morning and afternoon hunts?</div>
-                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">Most hunts are morning hunts when duck activity is highest. We start well before sunrise. Afternoon hunts may be available depending on conditions.</div>
-                </div>
-            </div>
-            
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">How do I book a hunt?</div>
-                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">Call or text 870-830-3633 to check availability. We'll discuss dates, group size, and hunt preferences. Book early as peak season fills fast.</div>
-                </div>
-            </div>
-            
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">What's the cancellation policy?</div>
-                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">Weather happens. If conditions are unsafe or unfavorable for hunting, we'll work with you to reschedule. Call us to discuss specific situations.</div>
-                </div>
-            </div>
-            
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">Is lodging included?</div>
-                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">Lodging is available for an additional fee. Call 870-830-3633 for availability and rates. We can accommodate multiple hunters comfortably.</div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA Section -->
-    <section id="cta">
-        <div class="cta-image">
-            <img src="images/IMG_2057.jpeg" alt="Book your Stuttgart Arkansas duck hunting trip today" title="Book Your Stuttgart Arkansas Duck Hunting Trip">
-        </div>
-        <div class="cta-content">
-            <h2>Ready to Book Your Hunt?</h2>
-            <p>Spots fill fast during peak season. Don't wait, call now to check availability and secure your dates.</p>
-            <div class="contact-phone">870-830-3633</div>
-            <div class="contact-subtext">Available 7 Days a Week - Call or Text Anytime</div>
-            <div class="cta-buttons">
-                <a href="tel:870-830-3633" class="cta-btn">📞 Call Now</a>
-                <a href="sms:870-830-3633" class="cta-btn">💬 Text Us</a>
-                <a href="/bookings" class="sticky-btn">📅 Check Availability</a>
+        <!-- About Section -->
+        <section id="about" class="section" aria-labelledby="about-title">
+            <div class="container">
+                <div class="about__wrapper">
+                    <div class="about__image-container">
+                        <div class="about__image">
+                            <img 
+                                src="images/jonathon-gains-profile-picture.jpg" 
+                                alt="Jonathon Goins, professional waterfowl hunting guide"
+                                title="Jonathon Goins - Professional Waterfowl Guide"
+                                width="400"
+                                height="500"
+                                loading="lazy"
+                            >
+                        </div>
+                        <div class="about__name">Jonathon Goins</div>
+                    </div>
+                    <div class="about__content">
+                        <h2 id="about-title">Your Guide</h2>
+                        <p>I'm Jonathon Goins, and waterfowl hunting is what I do. Not as a hobby, as a way of life. For over 15 years, I've been in the timber before sunrise, setting decoys in frozen fields, and reading the weather like it's the only language that matters.</p>
+                        <p>The Roost Hole isn't a corporate operation. It's me, the land I know around Stuttgart, and the birds that work it. I don't promise limits. I promise honest hunting, the kind where you earn it, respect it, and remember it.</p>
+                        <p>We hunt flooded rice fields when the ducks are working the crops. We hunt field spreads when the geese are flying. We go where the birds go, and we do it right: small groups, proven setups, and no shortcuts.</p>
+                        <p>If you want a real hunt with a guide who lives this life year-round, let's talk. No sales pitch. Just straight shooting.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- What to Expect Section -->
+        <section class="section section--alt" aria-labelledby="expect-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="expect-title" class="section__title">What to Expect on Your Hunt</h2>
+                </div>
+                <div class="expect__grid">
+                    <div class="expect__item">
+                        <div class="expect__icon" aria-hidden="true">🌅</div>
+                        <h3 class="expect__title">Early Start</h3>
+                        <p class="expect__description">We're in the blind before sunrise when ducks are most active</p>
+                    </div>
+                    <div class="expect__item">
+                        <div class="expect__icon" aria-hidden="true">🦆</div>
+                        <h3 class="expect__title">Proven Setups</h3>
+                        <p class="expect__description">Quality decoy spreads and blind placement in prime locations</p>
+                    </div>
+                    <div class="expect__item">
+                        <div class="expect__icon" aria-hidden="true">🎯</div>
+                        <h3 class="expect__title">Expert Calling</h3>
+                        <p class="expect__description">Professional calling techniques to bring birds in close</p>
+                    </div>
+                    <div class="expect__item">
+                        <div class="expect__icon" aria-hidden="true">🏠</div>
+                        <h3 class="expect__title">Lodging Available</h3>
+                        <p class="expect__description">Comfortable accommodations for out-of-town hunters</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hunt Types Section -->
+        <section id="hunt-types" class="section" aria-labelledby="hunt-types-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="hunt-types-title" class="section__title">Hunt Offerings</h2>
+                </div>
+                <div class="hunt-types__grid">
+                    <article class="hunt-card">
+                        <h3 class="hunt-card__title">Flooded Rice Fields</h3>
+                        <p class="hunt-card__description">Stuttgart's legendary rice field hunting. Mallards, pintails, and gadwall working flooded crops. This is what Arkansas waterfowling is all about.</p>
+                    </article>
+                    <article class="hunt-card">
+                        <h3 class="hunt-card__title">Field Spreads</h3>
+                        <p class="hunt-card__description">Ducks and geese over large decoy spreads in harvested grain fields. We set up where they want to be—corn, rice, soybeans—and let them come.</p>
+                    </article>
+                    <article class="hunt-card">
+                        <h3 class="hunt-card__title">Layout Hunts</h3>
+                        <p class="hunt-card__description">Low-profile field hunting for ducks and Canada geese. Get flat, stay still, and watch them lock up over the spread. Pure waterfowling.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section" aria-labelledby="gallery-title">
+            <div class="container">
+                <div class="gallery__intro">
+                    <h2 id="gallery-title" class="section__title">From the Blind</h2>
+                    <p class="section__subtitle">Real hunts. Real birds. No fluff, just what it looks like when you do it right.</p>
+                </div>
+                
+                <div class="gallery__masonry">
+                    <div class="gallery__item">
+                        <img src="images/the-roost-hole-guide-service-favicon.jpg" alt="The Roost Hole Guide Service Logo" title="The Roost Hole Guide Service Logo" loading="lazy" width="400" height="400">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_1773.jpeg" alt="Northern Shoveler in Duck blind" title="Northern Shoveler in the Duck Blind" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_1790.jpeg" alt="Flooded Rice Field" title="Flooded Rice Field Waterfowl Habitat" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_1832.jpeg" alt="Early Morning Duck Decoy Spread" title="Early Morning Duck Decoy Spread" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_1851.jpeg" alt="Guided Duck Hunt in Arkansas" title="Guided Duck Hunt in Arkansas" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_1854.jpeg" alt="Waterfowl" title="Mixed Bag of Harvested Waterfowl" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_1860.jpeg" alt="Field Hunt" title="Field Hunt Setup for Ducks" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_1957.jpeg" alt="Hunt Setup" title="Duck Hunting Blind and Decoy Setup" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_1960.jpeg" alt="Successful Hunt" title="Successful Guided Duck Hunt" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_1962.jpeg" alt="Duck Hunting" title="Duck Hunting Action in Flooded Fields" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_1964.jpeg" alt="Waterfowl Hunting" title="Waterfowl Hunting with The Roost Hole Guide Service" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_2057.jpeg" alt="Morning Duck Hunt Harvest" title="Morning Duck Hunt Harvest" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_2091.jpeg" alt="Happy Hunters After a Successful Duck Hunt" title="Happy Hunters After a Successful Duck Hunt" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_2116.jpeg" alt="Duck Hunt" title="Duck Hunt in Flooded Timber" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_2117.jpeg" alt="Goose Hunt" title="Goose Hunt in Agricultural Field" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_2118.jpeg" alt="Waterfowl Hunt Group Photo" title="Waterfowl Hunt Group Photo" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_2131.jpeg" alt="Waterfowl" title="Harvested Ducks After the Hunt" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_2133.jpeg" alt="Field Spread for Duck Hunting" title="Field Spread for Duck Hunting" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/IMG_2141.jpeg" alt="Successful Morning Waterfowl Hunt" title="Successful Morning Waterfowl Hunt" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/father-son-duck-hunt_arkansas.png" alt="Father and Son Duck Hunt in Arkansas" title="Father and Son Duck Hunt in Arkansas" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/Goose_hunt_snow-stuttgart.png" alt="Snow Goose Hunt Near Stuttgart" title="Snow Goose Hunt Near Stuttgart" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/Group_Hunt_Duck_Snow.png" alt="Group Duck Hunt in Snowy Conditions" title="Group Duck Hunt in Snowy Conditions" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/Memorable_Duck_hunt-stuttgart.png" alt="Memorable Duck Hunt Near Stuttgart" title="Memorable Duck Hunt Near Stuttgart" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/Duck_Blinds_trophy-duck.png" alt="Trophy Duck from Duck Blind" title="Trophy Duck from Duck Blind" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/Successful_duck-hunt.png" alt="Successful Duck Hunt with Limit" title="Successful Duck Hunt with Limit" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/Arkansas_Duck_Hunt.png" alt="Arkansas Duck Hunt Success" title="Arkansas Duck Hunt Success" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/duck-hual.png" alt="Duck Haul After Successful Hunt" title="Duck Haul After Successful Hunt" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery__item">
+                        <img src="images/GroupHunt-goose-duck.png" alt="Group Hunt with Geese and Ducks" title="Group Hunt with Geese and Ducks" loading="lazy" width="400" height="300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section testimonials" aria-labelledby="testimonials-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="testimonials-title" class="section__title">What Hunters Say</h2>
+                </div>
+                <div class="testimonials__grid">
+                    <article class="testimonial">
+                        <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+                        <p class="testimonial__text">"Best duck hunt I've ever been on. Jonathon knows the birds, knows the land, and puts you where you need to be. No BS, just good hunting."</p>
+                        <p class="testimonial__author">Mark T., Little Rock</p>
+                    </article>
+                    <article class="testimonial">
+                        <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+                        <p class="testimonial__text">"We limited out on greenheads by 9am. Jonathon had us in the perfect spot. Already booked for next season!"</p>
+                        <p class="testimonial__author">James R., Memphis</p>
+                    </article>
+                    <article class="testimonial">
+                        <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+                        <p class="testimonial__text">"Real hunting, real guide. No fancy lodge nonsense. Just good setups and great shooting. Highly recommend."</p>
+                        <p class="testimonial__author">David K., Dallas</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section" aria-labelledby="faq-title">
+            <div class="container">
+                <div class="section__header">
+                    <h2 id="faq-title" class="section__title">Frequently Asked Questions</h2>
+                </div>
+                
+                <div style="max-width: 900px; margin-inline: auto;">
+                    <article class="faq__item">
+                        <h3 class="faq__question">What should I bring on the hunt?</h3>
+                        <p class="faq__answer">Bring your shotgun, shells (steel shot required), hunting license, warm waterproof clothing, and waders. We provide decoys, blinds, and calling.</p>
+                    </article>
+                    
+                    <article class="faq__item">
+                        <h3 class="faq__question">Do you offer morning and afternoon hunts?</h3>
+                        <p class="faq__answer">Most hunts are morning hunts when duck activity is highest. We start well before sunrise. Afternoon hunts may be available depending on conditions.</p>
+                    </article>
+                    
+                    <article class="faq__item">
+                        <h3 class="faq__question">How do I book a hunt?</h3>
+                        <p class="faq__answer">Call or text 870-830-3633 to check availability. We'll discuss dates, group size, and hunt preferences. Book early as peak season fills fast.</p>
+                    </article>
+                    
+                    <article class="faq__item">
+                        <h3 class="faq__question">What's the cancellation policy?</h3>
+                        <p class="faq__answer">Weather happens. If conditions are unsafe or unfavorable for hunting, we'll work with you to reschedule. Call us to discuss specific situations.</p>
+                    </article>
+                    
+                    <article class="faq__item">
+                        <h3 class="faq__question">Is lodging included?</h3>
+                        <p class="faq__answer">Lodging is available for an additional fee. Call 870-830-3633 for availability and rates. We can accommodate multiple hunters comfortably.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta" class="cta" aria-labelledby="cta-title">
+            <div class="cta__image">
+                <img src="images/IMG_2057.jpeg" alt="Book your Stuttgart Arkansas duck hunting trip" title="Book Your Stuttgart Arkansas Duck Hunting Trip" loading="lazy" width="800" height="600">
+            </div>
+            <div class="cta__content">
+                <h2 id="cta-title" class="cta__title">Ready to Book Your Hunt?</h2>
+                <p class="cta__description">Spots fill fast during peak season. Don't wait, call now to check availability and secure your dates.</p>
+                <div class="cta__phone">870-830-3633</div>
+                <p class="cta__subtext">Available 7 Days a Week - Call or Text Anytime</p>
+                <div class="cta__buttons">
+                    <a href="tel:870-830-3633" class="cta__btn">📞 Call Now</a>
+                    <a href="sms:870-830-3633" class="cta__btn">💬 Text Us</a>
+                    <a href="/bookings" class="cta__btn">📅 Check Availability</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-name">The Roost Hole Guide Service</div>
-            <div class="footer-tagline">Stuttgart, Arkansas Waterfowl Hunting • Jonathon Goins</div>
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__name">The Roost Hole Guide Service</div>
+            <p class="footer__tagline">Stuttgart, Arkansas Waterfowl Hunting • Jonathon Goins</p>
             
-            <div class="footer-links">
-                <a href="https://www.facebook.com/jonathon.goins.94" target="_blank" class="footer-link">Facebook</a>
-                <a href="tel:870-830-3633" class="footer-link">Call</a>
-                <a href="sms:870-830-3633" class="footer-link">Text</a>
-                <a href="/privacy-policy.html" class="footer-link">Privacy Policy</a>
-<a href="/terms-of-service.html" class="footer-link">Terms of Service</a>
-            </div>
+            <ul class="footer__links">
+                <li><a href="https://www.facebook.com/jonathon.goins.94" target="_blank" rel="noopener noreferrer" class="footer__link">Facebook</a></li>
+                <li><a href="tel:870-830-3633" class="footer__link">Call</a></li>
+                <li><a href="sms:870-830-3633" class="footer__link">Text</a></li>
+                <li><a href="/privacy-policy.html" class="footer__link">Privacy Policy</a></li>
+                <li><a href="/terms-of-service.html" class="footer__link">Terms of Service</a></li>
+            </ul>
             
-            <div class="copyright">
-                &copy; 2025 The Roost Hole Guide Service. All rights reserved.
-            </div>
+            <p class="footer__copyright">&copy; 2025 The Roost Hole Guide Service. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Sticky Bottom CTA -->
-    <div class="sticky-cta" id="stickyCTA">
-        <div class="sticky-cta-content">
-            <div class="sticky-cta-text">
+    <div class="sticky-cta" id="stickyCTA" aria-live="polite">
+        <div class="sticky-cta__content container">
+            <div class="sticky-cta__text">
                 Ready to Book? Call <span>870-830-3633</span>
             </div>
-            <div class="sticky-cta-buttons">
-                <a href="tel:870-830-3633" class="sticky-btn">📞 Call Now</a>
-                <a href="sms:870-830-3633" class="sticky-btn">💬 Text</a>
+            <div class="sticky-cta__buttons">
+                <a href="tel:870-830-3633" class="sticky-cta__btn">📞 Call Now</a>
+                <a href="sms:870-830-3633" class="sticky-cta__btn">💬 Text</a>
             </div>
         </div>
     </div>
 
-    <!-- React Libraries for Waterfowl Calendar -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- Waterfowl Calendar Script -->
-    <script src="waterfowl-calendar.js"></script>
-
+    <!-- Optimized JavaScript - Deferred & Modular -->
     <script>
-        // Smooth scrolling
+        // Performance: Use passive event listeners
+        const passiveSupported = (() => {
+            let supported = false;
+            try {
+                const opts = Object.defineProperty({}, 'passive', {
+                    get: () => { supported = true; }
+                });
+                window.addEventListener('test', null, opts);
+            } catch (e) {}
+            return supported;
+        })();
+        
+        const eventOptions = passiveSupported ? { passive: true } : false;
+        
+        // Smooth Scrolling with fallback
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
                 if (target) {
+                    e.preventDefault();
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
@@ -1398,14 +1477,69 @@
             });
         });
 
-        // Sticky CTA bar appears after scrolling
-        window.addEventListener('scroll', function() {
-            const stickyCTA = document.getElementById('stickyCTA');
-            if (window.scrollY > 800) {
-                stickyCTA.classList.add('visible');
+        // Sticky CTA with RAF for performance
+        let ticking = false;
+        const stickyCTA = document.getElementById('stickyCTA');
+        const nav = document.querySelector('.nav');
+        
+        function handleScroll() {
+            const scrollY = window.scrollY;
+            
+            // Sticky CTA visibility
+            if (scrollY > 800) {
+                stickyCTA.classList.add('sticky-cta--visible');
             } else {
-                stickyCTA.classList.remove('visible');
+                stickyCTA.classList.remove('sticky-cta--visible');
             }
+            
+            // Nav shadow on scroll
+            if (scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            
+            ticking = false;
+        }
+        
+        function requestTick() {
+            if (!ticking) {
+                window.requestAnimationFrame(handleScroll);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestTick, eventOptions);
+        
+        // Intersection Observer for lazy-loaded images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.style.opacity = '1';
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px'
+            });
+            
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+        
+        // Preload critical images on hover (predictive loading)
+        document.querySelectorAll('a[href="#gallery"]').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                const galleryImages = document.querySelectorAll('.gallery__item img');
+                galleryImages.forEach((img, index) => {
+                    if (index < 6 && img.loading === 'lazy') {
+                        img.loading = 'eager';
+                    }
+                });
+            }, { once: true });
         });
     </script>
 </body>
