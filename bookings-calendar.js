@@ -1,200 +1,80 @@
 // =====================================================================
-// BOOKINGS CALENDAR RENDERER — The Roost Hole Guide Service
+// BOOKINGS CALENDAR RENDERER
+// Reads bookings-data.js and builds the calendar UI
+// You don't need to edit this file — just edit bookings-data.js
 // =====================================================================
-// Reads bookingsData from bookings-data.js and builds the calendar UI.
-// You never need to edit this file — only edit bookings-data.js.
-// =====================================================================
 
-(function () {
-    'use strict';
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById('calendar-container');
+    if (!container || typeof bookingsData === 'undefined') return;
 
-    // Day-of-week helper
-    const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-    function getDayOfWeek(dateString) {
-        // dateString e.g. "November 15" — append year based on month key later
-        return null; // resolved in render with full date
-    }
-
-    // Month → year mapping (derive from the month key)
-    const MONTH_YEARS = {
-        'February 2026': 2026, 'March 2026': 2026, 'April 2026': 2026,
-        'November 2026': 2026, 'December 2026': 2026, 'January 2027': 2027
-    };
-
-    const MONTH_NUMS = {
-        January: 0, February: 1, March: 2, April: 3, May: 4, June: 5,
-        July: 6, August: 7, September: 8, October: 9, November: 10, December: 11
-    };
-
-    // Season groupings
-    const SEASON_GROUPS = [
-        {
-            id: 'snow-goose',
-            title: 'Snow Goose Conservation Hunt',
-            badge: 'Spring 2026',
-            badgeClass: 'season-group__badge--snow',
-            months: ['February 2026', 'March 2026', 'April 2026']
-        },
-        {
-            id: 'duck-season',
-            title: 'Regular Duck & Goose Season',
-            badge: 'Fall/Winter 2026–2027',
-            badgeClass: 'season-group__badge--duck',
-            months: ['November 2026', 'December 2026', 'January 2027']
-        }
-    ];
-
-    function buildHeaderStats(totalDates, bookedDates) {
-        const availDates = totalDates - bookedDates;
-        const container = document.getElementById('headerStats');
-        if (!container) return;
-
-        container.innerHTML = `
-            <div class="stat-pill avail">
-                <span class="stat-pill__num" id="stat-avail">${availDates}</span>
-                <span class="stat-pill__label">Dates Open</span>
-            </div>
-            <div class="stat-pill booked">
-                <span class="stat-pill__num" id="stat-booked">${bookedDates}</span>
-                <span class="stat-pill__label">Dates Booked</span>
-            </div>
-        `;
-    }
-
-    function buildMonthCard(monthKey, dates) {
-        const year = MONTH_YEARS[monthKey];
-        const monthName = monthKey.split(' ')[0];
-        const monthNum  = MONTH_NUMS[monthName];
-
-        const available = dates.filter(d => d.status === 'available').length;
-        const booked    = dates.filter(d => d.status === 'booked').length;
-        const countLabel = available === dates.length
-            ? 'All dates open'
-            : booked === dates.length
-                ? 'Fully booked'
-                : `${available} open · ${booked} booked`;
+    for (const [monthName, dates] of Object.entries(bookingsData)) {
 
         const card = document.createElement('div');
-        card.className = 'month-card reveal';
+        card.className = 'month-card fade';
 
-        // Header
-        const header = document.createElement('div');
-        header.className = 'month-card__header';
-        header.innerHTML = `
-            <span class="month-card__name">${monthKey}</span>
-            <span class="month-card__count">${countLabel}</span>
-        `;
-        card.appendChild(header);
+        // Ghost month name (decorative background text)
+        const ghost = document.createElement('div');
+        ghost.className = 'month-card__ghost';
+        ghost.setAttribute('aria-hidden', 'true');
+        // Use just the month word (e.g. "November" from "November 2026")
+        ghost.textContent = monthName.split(' ')[0];
+        card.appendChild(ghost);
 
-        // Body
-        const body = document.createElement('div');
-        body.className = 'month-card__body';
+        // Month title
+        const title = document.createElement('h3');
+        title.className = 'month-title';
+        title.textContent = monthName;
+        card.appendChild(title);
 
-        dates.forEach(dateInfo => {
-            // Parse day number
-            const dayNum = parseInt(dateInfo.date.split(' ')[1], 10);
-            const jsDate = new Date(year, monthNum, dayNum);
-            const dow = DOW[jsDate.getDay()];
-            const isWeekend = jsDate.getDay() === 0 || jsDate.getDay() === 6;
+        // Subtitle / season label
+        const subtitle = document.createElement('p');
+        subtitle.className = 'month-subtitle';
+        subtitle.textContent = 'Duck Season';
+        card.appendChild(subtitle);
 
-            const row = document.createElement('div');
-            row.className = `date-row${isWeekend ? ' date-row--weekend' : ''}`;
+        // Dates list
+        const list = document.createElement('ul');
+        list.className = 'dates-list';
 
-            const statusClass = dateInfo.status === 'available'
-                ? 'date-row__status--available'
-                : 'date-row__status--booked';
+        dates.forEach(function (dateInfo) {
+            const item = document.createElement('li');
+            item.className = 'date-item';
 
-            const statusLabel = dateInfo.status === 'available' ? 'Open' : 'Booked';
+            const dateText = document.createElement('span');
+            dateText.className = 'date-text';
+            dateText.textContent = dateInfo.date;
 
-            row.innerHTML = `
-                <div>
-                    <span class="date-row__day">${dateInfo.date}</span>
-                    <span class="date-row__dow">${dow}</span>
-                </div>
-                <span class="date-row__status ${statusClass}">${statusLabel}</span>
-            `;
-            body.appendChild(row);
+            const badge = document.createElement('span');
+            badge.className = 'status-badge ' + dateInfo.status;
+            badge.textContent = dateInfo.status === 'available' ? 'Available' : 'Booked';
+
+            item.appendChild(dateText);
+            item.appendChild(badge);
+            list.appendChild(item);
         });
 
-        card.appendChild(body);
-        return card;
+        card.appendChild(list);
+        container.appendChild(card);
     }
 
-    function render() {
-        const container = document.getElementById('calendar-container');
-        if (!container) return;
-        if (typeof bookingsData === 'undefined') {
-            container.innerHTML = '<p style="padding:2rem;color:#888;">Bookings data not loaded.</p>';
-            return;
-        }
-
-        // Count totals
-        let totalDates = 0, bookedDates = 0;
-        for (const dates of Object.values(bookingsData)) {
-            totalDates  += dates.length;
-            bookedDates += dates.filter(d => d.status === 'booked').length;
-        }
-
-        buildHeaderStats(totalDates, bookedDates);
-
-        // Build season groups
-        SEASON_GROUPS.forEach((group, gi) => {
-            // Check if any months in this group exist in data
-            const hasData = group.months.some(m => bookingsData[m]);
-            if (!hasData) return;
-
-            const groupEl = document.createElement('div');
-            groupEl.className = 'season-group';
-
-            // Group header
-            const groupHeader = document.createElement('div');
-            groupHeader.className = 'season-group__header reveal';
-            groupHeader.style.transitionDelay = `${gi * 0.08}s`;
-            groupHeader.innerHTML = `
-                <h2 class="season-group__title">${group.title}</h2>
-                <span class="season-group__badge ${group.badgeClass}">${group.badge}</span>
-            `;
-            groupEl.appendChild(groupHeader);
-
-            // Months grid
-            const grid = document.createElement('div');
-            grid.className = 'months-grid';
-
-            group.months.forEach((monthKey, mi) => {
-                const dates = bookingsData[monthKey];
-                if (!dates) return;
-                const card = buildMonthCard(monthKey, dates);
-                card.style.transitionDelay = `${(gi * 0.1) + (mi * 0.08)}s`;
-                grid.appendChild(card);
-            });
-
-            groupEl.appendChild(grid);
-            container.appendChild(groupEl);
+    // Re-run scroll observer on the newly created cards
+    if (window._roostObserver) {
+        document.querySelectorAll('.month-card.fade').forEach(function (el) {
+            window._roostObserver.observe(el);
         });
-
-        // Kick off scroll reveal for dynamically added elements
-        const allReveals = container.querySelectorAll('.reveal');
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('visible');
-                    obs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
-        allReveals.forEach(el => obs.observe(el));
-
-        // Console stats
-        const avail = totalDates - bookedDates;
-        console.log(`%c📊 Roost Hole Booking Stats`, 'color:#C8B87A;font-weight:bold;font-size:14px');
-        console.log(`Total: ${totalDates} | Open: ${avail} | Booked: ${bookedDates} | Fill rate: ${((bookedDates/totalDates)*100).toFixed(1)}%`);
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', render);
-    } else {
-        render();
+    // Stats (console only)
+    let total = 0, booked = 0;
+    for (const dates of Object.values(bookingsData)) {
+        total += dates.length;
+        booked += dates.filter(function (d) { return d.status === 'booked'; }).length;
     }
-
-})();
+    const available = total - booked;
+    console.log('📊 Roost Hole Booking Stats');
+    console.log('Total dates: ' + total);
+    console.log('Available:   ' + available);
+    console.log('Booked:      ' + booked);
+    console.log('Fill rate:   ' + ((booked / total) * 100).toFixed(1) + '%');
+});
