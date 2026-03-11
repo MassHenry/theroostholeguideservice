@@ -3,695 +3,593 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Check availability and book your Stuttgart Arkansas duck hunting trip with The Roost Hole Guide Service for the 2026-2027 season.">
+    <meta name="description" content="Book your Stuttgart Arkansas duck hunting trip with The Roost Hole Guide Service — 2026-2027 season availability.">
     <meta name="robots" content="index, follow">
-    <title>Book Your Hunt — 2026-2027 Season | The Roost Hole Guide Service</title>
+
+    <title>Book Your Hunt — 2026-27 Duck Season | The Roost Hole</title>
     <link rel="canonical" href="https://www.theroostholeguideservice.com/bookings.html">
     <link rel="icon" type="image/jpeg" href="/images/the-roost-hole-guide-service-favicon.jpg">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/the-roost-hole-guide-service-favicon.jpg">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BTM7NT37D"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-2BTM7NT37D');
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
 
     <style>
-        /* ============================================
-           ROOT — same tokens as index.html
-           ============================================ */
         :root {
-            --ink:   #0E1209;
-            --mud:   #1C2016;
-            --bark:  #2E3528;
-            --sage:  #4A5940;
-            --reed:  #7A8C6A;
-            --straw: #C8B87A;
-            --wheat: #E2D49A;
-            --dawn:  #F5EDD8;
-            --mist:  #F9F5EC;
-            --blood: #8B2E1A;
-            --rust:  #C4421C;
-            --avail: #3D6B4F;
-            --avail-bg: #EBF3EE;
-            --booked: #8B2E1A;
-            --booked-bg: #F5EAE8;
-
+            --ink:    #0E1209;
+            --mud:    #1C2016;
+            --bark:   #2E3528;
+            --straw:  #C8B87A;
+            --wheat:  #E2D49A;
+            --dawn:   #F5EDD8;
+            --mist:   #F9F5EC;
+            --rust:   #C4421C;
+            --moss:   #4A5C42;
+            --green:  #3D7A52;
+            --red:    #B83428;
             --font-display: 'Playfair Display', Georgia, serif;
-            --font-cond:    'Barlow Condensed', 'Impact', sans-serif;
+            --font-ui:      'Barlow Condensed', sans-serif;
             --font-body:    'Barlow', sans-serif;
-            --nav-h: 68px;
-            --ease: cubic-bezier(0.25, 0, 0, 1);
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --gutter: clamp(1.5rem, 5vw, 6rem);
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+
         body {
             font-family: var(--font-body);
-            background: var(--mist);
-            color: var(--ink);
+            background: var(--ink);
+            color: var(--dawn);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        a { text-decoration: none; color: inherit; }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
         ul { list-style: none; }
 
-        /* Grain overlay */
         body::before {
             content: '';
             position: fixed; inset: 0;
-            pointer-events: none; z-index: 9999; opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
+            pointer-events: none; z-index: 9000; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 180px;
         }
 
-        /* ============================================
-           NAV — identical to index
-           ============================================ */
+        /* ── NAV ── */
         .nav {
-            position: fixed; top: 0; left: 0; right: 0;
-            height: var(--nav-h);
-            background: rgba(14,18,9,0.92);
-            backdrop-filter: blur(20px);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 800;
+            height: 64px;
+            display: flex; align-items: center;
+            padding: 0 var(--gutter);
+            background: rgba(14,18,9,0.85);
+            backdrop-filter: blur(18px);
             border-bottom: 1px solid rgba(200,184,122,0.12);
-            z-index: 1000;
         }
-
         .nav__inner {
-            height: 100%;
-            max-width: 1500px; margin: 0 auto;
-            padding: 0 clamp(1.5rem, 4vw, 4rem);
+            width: 100%; max-width: 1400px; margin: 0 auto;
             display: flex; align-items: center; justify-content: space-between;
         }
+        .nav__logo { font-family: var(--font-display); font-size: 1.15rem; color: var(--straw); }
+        .nav__right { display: flex; align-items: center; gap: 2rem; }
+        .nav__home {
+            font-family: var(--font-ui); font-weight: 400; font-size: 0.75rem;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: rgba(245,237,216,0.4); transition: color 0.2s;
+        }
+        .nav__home:hover { color: var(--straw); }
+        .nav__phone {
+            font-family: var(--font-ui); font-weight: 600; font-size: 0.9rem;
+            letter-spacing: 0.1em; color: var(--straw); transition: color 0.2s;
+        }
+        .nav__phone:hover { color: var(--wheat); }
 
-        .nav__brand { display: flex; flex-direction: column; line-height: 1; }
-        .nav__brand-top {
-            font-family: var(--font-cond); font-weight: 300; font-size: 0.65rem;
-            letter-spacing: 0.3em; text-transform: uppercase; color: var(--straw); opacity: 0.7;
-        }
-        .nav__brand-main {
-            font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: #fff;
-        }
-
-        .nav__links { display: flex; gap: 2.5rem; align-items: center; }
-        .nav__links a {
-            font-family: var(--font-cond); font-weight: 500; font-size: 0.85rem;
-            letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65);
-            transition: color 0.2s; position: relative; padding: 0.5rem 0;
-        }
-        .nav__links a::after {
-            content: ''; position: absolute; bottom: -3px; left: 0;
-            width: 0; height: 1px; background: var(--straw); transition: width 0.3s var(--ease);
-        }
-        .nav__links a:hover { color: var(--straw); }
-        .nav__links a:hover::after { width: 100%; }
-
-        .nav__cta {
-            font-family: var(--font-cond); font-weight: 700; font-size: 0.8rem;
-            letter-spacing: 0.15em; text-transform: uppercase;
-            color: var(--ink) !important; background: var(--straw);
-            padding: 0.6rem 1.4rem; border-radius: 2px;
-            transition: background 0.2s !important;
-        }
-        .nav__cta::after { display: none !important; }
-        .nav__cta:hover { background: var(--wheat) !important; }
-
-        .nav__hamburger {
-            display: none; flex-direction: column; gap: 5px;
-            cursor: pointer; padding: 8px; background: none; border: none;
-        }
-        .nav__hamburger span { display: block; width: 24px; height: 1.5px; background: var(--straw); }
-
-        .nav__drawer {
-            position: fixed; top: 0; right: -100%;
-            width: min(360px, 100vw); height: 100dvh;
-            background: var(--ink); z-index: 1001;
-            padding: 6rem 3rem 3rem;
-            display: flex; flex-direction: column; gap: 1.5rem;
-            transition: right 0.5s var(--ease);
-            border-left: 1px solid rgba(200,184,122,0.15);
-        }
-        .nav__drawer.open { right: 0; }
-        .nav__drawer a {
-            font-family: var(--font-cond); font-size: 1.5rem; font-weight: 600;
-            letter-spacing: 0.08em; text-transform: uppercase;
-            color: rgba(255,255,255,0.7);
-            border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 1.5rem;
-            transition: color 0.2s;
-        }
-        .nav__drawer a:hover { color: var(--straw); }
-        .nav__drawer-close {
-            position: absolute; top: 1.5rem; right: 2rem;
-            background: none; border: none; color: var(--straw);
-            font-size: 1.5rem; cursor: pointer;
-            font-family: var(--font-cond); font-weight: 300;
-        }
-        .nav__overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.4s;
-        }
-        .nav__overlay.show { opacity: 1; pointer-events: all; }
-
-        /* ============================================
-           PAGE HEADER
-           ============================================ */
-        .page-header {
-            margin-top: var(--nav-h);
-            background: var(--ink);
+        /* ── HERO ── */
+        .hero {
+            height: 100svh; min-height: 640px;
             position: relative; overflow: hidden;
-            padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 4vw, 4rem) clamp(3rem, 5vw, 5rem);
+            display: flex; align-items: center;
         }
-
-        .page-header::before {
-            content: '';
+        .hero__bg { position: absolute; inset: 0; }
+        .hero__bg img {
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center 40%;
+            animation: slow-zoom 20s ease-in-out infinite alternate;
+        }
+        @keyframes slow-zoom {
+            from { transform: scale(1.0); }
+            to   { transform: scale(1.07); }
+        }
+        .hero__overlay {
             position: absolute; inset: 0;
-            background: url("images/IMG_2052.jpeg") center/cover no-repeat;
-            opacity: 0.08;
+            background:
+                linear-gradient(to right, rgba(14,18,9,0.82) 0%, rgba(14,18,9,0.4) 55%, rgba(14,18,9,0.15) 100%),
+                linear-gradient(to top, rgba(14,18,9,0.9) 0%, transparent 50%);
         }
+        .hero__inner {
+            position: relative; z-index: 2;
+            width: 100%; max-width: 1400px; margin: 0 auto;
+            padding: 0 var(--gutter);
+        }
+        .hero__eyebrow {
+            font-family: var(--font-ui); font-weight: 400; font-size: 0.7rem;
+            letter-spacing: 0.5em; text-transform: uppercase; color: var(--straw);
+            margin-bottom: 1.5rem;
+            display: flex; align-items: center; gap: 1rem;
+            opacity: 0; animation: rise 0.8s var(--ease) 0.2s forwards;
+        }
+        .hero__eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--straw); }
+        .hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 9vw, 9rem);
+            font-weight: 900; line-height: 0.9;
+            letter-spacing: -0.02em; margin-bottom: 2rem;
+            opacity: 0; animation: rise 1s var(--ease) 0.4s forwards;
+        }
+        .hero__title .line1 { display: block; color: var(--dawn); }
+        .hero__title .line2 { display: block; color: var(--straw); font-style: italic; }
+        .hero__title .line3 {
+            display: block; color: var(--dawn);
+            font-size: 0.45em; font-weight: 700; font-style: normal;
+            letter-spacing: 0.05em; margin-top: 0.75rem;
+        }
+        .hero__desc {
+            font-family: var(--font-body); font-weight: 300;
+            font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.75;
+            color: rgba(245,237,216,0.7); max-width: 440px; margin-bottom: 3rem;
+            opacity: 0; animation: rise 0.8s var(--ease) 0.6s forwards;
+        }
+        .hero__cta-row {
+            display: flex; gap: 1rem; flex-wrap: wrap;
+            opacity: 0; animation: rise 0.8s var(--ease) 0.8s forwards;
+        }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            font-family: var(--font-ui); font-weight: 600; font-size: 0.8rem;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            background: var(--straw); color: var(--ink);
+            border: 2px solid var(--straw);
+            transition: all 0.3s var(--ease);
+        }
+        .btn-primary:hover { background: var(--wheat); border-color: var(--wheat); transform: translateY(-2px); }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            font-family: var(--font-ui); font-weight: 500; font-size: 0.8rem;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            background: transparent; color: var(--dawn);
+            border: 2px solid rgba(245,237,216,0.3);
+            transition: all 0.3s var(--ease);
+        }
+        .btn-ghost:hover { border-color: var(--straw); color: var(--straw); }
+        .hero__scroll {
+            position: absolute; bottom: 3rem; left: var(--gutter);
+            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            opacity: 0; animation: rise 0.8s var(--ease) 1.2s forwards;
+        }
+        .hero__scroll-line {
+            width: 1px; height: 48px;
+            background: linear-gradient(to bottom, var(--straw), transparent);
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+        .hero__scroll span {
+            font-family: var(--font-ui); font-size: 0.6rem;
+            letter-spacing: 0.35em; text-transform: uppercase;
+            color: rgba(200,184,122,0.5); writing-mode: vertical-lr;
+        }
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
 
-        .page-header__inner {
-            position: relative; z-index: 1;
-            max-width: 1500px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr auto;
-            gap: 3rem; align-items: end;
+        /* ── SEASON STATS BANNER ── */
+        .season-banner {
+            background: var(--bark);
+            border-top: 1px solid rgba(200,184,122,0.15);
+            border-bottom: 1px solid rgba(200,184,122,0.15);
+            padding: clamp(2.5rem, 5vw, 4rem) var(--gutter);
         }
+        .season-banner__inner {
+            max-width: 1400px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+            align-items: center; gap: 2rem;
+        }
+        .season-stat { text-align: center; }
+        .season-stat__num {
+            font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700; color: var(--straw); display: block; line-height: 1; margin-bottom: 0.4rem;
+        }
+        .season-stat__label {
+            font-family: var(--font-ui); font-weight: 400; font-size: 0.65rem;
+            letter-spacing: 0.35em; text-transform: uppercase; color: rgba(200,184,122,0.55);
+        }
+        .season-divider { width: 1px; height: 60px; background: rgba(200,184,122,0.2); }
 
-        .page-header__eyebrow {
-            display: inline-flex; align-items: center; gap: 0.75rem;
-            font-family: var(--font-cond); font-weight: 500; font-size: 0.7rem;
-            letter-spacing: 0.35em; text-transform: uppercase; color: var(--straw);
-            margin-bottom: 1rem;
+        /* ── HOW TO BOOK ── */
+        .how {
+            padding: clamp(5rem, 10vw, 9rem) var(--gutter);
+            background: var(--mud);
         }
-        .page-header__eyebrow::before {
-            content: ''; display: block; width: 30px; height: 1px; background: var(--straw);
+        .how__inner {
+            max-width: 1400px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: clamp(4rem, 8vw, 10rem); align-items: center;
         }
-
-        .page-header__title {
-            font-family: var(--font-display); font-weight: 900; font-style: italic;
-            font-size: clamp(2.8rem, 6vw, 6rem);
-            line-height: 0.95; color: #fff; letter-spacing: -0.02em;
+        .section-eyebrow {
+            font-family: var(--font-ui); font-weight: 400; font-size: 0.65rem;
+            letter-spacing: 0.45em; text-transform: uppercase; color: var(--straw);
+            margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem;
         }
-        .page-header__title em { color: var(--straw); font-style: italic; }
-
-        .page-header__sub {
-            font-family: var(--font-cond); font-weight: 300;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem); letter-spacing: 0.06em;
-            color: rgba(245,237,216,0.65); margin-top: 1.25rem; line-height: 1.7;
-            max-width: 580px;
+        .section-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--straw); }
+        .how__title {
+            font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700; line-height: 1.15; color: var(--dawn);
+            margin-bottom: 1.5rem; letter-spacing: -0.01em;
         }
-
-        .page-header__stats {
-            display: flex; flex-direction: column; gap: 2px;
-            text-align: right; flex-shrink: 0;
+        .how__title em { font-style: italic; color: var(--straw); }
+        .how__body {
+            font-family: var(--font-body); font-weight: 300;
+            font-size: 1.05rem; line-height: 1.85;
+            color: rgba(245,237,216,0.65); margin-bottom: 2.5rem;
         }
-
-        .stat-pill {
-            display: flex; flex-direction: column;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(200,184,122,0.15);
-            padding: 1rem 1.5rem; border-radius: 2px; min-width: 140px;
-        }
-        .stat-pill__num {
-            font-family: var(--font-display); font-weight: 900;
-            font-size: 2rem; color: var(--straw); line-height: 1;
-        }
-        .stat-pill__label {
-            font-family: var(--font-cond); font-weight: 400; font-size: 0.65rem;
-            letter-spacing: 0.25em; text-transform: uppercase; color: var(--reed);
-            margin-top: 0.2rem;
-        }
-        .stat-pill.booked .stat-pill__num { color: #d4695a; }
-        .stat-pill.avail .stat-pill__num { color: #7aba8e; }
-
-        /* ============================================
-           SEASON BANDS
-           ============================================ */
-        .season-band {
-            padding: 1.5rem clamp(1.5rem, 4vw, 4rem);
-            display: flex; align-items: center; gap: 1.5rem;
-        }
-        .season-band--snow { background: var(--bark); }
-        .season-band--duck { background: var(--mud); }
-
-        .season-band__inner {
-            max-width: 1500px; margin: 0 auto; width: 100%;
-            display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
-        }
-
-        .season-band__tag {
-            font-family: var(--font-cond); font-weight: 800; font-size: 0.7rem;
-            letter-spacing: 0.25em; text-transform: uppercase;
-            padding: 0.35rem 0.9rem; border-radius: 2px;
-        }
-        .season-band--snow .season-band__tag { background: var(--straw); color: var(--ink); }
-        .season-band--duck .season-band__tag { background: var(--sage); color: var(--dawn); }
-
-        .season-band__title {
-            font-family: var(--font-cond); font-weight: 600; font-size: 1rem;
-            letter-spacing: 0.05em; color: var(--dawn);
-        }
-
-        .season-band__perks {
-            display: flex; gap: 1.5rem; flex-wrap: wrap; margin-left: auto;
-        }
-        .season-perk {
-            font-family: var(--font-cond); font-size: 0.72rem; font-weight: 500;
-            letter-spacing: 0.12em; text-transform: uppercase; color: var(--reed);
-            display: flex; align-items: center; gap: 0.4rem;
-        }
-        .season-perk::before { content: '✓'; color: var(--straw); font-weight: 700; }
-
-        /* ============================================
-           LEGEND
-           ============================================ */
-        .legend-row {
-            background: var(--mist);
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            padding: 1.25rem clamp(1.5rem, 4vw, 4rem);
-        }
-        .legend-row__inner {
-            max-width: 1500px; margin: 0 auto;
-            display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;
-        }
-        .legend-label {
-            font-family: var(--font-cond); font-weight: 500; font-size: 0.7rem;
-            letter-spacing: 0.25em; text-transform: uppercase; color: var(--reed);
-        }
+        .how__legend { display: flex; gap: 2rem; flex-wrap: wrap; }
         .legend-item {
             display: flex; align-items: center; gap: 0.6rem;
-            font-family: var(--font-cond); font-weight: 600; font-size: 0.78rem;
-            letter-spacing: 0.12em; text-transform: uppercase;
+            font-family: var(--font-ui); font-weight: 500; font-size: 0.75rem;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--dawn);
         }
-        .legend-dot {
-            width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .legend-dot.available { background: var(--green); }
+        .legend-dot.booked    { background: var(--red); }
+        .how__steps { display: flex; flex-direction: column; }
+        .step {
+            display: grid; grid-template-columns: 3rem 1fr;
+            gap: 1.25rem; padding: 1.75rem 0;
+            border-bottom: 1px solid rgba(200,184,122,0.1); align-items: start;
         }
-        .legend-dot--avail { background: var(--avail); }
-        .legend-dot--booked { background: var(--booked); }
-        .legend-item--avail { color: var(--avail); }
-        .legend-item--booked { color: var(--booked); }
+        .step:last-child { border-bottom: none; }
+        .step__num {
+            font-family: var(--font-display); font-style: italic;
+            font-size: 1.5rem; color: rgba(200,184,122,0.35); line-height: 1;
+        }
+        .step__title {
+            font-family: var(--font-ui); font-weight: 600; font-size: 1rem;
+            letter-spacing: 0.05em; text-transform: uppercase; color: var(--dawn); margin-bottom: 0.3rem;
+        }
+        .step__body {
+            font-family: var(--font-body); font-weight: 300; font-size: 0.9rem;
+            line-height: 1.7; color: rgba(245,237,216,0.5);
+        }
 
-        /* ============================================
-           CALENDAR GRID
-           ============================================ */
+        /* ── CALENDAR ── */
         .calendar-section {
-            max-width: 1500px; margin: 0 auto;
-            padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4rem);
-        }
-
-        .season-group { margin-bottom: 4rem; }
-
-        .season-group__header {
-            display: flex; align-items: center; gap: 1.5rem;
-            margin-bottom: 2rem; padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-        }
-
-        .season-group__title {
-            font-family: var(--font-display); font-weight: 700; font-style: italic;
-            font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--ink);
-        }
-
-        .season-group__badge {
-            font-family: var(--font-cond); font-weight: 700; font-size: 0.65rem;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            padding: 0.3rem 0.8rem; border-radius: 2px;
-        }
-        .season-group__badge--snow { background: var(--straw); color: var(--ink); }
-        .season-group__badge--duck { background: var(--bark); color: var(--dawn); }
-
-        .months-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2px;
-        }
-
-        /* Month card */
-        .month-card {
-            background: white;
-            border-top: 3px solid var(--bark);
-        }
-
-        .month-card__header {
             background: var(--ink);
-            padding: 1.25rem 1.75rem;
-            display: flex; align-items: center; justify-content: space-between;
+            padding: clamp(5rem, 10vw, 9rem) var(--gutter);
         }
-
-        .month-card__name {
-            font-family: var(--font-display); font-weight: 700;
-            font-size: 1.3rem; color: var(--dawn);
+        .calendar-section__header {
+            max-width: 1400px; margin: 0 auto;
+            display: flex; align-items: flex-end;
+            justify-content: space-between; gap: 2rem;
+            margin-bottom: clamp(3rem, 6vw, 5rem); flex-wrap: wrap;
         }
-
-        .month-card__count {
-            font-family: var(--font-cond); font-weight: 500; font-size: 0.7rem;
-            letter-spacing: 0.2em; text-transform: uppercase; color: var(--reed);
+        .calendar-section__title {
+            font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700; line-height: 1; color: var(--dawn); letter-spacing: -0.02em;
         }
-
-        .month-card__body { padding: 0.75rem; }
-
-        /* Date rows */
-        .date-row {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0.6rem 1rem; border-radius: 2px; margin-bottom: 2px;
-            transition: background 0.2s var(--ease);
+        .calendar-section__title em { font-style: italic; color: var(--straw); }
+        .calendar-section__note {
+            font-family: var(--font-ui); font-weight: 300; font-size: 0.85rem;
+            line-height: 1.6; color: rgba(200,184,122,0.55); text-align: right;
         }
-        .date-row:hover { background: var(--mist); }
-
-        .date-row__day {
-            font-family: var(--font-cond); font-weight: 600; font-size: 0.9rem;
-            letter-spacing: 0.04em; color: var(--ink);
+        .calendar-grid {
+            max-width: 1400px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: clamp(1rem, 2vw, 1.75rem);
         }
-
-        .date-row__dow {
-            font-family: var(--font-cond); font-weight: 400; font-size: 0.72rem;
-            letter-spacing: 0.1em; text-transform: uppercase;
-            color: var(--reed); margin-left: 0.5rem;
+        .month-card {
+            background: var(--mud);
+            border: 1px solid rgba(200,184,122,0.1);
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            position: relative; overflow: hidden;
+            transition: border-color 0.3s;
         }
-
-        .date-row__status {
-            font-family: var(--font-cond); font-weight: 700; font-size: 0.68rem;
-            letter-spacing: 0.18em; text-transform: uppercase;
+        .month-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 3px; background: linear-gradient(to right, var(--straw), transparent); opacity: 0.6;
+        }
+        .month-card:hover { border-color: rgba(200,184,122,0.3); }
+        .month-card__ghost {
+            position: absolute; bottom: -0.5rem; right: -0.25rem;
+            font-family: var(--font-display); font-size: 5rem; font-weight: 900;
+            color: rgba(200,184,122,0.04); line-height: 1;
+            pointer-events: none; white-space: nowrap; letter-spacing: -0.04em;
+        }
+        .month-title {
+            font-family: var(--font-display); font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 700; color: var(--straw); margin-bottom: 0.5rem; letter-spacing: -0.01em;
+        }
+        .month-subtitle {
+            font-family: var(--font-ui); font-weight: 400; font-size: 0.65rem;
+            letter-spacing: 0.35em; text-transform: uppercase;
+            color: rgba(200,184,122,0.4); margin-bottom: 1.75rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .month-subtitle::after { content: ''; flex: 1; height: 1px; background: rgba(200,184,122,0.1); }
+        .dates-list { padding: 0; }
+        .date-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.65rem 0; border-bottom: 1px solid rgba(200,184,122,0.06);
+            transition: padding-left 0.2s var(--ease);
+        }
+        .date-item:last-child { border-bottom: none; }
+        .date-item:hover { padding-left: 0.5rem; }
+        .date-text {
+            font-family: var(--font-ui); font-weight: 400; font-size: 0.9rem;
+            letter-spacing: 0.04em; color: rgba(245,237,216,0.75);
+        }
+        .status-badge {
+            font-family: var(--font-ui); font-weight: 600; font-size: 0.65rem;
+            letter-spacing: 0.2em; text-transform: uppercase;
             padding: 0.3rem 0.85rem; border-radius: 2px;
         }
-        .date-row__status--available {
-            background: var(--avail-bg); color: var(--avail);
+        .status-badge.available {
+            background: rgba(61,122,82,0.2); color: #6EC98A;
+            border: 1px solid rgba(61,122,82,0.4);
         }
-        .date-row__status--booked {
-            background: var(--booked-bg); color: var(--booked);
-        }
-
-        /* weekend highlight */
-        .date-row--weekend { background: rgba(200,184,122,0.04); }
-        .date-row--weekend .date-row__day { color: var(--bark); }
-
-        /* ============================================
-           BOOKING CTA
-           ============================================ */
-        .booking-cta {
-            background: var(--ink);
-            padding: clamp(4rem, 7vw, 6rem) clamp(1.5rem, 4vw, 4rem);
-            position: relative; overflow: hidden;
+        .status-badge.booked {
+            background: rgba(184,52,40,0.15); color: #E07060;
+            border: 1px solid rgba(184,52,40,0.3);
         }
 
-        .booking-cta::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: url("images/IMG_2133.jpeg") center/cover no-repeat;
-            opacity: 0.1;
-        }
-
-        .booking-cta__inner {
-            position: relative; z-index: 1;
-            max-width: 1500px; margin: 0 auto;
+        /* ── FULL-BLEED CTA ── */
+        .cta { position: relative; overflow: hidden; background: var(--bark); }
+        .cta__bg { position: absolute; inset: 0; }
+        .cta__bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.25; }
+        .cta__inner {
+            position: relative; z-index: 2;
+            max-width: 1400px; margin: 0 auto;
+            padding: clamp(5rem, 10vw, 9rem) var(--gutter);
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: clamp(3rem, 5vw, 6rem); align-items: center;
+            gap: clamp(4rem, 8vw, 10rem); align-items: center;
         }
-
-        .booking-cta__eyebrow {
-            display: inline-flex; align-items: center; gap: 0.75rem;
-            font-family: var(--font-cond); font-weight: 500; font-size: 0.7rem;
-            letter-spacing: 0.35em; text-transform: uppercase; color: var(--straw);
-            margin-bottom: 1rem;
+        .cta__headline {
+            font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 5rem);
+            font-weight: 900; line-height: 1; color: var(--dawn);
+            letter-spacing: -0.02em; margin-bottom: 1.5rem;
         }
-        .booking-cta__eyebrow::before {
-            content: ''; display: block; width: 30px; height: 1px; background: var(--straw);
+        .cta__headline em { font-style: italic; color: var(--straw); }
+        .cta__body {
+            font-family: var(--font-body); font-weight: 300; font-size: 1.05rem;
+            line-height: 1.8; color: rgba(245,237,216,0.65);
         }
-
-        .booking-cta__title {
-            font-family: var(--font-display); font-weight: 900; font-style: italic;
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            color: var(--dawn); line-height: 1.05; margin-bottom: 1.25rem;
-        }
-
-        .booking-cta__desc {
-            font-family: var(--font-body); font-weight: 300;
-            font-size: 1rem; line-height: 1.8; color: var(--reed);
-        }
-
-        .booking-cta__card {
-            background: rgba(255,255,255,0.04);
+        .cta__card {
+            background: rgba(14,18,9,0.75);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(200,184,122,0.2);
-            padding: 3rem; border-radius: 2px;
+            padding: clamp(2rem, 4vw, 3.5rem);
         }
-
-        .booking-cta__card-label {
-            font-family: var(--font-cond); font-weight: 400; font-size: 0.68rem;
-            letter-spacing: 0.3em; text-transform: uppercase; color: var(--straw);
-            margin-bottom: 0.4rem;
+        .cta__card-label {
+            font-family: var(--font-ui); font-weight: 400; font-size: 0.65rem;
+            letter-spacing: 0.45em; text-transform: uppercase;
+            color: rgba(200,184,122,0.55); margin-bottom: 1rem;
         }
-
-        .booking-cta__phone {
-            font-family: var(--font-display); font-weight: 900;
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--dawn);
-            display: block; margin-bottom: 0.4rem; transition: color 0.2s;
+        .cta__phone {
+            font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 700; color: var(--straw); display: block;
+            margin-bottom: 0.5rem; letter-spacing: -0.02em; transition: color 0.2s;
         }
-        .booking-cta__phone:hover { color: var(--straw); }
-
-        .booking-cta__avail {
-            font-family: var(--font-cond); font-weight: 400; font-size: 0.78rem;
-            letter-spacing: 0.15em; color: var(--reed); margin-bottom: 2rem;
+        .cta__phone:hover { color: var(--wheat); }
+        .cta__availability {
+            font-family: var(--font-ui); font-weight: 300; font-size: 0.75rem;
+            letter-spacing: 0.12em; color: rgba(245,237,216,0.35); margin-bottom: 2.5rem;
         }
+        .cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-        .booking-cta__actions { display: flex; flex-direction: column; gap: 0.75rem; }
-
-        .btn-call {
-            display: flex; align-items: center; justify-content: center; gap: 0.75rem;
-            font-family: var(--font-cond); font-weight: 700; font-size: 0.88rem;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            color: var(--ink); background: var(--straw);
-            padding: 1.1rem 2rem; border-radius: 2px;
-            border: 1.5px solid var(--straw); transition: all 0.25s var(--ease);
-        }
-        .btn-call:hover { background: var(--wheat); transform: translateY(-2px); }
-
-        .btn-text {
-            display: flex; align-items: center; justify-content: center; gap: 0.75rem;
-            font-family: var(--font-cond); font-weight: 600; font-size: 0.88rem;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            color: rgba(255,255,255,0.65); padding: 1.1rem 2rem; border-radius: 2px;
-            border: 1.5px solid rgba(255,255,255,0.15); transition: all 0.25s var(--ease);
-        }
-        .btn-text:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
-
-        /* ============================================
-           FOOTER
-           ============================================ */
+        /* ── FOOTER ── */
         .footer {
-            background: #080b07;
-            padding: 3rem clamp(1.5rem, 4vw, 4rem) 2rem;
+            background: var(--ink); border-top: 1px solid rgba(200,184,122,0.1);
+            padding: clamp(2.5rem, 4vw, 3.5rem) var(--gutter);
         }
         .footer__inner {
-            max-width: 1500px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 2rem; flex-wrap: wrap;
-            padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06);
-            margin-bottom: 1.5rem;
+            max-width: 1400px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
         }
-        .footer__brand {
-            font-family: var(--font-display); font-weight: 700;
-            font-size: 1.1rem; color: var(--straw);
-        }
+        .footer__logo { font-family: var(--font-display); font-size: 1rem; color: var(--straw); }
         .footer__links { display: flex; gap: 2rem; flex-wrap: wrap; }
         .footer__links a {
-            font-family: var(--font-cond); font-weight: 500; font-size: 0.72rem;
+            font-family: var(--font-ui); font-weight: 400; font-size: 0.7rem;
             letter-spacing: 0.2em; text-transform: uppercase;
-            color: rgba(255,255,255,0.3); transition: color 0.2s;
+            color: rgba(245,237,216,0.3); transition: color 0.2s;
         }
         .footer__links a:hover { color: var(--straw); }
-        .footer__copy {
-            max-width: 1500px; margin: 0 auto;
-            font-family: var(--font-cond); font-size: 0.68rem;
-            letter-spacing: 0.15em; color: rgba(255,255,255,0.18);
-        }
 
-        /* ============================================
-           STICKY BAR
-           ============================================ */
+        /* ── STICKY BAR ── */
         .sticky-bar {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: var(--ink);
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 700;
+            background: rgba(14,18,9,0.95); backdrop-filter: blur(16px);
             border-top: 1px solid rgba(200,184,122,0.15);
-            z-index: 998;
+            padding: 0.85rem var(--gutter);
             transform: translateY(100%); transition: transform 0.4s var(--ease);
         }
-        .sticky-bar.show { transform: translateY(0); }
+        .sticky-bar.visible { transform: translateY(0); }
         .sticky-bar__inner {
-            max-width: 1500px; margin: 0 auto;
-            padding: 1rem clamp(1.5rem, 4vw, 4rem);
-            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+            max-width: 1400px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
         }
-        .sticky-bar__msg {
-            font-family: var(--font-cond); font-weight: 500; font-size: 0.95rem;
-            letter-spacing: 0.05em; color: rgba(255,255,255,0.6);
+        .sticky-bar__text {
+            font-family: var(--font-ui); font-weight: 400; font-size: 0.9rem;
+            color: rgba(245,237,216,0.55);
         }
-        .sticky-bar__msg strong { color: var(--straw); font-weight: 700; }
+        .sticky-bar__text strong { font-weight: 600; color: var(--straw); font-size: 1.05rem; }
         .sticky-bar__btns { display: flex; gap: 0.75rem; }
-        .sticky-bar__btn {
-            font-family: var(--font-cond); font-weight: 700; font-size: 0.8rem;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            padding: 0.65rem 1.5rem; border-radius: 2px; transition: all 0.2s;
+        .sticky-btn {
+            font-family: var(--font-ui); font-weight: 600; font-size: 0.75rem;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            padding: 0.65rem 1.75rem;
+            background: var(--straw); color: var(--ink);
+            border: 1px solid var(--straw); transition: all 0.25s;
         }
-        .sticky-bar__btn--fill {
-            background: var(--straw); color: var(--ink); border: 1.5px solid var(--straw);
-        }
-        .sticky-bar__btn--fill:hover { background: var(--wheat); }
-        .sticky-bar__btn--outline {
-            color: rgba(255,255,255,0.65); border: 1.5px solid rgba(255,255,255,0.2);
-        }
-        .sticky-bar__btn--outline:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+        .sticky-btn:hover { background: var(--wheat); border-color: var(--wheat); }
+        .sticky-btn.ghost { background: transparent; color: var(--straw); }
+        .sticky-btn.ghost:hover { background: rgba(200,184,122,0.1); }
 
-        /* ============================================
-           SCROLL REVEAL
-           ============================================ */
-        .reveal {
-            opacity: 0; transform: translateY(24px);
-            transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        /* ── FADE IN ── */
+        .fade { opacity: 0; transform: translateY(20px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+        .fade.in { opacity: 1; transform: none; }
 
-        /* ============================================
-           RESPONSIVE
-           ============================================ */
-        @media (max-width: 900px) {
-            .page-header__inner { grid-template-columns: 1fr; }
-            .page-header__stats { flex-direction: row; text-align: left; }
-            .booking-cta__inner { grid-template-columns: 1fr; }
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .calendar-grid { grid-template-columns: repeat(2, 1fr); }
+            .how__inner { grid-template-columns: 1fr; }
+            .cta__inner { grid-template-columns: 1fr; }
+            .season-banner__inner { grid-template-columns: 1fr 1fr; }
         }
-
         @media (max-width: 768px) {
-            .nav__links { display: none; }
-            .nav__hamburger { display: flex; }
-            .page-header__stats { display: none; }
-            .season-band__perks { display: none; }
-            .months-grid { grid-template-columns: 1fr; }
-            .sticky-bar__msg { display: none; }
+            .season-divider { display: none; }
+            .calendar-grid { grid-template-columns: 1fr; }
+            .hero__title { font-size: clamp(3rem, 14vw, 6rem); }
+            .sticky-bar__text { display: none; }
         }
-
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV -->
     <nav class="nav">
         <div class="nav__inner">
-            <a href="index.html" class="nav__brand">
-                <span class="nav__brand-top">Stuttgart, Arkansas</span>
-                <span class="nav__brand-main">The Roost Hole</span>
-            </a>
-            <ul class="nav__links">
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#hunts">Hunts</a></li>
-                <li><a href="index.html#gallery">Gallery</a></li>
-                <li><a href="index.html#faq">FAQ</a></li>
-                <li><a href="tel:870-830-3633" class="nav__cta">📞 870-830-3633</a></li>
-            </ul>
-            <button class="nav__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
+            <span class="nav__logo">The Roost Hole</span>
+            <div class="nav__right">
+                <a href="index.html" class="nav__home">← Back to site</a>
+                <a href="tel:870-830-3633" class="nav__phone">870-830-3633</a>
+            </div>
         </div>
     </nav>
 
-    <div class="nav__overlay" id="navOverlay"></div>
-    <div class="nav__drawer" id="navDrawer">
-        <button class="nav__drawer-close" id="drawerClose">✕ Close</button>
-        <a href="index.html">Home</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#hunts">Hunt Types</a>
-        <a href="index.html#gallery">Gallery</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="tel:870-830-3633">📞 870-830-3633</a>
-    </div>
+    <main>
 
-    <main id="main">
-
-        <!-- PAGE HEADER -->
-        <header class="page-header">
-            <div class="page-header__inner">
-                <div>
-                    <p class="page-header__eyebrow">Availability</p>
-                    <h1 class="page-header__title">2026–<em>2027</em><br>Season Dates</h1>
-                    <p class="page-header__sub">Spring Snow Goose Conservation Hunt Feb–Apr 2026, plus the full Fall/Winter duck season Nov 2026–Jan 2027. Spots go fast — call early.</p>
-                </div>
-                <div class="page-header__stats" id="headerStats">
-                    <!-- Populated by JS -->
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero__bg">
+                <img src="images/IMG_2052.jpeg"
+                     alt="Waterfowl hunting at The Roost Hole Guide Service, Stuttgart Arkansas"
+                     width="1920" height="1080" fetchpriority="high">
+            </div>
+            <div class="hero__overlay"></div>
+            <div class="hero__inner">
+                <p class="hero__eyebrow">Stuttgart, Arkansas</p>
+                <h1 class="hero__title">
+                    <span class="line1">Duck Season</span>
+                    <span class="line2">2026–27</span>
+                    <span class="line3">Check Availability &amp; Book Your Hunt</span>
+                </h1>
+                <p class="hero__desc">Prime dates go fast. Scroll down to see what's open, then call or text Jonathon to lock in your spot.</p>
+                <div class="hero__cta-row">
+                    <a href="#calendar" class="btn-primary">View Open Dates</a>
+                    <a href="tel:870-830-3633" class="btn-ghost">📞 Call 870-830-3633</a>
                 </div>
             </div>
-        </header>
-
-        <!-- SEASON BANDS -->
-        <div class="season-band season-band--snow">
-            <div class="season-band__inner">
-                <span class="season-band__tag">Spring</span>
-                <span class="season-band__title">Snow Goose Conservation Order — Feb 1 through Apr 30, 2026</span>
-                <div class="season-band__perks">
-                    <span class="season-perk">No Bag Limit</span>
-                    <span class="season-perk">Electronic Calls Allowed</span>
-                    <span class="season-perk">Extended Season</span>
-                    <span class="season-perk">Spring Migration</span>
-                </div>
+            <div class="hero__scroll" aria-hidden="true">
+                <div class="hero__scroll-line"></div>
+                <span>Scroll</span>
             </div>
-        </div>
-
-        <div class="season-band season-band--duck">
-            <div class="season-band__inner">
-                <span class="season-band__tag">Fall/Winter</span>
-                <span class="season-band__title">Regular Duck Season — Nov 2026 through Jan 2027</span>
-                <div class="season-band__perks">
-                    <span class="season-perk">Mallards</span>
-                    <span class="season-perk">Pintails</span>
-                    <span class="season-perk">Gadwall</span>
-                    <span class="season-perk">Canada Geese</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- LEGEND -->
-        <div class="legend-row">
-            <div class="legend-row__inner">
-                <span class="legend-label">Status Key:</span>
-                <div class="legend-item legend-item--avail">
-                    <span class="legend-dot legend-dot--avail"></span>
-                    Available
-                </div>
-                <div class="legend-item legend-item--booked">
-                    <span class="legend-dot legend-dot--booked"></span>
-                    Booked
-                </div>
-            </div>
-        </div>
-
-        <!-- CALENDAR — populated by bookings-calendar.js -->
-        <section class="calendar-section">
-            <div id="calendar-container"></div>
         </section>
 
-        <!-- BOOKING CTA -->
-        <section class="booking-cta" id="booking">
-            <div class="booking-cta__inner">
-                <div class="reveal">
-                    <p class="booking-cta__eyebrow">Reserve Your Dates</p>
-                    <h2 class="booking-cta__title">Don't Wait.<br>Prime Dates Fill Fast.</h2>
-                    <p class="booking-cta__desc">Call or text Jonathon directly to check availability, ask questions, and lock in your dates. No middleman, no booking fees — just a straight conversation with your guide.</p>
+        <!-- SEASON STATS -->
+        <div class="season-banner fade">
+            <div class="season-banner__inner">
+                <div class="season-stat">
+                    <span class="season-stat__num">Nov</span>
+                    <span class="season-stat__label">Season Opens</span>
                 </div>
-                <div class="booking-cta__card reveal" style="transition-delay:0.12s">
-                    <p class="booking-cta__card-label">Call or Text Anytime</p>
-                    <a href="tel:870-830-3633" class="booking-cta__phone">870-830-3633</a>
-                    <p class="booking-cta__avail">Available 7 Days a Week</p>
-                    <div class="booking-cta__actions">
-                        <a href="tel:870-830-3633" class="btn-call">📞 Call Now</a>
-                        <a href="sms:870-830-3633" class="btn-text">💬 Send a Text</a>
+                <div class="season-divider"></div>
+                <div class="season-stat">
+                    <span class="season-stat__num">Jan</span>
+                    <span class="season-stat__label">Season Closes</span>
+                </div>
+                <div class="season-divider"></div>
+                <div class="season-stat">
+                    <span class="season-stat__num">4</span>
+                    <span class="season-stat__label">Max Hunters</span>
+                </div>
+                <div class="season-divider"></div>
+                <div class="season-stat">
+                    <span class="season-stat__num">15+</span>
+                    <span class="season-stat__label">Years Guiding</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOW TO BOOK -->
+        <section class="how">
+            <div class="how__inner">
+                <div class="how__text fade">
+                    <p class="section-eyebrow">How it works</p>
+                    <h2 class="how__title">Three steps to your <em>best hunt.</em></h2>
+                    <p class="how__body">Check the calendar below for open dates. Green means we're hunting — red means it's gone. When you find a date that works, reach out to Jonathon directly to confirm your spot.</p>
+                    <div class="how__legend">
+                        <div class="legend-item"><span class="legend-dot available"></span> Available</div>
+                        <div class="legend-item"><span class="legend-dot booked"></span> Booked</div>
+                    </div>
+                </div>
+                <div class="how__steps fade" style="transition-delay:0.15s">
+                    <div class="step">
+                        <span class="step__num">01</span>
+                        <div>
+                            <div class="step__title">Find your date</div>
+                            <p class="step__body">Scroll the calendar below. November and December fill up first — don't sleep on it.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step__num">02</span>
+                        <div>
+                            <div class="step__title">Call or text Jonathon</div>
+                            <p class="step__body">Reach out at <strong style="color:var(--straw)">870-830-3633</strong>. He'll confirm your date and walk you through everything.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step__num">03</span>
+                        <div>
+                            <div class="step__title">Show up and shoot</div>
+                            <p class="step__body">Jonathon handles the rest. Stuttgart's flooded rice fields — the real thing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALENDAR -->
+        <section class="calendar-section" id="calendar">
+            <div class="calendar-section__header fade">
+                <h2 class="calendar-section__title">Open<br><em>Dates</em></h2>
+                <p class="calendar-section__note">2026–27 Duck Season<br>Nov 2026 — Jan 2027</p>
+            </div>
+            <div id="calendar-container" class="calendar-grid"></div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta">
+            <div class="cta__bg">
+                <img src="images/IMG_2057.jpeg" alt="" loading="lazy" width="1920" height="1080">
+            </div>
+            <div class="cta__inner">
+                <div class="cta__text fade">
+                    <p class="section-eyebrow">Don't wait</p>
+                    <h2 class="cta__headline">Prime dates<br>go <em>fast.</em></h2>
+                    <p class="cta__body">The best mornings in Stuttgart book up weeks ahead. If you see a date you want, call Jonathon now. He'll take care of everything else.</p>
+                </div>
+                <div class="cta__card fade" style="transition-delay:0.15s">
+                    <p class="cta__card-label">Call or text anytime</p>
+                    <a href="tel:870-830-3633" class="cta__phone">870-830-3633</a>
+                    <p class="cta__availability">Jonathon Goins · Stuttgart, AR</p>
+                    <div class="cta__btns">
+                        <a href="tel:870-830-3633" class="btn-primary">📞 Call Now</a>
+                        <a href="sms:870-830-3633" class="btn-ghost">💬 Text</a>
                     </div>
                 </div>
             </div>
@@ -699,76 +597,49 @@
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer__inner">
-            <div class="footer__brand">The Roost Hole Guide Service</div>
+            <span class="footer__logo">The Roost Hole Guide Service</span>
             <nav class="footer__links">
                 <a href="index.html">Home</a>
-                <a href="https://www.facebook.com/jonathon.goins.94" target="_blank" rel="noopener noreferrer">Facebook</a>
                 <a href="tel:870-830-3633">Call</a>
                 <a href="sms:870-830-3633">Text</a>
-                <a href="/privacy-policy.html">Privacy</a>
-                <a href="/terms-of-service.html">Terms</a>
             </nav>
         </div>
-        <p class="footer__copy">&copy; 2025 The Roost Hole Guide Service. All rights reserved.</p>
     </footer>
 
-    <!-- STICKY BAR -->
     <div class="sticky-bar" id="stickyBar">
         <div class="sticky-bar__inner">
-            <p class="sticky-bar__msg">Grab your dates before they're gone — <strong>870-830-3633</strong></p>
+            <p class="sticky-bar__text">Ready to book? Call <strong>870-830-3633</strong></p>
             <div class="sticky-bar__btns">
-                <a href="tel:870-830-3633" class="sticky-bar__btn sticky-bar__btn--fill">📞 Call</a>
-                <a href="sms:870-830-3633" class="sticky-bar__btn sticky-bar__btn--outline">💬 Text</a>
+                <a href="tel:870-830-3633" class="sticky-btn">📞 Call</a>
+                <a href="sms:870-830-3633" class="sticky-btn ghost">💬 Text</a>
             </div>
         </div>
     </div>
 
-    <!-- Load data first, then renderer -->
     <script src="bookings-data.js"></script>
     <script src="bookings-calendar.js"></script>
 
     <script>
-        /* NAV */
-        const hamburger = document.getElementById('hamburger');
-        const navDrawer  = document.getElementById('navDrawer');
-        const navOverlay = document.getElementById('navOverlay');
-        const drawerClose = document.getElementById('drawerClose');
-
-        function openDrawer()  { navDrawer.classList.add('open'); navOverlay.classList.add('show'); document.body.style.overflow='hidden'; hamburger.setAttribute('aria-expanded','true'); }
-        function closeDrawer() { navDrawer.classList.remove('open'); navOverlay.classList.remove('show'); document.body.style.overflow=''; hamburger.setAttribute('aria-expanded','false'); }
-
-        hamburger.addEventListener('click', openDrawer);
-        drawerClose.addEventListener('click', closeDrawer);
-        navOverlay.addEventListener('click', closeDrawer);
-        navDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
-
         /* Sticky bar */
-        const stickyBar = document.getElementById('stickyBar');
-        let ticking = false;
         window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    stickyBar.classList.toggle('show', window.scrollY > 600);
-                    ticking = false;
-                });
-                ticking = true;
-            }
+            document.getElementById('stickyBar').classList.toggle('visible', window.scrollY > 600);
         }, { passive: true });
 
-        /* Scroll reveal */
-        const reveals = document.querySelectorAll('.reveal');
-        new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-        }, { threshold: 0.1 }).observe
-        ? (() => {
-            const obs = new IntersectionObserver(entries => {
-                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-            }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-            reveals.forEach(el => obs.observe(el));
-        })() : reveals.forEach(el => el.classList.add('visible'));
+        /* Scroll reveal — stored on window so calendar.js can observe dynamic cards */
+        window._roostObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); window._roostObserver.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.fade').forEach(el => window._roostObserver.observe(el));
+
+        /* Smooth scroll */
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
     </script>
 </body>
 </html>
