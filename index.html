@@ -1559,6 +1559,62 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* JONBOY'S DUCK CLUB — NAV & SECTION STYLES */
+        :root { --gold: #B8982A; --gold-light: #D4AF45; }
+
+        .nav__club {
+            color: var(--gold-light) !important;
+            border: 1px solid rgba(212,175,69,0.4) !important;
+            padding: 0.35rem 0.9rem !important;
+            font-size: 0.78rem !important;
+            transition: all 0.2s !important;
+        }
+        .nav__club::after { display: none !important; }
+        .nav__club:hover { background: rgba(212,175,69,0.1) !important; border-color: var(--gold-light) !important; }
+
+        .nav__drawer a.drawer__club { color: var(--gold-light) !important; }
+        .nav__drawer a.drawer__club:hover { color: var(--wheat) !important; }
+
+        /* CLUB SECTION */
+        .club-section { position: relative; background: var(--ink); overflow: hidden; }
+        .club-section__bg { position: absolute; inset: 0; }
+        .club-section__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; opacity: 0.18; filter: saturate(0.6); }
+        .club-section__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,13,7,0.96) 0%, rgba(10,13,7,0.7) 50%, rgba(10,13,7,0.85) 100%), linear-gradient(to top, rgba(10,13,7,0.8) 0%, transparent 50%); }
+        .club-section__inner { position: relative; z-index: 2; max-width: 1500px; margin: 0 auto; padding: clamp(5rem,10vw,9rem) clamp(1.5rem,4vw,4rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(4rem,8vw,10rem); align-items: center; }
+        .club-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--font-cond); font-weight: 500; font-size: 0.65rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.5rem; }
+        .club-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold-light); }
+        .club-section__title { font-family: var(--font-display); font-size: clamp(2.5rem,5vw,5rem); font-weight: 900; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.75rem; }
+        .club-section__title .t1 { display: block; color: var(--dawn); font-weight: 400; font-style: italic; font-size: 0.5em; letter-spacing: 0.05em; margin-bottom: 0.3em; }
+        .club-section__title .t2 { display: block; color: var(--gold-light); }
+        .club-section__title .t3 { display: block; color: var(--dawn); font-size: 0.85em; }
+        .club-section__body { font-family: var(--font-body); font-weight: 300; font-size: 1.05rem; line-height: 1.85; color: rgba(245,237,216,0.6); margin-bottom: 2.5rem; max-width: 460px; }
+        .club-section__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-gold { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-cond); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.25rem; background: var(--gold); color: var(--ink); border: 1.5px solid var(--gold); border-radius: 2px; transition: all 0.3s var(--ease); }
+        .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(184,152,42,0.3); }
+        .btn-gold-outline { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-cond); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.25rem; background: transparent; color: var(--gold-light); border: 1.5px solid rgba(212,175,69,0.4); border-radius: 2px; transition: all 0.3s var(--ease); }
+        .btn-gold-outline:hover { border-color: var(--gold-light); background: rgba(212,175,69,0.08); }
+        .club-section__tiers { display: flex; flex-direction: column; gap: 1rem; }
+        .club-tier { background: rgba(10,13,7,0.7); border: 1px solid rgba(212,175,69,0.15); padding: 1.75rem 2rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1.5rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s var(--ease); backdrop-filter: blur(8px); }
+        .club-tier::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.5; transition: opacity 0.3s; }
+        .club-tier:hover { border-color: rgba(212,175,69,0.4); transform: translateX(4px); }
+        .club-tier:hover::before { opacity: 1; }
+        .club-tier--featured { border-color: rgba(212,175,69,0.3); }
+        .club-tier--featured::before { opacity: 0.9; background: linear-gradient(to right, var(--gold), var(--gold-light), transparent); }
+        .club-tier__label { font-family: var(--font-cond); font-weight: 400; font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(212,175,69,0.5); margin-bottom: 0.4rem; }
+        .club-tier__name { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--dawn); line-height: 1.1; }
+        .club-tier__name em { font-style: italic; color: var(--gold-light); }
+        .club-tier__detail { font-family: var(--font-cond); font-weight: 300; font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(245,237,216,0.3); margin-top: 0.25rem; }
+        .club-tier__price { text-align: right; flex-shrink: 0; }
+        .club-tier__amount { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.8rem,3vw,2.5rem); color: var(--gold-light); line-height: 1; letter-spacing: -0.03em; display: block; }
+        .club-tier__per { font-family: var(--font-cond); font-weight: 300; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(212,175,69,0.4); }
+
+        .footer__links a.footer__club { color: var(--gold-light) !important; }
+        .footer__links a.footer__club:hover { color: var(--wheat) !important; }
+
+        @media (max-width: 1100px) { .club-section__inner { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) { .club-tier { grid-template-columns: 1fr; } .club-tier__price { text-align: left; } }
+
     </style>
 </head>
 <body>
@@ -1576,6 +1632,7 @@
                 <li><a href="#hunts">Hunts</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="membership.html" class="nav__club">🦆 Duck Club</a></li>
                 <li><a href="tel:870-830-3633" class="nav__cta nav__cta-desktop">📞 870-830-3633</a></li>
             </ul>
 
@@ -1595,6 +1652,7 @@
         <a href="#lodging">Lodging</a>
         <a href="#faq">FAQ</a>
         <a href="#booking">Book a Hunt</a>
+        <a href="membership.html" class="drawer__club">🦆 Jonboy's Duck Club</a>
         <a href="tel:870-830-3633">📞 870-830-3633</a>
     </div>
 
@@ -1789,6 +1847,53 @@
                 <a href="tel:870-830-3633" class="btn-dark">Call for Lodging: 870-830-3633</a>
             </div>
         </div>
+
+
+        <!-- ===== JONBOY'S DUCK CLUB ===== -->
+        <section class="club-section" id="club" aria-labelledby="club-title">
+            <div class="club-section__bg">
+                <img src="images/jonboy-duckclub.jpg" alt="" aria-hidden="true" loading="lazy">
+            </div>
+            <div class="club-section__inner">
+                <div class="club-section__text reveal">
+                    <p class="club-eyebrow">Private Membership</p>
+                    <h2 class="club-section__title" id="club-title">
+                        <span class="t1">Jonboy's</span>
+                        <span class="t2">Duck</span>
+                        <span class="t3">Club</span>
+                    </h2>
+                    <p class="club-section__body">Not just a hunt — a membership. Jonboy's Duck Club gives you locked-in access to Stuttgart's finest grounds for the entire season. Your blind. Your schedule. Your group. Limited spots, by design.</p>
+                    <div class="club-section__cta">
+                        <a href="membership.html" class="btn-gold">View Membership</a>
+                        <a href="tel:870-830-3633" class="btn-gold-outline">📞 Inquire Now</a>
+                    </div>
+                </div>
+                <div class="club-section__tiers reveal" style="transition-delay:0.15s">
+                    <div class="club-tier">
+                        <div>
+                            <p class="club-tier__label">Individual</p>
+                            <div class="club-tier__name">Single <em>Member</em></div>
+                            <p class="club-tier__detail">1 person · Full season access</p>
+                        </div>
+                        <div class="club-tier__price">
+                            <span class="club-tier__amount">$2,500</span>
+                            <span class="club-tier__per">Per season</span>
+                        </div>
+                    </div>
+                    <div class="club-tier club-tier--featured">
+                        <div>
+                            <p class="club-tier__label">Private Blind</p>
+                            <div class="club-tier__name">Full <em>Blind</em></div>
+                            <p class="club-tier__detail">Up to 6 hunters · Exclusively yours</p>
+                        </div>
+                        <div class="club-tier__price">
+                            <span class="club-tier__amount">$8,500</span>
+                            <span class="club-tier__per">Per season</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- ===== GALLERY ===== -->
         <section class="gallery" id="gallery" aria-labelledby="gallery-title">
@@ -2003,6 +2108,7 @@
                     <div class="footer__brand-sub">Stuttgart, Arkansas · Jonathon Goins</div>
                 </div>
                 <nav class="footer__links" aria-label="Footer navigation">
+                    <a href="membership.html" class="footer__club">Jonboy's Duck Club</a>
                     <a href="https://www.facebook.com/jonathon.goins.94" target="_blank" rel="noopener noreferrer">Facebook</a>
                     <a href="tel:870-830-3633">Call</a>
                     <a href="sms:870-830-3633">Text</a>
