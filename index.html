@@ -13,9 +13,122 @@
     <meta property="og:description" content="Premier guided duck and goose hunting in Stuttgart, Arkansas with expert guide Jonathon Goins.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.theroostholeguideservice.com">
+    <meta property="og:image" content="https://www.theroostholeguideservice.com/images/IMG_2052.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Roost Hole Guide Service - Stuttgart Arkansas Duck Hunting">
+    <meta name="twitter:description" content="Premier guided duck and goose hunting in Stuttgart, Arkansas with expert guide Jonathon Goins.">
+    <meta name="theme-color" content="#0E1209">
     <title>Stuttgart Arkansas Duck Hunting Guide | The Roost Hole Guide Service | Jonathon Goins</title>
     <link rel="canonical" href="https://www.theroostholeguideservice.com">
     <link rel="icon" type="image/jpeg" href="images/the-roost-hole-guide-service-favicon.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "The Roost Hole Guide Service",
+        "description": "Premier guided duck and goose hunting in Stuttgart, Arkansas",
+        "url": "https://www.theroostholeguideservice.com",
+        "telephone": "+1-870-830-3633",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Stuttgart",
+            "addressRegion": "AR",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "34.5004",
+            "longitude": "-91.5526"
+        },
+        "priceRange": "$$",
+        "openingHours": "Mo-Su 00:00-23:59",
+        "sameAs": ["https://www.facebook.com/jonathon.goins.94"],
+        "founder": {
+            "@type": "Person",
+            "name": "Jonathon Goins"
+        },
+        "areaServed": {
+            "@type": "State",
+            "name": "Arkansas"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Guided Hunting Trips",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Flooded Rice Field Duck Hunting"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Field Spread Hunting"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Layout Hunts"
+                    }
+                }
+            ]
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "3"
+        }
+    }
+    </script>
+
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What should I bring on the hunt?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bring your shotgun, shells (steel shot required), valid Arkansas hunting license, warm waterproof clothing, and waders. We provide decoys, blinds, and calling."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I book a hunt?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Call or text 870-830-3633 to check availability. We'll discuss dates, group size, and hunt preferences."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How many hunters per group?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We keep group sizes at 4 or more hunters. Small groups mean better setups, tighter blinds, and a more personal hunt."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is lodging included in the hunt price?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Lodging is available for an additional fee. Call 870-830-3633 for current availability and rates."
+                }
+            }
+        ]
+    }
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BTM7NT37D"></script>
@@ -28,7 +141,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         /* ============================================
@@ -51,8 +164,14 @@
             --font-cond: 'Barlow Condensed', 'Impact', sans-serif;
             --font-body: 'Barlow', sans-serif;
 
-            --nav-h: 68px;
+            --nav-h: 72px;
             --ease: cubic-bezier(0.25, 0, 0, 1);
+            --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+            --gold: #B8982A;
+            --gold-light: #D4AF45;
         }
 
         /* ============================================
@@ -60,32 +179,152 @@
            ============================================ */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; font-size: 16px; }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--bark) var(--ink);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--ink); }
+        ::-webkit-scrollbar-thumb { background: var(--bark); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--sage); }
 
         body {
             font-family: var(--font-body);
             background: var(--mist);
             color: var(--ink);
             overflow-x: hidden;
-            cursor: default;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         a { text-decoration: none; color: inherit; }
         img { display: block; max-width: 100%; }
         ul { list-style: none; }
+        button { cursor: pointer; }
+
+        ::selection {
+            background: var(--straw);
+            color: var(--ink);
+        }
+
+        /* ============================================
+           CUSTOM CURSOR (desktop only)
+           ============================================ */
+        .cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 20px; height: 20px;
+            border: 1.5px solid var(--straw);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s, border-color 0.3s, opacity 0.3s;
+            mix-blend-mode: difference;
+            opacity: 0;
+        }
+
+        .cursor.visible { opacity: 1; }
+
+        .cursor.hover {
+            width: 50px; height: 50px;
+            background: rgba(200,184,122,0.12);
+            border-color: var(--wheat);
+        }
+
+        .cursor.click {
+            transform: translate(-50%, -50%) scale(0.8);
+        }
+
+        @media (pointer: coarse) { .cursor { display: none !important; } }
+        @media (max-width: 768px) { .cursor { display: none !important; } }
+
+        /* ============================================
+           LOADING SCREEN
+           ============================================ */
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 100000;
+            background: var(--ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+            transition: clip-path 1s var(--ease-expo);
+            clip-path: inset(0 0 0 0);
+        }
+
+        .loader.done {
+            clip-path: inset(0 0 100% 0);
+            pointer-events: none;
+        }
+
+        .loader__brand {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-style: italic;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--straw);
+            opacity: 0;
+            animation: loaderFade 0.6s var(--ease) 0.3s forwards;
+        }
+
+        .loader__line {
+            width: 100px;
+            height: 1px;
+            background: rgba(200,184,122,0.15);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: loaderFade 0.4s var(--ease) 0.5s forwards;
+        }
+
+        .loader__line::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--straw);
+            animation: loaderSlide 1.2s var(--ease-out) 0.7s forwards;
+            transform: translateX(-100%);
+        }
+
+        .loader__sub {
+            font-family: var(--font-cond);
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: rgba(200,184,122,0.4);
+            opacity: 0;
+            animation: loaderFade 0.5s var(--ease) 0.6s forwards;
+        }
+
+        @keyframes loaderFade {
+            to { opacity: 1; }
+        }
+
+        @keyframes loaderSlide {
+            to { transform: translateX(0); }
+        }
 
         /* ============================================
            GRAIN OVERLAY
            ============================================ */
-        body::before {
+        body::after {
             content: '';
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: 9999;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
+            z-index: 9998;
+            opacity: 0.028;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 180px 180px;
         }
 
         /* ============================================
@@ -96,13 +335,14 @@
             top: 0; left: 0; right: 0;
             height: var(--nav-h);
             z-index: 1000;
-            mix-blend-mode: normal;
-            transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease);
+            transition: all 0.5s var(--ease);
         }
 
         .nav.solid {
-            background: var(--ink);
-            box-shadow: 0 1px 0 rgba(200,184,122,0.15);
+            background: rgba(14,18,9,0.88);
+            backdrop-filter: blur(24px) saturate(1.4);
+            -webkit-backdrop-filter: blur(24px) saturate(1.4);
+            box-shadow: 0 1px 0 rgba(200,184,122,0.08), 0 8px 40px rgba(0,0,0,0.3);
         }
 
         .nav__inner {
@@ -119,22 +359,28 @@
             display: flex;
             flex-direction: column;
             line-height: 1;
+            transition: transform 0.4s var(--ease);
         }
+
+        .nav__brand:hover { transform: translateX(3px); }
 
         .nav__brand-top {
             font-family: var(--font-cond);
             font-weight: 300;
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
+            font-size: 0.58rem;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
             color: var(--straw);
-            opacity: 0.7;
+            opacity: 0.5;
+            transition: opacity 0.3s;
         }
+
+        .nav__brand:hover .nav__brand-top { opacity: 0.9; }
 
         .nav__brand-main {
             font-family: var(--font-display);
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #fff;
             letter-spacing: 0.02em;
         }
@@ -148,21 +394,22 @@
         .nav__links a {
             font-family: var(--font-cond);
             font-weight: 500;
-            font-size: 0.85rem;
-            letter-spacing: 0.12em;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.65);
-            transition: color 0.2s;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s;
             position: relative;
+            padding: 0.3rem 0;
         }
 
         .nav__links a::after {
             content: '';
             position: absolute;
-            bottom: -3px; left: 0;
+            bottom: -2px; left: 0;
             width: 0; height: 1px;
             background: var(--straw);
-            transition: width 0.3s var(--ease);
+            transition: width 0.4s var(--ease);
         }
 
         .nav__links a:hover { color: var(--straw); }
@@ -171,18 +418,32 @@
         .nav__cta {
             font-family: var(--font-cond);
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--ink) !important;
             background: var(--straw);
-            padding: 0.6rem 1.4rem;
+            padding: 0.55rem 1.3rem;
             border-radius: 2px;
-            transition: background 0.2s, transform 0.2s !important;
+            transition: all 0.3s var(--ease) !important;
         }
 
         .nav__cta::after { display: none !important; }
-        .nav__cta:hover { background: var(--wheat) !important; transform: translateY(-1px); }
+        .nav__cta:hover {
+            background: var(--wheat) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(200,184,122,0.3);
+        }
+
+        .nav__club {
+            color: var(--gold-light) !important;
+            border: 1px solid rgba(212,175,69,0.35) !important;
+            padding: 0.3rem 0.85rem !important;
+            font-size: 0.75rem !important;
+            transition: all 0.3s !important;
+        }
+        .nav__club::after { display: none !important; }
+        .nav__club:hover { background: rgba(212,175,69,0.1) !important; border-color: var(--gold-light) !important; }
 
         .nav__hamburger {
             display: none;
@@ -196,106 +457,150 @@
 
         .nav__hamburger span {
             display: block;
-            width: 24px; height: 1.5px;
+            width: 22px; height: 1.5px;
             background: var(--straw);
-            transition: all 0.3s var(--ease);
+            transition: all 0.4s var(--ease);
+            transform-origin: center;
         }
 
-        /* Mobile Nav Drawer */
+        .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+        .nav__hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+        /* Mobile Nav */
         .nav__drawer {
             position: fixed;
             top: 0; right: -100%;
-            width: min(360px, 100vw);
+            width: min(380px, 100vw);
             height: 100dvh;
             background: var(--ink);
             z-index: 1001;
-            padding: 6rem 3rem 3rem;
+            padding: 7rem 3rem 3rem;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            transition: right 0.5s var(--ease);
-            border-left: 1px solid rgba(200,184,122,0.15);
+            gap: 0;
+            transition: right 0.6s var(--ease-expo);
+            border-left: 1px solid rgba(200,184,122,0.08);
         }
 
         .nav__drawer.open { right: 0; }
 
         .nav__drawer a {
             font-family: var(--font-cond);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.7);
-            transition: color 0.2s;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            padding-bottom: 1.5rem;
+            color: rgba(255,255,255,0.6);
+            transition: color 0.3s, transform 0.3s, padding-left 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding: 1.25rem 0;
+            transform: translateX(20px);
+            opacity: 0;
         }
 
-        .nav__drawer a:hover { color: var(--straw); }
+        .nav__drawer.open a {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .nav__drawer a:nth-child(2) { transition-delay: 0.08s; }
+        .nav__drawer a:nth-child(3) { transition-delay: 0.12s; }
+        .nav__drawer a:nth-child(4) { transition-delay: 0.16s; }
+        .nav__drawer a:nth-child(5) { transition-delay: 0.20s; }
+        .nav__drawer a:nth-child(6) { transition-delay: 0.24s; }
+        .nav__drawer a:nth-child(7) { transition-delay: 0.28s; }
+        .nav__drawer a:nth-child(8) { transition-delay: 0.32s; }
+        .nav__drawer a:nth-child(9) { transition-delay: 0.36s; }
+
+        .nav__drawer a:hover { color: var(--straw); padding-left: 0.75rem; }
+        .nav__drawer a.drawer__club { color: var(--gold-light) !important; }
 
         .nav__drawer-close {
             position: absolute;
             top: 1.5rem; right: 2rem;
             background: none; border: none;
             color: var(--straw);
-            font-size: 1.5rem;
-            cursor: pointer;
+            font-size: 1.3rem;
             font-family: var(--font-cond);
             font-weight: 300;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
+            opacity: 0.6;
+            transition: opacity 0.3s;
         }
+
+        .nav__drawer-close:hover { opacity: 1; }
 
         .nav__overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.65);
             z-index: 1000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s;
+            transition: opacity 0.5s;
+            backdrop-filter: blur(6px);
         }
 
-        .nav__overlay.show {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .nav__overlay.show { opacity: 1; pointer-events: all; }
 
         /* ============================================
-           HERO
+           HERO — CROSSFADE SLIDESHOW + KEN BURNS
            ============================================ */
         .hero {
             position: relative;
             height: 100svh;
-            min-height: 600px;
+            min-height: 680px;
             display: flex;
             align-items: flex-end;
             overflow: hidden;
         }
 
-        .hero__bg {
+        .hero__slides {
             position: absolute;
             inset: 0;
         }
 
-        .hero__bg img {
+        .hero__slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero__slide.active { opacity: 1; }
+
+        .hero__slide img {
             width: 100%; height: 100%;
             object-fit: cover;
             object-position: center 40%;
-            transform: scale(1.05);
-            animation: heroZoom 20s ease-in-out infinite alternate;
+            will-change: transform;
         }
 
-        @keyframes heroZoom {
-            from { transform: scale(1.05); }
-            to { transform: scale(1.12); }
+        .hero__slide:nth-child(1) img { animation: kenBurns1 18s ease-in-out infinite alternate; }
+        .hero__slide:nth-child(2) img { animation: kenBurns2 20s ease-in-out infinite alternate; }
+        .hero__slide:nth-child(3) img { animation: kenBurns3 22s ease-in-out infinite alternate; }
+
+        @keyframes kenBurns1 {
+            from { transform: scale(1.0); }
+            to { transform: scale(1.15) translate(-1%, 1%); }
+        }
+        @keyframes kenBurns2 {
+            from { transform: scale(1.05) translate(1%, 0%); }
+            to { transform: scale(1.12) translate(-1%, 2%); }
+        }
+        @keyframes kenBurns3 {
+            from { transform: scale(1.0) translate(-1%, 1%); }
+            to { transform: scale(1.18) translate(1%, -1%); }
         }
 
         .hero__vignette {
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(to top, var(--ink) 0%, rgba(14,18,9,0.6) 45%, rgba(14,18,9,0.2) 100%),
-                linear-gradient(to right, rgba(14,18,9,0.4) 0%, transparent 60%);
+                linear-gradient(to top, var(--ink) 0%, rgba(14,18,9,0.7) 35%, rgba(14,18,9,0.1) 100%),
+                linear-gradient(to right, rgba(14,18,9,0.55) 0%, transparent 55%);
+            z-index: 1;
         }
 
         .hero__content {
@@ -305,7 +610,7 @@
             width: 100%;
             margin: 0 auto;
             padding: 0 clamp(1.5rem, 4vw, 4rem);
-            padding-bottom: clamp(4rem, 8vw, 7rem);
+            padding-bottom: clamp(5rem, 10vw, 9rem);
         }
 
         .hero__eyebrow {
@@ -314,13 +619,13 @@
             gap: 0.75rem;
             font-family: var(--font-cond);
             font-weight: 500;
-            font-size: 0.75rem;
-            letter-spacing: 0.3em;
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
             color: var(--straw);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
             opacity: 0;
-            animation: fadeUp 0.8s var(--ease) 0.3s forwards;
+            transform: translateY(20px);
         }
 
         .hero__eyebrow::before {
@@ -334,31 +639,35 @@
             font-family: var(--font-display);
             font-weight: 900;
             font-style: italic;
-            font-size: clamp(3.5rem, 9vw, 9rem);
-            line-height: 0.92;
+            font-size: clamp(3.2rem, 8.5vw, 9.5rem);
+            line-height: 0.88;
             color: #fff;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeUp 0.9s var(--ease) 0.5s forwards;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            overflow: hidden;
         }
 
-        .hero__title em {
-            color: var(--straw);
-            font-style: italic;
+        .hero__title .line {
+            display: block;
+            transform: translateY(110%);
+            transition: transform 0.9s var(--ease-expo);
         }
+
+        .hero__title .line.show { transform: translateY(0); }
+
+        .hero__title em { color: var(--straw); font-style: italic; }
 
         .hero__sub {
             font-family: var(--font-cond);
             font-weight: 300;
-            font-size: clamp(1rem, 2vw, 1.35rem);
-            letter-spacing: 0.08em;
-            color: rgba(245,237,216,0.75);
-            max-width: 520px;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
+            letter-spacing: 0.1em;
+            color: rgba(245,237,216,0.65);
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
             opacity: 0;
-            animation: fadeUp 0.9s var(--ease) 0.7s forwards;
+            transform: translateY(20px);
         }
 
         .hero__actions {
@@ -366,32 +675,106 @@
             gap: 1rem;
             flex-wrap: wrap;
             opacity: 0;
-            animation: fadeUp 0.9s var(--ease) 0.9s forwards;
+            transform: translateY(20px);
         }
 
+        /* Hero slide indicators */
+        .hero__indicators {
+            position: absolute;
+            bottom: clamp(2rem, 4vw, 3rem);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .hero__indicator {
+            width: 32px; height: 2px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s var(--ease);
+            padding: 0;
+        }
+
+        .hero__indicator.active {
+            background: var(--straw);
+            width: 48px;
+        }
+
+        .hero__scroll {
+            position: absolute;
+            bottom: 3rem;
+            right: clamp(1.5rem, 4vw, 4rem);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeIn 1s var(--ease) 3.5s forwards;
+        }
+
+        .hero__scroll span {
+            font-family: var(--font-cond);
+            font-size: 0.55rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(200,184,122,0.4);
+            writing-mode: vertical-lr;
+        }
+
+        .hero__scroll-line {
+            width: 1px; height: 55px;
+            background: linear-gradient(to bottom, rgba(200,184,122,0.45), transparent);
+            animation: scrollPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.25; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(0.7); }
+        }
+
+        /* ============================================
+           BUTTONS
+           ============================================ */
         .btn-primary {
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
             font-family: var(--font-cond);
             font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 0.2em;
+            font-size: 0.82rem;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--ink);
             background: var(--straw);
-            padding: 1rem 2rem;
+            padding: 1.05rem 2.4rem;
             border-radius: 2px;
             border: 1.5px solid var(--straw);
-            transition: all 0.25s var(--ease);
+            transition: all 0.35s var(--ease);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s var(--ease);
+        }
+
+        .btn-primary:hover::before { left: 100%; }
 
         .btn-primary:hover {
             background: var(--wheat);
             border-color: var(--wheat);
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(200,184,122,0.25);
+            box-shadow: 0 8px 35px rgba(200,184,122,0.3);
         }
 
         .btn-ghost {
@@ -400,53 +783,58 @@
             gap: 0.6rem;
             font-family: var(--font-cond);
             font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 0.2em;
+            font-size: 0.82rem;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.8);
-            padding: 1rem 2rem;
+            color: rgba(255,255,255,0.7);
+            padding: 1.05rem 2.4rem;
             border-radius: 2px;
-            border: 1.5px solid rgba(255,255,255,0.3);
-            transition: all 0.25s var(--ease);
+            border: 1.5px solid rgba(255,255,255,0.2);
+            transition: all 0.35s var(--ease);
         }
 
         .btn-ghost:hover {
             color: #fff;
-            border-color: rgba(255,255,255,0.7);
-            background: rgba(255,255,255,0.07);
+            border-color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.06);
+            transform: translateY(-2px);
         }
 
-        .hero__scroll {
-            position: absolute;
-            bottom: 2rem;
-            right: clamp(1.5rem, 4vw, 4rem);
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
+        .btn-dark {
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            opacity: 0;
-            animation: fadeIn 1s var(--ease) 1.4s forwards;
-        }
-
-        .hero__scroll span {
             font-family: var(--font-cond);
-            font-size: 0.65rem;
-            letter-spacing: 0.25em;
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: rgba(200,184,122,0.6);
-            writing-mode: vertical-lr;
+            color: var(--dawn);
+            background: var(--ink);
+            padding: 1.05rem 2rem;
+            border-radius: 2px;
+            border: 1.5px solid var(--ink);
+            transition: all 0.35s var(--ease);
+            white-space: nowrap;
         }
 
-        .hero__scroll-line {
-            width: 1px; height: 60px;
-            background: linear-gradient(to bottom, rgba(200,184,122,0.6), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
+        .btn-dark:hover {
+            background: var(--mud);
+            border-color: var(--mud);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
         }
 
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.4; transform: scaleY(1); }
-            50% { opacity: 1; transform: scaleY(0.8); }
+        /* ============================================
+           SVG SECTION DIVIDERS
+           ============================================ */
+        .divider {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: -1px 0;
+            position: relative;
+            z-index: 2;
         }
 
         /* ============================================
@@ -455,16 +843,19 @@
         .marquee-strip {
             background: var(--bark);
             overflow: hidden;
-            border-top: 1px solid rgba(200,184,122,0.1);
-            border-bottom: 1px solid rgba(200,184,122,0.1);
+            border-top: 1px solid rgba(200,184,122,0.06);
+            border-bottom: 1px solid rgba(200,184,122,0.06);
+            position: relative;
         }
 
         .marquee-track {
             display: flex;
             width: max-content;
-            animation: marquee 30s linear infinite;
-            padding: 1rem 0;
+            animation: marquee 40s linear infinite;
+            padding: 1.15rem 0;
         }
+
+        .marquee-track:hover { animation-play-state: paused; }
 
         .marquee-item {
             display: flex;
@@ -473,17 +864,21 @@
             padding: 0 2.5rem;
             font-family: var(--font-cond);
             font-weight: 500;
-            font-size: 0.75rem;
-            letter-spacing: 0.25em;
+            font-size: 0.7rem;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
             color: var(--reed);
             white-space: nowrap;
+            transition: color 0.3s;
         }
 
+        .marquee-item:hover { color: var(--straw); }
+
         .marquee-item::before {
-            content: '✦';
+            content: '◆';
             color: var(--straw);
-            font-size: 0.6rem;
+            font-size: 0.4rem;
+            opacity: 0.5;
         }
 
         @keyframes marquee {
@@ -496,7 +891,7 @@
            ============================================ */
         .stats {
             background: var(--mud);
-            padding: 4rem 0;
+            padding: 0;
         }
 
         .stats__inner {
@@ -505,46 +900,102 @@
             padding: 0 clamp(1.5rem, 4vw, 4rem);
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
+            gap: 1px;
         }
 
         .stat-item {
-            padding: 3rem 2rem;
+            padding: 4.5rem 2rem;
             text-align: center;
             background: var(--bark);
-            transition: background 0.3s;
+            transition: all 0.5s var(--ease);
+            position: relative;
+            overflow: hidden;
         }
 
-        .stat-item:hover { background: #353e2d; }
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(200,184,122,0.04), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
 
-        .stat-item:first-child { border-radius: 4px 0 0 4px; }
-        .stat-item:last-child { border-radius: 0 4px 4px 0; }
+        .stat-item:hover::before { opacity: 1; }
+
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            width: 0; height: 2px;
+            background: var(--straw);
+            transition: width 0.6s var(--ease), left 0.6s var(--ease);
+        }
+
+        .stat-item:hover::after { width: 60%; left: 20%; }
 
         .stat-number {
             font-family: var(--font-display);
             font-weight: 900;
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-size: clamp(3.2rem, 6vw, 5.5rem);
             color: var(--straw);
             line-height: 1;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            position: relative;
         }
 
         .stat-label {
             font-family: var(--font-cond);
             font-weight: 400;
-            font-size: 0.75rem;
-            letter-spacing: 0.25em;
+            font-size: 0.7rem;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
             color: var(--reed);
+            position: relative;
         }
+
+        /* ============================================
+           SECTION SHARED
+           ============================================ */
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-cond);
+            font-weight: 500;
+            font-size: 0.65rem;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--rust);
+            margin-bottom: 1.25rem;
+        }
+
+        .section-eyebrow::before {
+            content: '';
+            display: block;
+            width: 28px; height: 1px;
+            background: currentColor;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(2.2rem, 4vw, 3.8rem);
+            line-height: 1.05;
+            color: var(--ink);
+            margin-bottom: 1.75rem;
+        }
+
+        .section-title em { font-style: italic; color: var(--sage); }
 
         /* ============================================
            ABOUT SECTION
            ============================================ */
         .about {
             background: var(--mist);
-            padding: clamp(5rem, 10vw, 10rem) 0;
+            padding: clamp(6rem, 12vw, 13rem) 0;
+            position: relative;
         }
 
         .about__inner {
@@ -553,13 +1004,11 @@
             padding: 0 clamp(1.5rem, 4vw, 4rem);
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: clamp(3rem, 6vw, 8rem);
+            gap: clamp(3rem, 7vw, 9rem);
             align-items: center;
         }
 
-        .about__visual {
-            position: relative;
-        }
+        .about__visual { position: relative; }
 
         .about__img-frame {
             position: relative;
@@ -571,16 +1020,16 @@
             width: 100%; height: 100%;
             object-fit: cover;
             object-position: top center;
-            transition: transform 0.8s var(--ease);
+            transition: transform 1.2s var(--ease);
         }
 
-        .about__img-frame:hover img { transform: scale(1.04); }
+        .about__img-frame:hover img { transform: scale(1.05); }
 
         .about__img-accent {
             position: absolute;
             bottom: -1.5rem;
             right: -1.5rem;
-            width: 45%;
+            width: 40%;
             aspect-ratio: 1;
             border: 8px solid var(--mist);
             background: var(--bark);
@@ -589,7 +1038,10 @@
             align-items: center;
             justify-content: center;
             gap: 0.25rem;
+            transition: transform 0.6s var(--ease);
         }
+
+        .about__visual:hover .about__img-accent { transform: translate(-5px, -5px); }
 
         .about__img-accent-num {
             font-family: var(--font-display);
@@ -602,8 +1054,8 @@
         .about__img-accent-text {
             font-family: var(--font-cond);
             font-weight: 500;
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--reed);
             text-align: center;
@@ -617,8 +1069,8 @@
             color: var(--ink);
             font-family: var(--font-cond);
             font-weight: 700;
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             padding: 0.5rem 1rem;
             writing-mode: vertical-lr;
@@ -627,58 +1079,19 @@
 
         .about__text { padding-left: 1rem; }
 
-        .section-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-family: var(--font-cond);
-            font-weight: 500;
-            font-size: 0.7rem;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: var(--rust);
-            margin-bottom: 1.25rem;
-        }
-
-        .section-eyebrow::before {
-            content: '';
-            display: block;
-            width: 30px; height: 1px;
-            background: var(--rust);
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(2.2rem, 4vw, 3.5rem);
-            line-height: 1.1;
-            color: var(--ink);
-            margin-bottom: 1.75rem;
-        }
-
-        .section-title em {
-            font-style: italic;
-            color: var(--sage);
-        }
-
         .about__body p {
             font-family: var(--font-body);
             font-weight: 300;
             font-size: 1.05rem;
-            line-height: 1.85;
+            line-height: 1.95;
             color: var(--bark);
             margin-bottom: 1.25rem;
         }
 
-        .about__body p:last-child { margin-bottom: 0; }
-
-        .about__body strong {
-            font-weight: 500;
-            color: var(--ink);
-        }
+        .about__body strong { font-weight: 500; color: var(--ink); }
 
         .about__cta {
-            margin-top: 2.5rem;
+            margin-top: 3rem;
             display: flex;
             align-items: center;
             gap: 2rem;
@@ -688,12 +1101,12 @@
         .about__phone-label {
             font-family: var(--font-cond);
             font-weight: 400;
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
             color: var(--reed);
             display: block;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.15rem;
         }
 
         .about__phone-number {
@@ -701,17 +1114,28 @@
             font-weight: 700;
             font-size: 1.4rem;
             color: var(--ink);
-            transition: color 0.2s;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .about__phone-number::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0; height: 1.5px;
+            background: var(--rust);
+            transition: width 0.5s var(--ease);
         }
 
         .about__phone-number:hover { color: var(--rust); }
+        .about__phone-number:hover::after { width: 100%; }
 
         /* ============================================
-           HUNTS SECTION — DARK
+           HUNTS SECTION
            ============================================ */
         .hunts {
             background: var(--ink);
-            padding: clamp(5rem, 10vw, 10rem) 0;
+            padding: clamp(6rem, 12vw, 13rem) 0;
         }
 
         .hunts__inner {
@@ -729,29 +1153,28 @@
         }
 
         .hunts__header .section-title { color: var(--dawn); margin-bottom: 0; }
-        .hunts__header .section-eyebrow::before { background: var(--straw); }
         .hunts__header .section-eyebrow { color: var(--straw); }
 
         .hunts__intro {
             font-family: var(--font-body);
             font-weight: 300;
             font-size: 1.05rem;
-            line-height: 1.8;
+            line-height: 1.9;
             color: var(--reed);
         }
 
         .hunts__grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
+            gap: 1px;
         }
 
         .hunt-card {
             background: var(--mud);
-            padding: 3rem 2.5rem;
+            padding: 3.5rem 2.5rem 3rem;
             position: relative;
             overflow: hidden;
-            transition: background 0.4s var(--ease);
+            transition: all 0.5s var(--ease);
             cursor: default;
         }
 
@@ -763,30 +1186,44 @@
             background: linear-gradient(90deg, var(--straw), var(--wheat));
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.5s var(--ease);
+            transition: transform 0.6s var(--ease);
         }
 
-        .hunt-card:hover { background: #1e2419; }
+        .hunt-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at bottom right, rgba(200,184,122,0.04), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .hunt-card:hover { background: #1e2a17; transform: translateY(-3px); }
         .hunt-card:hover::before { transform: scaleX(1); }
+        .hunt-card:hover::after { opacity: 1; }
 
         .hunt-card__num {
             font-family: var(--font-display);
             font-weight: 900;
-            font-size: 5rem;
+            font-size: 6rem;
             line-height: 1;
-            color: rgba(200,184,122,0.08);
+            color: rgba(200,184,122,0.04);
             position: absolute;
-            top: 1.5rem; right: 1.5rem;
-            transition: color 0.4s;
+            top: 0.5rem; right: 1rem;
+            transition: color 0.5s;
         }
 
-        .hunt-card:hover .hunt-card__num { color: rgba(200,184,122,0.15); }
+        .hunt-card:hover .hunt-card__num { color: rgba(200,184,122,0.1); }
 
         .hunt-card__icon {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
             display: block;
+            transition: transform 0.5s var(--ease-spring);
+            position: relative;
         }
+
+        .hunt-card:hover .hunt-card__icon { transform: scale(1.15) rotate(-3deg); }
 
         .hunt-card__title {
             font-family: var(--font-display);
@@ -795,22 +1232,24 @@
             color: var(--dawn);
             margin-bottom: 1rem;
             line-height: 1.2;
+            position: relative;
         }
 
         .hunt-card__body {
             font-family: var(--font-body);
             font-weight: 300;
             font-size: 0.95rem;
-            line-height: 1.8;
+            line-height: 1.9;
             color: var(--reed);
+            position: relative;
         }
 
         /* ============================================
-           EXPECT SECTION
+           EXPECT
            ============================================ */
         .expect {
             background: var(--bark);
-            padding: clamp(5rem, 10vw, 10rem) 0;
+            padding: clamp(6rem, 12vw, 13rem) 0;
         }
 
         .expect__inner {
@@ -820,47 +1259,46 @@
         }
 
         .expect__title-row {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 4rem;
             margin-bottom: 5rem;
         }
 
-        .expect__title-block { flex: 0 0 auto; }
         .expect__title-block .section-title { color: var(--dawn); margin-bottom: 0; }
-        .expect__title-block .section-eyebrow::before { background: var(--straw); }
         .expect__title-block .section-eyebrow { color: var(--straw); }
 
         .expect__items {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2px;
+            gap: 1px;
         }
 
         .expect-item {
-            background: rgba(255,255,255,0.03);
-            padding: 2.5rem 2rem;
+            background: rgba(255,255,255,0.025);
+            padding: 3rem 2rem;
             border-bottom: 2px solid transparent;
-            transition: all 0.35s var(--ease);
+            transition: all 0.45s var(--ease);
+            position: relative;
         }
 
         .expect-item:hover {
             background: rgba(255,255,255,0.06);
             border-bottom-color: var(--straw);
+            transform: translateY(-4px);
         }
 
         .expect-item__icon {
-            font-size: 2rem;
+            font-size: 2.4rem;
             display: block;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.5s var(--ease-spring);
         }
+
+        .expect-item:hover .expect-item__icon { transform: scale(1.2) rotate(-5deg); }
 
         .expect-item__title {
             font-family: var(--font-cond);
             font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 0.05em;
+            font-size: 1.05rem;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
             color: var(--dawn);
             margin-bottom: 0.75rem;
@@ -870,7 +1308,7 @@
             font-family: var(--font-body);
             font-weight: 300;
             font-size: 0.9rem;
-            line-height: 1.75;
+            line-height: 1.85;
             color: var(--reed);
         }
 
@@ -879,7 +1317,20 @@
            ============================================ */
         .lodging-banner {
             background: var(--straw);
-            padding: 3.5rem 0;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lodging-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                -55deg,
+                transparent, transparent 22px,
+                rgba(14,18,9,0.025) 22px, rgba(14,18,9,0.025) 23px
+            );
         }
 
         .lodging-banner__inner {
@@ -891,12 +1342,13 @@
             justify-content: space-between;
             gap: 2rem;
             flex-wrap: wrap;
+            position: relative;
         }
 
         .lodging-banner__text {
             font-family: var(--font-display);
             font-weight: 700;
-            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-size: clamp(1.4rem, 3vw, 2.1rem);
             color: var(--ink);
         }
 
@@ -904,116 +1356,175 @@
             display: block;
             font-family: var(--font-cond);
             font-weight: 400;
-            font-size: 0.85rem;
-            letter-spacing: 0.2em;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: rgba(14,18,9,0.55);
+            color: rgba(14,18,9,0.45);
             margin-bottom: 0.3rem;
         }
 
-        .btn-dark {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: var(--font-cond);
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--dawn);
-            background: var(--ink);
-            padding: 1rem 2rem;
-            border-radius: 2px;
-            border: 1.5px solid var(--ink);
-            transition: all 0.25s var(--ease);
-            white-space: nowrap;
-        }
-
-        .btn-dark:hover {
-            background: var(--mud);
-            border-color: var(--mud);
-            transform: translateY(-2px);
-        }
+        /* ============================================
+           DUCK CLUB
+           ============================================ */
+        .club-section { position: relative; background: var(--ink); overflow: hidden; }
+        .club-section__bg { position: absolute; inset: 0; }
+        .club-section__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; opacity: 0.14; filter: saturate(0.45); }
+        .club-section__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,13,7,0.97) 0%, rgba(10,13,7,0.65) 50%, rgba(10,13,7,0.88) 100%), linear-gradient(to top, rgba(10,13,7,0.85) 0%, transparent 50%); }
+        .club-section__inner { position: relative; z-index: 2; max-width: 1500px; margin: 0 auto; padding: clamp(6rem,12vw,10rem) clamp(1.5rem,4vw,4rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(4rem,8vw,10rem); align-items: center; }
+        .club-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--font-cond); font-weight: 500; font-size: 0.6rem; letter-spacing: 0.55em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.5rem; }
+        .club-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold-light); }
+        .club-section__title { font-family: var(--font-display); font-size: clamp(2.5rem,5vw,5.2rem); font-weight: 900; line-height: 0.92; letter-spacing: -0.02em; margin-bottom: 1.75rem; }
+        .club-section__title .t1 { display: block; color: var(--dawn); font-weight: 400; font-style: italic; font-size: 0.48em; letter-spacing: 0.06em; margin-bottom: 0.3em; }
+        .club-section__title .t2 { display: block; color: var(--gold-light); }
+        .club-section__title .t3 { display: block; color: var(--dawn); font-size: 0.82em; }
+        .club-section__body { font-family: var(--font-body); font-weight: 300; font-size: 1.05rem; line-height: 1.9; color: rgba(245,237,216,0.55); margin-bottom: 2.5rem; max-width: 440px; }
+        .club-section__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-gold { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-cond); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 1rem 2.25rem; background: var(--gold); color: var(--ink); border: 1.5px solid var(--gold); border-radius: 2px; transition: all 0.35s var(--ease); }
+        .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(184,152,42,0.3); }
+        .btn-gold-outline { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-cond); font-weight: 600; font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 1rem 2.25rem; background: transparent; color: var(--gold-light); border: 1.5px solid rgba(212,175,69,0.35); border-radius: 2px; transition: all 0.35s var(--ease); }
+        .btn-gold-outline:hover { border-color: var(--gold-light); background: rgba(212,175,69,0.06); }
+        .club-section__tiers { display: flex; flex-direction: column; gap: 1rem; }
+        .club-tier { background: rgba(10,13,7,0.65); border: 1px solid rgba(212,175,69,0.12); padding: 2rem 2.25rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1.5rem; position: relative; overflow: hidden; transition: all 0.45s var(--ease); backdrop-filter: blur(8px); }
+        .club-tier::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.4; transition: opacity 0.4s; }
+        .club-tier:hover { border-color: rgba(212,175,69,0.35); transform: translateX(6px); }
+        .club-tier:hover::before { opacity: 1; }
+        .club-tier--featured { border-color: rgba(212,175,69,0.25); }
+        .club-tier--featured::before { opacity: 0.85; background: linear-gradient(to right, var(--gold), var(--gold-light), transparent); }
+        .club-tier__label { font-family: var(--font-cond); font-weight: 400; font-size: 0.6rem; letter-spacing: 0.45em; text-transform: uppercase; color: rgba(212,175,69,0.45); margin-bottom: 0.4rem; }
+        .club-tier__name { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--dawn); line-height: 1.1; }
+        .club-tier__name em { font-style: italic; color: var(--gold-light); }
+        .club-tier__detail { font-family: var(--font-cond); font-weight: 300; font-size: 0.7rem; letter-spacing: 0.12em; color: rgba(245,237,216,0.25); margin-top: 0.25rem; }
+        .club-tier__price { text-align: right; flex-shrink: 0; }
+        .club-tier__amount { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.8rem,3vw,2.5rem); color: var(--gold-light); line-height: 1; letter-spacing: -0.03em; display: block; }
+        .club-tier__per { font-family: var(--font-cond); font-weight: 300; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(212,175,69,0.35); }
 
         /* ============================================
-           GALLERY
+           HORIZONTAL SCROLL GALLERY
            ============================================ */
         .gallery {
             background: var(--mist);
-            padding: clamp(5rem, 10vw, 10rem) 0;
-        }
-
-        .gallery__inner {
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 0 clamp(1.5rem, 4vw, 4rem);
+            padding: clamp(6rem, 12vw, 13rem) 0 clamp(4rem, 8vw, 8rem);
         }
 
         .gallery__header {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 4rem);
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
         }
 
         .gallery__header-right {
             font-family: var(--font-cond);
             font-weight: 400;
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
+            font-size: 0.75rem;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--reed);
             text-align: right;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        .gallery__grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: auto;
-            gap: 4px;
+        .gallery__drag-hint {
+            font-family: var(--font-cond);
+            font-weight: 400;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--straw);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .gallery__drag-hint::before {
+            content: '←→';
+            font-size: 0.9rem;
+        }
+
+        .gallery__track-wrap {
+            overflow-x: auto;
+            overflow-y: hidden;
+            cursor: grab;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 0 clamp(1.5rem, 4vw, 4rem);
+        }
+
+        .gallery__track-wrap::-webkit-scrollbar { display: none; }
+        .gallery__track-wrap:active { cursor: grabbing; }
+
+        .gallery__track {
+            display: flex;
+            gap: 6px;
+            padding-bottom: 2rem;
+            width: max-content;
         }
 
         .gallery__item {
+            flex-shrink: 0;
             overflow: hidden;
             position: relative;
             background: var(--bark);
+            border-radius: 2px;
+            transition: transform 0.5s var(--ease);
         }
+
+        .gallery__item:hover { transform: scale(1.02); }
 
         .gallery__item img {
-            width: 100%; height: 100%;
+            height: 340px;
+            width: auto;
             object-fit: cover;
             display: block;
-            transition: transform 0.6s var(--ease), opacity 0.4s;
+            transition: transform 0.7s var(--ease), filter 0.5s;
+            pointer-events: none;
         }
 
-        .gallery__item:hover img { transform: scale(1.06); }
+        .gallery__item:hover img { transform: scale(1.06); filter: brightness(1.08); }
 
-        /* Feature sizes */
-        .gallery__item--tall {
-            grid-row: span 2;
+        .gallery__item--lg img { height: 340px; width: 520px; object-fit: cover; }
+        .gallery__item--md img { height: 340px; width: 380px; object-fit: cover; }
+        .gallery__item--sm img { height: 340px; width: 280px; object-fit: cover; }
+
+        .gallery__item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(14,18,9,0.35), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
         }
 
-        .gallery__item--wide {
-            grid-column: span 2;
+        .gallery__item:hover::after { opacity: 1; }
+
+        /* Progress bar under gallery */
+        .gallery__progress {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 4rem);
         }
 
-        .gallery__item--feature {
-            grid-column: span 2;
-            grid-row: span 2;
+        .gallery__progress-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(46,53,40,0.15);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .gallery__item {
-            aspect-ratio: 4/3;
-        }
-
-        .gallery__item--tall {
-            aspect-ratio: unset;
-        }
-
-        .gallery__item--feature {
-            aspect-ratio: unset;
+        .gallery__progress-fill {
+            height: 100%;
+            background: var(--straw);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s;
         }
 
         /* ============================================
@@ -1021,7 +1532,7 @@
            ============================================ */
         .testimonials {
             background: var(--mud);
-            padding: clamp(5rem, 10vw, 10rem) 0;
+            padding: clamp(6rem, 12vw, 13rem) 0;
         }
 
         .testimonials__inner {
@@ -1032,44 +1543,52 @@
 
         .testimonials__header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
 
         .testimonials__header .section-title { color: var(--dawn); }
-        .testimonials__header .section-eyebrow { justify-content: center; }
-        .testimonials__header .section-eyebrow::before { background: var(--straw); }
-        .testimonials__header .section-eyebrow { color: var(--straw); }
+        .testimonials__header .section-eyebrow { justify-content: center; color: var(--straw); }
 
         .testimonials__grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
+            gap: 1px;
         }
 
         .testimonial-card {
             background: var(--bark);
-            padding: 3rem 2.5rem;
+            padding: 3.5rem 2.5rem;
             position: relative;
-            transition: background 0.3s var(--ease);
+            transition: all 0.5s var(--ease);
         }
 
-        .testimonial-card:hover { background: #2e3a28; }
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(to right, var(--straw), transparent);
+            transition: width 0.7s var(--ease);
+        }
+
+        .testimonial-card:hover { background: #343f2e; transform: translateY(-3px); }
+        .testimonial-card:hover::before { width: 100%; }
 
         .testimonial-card__quote {
             font-family: var(--font-display);
-            font-size: 5rem;
-            line-height: 0.8;
+            font-size: 6rem;
+            line-height: 0.75;
             color: var(--straw);
-            opacity: 0.3;
-            margin-bottom: -1rem;
+            opacity: 0.15;
             display: block;
+            margin-bottom: -0.5rem;
         }
 
         .testimonial-card__stars {
             color: var(--straw);
-            font-size: 0.85rem;
-            letter-spacing: 0.2em;
-            margin-bottom: 1.25rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 1.5rem;
         }
 
         .testimonial-card__text {
@@ -1077,7 +1596,7 @@
             font-weight: 300;
             font-style: italic;
             font-size: 1rem;
-            line-height: 1.8;
+            line-height: 1.9;
             color: var(--wheat);
             margin-bottom: 2rem;
         }
@@ -1085,8 +1604,8 @@
         .testimonial-card__author {
             font-family: var(--font-cond);
             font-weight: 600;
-            font-size: 0.75rem;
-            letter-spacing: 0.25em;
+            font-size: 0.7rem;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
             color: var(--straw);
         }
@@ -1096,7 +1615,7 @@
            ============================================ */
         .faq {
             background: var(--mist);
-            padding: clamp(5rem, 10vw, 10rem) 0;
+            padding: clamp(6rem, 12vw, 13rem) 0;
         }
 
         .faq__inner {
@@ -1105,7 +1624,7 @@
             padding: 0 clamp(1.5rem, 4vw, 4rem);
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: clamp(3rem, 6vw, 8rem);
+            gap: clamp(3rem, 7vw, 9rem);
             align-items: start;
         }
 
@@ -1116,7 +1635,7 @@
             font-family: var(--font-body);
             font-weight: 300;
             font-size: 1rem;
-            line-height: 1.8;
+            line-height: 1.9;
             color: var(--sage);
             margin-bottom: 2rem;
         }
@@ -1126,13 +1645,12 @@
         .faq-item {
             background: white;
             border-left: 3px solid transparent;
-            transition: all 0.3s var(--ease);
+            transition: all 0.4s var(--ease);
             cursor: pointer;
         }
 
-        .faq-item.open, .faq-item:hover {
-            border-left-color: var(--straw);
-        }
+        .faq-item.open, .faq-item:hover { border-left-color: var(--straw); }
+        .faq-item.open { box-shadow: 0 4px 25px rgba(0,0,0,0.06); }
 
         .faq-item__header {
             display: flex;
@@ -1156,7 +1674,7 @@
             font-weight: 300;
             color: var(--straw);
             flex-shrink: 0;
-            transition: transform 0.3s var(--ease);
+            transition: transform 0.4s var(--ease);
             line-height: 1;
         }
 
@@ -1165,24 +1683,22 @@
         .faq-item__body {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s var(--ease), padding 0.3s var(--ease);
+            transition: max-height 0.5s var(--ease);
         }
 
-        .faq-item.open .faq-item__body {
-            max-height: 300px;
-        }
+        .faq-item.open .faq-item__body { max-height: 300px; }
 
         .faq-item__a {
             padding: 0 2rem 1.5rem;
             font-family: var(--font-body);
             font-weight: 300;
             font-size: 0.95rem;
-            line-height: 1.8;
+            line-height: 1.9;
             color: var(--sage);
         }
 
         /* ============================================
-           CTA / BOOKING SECTION
+           BOOKING / CTA
            ============================================ */
         .booking {
             position: relative;
@@ -1198,7 +1714,8 @@
         .booking__bg img {
             width: 100%; height: 100%;
             object-fit: cover;
-            opacity: 0.2;
+            opacity: 0.12;
+            filter: saturate(0.6);
         }
 
         .booking__inner {
@@ -1206,39 +1723,42 @@
             z-index: 1;
             max-width: 1500px;
             margin: 0 auto;
-            padding: clamp(5rem, 12vw, 12rem) clamp(1.5rem, 4vw, 4rem);
+            padding: clamp(6rem, 14vw, 14rem) clamp(1.5rem, 4vw, 4rem);
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: clamp(3rem, 6vw, 8rem);
+            gap: clamp(3rem, 7vw, 9rem);
             align-items: center;
         }
 
         .booking__text .section-title { color: var(--dawn); }
-        .booking__text .section-eyebrow::before { background: var(--straw); }
         .booking__text .section-eyebrow { color: var(--straw); }
 
         .booking__desc {
             font-family: var(--font-body);
             font-weight: 300;
             font-size: 1.05rem;
-            line-height: 1.8;
+            line-height: 1.9;
             color: var(--reed);
             margin-bottom: 2.5rem;
         }
 
         .booking__card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(200,184,122,0.2);
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(200,184,122,0.15);
             border-radius: 4px;
             padding: 3.5rem;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            transition: border-color 0.5s, transform 0.5s var(--ease);
         }
+
+        .booking__card:hover { border-color: rgba(200,184,122,0.3); transform: translateY(-3px); }
 
         .booking__card-label {
             font-family: var(--font-cond);
             font-weight: 400;
-            font-size: 0.7rem;
-            letter-spacing: 0.3em;
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
             color: var(--straw);
             margin-bottom: 0.5rem;
@@ -1251,7 +1771,7 @@
             color: var(--dawn);
             display: block;
             margin-bottom: 0.5rem;
-            transition: color 0.2s;
+            transition: color 0.3s;
         }
 
         .booking__phone:hover { color: var(--straw); }
@@ -1259,89 +1779,54 @@
         .booking__avail {
             font-family: var(--font-cond);
             font-weight: 400;
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
             color: var(--reed);
             margin-bottom: 2.5rem;
         }
 
         .booking__actions { display: flex; flex-direction: column; gap: 0.75rem; }
 
-        .booking__btn-call {
+        .booking__btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
             font-family: var(--font-cond);
             font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
+            font-size: 0.88rem;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
+            padding: 1.15rem 2rem;
+            border-radius: 2px;
+            transition: all 0.35s var(--ease);
+        }
+
+        .booking__btn--call {
             color: var(--ink);
             background: var(--straw);
-            padding: 1.1rem 2rem;
-            border-radius: 2px;
             border: 1.5px solid var(--straw);
-            transition: all 0.25s var(--ease);
         }
+        .booking__btn--call:hover { background: var(--wheat); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200,184,122,0.25); }
 
-        .booking__btn-call:hover {
-            background: var(--wheat);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(200,184,122,0.2);
+        .booking__btn--text {
+            color: rgba(255,255,255,0.65);
+            border: 1.5px solid rgba(255,255,255,0.12);
         }
+        .booking__btn--text:hover { color: #fff; border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.04); }
 
-        .booking__btn-text {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            font-family: var(--font-cond);
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.7);
-            padding: 1.1rem 2rem;
-            border-radius: 2px;
-            border: 1.5px solid rgba(255,255,255,0.15);
-            transition: all 0.25s var(--ease);
-        }
-
-        .booking__btn-text:hover {
-            color: #fff;
-            border-color: rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.05);
-        }
-
-        .booking__btn-book {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            font-family: var(--font-cond);
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+        .booking__btn--book {
             color: var(--straw);
-            padding: 1.1rem 2rem;
-            border-radius: 2px;
-            border: 1.5px solid rgba(200,184,122,0.3);
-            transition: all 0.25s var(--ease);
+            border: 1.5px solid rgba(200,184,122,0.25);
         }
-
-        .booking__btn-book:hover {
-            border-color: var(--straw);
-            background: rgba(200,184,122,0.05);
-        }
+        .booking__btn--book:hover { border-color: var(--straw); background: rgba(200,184,122,0.04); }
 
         /* ============================================
            FOOTER
            ============================================ */
         .footer {
-            background: #080b07;
-            padding: 4rem 0 2.5rem;
+            background: #070a06;
+            padding: 5rem 0 2.5rem;
         }
 
         .footer__inner {
@@ -1355,8 +1840,8 @@
             align-items: flex-start;
             justify-content: space-between;
             gap: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 3.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
@@ -1372,10 +1857,10 @@
         .footer__brand-sub {
             font-family: var(--font-cond);
             font-weight: 400;
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.2);
         }
 
         .footer__links {
@@ -1387,34 +1872,62 @@
         .footer__links a {
             font-family: var(--font-cond);
             font-weight: 500;
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.35);
-            transition: color 0.2s;
+            color: rgba(255,255,255,0.25);
+            transition: color 0.3s;
         }
 
         .footer__links a:hover { color: var(--straw); }
+        .footer__links a.footer__club { color: var(--gold-light) !important; }
+        .footer__links a.footer__club:hover { color: var(--wheat) !important; }
+
+        .footer__bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
 
         .footer__copy {
             font-family: var(--font-cond);
             font-weight: 400;
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            color: rgba(255,255,255,0.2);
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            color: rgba(255,255,255,0.15);
         }
 
+        .footer__back-top {
+            font-family: var(--font-cond);
+            font-weight: 500;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.2);
+            background: none;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .footer__back-top:hover { color: var(--straw); border-color: rgba(200,184,122,0.3); }
+
         /* ============================================
-           STICKY CTA BAR (mobile-ready)
+           STICKY BAR
            ============================================ */
         .sticky-bar {
             position: fixed;
             bottom: 0; left: 0; right: 0;
-            background: var(--ink);
-            border-top: 1px solid rgba(200,184,122,0.15);
+            background: rgba(14,18,9,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(200,184,122,0.08);
             z-index: 998;
             transform: translateY(100%);
-            transition: transform 0.4s var(--ease);
+            transition: transform 0.5s var(--ease);
         }
 
         .sticky-bar.show { transform: translateY(0); }
@@ -1422,7 +1935,7 @@
         .sticky-bar__inner {
             max-width: 1500px;
             margin: 0 auto;
-            padding: 1rem clamp(1.5rem, 4vw, 4rem);
+            padding: 0.9rem clamp(1.5rem, 4vw, 4rem);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -1432,55 +1945,82 @@
         .sticky-bar__msg {
             font-family: var(--font-cond);
             font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-            color: rgba(255,255,255,0.6);
+            font-size: 0.88rem;
+            letter-spacing: 0.06em;
+            color: rgba(255,255,255,0.5);
         }
 
-        .sticky-bar__msg strong {
-            color: var(--straw);
-            font-weight: 700;
-        }
+        .sticky-bar__msg strong { color: var(--straw); font-weight: 700; }
 
-        .sticky-bar__btns {
-            display: flex;
-            gap: 0.75rem;
-        }
+        .sticky-bar__btns { display: flex; gap: 0.75rem; }
 
         .sticky-bar__btn {
             font-family: var(--font-cond);
             font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
+            font-size: 0.75rem;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            padding: 0.65rem 1.5rem;
+            padding: 0.6rem 1.4rem;
             border-radius: 2px;
-            transition: all 0.2s;
+            transition: all 0.3s;
         }
 
-        .sticky-bar__btn--fill {
-            background: var(--straw);
-            color: var(--ink);
-            border: 1.5px solid var(--straw);
-        }
-
+        .sticky-bar__btn--fill { background: var(--straw); color: var(--ink); border: 1.5px solid var(--straw); }
         .sticky-bar__btn--fill:hover { background: var(--wheat); }
+        .sticky-bar__btn--outline { color: rgba(255,255,255,0.6); border: 1.5px solid rgba(255,255,255,0.15); }
+        .sticky-bar__btn--outline:hover { color: #fff; border-color: rgba(255,255,255,0.45); }
 
-        .sticky-bar__btn--outline {
-            color: rgba(255,255,255,0.65);
-            border: 1.5px solid rgba(255,255,255,0.2);
+        /* ============================================
+           LIGHTBOX
+           ============================================ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10001;
+            background: rgba(0,0,0,0.94);
+            backdrop-filter: blur(30px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s var(--ease);
+            cursor: zoom-out;
         }
 
-        .sticky-bar__btn--outline:hover {
-            color: #fff;
-            border-color: rgba(255,255,255,0.5);
+        .lightbox.active { opacity: 1; pointer-events: all; }
+
+        .lightbox__img {
+            max-width: 92vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 2px;
+            transform: scale(0.92) translateY(10px);
+            transition: transform 0.6s var(--ease-expo);
         }
+
+        .lightbox.active .lightbox__img { transform: scale(1) translateY(0); }
+
+        .lightbox__close {
+            position: absolute;
+            top: 1.5rem; right: 2rem;
+            background: none; border: none;
+            color: rgba(255,255,255,0.5);
+            font-family: var(--font-cond);
+            font-size: 0.8rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            padding: 0.5rem;
+        }
+
+        .lightbox__close:hover { color: var(--straw); }
 
         /* ============================================
            ANIMATIONS
            ============================================ */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -1491,14 +2031,23 @@
 
         .reveal {
             opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .reveal-stagger > * {
+            opacity: 0;
             transform: translateY(28px);
             transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
         }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal-stagger.visible > * { opacity: 1; transform: translateY(0); }
+        .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
 
         /* ============================================
            RESPONSIVE
@@ -1507,50 +2056,43 @@
             .hunts__grid { grid-template-columns: 1fr; }
             .hunts__header { grid-template-columns: 1fr; gap: 1.5rem; }
             .about__inner { grid-template-columns: 1fr; }
-            .about__img-accent { display: none; }
-            .about__tag { display: none; }
+            .about__img-accent, .about__tag { display: none; }
             .about__text { padding-left: 0; }
             .expect__items { grid-template-columns: repeat(2, 1fr); }
-            .testimonials__grid { grid-template-columns: 1fr; gap: 2px; }
+            .testimonials__grid { grid-template-columns: 1fr; }
             .faq__inner { grid-template-columns: 1fr; }
             .faq__left { position: static; }
             .booking__inner { grid-template-columns: 1fr; }
-            .gallery__grid { grid-template-columns: repeat(2, 1fr); }
-            .gallery__item--feature { grid-column: span 2; aspect-ratio: 4/3; }
+            .club-section__inner { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
             .nav__links { display: none; }
             .nav__cta-desktop { display: none; }
             .nav__hamburger { display: flex; }
-
-            .stats__inner { grid-template-columns: 1fr; gap: 2px; }
-            .stat-item:first-child { border-radius: 4px 4px 0 0; }
-            .stat-item:last-child { border-radius: 0 0 4px 4px; }
-
+            .stats__inner { grid-template-columns: 1fr; gap: 1px; }
             .expect__items { grid-template-columns: 1fr; }
-
-            .gallery__grid { grid-template-columns: 1fr 1fr; }
-            .gallery__item--tall { grid-row: span 1; aspect-ratio: 4/3; }
-            .gallery__item--feature { grid-column: span 2; }
-
+            .gallery__item img { height: 280px; }
+            .gallery__item--lg img { width: 420px; height: 280px; }
+            .gallery__item--md img { width: 320px; height: 280px; }
+            .gallery__item--sm img { width: 240px; height: 280px; }
             .booking__card { padding: 2rem; }
-
             .footer__top { flex-direction: column; gap: 2rem; }
-
             .sticky-bar__msg { display: none; }
-
-            .hunts__grid { grid-template-columns: 1fr; }
+            .hero__indicators { bottom: 1.5rem; }
+            .hero__scroll { display: none; }
         }
 
         @media (max-width: 480px) {
-            .hero__title { font-size: 3rem; }
-            .gallery__grid { grid-template-columns: 1fr; }
-            .gallery__item--wide,
-            .gallery__item--feature { grid-column: span 1; }
+            .hero__title { font-size: 2.8rem; }
             .testimonials__grid { grid-template-columns: 1fr; }
-            .expect__items { grid-template-columns: 1fr; }
             .sticky-bar__btns { gap: 0.5rem; }
+            .club-tier { grid-template-columns: 1fr; }
+            .club-tier__price { text-align: left; }
+            .gallery__item img { height: 220px; }
+            .gallery__item--lg img { width: 340px; height: 220px; }
+            .gallery__item--md img { width: 280px; height: 220px; }
+            .gallery__item--sm img { width: 200px; height: 220px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1558,75 +2100,37 @@
                 animation-duration: 0.01ms !important;
                 transition-duration: 0.01ms !important;
             }
+            .loader { display: none; }
+            .cursor { display: none; }
+            .hero__slide img { animation: none !important; }
         }
-
-        /* JONBOY'S DUCK CLUB — NAV & SECTION STYLES */
-        :root { --gold: #B8982A; --gold-light: #D4AF45; }
-
-        .nav__club {
-            color: var(--gold-light) !important;
-            border: 1px solid rgba(212,175,69,0.4) !important;
-            padding: 0.35rem 0.9rem !important;
-            font-size: 0.78rem !important;
-            transition: all 0.2s !important;
-        }
-        .nav__club::after { display: none !important; }
-        .nav__club:hover { background: rgba(212,175,69,0.1) !important; border-color: var(--gold-light) !important; }
-
-        .nav__drawer a.drawer__club { color: var(--gold-light) !important; }
-        .nav__drawer a.drawer__club:hover { color: var(--wheat) !important; }
-
-        /* CLUB SECTION */
-        .club-section { position: relative; background: var(--ink); overflow: hidden; }
-        .club-section__bg { position: absolute; inset: 0; }
-        .club-section__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; opacity: 0.18; filter: saturate(0.6); }
-        .club-section__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,13,7,0.96) 0%, rgba(10,13,7,0.7) 50%, rgba(10,13,7,0.85) 100%), linear-gradient(to top, rgba(10,13,7,0.8) 0%, transparent 50%); }
-        .club-section__inner { position: relative; z-index: 2; max-width: 1500px; margin: 0 auto; padding: clamp(5rem,10vw,9rem) clamp(1.5rem,4vw,4rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(4rem,8vw,10rem); align-items: center; }
-        .club-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--font-cond); font-weight: 500; font-size: 0.65rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.5rem; }
-        .club-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold-light); }
-        .club-section__title { font-family: var(--font-display); font-size: clamp(2.5rem,5vw,5rem); font-weight: 900; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.75rem; }
-        .club-section__title .t1 { display: block; color: var(--dawn); font-weight: 400; font-style: italic; font-size: 0.5em; letter-spacing: 0.05em; margin-bottom: 0.3em; }
-        .club-section__title .t2 { display: block; color: var(--gold-light); }
-        .club-section__title .t3 { display: block; color: var(--dawn); font-size: 0.85em; }
-        .club-section__body { font-family: var(--font-body); font-weight: 300; font-size: 1.05rem; line-height: 1.85; color: rgba(245,237,216,0.6); margin-bottom: 2.5rem; max-width: 460px; }
-        .club-section__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .btn-gold { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-cond); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.25rem; background: var(--gold); color: var(--ink); border: 1.5px solid var(--gold); border-radius: 2px; transition: all 0.3s var(--ease); }
-        .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(184,152,42,0.3); }
-        .btn-gold-outline { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-cond); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.25rem; background: transparent; color: var(--gold-light); border: 1.5px solid rgba(212,175,69,0.4); border-radius: 2px; transition: all 0.3s var(--ease); }
-        .btn-gold-outline:hover { border-color: var(--gold-light); background: rgba(212,175,69,0.08); }
-        .club-section__tiers { display: flex; flex-direction: column; gap: 1rem; }
-        .club-tier { background: rgba(10,13,7,0.7); border: 1px solid rgba(212,175,69,0.15); padding: 1.75rem 2rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1.5rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s var(--ease); backdrop-filter: blur(8px); }
-        .club-tier::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.5; transition: opacity 0.3s; }
-        .club-tier:hover { border-color: rgba(212,175,69,0.4); transform: translateX(4px); }
-        .club-tier:hover::before { opacity: 1; }
-        .club-tier--featured { border-color: rgba(212,175,69,0.3); }
-        .club-tier--featured::before { opacity: 0.9; background: linear-gradient(to right, var(--gold), var(--gold-light), transparent); }
-        .club-tier__label { font-family: var(--font-cond); font-weight: 400; font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(212,175,69,0.5); margin-bottom: 0.4rem; }
-        .club-tier__name { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--dawn); line-height: 1.1; }
-        .club-tier__name em { font-style: italic; color: var(--gold-light); }
-        .club-tier__detail { font-family: var(--font-cond); font-weight: 300; font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(245,237,216,0.3); margin-top: 0.25rem; }
-        .club-tier__price { text-align: right; flex-shrink: 0; }
-        .club-tier__amount { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.8rem,3vw,2.5rem); color: var(--gold-light); line-height: 1; letter-spacing: -0.03em; display: block; }
-        .club-tier__per { font-family: var(--font-cond); font-weight: 300; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(212,175,69,0.4); }
-
-        .footer__links a.footer__club { color: var(--gold-light) !important; }
-        .footer__links a.footer__club:hover { color: var(--wheat) !important; }
-
-        @media (max-width: 1100px) { .club-section__inner { grid-template-columns: 1fr; } }
-        @media (max-width: 480px) { .club-tier { grid-template-columns: 1fr; } .club-tier__price { text-align: left; } }
-
     </style>
 </head>
 <body>
 
-    <!-- ===== NAV ===== -->
-    <nav class="nav" id="nav">
+    <!-- CURSOR -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader__brand">The Roost Hole</div>
+        <div class="loader__line"></div>
+        <div class="loader__sub">Stuttgart, Arkansas</div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox__close" id="lightboxClose">✕ Close</button>
+        <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    </div>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav" aria-label="Main navigation">
         <div class="nav__inner">
             <a href="#" class="nav__brand" aria-label="The Roost Hole Guide Service">
                 <span class="nav__brand-top">Stuttgart, Arkansas</span>
                 <span class="nav__brand-main">The Roost Hole</span>
             </a>
-
             <ul class="nav__links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#hunts">Hunts</a></li>
@@ -1635,7 +2139,6 @@
                 <li><a href="membership.html" class="nav__club">🦆 Duck Club</a></li>
                 <li><a href="tel:870-830-3633" class="nav__cta nav__cta-desktop">📞 870-830-3633</a></li>
             </ul>
-
             <button class="nav__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
@@ -1643,7 +2146,6 @@
     </nav>
 
     <div class="nav__overlay" id="navOverlay"></div>
-
     <div class="nav__drawer" id="navDrawer">
         <button class="nav__drawer-close" id="drawerClose">✕ Close</button>
         <a href="#about">About</a>
@@ -1656,28 +2158,40 @@
         <a href="tel:870-830-3633">📞 870-830-3633</a>
     </div>
 
-    <main id="main">
+    <main>
 
-        <!-- ===== HERO ===== -->
+        <!-- HERO -->
         <section class="hero" aria-label="Hero">
-            <div class="hero__bg">
-                <img src="images/IMG_2052.jpeg"
-                     alt="Flooded rice field duck hunting in Stuttgart Arkansas"
-                     width="1920" height="1080"
-                     fetchpriority="high">
+            <div class="hero__slides" id="heroSlides">
+                <div class="hero__slide active">
+                    <img src="images/IMG_2052.jpeg" alt="Flooded rice field duck hunting in Stuttgart Arkansas" width="1920" height="1080" fetchpriority="high">
+                </div>
+                <div class="hero__slide">
+                    <img src="images/Group_Hunt_Duck_Snow.png" alt="Group duck hunt in snowy conditions" width="1920" height="1080" loading="lazy">
+                </div>
+                <div class="hero__slide">
+                    <img src="images/Goose_hunt_snow-stuttgart.png" alt="Snow goose hunt near Stuttgart Arkansas" width="1920" height="1080" loading="lazy">
+                </div>
             </div>
             <div class="hero__vignette"></div>
 
             <div class="hero__content">
-                <p class="hero__eyebrow">Stuttgart, Arkansas · Since 2009</p>
+                <p class="hero__eyebrow" id="heroEyebrow">Stuttgart, Arkansas · Since 2009</p>
                 <h1 class="hero__title">
-                    The <em>Roost Hole</em><br>Guide Service
+                    <span class="line" id="heroLine1">The <em>Roost Hole</em></span>
+                    <span class="line" id="heroLine2">Guide Service</span>
                 </h1>
-                <p class="hero__sub">Flooded rice fields, field spreads, and real Arkansas waterfowl hunting guided by Jonathon Goins.</p>
-                <div class="hero__actions">
+                <p class="hero__sub" id="heroSub">Flooded rice fields, field spreads, and real Arkansas waterfowl hunting guided by Jonathon Goins.</p>
+                <div class="hero__actions" id="heroActions">
                     <a href="#booking" class="btn-primary">Book a Hunt</a>
                     <a href="#about" class="btn-ghost">Meet Your Guide</a>
                 </div>
+            </div>
+
+            <div class="hero__indicators" id="heroIndicators">
+                <button class="hero__indicator active" data-slide="0" aria-label="Slide 1"></button>
+                <button class="hero__indicator" data-slide="1" aria-label="Slide 2"></button>
+                <button class="hero__indicator" data-slide="2" aria-label="Slide 3"></button>
             </div>
 
             <div class="hero__scroll" aria-hidden="true">
@@ -1686,10 +2200,9 @@
             </div>
         </section>
 
-        <!-- ===== MARQUEE ===== -->
+        <!-- MARQUEE -->
         <div class="marquee-strip" aria-hidden="true">
             <div class="marquee-track">
-                <!-- 2x for seamless loop -->
                 <span class="marquee-item">Mallards</span>
                 <span class="marquee-item">Pintails</span>
                 <span class="marquee-item">Gadwall</span>
@@ -1713,62 +2226,45 @@
             </div>
         </div>
 
-        <!-- ===== STATS ===== -->
+        <!-- STATS -->
         <section class="stats" aria-label="Quick facts">
             <div class="stats__inner">
-                <div class="stat-item reveal">
-                    <span class="stat-number">15+</span>
-                    <span class="stat-label">Years in the Field</span>
-                </div>
-                <div class="stat-item reveal" style="transition-delay:0.1s">
-                    <span class="stat-number">4+</span>
-                    <span class="stat-label">Hunters Per Group</span>
-                </div>
-                <div class="stat-item reveal" style="transition-delay:0.2s">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Arkansas Born & Raised</span>
-                </div>
+                <div class="stat-item reveal"><span class="stat-number" data-count="15" data-suffix="+">0</span><span class="stat-label">Years in the Field</span></div>
+                <div class="stat-item reveal"><span class="stat-number" data-count="4" data-suffix="+">0</span><span class="stat-label">Hunters Per Group</span></div>
+                <div class="stat-item reveal"><span class="stat-number" data-count="100" data-suffix="%">0</span><span class="stat-label">Arkansas Born & Raised</span></div>
             </div>
         </section>
 
-        <!-- ===== ABOUT ===== -->
+        <!-- ABOUT -->
         <section class="about" id="about" aria-labelledby="about-title">
             <div class="about__inner">
                 <div class="about__visual reveal">
                     <div class="about__tag">Your Guide</div>
                     <div class="about__img-frame">
-                        <img src="images/jonathon-gains-profile-picture.jpg"
-                             alt="Jonathon Goins — Professional Waterfowl Hunting Guide"
-                             width="500" height="667" loading="lazy">
+                        <img src="images/jonathon-gains-profile-picture.jpg" alt="Jonathon Goins — Professional Waterfowl Hunting Guide" width="500" height="667" loading="lazy">
                     </div>
                     <div class="about__img-accent">
                         <span class="about__img-accent-num">15+</span>
                         <span class="about__img-accent-text">Years Guiding</span>
                     </div>
                 </div>
-
                 <div class="about__text reveal" style="transition-delay:0.15s">
                     <p class="section-eyebrow">About Your Guide</p>
                     <h2 class="section-title" id="about-title">Jonathon Goins.<br><em>Life-Long Waterfowler.</em></h2>
-
                     <div class="about__body">
                         <p>I'm Jonathon Goins, and waterfowl hunting is what I do. Not as a hobby — as a way of life. For over <strong>15 years</strong>, I've been in the timber before sunrise, setting decoys in frozen fields, and reading the weather like it's the only language that matters.</p>
                         <p>The Roost Hole isn't a corporate operation. It's me, the land I know around Stuttgart, and the birds that work it. I don't promise limits. I promise <strong>honest hunting</strong> — the kind where you earn it, respect it, and remember it.</p>
                         <p>We go where the birds go, and we do it right: small groups, proven setups, and no shortcuts. If you want a real hunt with a guide who lives this life year-round, let's talk.</p>
                     </div>
-
                     <div class="about__cta">
-                        <a href="tel:870-830-3633">
-                            <span class="about__phone-label">Call or Text Anytime</span>
-                            <span class="about__phone-number">870-830-3633</span>
-                        </a>
+                        <a href="tel:870-830-3633"><span class="about__phone-label">Call or Text Anytime</span><span class="about__phone-number">870-830-3633</span></a>
                         <a href="#booking" class="btn-primary">Book Now</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== HUNT TYPES ===== -->
+        <!-- HUNTS -->
         <section class="hunts" id="hunts" aria-labelledby="hunts-title">
             <div class="hunts__inner">
                 <div class="hunts__header">
@@ -1778,21 +2274,20 @@
                     </div>
                     <p class="hunts__intro reveal" style="transition-delay:0.15s">We hunt the way birds want to be hunted. That means reading conditions daily, moving when we need to, and never settling for a second-rate setup. Every hunt type below has its own season and its own art.</p>
                 </div>
-
-                <div class="hunts__grid">
-                    <article class="hunt-card reveal">
+                <div class="hunts__grid reveal-stagger">
+                    <article class="hunt-card">
                         <span class="hunt-card__num">01</span>
                         <span class="hunt-card__icon">🌾</span>
                         <h3 class="hunt-card__title">Flooded Rice Fields</h3>
                         <p class="hunt-card__body">Stuttgart's legendary rice field hunting. Mallards, pintails, and gadwall working flooded crops. Shallow water, big decoy spreads, and the sight of birds dropping feet-down at first light. This is what Arkansas waterfowling is all about.</p>
                     </article>
-                    <article class="hunt-card reveal" style="transition-delay:0.1s">
+                    <article class="hunt-card">
                         <span class="hunt-card__num">02</span>
                         <span class="hunt-card__icon">🪿</span>
                         <h3 class="hunt-card__title">Field Spreads</h3>
                         <p class="hunt-card__body">Ducks and geese over large decoy spreads in harvested grain fields. We set up where they want to be — corn, rice, soybeans — and let them come. Timing and concealment are everything here, and we've got both dialed in.</p>
                     </article>
-                    <article class="hunt-card reveal" style="transition-delay:0.2s">
+                    <article class="hunt-card">
                         <span class="hunt-card__num">03</span>
                         <span class="hunt-card__icon">🎯</span>
                         <h3 class="hunt-card__title">Layout Hunts</h3>
@@ -1802,7 +2297,7 @@
             </div>
         </section>
 
-        <!-- ===== WHAT TO EXPECT ===== -->
+        <!-- EXPECT -->
         <section class="expect" aria-labelledby="expect-title">
             <div class="expect__inner">
                 <div class="expect__title-row">
@@ -1811,57 +2306,30 @@
                         <h2 class="section-title" id="expect-title">What to<br><em>Expect</em></h2>
                     </div>
                 </div>
-
-                <div class="expect__items">
-                    <div class="expect-item reveal">
-                        <span class="expect-item__icon">🌅</span>
-                        <div class="expect-item__title">Early Start</div>
-                        <p class="expect-item__body">We're in the blind before sunrise when ducks are most active. No sleeping in — this sport rewards the early riser.</p>
-                    </div>
-                    <div class="expect-item reveal" style="transition-delay:0.08s">
-                        <span class="expect-item__icon">🦆</span>
-                        <div class="expect-item__title">Proven Setups</div>
-                        <p class="expect-item__body">Quality decoy spreads and blind placement built from years of knowing exactly where birds want to land.</p>
-                    </div>
-                    <div class="expect-item reveal" style="transition-delay:0.16s">
-                        <span class="expect-item__icon">📣</span>
-                        <div class="expect-item__title">Expert Calling</div>
-                        <p class="expect-item__body">Professional calling techniques that bring birds in close. Jonathon knows how to read a flock and work them right.</p>
-                    </div>
-                    <div class="expect-item reveal" style="transition-delay:0.24s">
-                        <span class="expect-item__icon">🏠</span>
-                        <div class="expect-item__title">Lodging Available</div>
-                        <p class="expect-item__body">Comfortable accommodations for out-of-town hunters. Call for availability and rates — spots go fast during peak season.</p>
-                    </div>
+                <div class="expect__items reveal-stagger">
+                    <div class="expect-item"><span class="expect-item__icon">🌅</span><div class="expect-item__title">Early Start</div><p class="expect-item__body">We're in the blind before sunrise when ducks are most active. No sleeping in — this sport rewards the early riser.</p></div>
+                    <div class="expect-item"><span class="expect-item__icon">🦆</span><div class="expect-item__title">Proven Setups</div><p class="expect-item__body">Quality decoy spreads and blind placement built from years of knowing exactly where birds want to land.</p></div>
+                    <div class="expect-item"><span class="expect-item__icon">📣</span><div class="expect-item__title">Expert Calling</div><p class="expect-item__body">Professional calling techniques that bring birds in close. Jonathon knows how to read a flock and work them right.</p></div>
+                    <div class="expect-item"><span class="expect-item__icon">🏠</span><div class="expect-item__title">Lodging Available</div><p class="expect-item__body">Comfortable accommodations for out-of-town hunters. Call for availability and rates — spots go fast during peak season.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== LODGING BANNER ===== -->
+        <!-- LODGING BANNER -->
         <div class="lodging-banner" id="lodging">
             <div class="lodging-banner__inner">
-                <div class="lodging-banner__text">
-                    <span>Lodging Available</span>
-                    Comfortable quarters for out-of-town hunters.
-                </div>
+                <div class="lodging-banner__text"><span>Lodging Available</span>Comfortable quarters for out-of-town hunters.</div>
                 <a href="tel:870-830-3633" class="btn-dark">Call for Lodging: 870-830-3633</a>
             </div>
         </div>
 
-
-        <!-- ===== JONBOY'S DUCK CLUB ===== -->
+        <!-- DUCK CLUB -->
         <section class="club-section" id="club" aria-labelledby="club-title">
-            <div class="club-section__bg">
-                <img src="images/jonboy-duckclub.jpg" alt="" aria-hidden="true" loading="lazy">
-            </div>
+            <div class="club-section__bg"><img src="images/jonboy-duckclub.jpg" alt="" aria-hidden="true" loading="lazy"></div>
             <div class="club-section__inner">
                 <div class="club-section__text reveal">
                     <p class="club-eyebrow">Private Membership</p>
-                    <h2 class="club-section__title" id="club-title">
-                        <span class="t1">Jonboy's</span>
-                        <span class="t2">Duck</span>
-                        <span class="t3">Club</span>
-                    </h2>
+                    <h2 class="club-section__title" id="club-title"><span class="t1">Jonboy's</span><span class="t2">Duck</span><span class="t3">Club</span></h2>
                     <p class="club-section__body">Not just a hunt — a membership. Jonboy's Duck Club gives you locked-in access to Stuttgart's finest grounds for the entire season. Your blind. Your schedule. Your group. Limited spots, by design.</p>
                     <div class="club-section__cta">
                         <a href="membership.html" class="btn-gold">View Membership</a>
@@ -1869,133 +2337,66 @@
                     </div>
                 </div>
                 <div class="club-section__tiers reveal" style="transition-delay:0.15s">
-                    <div class="club-tier">
-                        <div>
-                            <p class="club-tier__label">Individual</p>
-                            <div class="club-tier__name">Single <em>Member</em></div>
-                            <p class="club-tier__detail">1 person · Full season access</p>
-                        </div>
-                        <div class="club-tier__price">
-                            <span class="club-tier__amount">$2,500</span>
-                            <span class="club-tier__per">Per season</span>
-                        </div>
-                    </div>
-                    <div class="club-tier club-tier--featured">
-                        <div>
-                            <p class="club-tier__label">Private Blind</p>
-                            <div class="club-tier__name">Full <em>Blind</em></div>
-                            <p class="club-tier__detail">Up to 6 hunters · Exclusively yours</p>
-                        </div>
-                        <div class="club-tier__price">
-                            <span class="club-tier__amount">$8,500</span>
-                            <span class="club-tier__per">Per season</span>
-                        </div>
-                    </div>
+                    <div class="club-tier"><div><p class="club-tier__label">Individual</p><div class="club-tier__name">Single <em>Member</em></div><p class="club-tier__detail">1 person · Full season access</p></div><div class="club-tier__price"><span class="club-tier__amount">$2,500</span><span class="club-tier__per">Per season</span></div></div>
+                    <div class="club-tier club-tier--featured"><div><p class="club-tier__label">Private Blind</p><div class="club-tier__name">Full <em>Blind</em></div><p class="club-tier__detail">Up to 6 hunters · Exclusively yours</p></div><div class="club-tier__price"><span class="club-tier__amount">$8,500</span><span class="club-tier__per">Per season</span></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== GALLERY ===== -->
+        <!-- GALLERY — HORIZONTAL SCROLL -->
         <section class="gallery" id="gallery" aria-labelledby="gallery-title">
-            <div class="gallery__inner">
-                <div class="gallery__header reveal">
-                    <div>
-                        <p class="section-eyebrow">From the Blind</p>
-                        <h2 class="section-title" id="gallery-title">Real Hunts.<br><em>Real Birds.</em></h2>
-                    </div>
-                    <div class="gallery__header-right">
-                        No fluff.<br>Just what it looks like<br>when you do it right.
-                    </div>
+            <div class="gallery__header reveal">
+                <div>
+                    <p class="section-eyebrow">From the Blind</p>
+                    <h2 class="section-title" id="gallery-title">Real Hunts.<br><em>Real Birds.</em></h2>
                 </div>
-
-                <div class="gallery__grid">
-                    <div class="gallery__item gallery__item--tall reveal">
-                        <img src="images/IMG_1773.jpeg" alt="Northern Shoveler in Duck Blind" loading="lazy" width="400" height="600">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.05s">
-                        <img src="images/IMG_1790.jpeg" alt="Flooded Rice Field" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.1s">
-                        <img src="images/IMG_1832.jpeg" alt="Early Morning Duck Decoy Spread" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item gallery__item--tall reveal" style="transition-delay:0.15s">
-                        <img src="images/No_Limit_Goose_hunt.jpg" alt="No Limit Goose Field Hunt" loading="lazy" width="400" height="600">
-                    </div>
-                    <div class="gallery__item gallery__item--wide reveal" style="transition-delay:0.08s">
-                        <img src="images/Group_Hunt_Duck_Snow.png" alt="Group Duck Hunt in Snowy Conditions" loading="lazy" width="800" height="300">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.05s">
-                        <img src="images/IMG_1851.jpeg" alt="Guided Duck Hunt in Arkansas" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.1s">
-                        <img src="images/IMG_1854.jpeg" alt="Mixed Bag of Harvested Waterfowl" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.05s">
-                        <img src="images/IMG_2057.jpeg" alt="Morning Duck Hunt Harvest" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item gallery__item--wide reveal" style="transition-delay:0.12s">
-                        <img src="images/IMG_2091.jpeg" alt="Happy Hunters After a Successful Duck Hunt" loading="lazy" width="800" height="300">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.05s">
-                        <img src="images/IMG_2116.jpeg" alt="Duck Hunt in Flooded Timber" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.1s">
-                        <img src="images/IMG_2118.jpeg" alt="Waterfowl Hunt Group Photo" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.15s">
-                        <img src="images/Waterfowl_Success_Hunt.jpg" alt="Happy Waterfowl Hunt" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item gallery__item--feature reveal" style="transition-delay:0.1s">
-                        <img src="images/Goose_hunt_snow-stuttgart.png" alt="Snow Goose Hunt Near Stuttgart" loading="lazy" width="800" height="600">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.05s">
-                        <img src="images/father-son-duck-hunt_arkansas.png" alt="Father and Son Duck Hunt in Arkansas" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.1s">
-                        <img src="images/Arkansas_Duck_Hunt.png" alt="Arkansas Duck Hunt Success" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.05s">
-                        <img src="images/Successful_duck-hunt.png" alt="Successful Duck Hunt with Limit" loading="lazy" width="400" height="300">
-                    </div>
-                    <div class="gallery__item reveal" style="transition-delay:0.1s">
-                        <img src="images/duck-hual.png" alt="Duck Haul After Successful Hunt" loading="lazy" width="400" height="300">
-                    </div>
+                <div>
+                    <div class="gallery__header-right">No fluff. Just what it looks like<br>when you do it right.</div>
+                    <div class="gallery__drag-hint">Drag to explore</div>
                 </div>
             </div>
+
+            <div class="gallery__track-wrap" id="galleryTrack">
+                <div class="gallery__track">
+                    <div class="gallery__item gallery__item--md"><img src="images/IMG_1773.jpeg" alt="Northern Shoveler in Duck Blind" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--lg"><img src="images/IMG_1790.jpeg" alt="Flooded Rice Field" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--sm"><img src="images/IMG_1832.jpeg" alt="Early Morning Duck Decoy Spread" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--lg"><img src="images/No_Limit_Goose_hunt.jpg" alt="No Limit Goose Field Hunt" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--md"><img src="images/Group_Hunt_Duck_Snow.png" alt="Group Duck Hunt in Snowy Conditions" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--sm"><img src="images/IMG_1851.jpeg" alt="Guided Duck Hunt in Arkansas" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--md"><img src="images/IMG_1854.jpeg" alt="Mixed Bag of Harvested Waterfowl" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--lg"><img src="images/IMG_2057.jpeg" alt="Morning Duck Hunt Harvest" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--sm"><img src="images/IMG_2091.jpeg" alt="Happy Hunters After a Successful Duck Hunt" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--md"><img src="images/IMG_2116.jpeg" alt="Duck Hunt in Flooded Timber" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--lg"><img src="images/IMG_2118.jpeg" alt="Waterfowl Hunt Group Photo" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--sm"><img src="images/Waterfowl_Success_Hunt.jpg" alt="Happy Waterfowl Hunt" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--lg"><img src="images/Goose_hunt_snow-stuttgart.png" alt="Snow Goose Hunt Near Stuttgart" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--md"><img src="images/father-son-duck-hunt_arkansas.png" alt="Father and Son Duck Hunt" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--sm"><img src="images/Arkansas_Duck_Hunt.png" alt="Arkansas Duck Hunt Success" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--lg"><img src="images/Successful_duck-hunt.png" alt="Successful Duck Hunt with Limit" loading="lazy"></div>
+                    <div class="gallery__item gallery__item--md"><img src="images/duck-hual.png" alt="Duck Haul After Successful Hunt" loading="lazy"></div>
+                </div>
+            </div>
+
+            <div class="gallery__progress"><div class="gallery__progress-bar"><div class="gallery__progress-fill" id="galleryProgress"></div></div></div>
         </section>
 
-        <!-- ===== TESTIMONIALS ===== -->
+        <!-- TESTIMONIALS -->
         <section class="testimonials" aria-labelledby="testimonials-title">
             <div class="testimonials__inner">
                 <div class="testimonials__header reveal">
                     <p class="section-eyebrow">Reviews</p>
                     <h2 class="section-title" id="testimonials-title">What Hunters <em>Say</em></h2>
                 </div>
-
-                <div class="testimonials__grid">
-                    <article class="testimonial-card reveal">
-                        <span class="testimonial-card__quote">"</span>
-                        <div class="testimonial-card__stars">★★★★★</div>
-                        <p class="testimonial-card__text">Best duck hunt I've ever been on. Jonathon knows the birds, knows the land, and puts you where you need to be. No BS, just good hunting.</p>
-                        <p class="testimonial-card__author">Mark T. — Little Rock, AR</p>
-                    </article>
-                    <article class="testimonial-card reveal" style="transition-delay:0.1s">
-                        <span class="testimonial-card__quote">"</span>
-                        <div class="testimonial-card__stars">★★★★★</div>
-                        <p class="testimonial-card__text">We limited out on greenheads by 9am. Jonathon had us in the perfect spot. Already booked for next season — wouldn't hunt anywhere else.</p>
-                        <p class="testimonial-card__author">James R. — Memphis, TN</p>
-                    </article>
-                    <article class="testimonial-card reveal" style="transition-delay:0.2s">
-                        <span class="testimonial-card__quote">"</span>
-                        <div class="testimonial-card__stars">★★★★★</div>
-                        <p class="testimonial-card__text">Real hunting, real guide. No fancy lodge nonsense. Just good setups and great shooting. This is what duck hunting is supposed to feel like.</p>
-                        <p class="testimonial-card__author">David K. — Dallas, TX</p>
-                    </article>
+                <div class="testimonials__grid reveal-stagger">
+                    <article class="testimonial-card"><span class="testimonial-card__quote">"</span><div class="testimonial-card__stars">★★★★★</div><p class="testimonial-card__text">Best duck hunt I've ever been on. Jonathon knows the birds, knows the land, and puts you where you need to be. No BS, just good hunting.</p><p class="testimonial-card__author">Mark T. — Little Rock, AR</p></article>
+                    <article class="testimonial-card"><span class="testimonial-card__quote">"</span><div class="testimonial-card__stars">★★★★★</div><p class="testimonial-card__text">We limited out on greenheads by 9am. Jonathon had us in the perfect spot. Already booked for next season — wouldn't hunt anywhere else.</p><p class="testimonial-card__author">James R. — Memphis, TN</p></article>
+                    <article class="testimonial-card"><span class="testimonial-card__quote">"</span><div class="testimonial-card__stars">★★★★★</div><p class="testimonial-card__text">Real hunting, real guide. No fancy lodge nonsense. Just good setups and great shooting. This is what duck hunting is supposed to feel like.</p><p class="testimonial-card__author">David K. — Dallas, TX</p></article>
                 </div>
             </div>
         </section>
 
-        <!-- ===== FAQ ===== -->
+        <!-- FAQ -->
         <section class="faq" id="faq" aria-labelledby="faq-title">
             <div class="faq__inner">
                 <div class="faq__left reveal">
@@ -2004,94 +2405,35 @@
                     <p>Everything you need to know before your hunt. Still have questions? Call or text Jonathon directly.</p>
                     <a href="tel:870-830-3633" class="btn-primary">870-830-3633</a>
                 </div>
-
                 <div class="faq__list reveal" style="transition-delay:0.1s">
-                    <div class="faq-item" data-faq>
-                        <div class="faq-item__header">
-                            <span class="faq-item__q">What should I bring on the hunt?</span>
-                            <span class="faq-item__toggle">+</span>
-                        </div>
-                        <div class="faq-item__body">
-                            <p class="faq-item__a">Bring your shotgun, shells (steel shot required), valid Arkansas hunting license, warm waterproof clothing, and waders. We provide decoys, blinds, and calling. When in doubt, call ahead and we'll walk you through everything.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item" data-faq>
-                        <div class="faq-item__header">
-                            <span class="faq-item__q">Do you offer morning and afternoon hunts?</span>
-                            <span class="faq-item__toggle">+</span>
-                        </div>
-                        <div class="faq-item__body">
-                            <p class="faq-item__a">Most hunts are morning hunts when duck activity is highest. We start well before sunrise and make the most of those prime early hours. Afternoon hunts may be available depending on conditions and season.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item" data-faq>
-                        <div class="faq-item__header">
-                            <span class="faq-item__q">How do I book a hunt?</span>
-                            <span class="faq-item__toggle">+</span>
-                        </div>
-                        <div class="faq-item__body">
-                            <p class="faq-item__a">Call or text 870-830-3633 to check availability. We'll discuss dates, group size, and hunt preferences. Book early — peak season fills up fast and we keep group sizes small by design.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item" data-faq>
-                        <div class="faq-item__header">
-                            <span class="faq-item__q">What's the cancellation policy?</span>
-                            <span class="faq-item__toggle">+</span>
-                        </div>
-                        <div class="faq-item__body">
-                            <p class="faq-item__a">Weather happens. If conditions are unsafe or truly unfavorable for hunting, we'll work with you to reschedule. We're hunters too — we understand the sport and will always be straight with you.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item" data-faq>
-                        <div class="faq-item__header">
-                            <span class="faq-item__q">Is lodging included in the hunt price?</span>
-                            <span class="faq-item__toggle">+</span>
-                        </div>
-                        <div class="faq-item__body">
-                            <p class="faq-item__a">Lodging is available for an additional fee. Call 870-830-3633 for current availability and rates. We can accommodate multiple hunters comfortably — perfect for groups traveling from out of state.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item" data-faq>
-                        <div class="faq-item__header">
-                            <span class="faq-item__q">How many hunters per group?</span>
-                            <span class="faq-item__toggle">+</span>
-                        </div>
-                        <div class="faq-item__body">
-                            <p class="faq-item__a">We keep group sizes at 4 or more hunters. Small groups mean better setups, tighter blinds, and a more personal hunt. This isn't a crowd experience — it's a real guided hunt.</p>
-                        </div>
-                    </div>
+                    <div class="faq-item" data-faq><div class="faq-item__header"><span class="faq-item__q">What should I bring on the hunt?</span><span class="faq-item__toggle">+</span></div><div class="faq-item__body"><p class="faq-item__a">Bring your shotgun, shells (steel shot required), valid Arkansas hunting license, warm waterproof clothing, and waders. We provide decoys, blinds, and calling. When in doubt, call ahead and we'll walk you through everything.</p></div></div>
+                    <div class="faq-item" data-faq><div class="faq-item__header"><span class="faq-item__q">Do you offer morning and afternoon hunts?</span><span class="faq-item__toggle">+</span></div><div class="faq-item__body"><p class="faq-item__a">Most hunts are morning hunts when duck activity is highest. We start well before sunrise and make the most of those prime early hours. Afternoon hunts may be available depending on conditions and season.</p></div></div>
+                    <div class="faq-item" data-faq><div class="faq-item__header"><span class="faq-item__q">How do I book a hunt?</span><span class="faq-item__toggle">+</span></div><div class="faq-item__body"><p class="faq-item__a">Call or text 870-830-3633 to check availability. We'll discuss dates, group size, and hunt preferences. Book early — peak season fills up fast and we keep group sizes small by design.</p></div></div>
+                    <div class="faq-item" data-faq><div class="faq-item__header"><span class="faq-item__q">What's the cancellation policy?</span><span class="faq-item__toggle">+</span></div><div class="faq-item__body"><p class="faq-item__a">Weather happens. If conditions are unsafe or truly unfavorable for hunting, we'll work with you to reschedule. We're hunters too — we understand the sport and will always be straight with you.</p></div></div>
+                    <div class="faq-item" data-faq><div class="faq-item__header"><span class="faq-item__q">Is lodging included in the hunt price?</span><span class="faq-item__toggle">+</span></div><div class="faq-item__body"><p class="faq-item__a">Lodging is available for an additional fee. Call 870-830-3633 for current availability and rates. We can accommodate multiple hunters comfortably — perfect for groups traveling from out of state.</p></div></div>
+                    <div class="faq-item" data-faq><div class="faq-item__header"><span class="faq-item__q">How many hunters per group?</span><span class="faq-item__toggle">+</span></div><div class="faq-item__body"><p class="faq-item__a">We keep group sizes at 4 or more hunters. Small groups mean better setups, tighter blinds, and a more personal hunt. This isn't a crowd experience — it's a real guided hunt.</p></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== BOOKING / CTA ===== -->
+        <!-- BOOKING -->
         <section class="booking" id="booking" aria-labelledby="booking-title">
-            <div class="booking__bg">
-                <img src="images/IMG_2133.jpeg" alt="" aria-hidden="true" loading="lazy" width="1500" height="900">
-            </div>
+            <div class="booking__bg"><img src="images/IMG_2133.jpeg" alt="" aria-hidden="true" loading="lazy" width="1500" height="900"></div>
             <div class="booking__inner">
                 <div class="booking__text reveal">
                     <p class="section-eyebrow">Ready to Go</p>
                     <h2 class="section-title" id="booking-title">Book Your<br><em>Hunt Today</em></h2>
                     <p class="booking__desc">Spots fill fast during peak season. The best dates go to hunters who call early. Don't spend another season watching other people's photos — come make your own.</p>
-                    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-                        <a href="https://www.facebook.com/jonathon.goins.94" target="_blank" rel="noopener noreferrer" class="btn-ghost" style="color:rgba(255,255,255,0.65); border-color:rgba(255,255,255,0.2);">Follow on Facebook</a>
-                    </div>
+                    <a href="https://www.facebook.com/jonathon.goins.94" target="_blank" rel="noopener noreferrer" class="btn-ghost">Follow on Facebook</a>
                 </div>
-
                 <div class="booking__card reveal" style="transition-delay:0.15s">
                     <p class="booking__card-label">Call or Text</p>
                     <a href="tel:870-830-3633" class="booking__phone">870-830-3633</a>
                     <p class="booking__avail">Available 7 Days a Week — Anytime</p>
                     <div class="booking__actions">
-                        <a href="tel:870-830-3633" class="booking__btn-call">📞 Call Now</a>
-                        <a href="sms:870-830-3633" class="booking__btn-text">💬 Send a Text</a>
-                        <a href="/bookings" class="booking__btn-book">📅 Check Availability</a>
+                        <a href="tel:870-830-3633" class="booking__btn booking__btn--call">📞 Call Now</a>
+                        <a href="sms:870-830-3633" class="booking__btn booking__btn--text">💬 Send a Text</a>
+                        <a href="/bookings" class="booking__btn booking__btn--book">📅 Check Availability</a>
                     </div>
                 </div>
             </div>
@@ -2099,7 +2441,7 @@
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER -->
     <footer class="footer" role="contentinfo">
         <div class="footer__inner">
             <div class="footer__top">
@@ -2116,11 +2458,14 @@
                     <a href="/terms-of-service.html">Terms of Service</a>
                 </nav>
             </div>
-            <p class="footer__copy">&copy; 2025 The Roost Hole Guide Service. All rights reserved.</p>
+            <div class="footer__bottom">
+                <p class="footer__copy">&copy; 2025 The Roost Hole Guide Service. All rights reserved.</p>
+                <button class="footer__back-top" id="backTop">↑ Back to Top</button>
+            </div>
         </div>
     </footer>
 
-    <!-- ===== STICKY BAR ===== -->
+    <!-- STICKY BAR -->
     <div class="sticky-bar" id="stickyBar" aria-live="polite">
         <div class="sticky-bar__inner">
             <p class="sticky-bar__msg">Ready to book your Stuttgart duck hunt? Call <strong>870-830-3633</strong></p>
@@ -2132,24 +2477,63 @@
     </div>
 
     <script>
-        /* ---- NAV SCROLL ---- */
+    (function() {
+        'use strict';
+
+        /* ======== LOADER ======== */
+        const loader = document.getElementById('loader');
+        function dismissLoader() { loader.classList.add('done'); }
+        window.addEventListener('load', () => setTimeout(dismissLoader, 2000));
+        setTimeout(dismissLoader, 4000); // fallback
+
+        /* ======== CUSTOM CURSOR ======== */
+        const cursor = document.getElementById('cursor');
+        if (window.matchMedia('(pointer: fine)').matches && window.innerWidth > 768) {
+            let cx = -100, cy = -100, tx = -100, ty = -100;
+
+            document.addEventListener('mousemove', e => {
+                tx = e.clientX; ty = e.clientY;
+                if (!cursor.classList.contains('visible')) cursor.classList.add('visible');
+            });
+
+            document.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
+
+            (function loop() {
+                cx += (tx - cx) * 0.15;
+                cy += (ty - cy) * 0.15;
+                cursor.style.left = cx + 'px';
+                cursor.style.top = cy + 'px';
+                requestAnimationFrame(loop);
+            })();
+
+            const hoverEls = 'a, button, .gallery__item, .faq-item, .hunt-card, .club-tier, .testimonial-card, .expect-item';
+            document.querySelectorAll(hoverEls).forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+
+            document.addEventListener('mousedown', () => cursor.classList.add('click'));
+            document.addEventListener('mouseup', () => cursor.classList.remove('click'));
+        }
+
+        /* ======== NAV ======== */
         const nav = document.getElementById('nav');
         const stickyBar = document.getElementById('stickyBar');
-
         let ticking = false;
+
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 requestAnimationFrame(() => {
                     const y = window.scrollY;
-                    nav.classList.toggle('solid', y > 60);
-                    stickyBar.classList.toggle('show', y > 700);
+                    nav.classList.toggle('solid', y > 50);
+                    stickyBar.classList.toggle('show', y > 800);
                     ticking = false;
                 });
                 ticking = true;
             }
         }, { passive: true });
 
-        /* ---- MOBILE NAV ---- */
+        /* ======== MOBILE NAV ======== */
         const hamburger = document.getElementById('hamburger');
         const navDrawer = document.getElementById('navDrawer');
         const navOverlay = document.getElementById('navOverlay');
@@ -2158,6 +2542,7 @@
         function openDrawer() {
             navDrawer.classList.add('open');
             navOverlay.classList.add('show');
+            hamburger.classList.add('active');
             hamburger.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
         }
@@ -2165,6 +2550,7 @@
         function closeDrawer() {
             navDrawer.classList.remove('open');
             navOverlay.classList.remove('show');
+            hamburger.classList.remove('active');
             hamburger.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         }
@@ -2172,12 +2558,9 @@
         hamburger.addEventListener('click', openDrawer);
         drawerClose.addEventListener('click', closeDrawer);
         navOverlay.addEventListener('click', closeDrawer);
+        navDrawer.querySelectorAll('a').forEach(l => l.addEventListener('click', closeDrawer));
 
-        navDrawer.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeDrawer);
-        });
-
-        /* ---- SMOOTH SCROLL ---- */
+        /* ======== SMOOTH SCROLL ======== */
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 const id = a.getAttribute('href');
@@ -2185,25 +2568,104 @@
                 const target = document.querySelector(id);
                 if (target) {
                     e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const top = target.getBoundingClientRect().top + window.scrollY - 72;
+                    window.scrollTo({ top, behavior: 'smooth' });
                 }
             });
         });
 
-        /* ---- SCROLL REVEAL ---- */
-        const reveals = document.querySelectorAll('.reveal');
-        const revealObs = new IntersectionObserver((entries) => {
+        /* ======== HERO INTRO SEQUENCE ======== */
+        setTimeout(() => {
+            document.getElementById('heroLine1').classList.add('show');
+        }, 2100);
+        setTimeout(() => {
+            document.getElementById('heroLine2').classList.add('show');
+        }, 2300);
+        setTimeout(() => {
+            const eyebrow = document.getElementById('heroEyebrow');
+            eyebrow.style.transition = 'opacity 0.8s, transform 0.8s';
+            eyebrow.style.opacity = '1';
+            eyebrow.style.transform = 'translateY(0)';
+        }, 2500);
+        setTimeout(() => {
+            const sub = document.getElementById('heroSub');
+            sub.style.transition = 'opacity 0.8s, transform 0.8s';
+            sub.style.opacity = '1';
+            sub.style.transform = 'translateY(0)';
+        }, 2700);
+        setTimeout(() => {
+            const actions = document.getElementById('heroActions');
+            actions.style.transition = 'opacity 0.8s, transform 0.8s';
+            actions.style.opacity = '1';
+            actions.style.transform = 'translateY(0)';
+        }, 2900);
+
+        /* ======== HERO SLIDESHOW ======== */
+        const slides = document.querySelectorAll('.hero__slide');
+        const indicators = document.querySelectorAll('.hero__indicator');
+        let currentSlide = 0;
+        const slideInterval = 6000;
+
+        function goToSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            indicators[currentSlide].classList.remove('active');
+            currentSlide = n;
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        let slideTimer = setInterval(() => {
+            goToSlide((currentSlide + 1) % slides.length);
+        }, slideInterval);
+
+        indicators.forEach(btn => {
+            btn.addEventListener('click', () => {
+                clearInterval(slideTimer);
+                goToSlide(parseInt(btn.dataset.slide));
+                slideTimer = setInterval(() => {
+                    goToSlide((currentSlide + 1) % slides.length);
+                }, slideInterval);
+            });
+        });
+
+        /* ======== SCROLL REVEALS ======== */
+        const reveals = document.querySelectorAll('.reveal, .reveal-stagger');
+        const revealObs = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                     revealObs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
         reveals.forEach(el => revealObs.observe(el));
 
-        /* ---- FAQ ACCORDION ---- */
+        /* ======== STAT COUNTER ANIMATION ======== */
+        const statNumbers = document.querySelectorAll('[data-count]');
+        const counterObs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.count);
+                    const suffix = el.dataset.suffix || '';
+                    const duration = 2000;
+                    const start = performance.now();
+
+                    function update(now) {
+                        const elapsed = now - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 4);
+                        el.textContent = Math.round(eased * target) + suffix;
+                        if (progress < 1) requestAnimationFrame(update);
+                    }
+                    requestAnimationFrame(update);
+                    counterObs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        statNumbers.forEach(el => counterObs.observe(el));
+
+        /* ======== FAQ ACCORDION ======== */
         document.querySelectorAll('[data-faq]').forEach(item => {
             item.querySelector('.faq-item__header').addEventListener('click', () => {
                 const isOpen = item.classList.contains('open');
@@ -2211,6 +2673,64 @@
                 if (!isOpen) item.classList.add('open');
             });
         });
+
+        /* ======== HORIZONTAL GALLERY DRAG ======== */
+        const galleryWrap = document.getElementById('galleryTrack');
+        const progressFill = document.getElementById('galleryProgress');
+        let isDown = false, startX, scrollLeft;
+
+        galleryWrap.addEventListener('mousedown', e => {
+            isDown = true;
+            startX = e.pageX - galleryWrap.offsetLeft;
+            scrollLeft = galleryWrap.scrollLeft;
+        });
+        galleryWrap.addEventListener('mouseleave', () => isDown = false);
+        galleryWrap.addEventListener('mouseup', () => isDown = false);
+        galleryWrap.addEventListener('mousemove', e => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - galleryWrap.offsetLeft;
+            galleryWrap.scrollLeft = scrollLeft - (x - startX) * 1.5;
+        });
+
+        // Progress bar
+        galleryWrap.addEventListener('scroll', () => {
+            const max = galleryWrap.scrollWidth - galleryWrap.clientWidth;
+            const pct = max > 0 ? (galleryWrap.scrollLeft / max) * 100 : 0;
+            progressFill.style.width = pct + '%';
+        }, { passive: true });
+
+        /* ======== LIGHTBOX ======== */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        document.querySelectorAll('.gallery__item').forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+        /* ======== BACK TO TOP ======== */
+        document.getElementById('backTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+    })();
     </script>
 </body>
 </html>
