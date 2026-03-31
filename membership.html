@@ -234,7 +234,7 @@
             text-align: center;
         }
         .hero__bg { position: absolute; inset: 0; }
-        .hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; animation: slow-zoom 22s ease-in-out infinite alternate; }
+        .hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; animation: slow-zoom 22s ease-in-out infinite alternate; }
         @keyframes slow-zoom { from { transform: scale(1.0); } to { transform: scale(1.08); } }
 
         /* Rich dark vignette — let the sky breathe */
@@ -528,29 +528,77 @@
 
         .include-row__text strong { color: var(--dawn); font-weight: 600; }
 
-        /* ── PHOTO BREAK ── */
-        .photo-break {
-            height: clamp(340px, 55vw, 640px);
-            position: relative; overflow: hidden;
+        /* ── CINEMATIC IMAGE SECTION ── */
+        .cinema {
+            position: relative;
+            height: 100svh; min-height: 600px;
+            overflow: hidden;
+            display: flex; align-items: flex-end;
         }
-        .photo-break img {
+        .cinema__img {
+            position: absolute; inset: 0;
+        }
+        .cinema__img img {
             width: 100%; height: 100%;
             object-fit: cover;
-            object-position: center 30%;
-            display: block;
-            transition: transform 0.1s linear;
+            object-position: center 18%;
+            will-change: transform;
         }
-        .photo-break__veil {
+        /* Deep gradient — dark at bottom where text sits, open at top */
+        .cinema__shade {
             position: absolute; inset: 0;
             background:
-                linear-gradient(to bottom, rgba(10,13,7,0.55) 0%, rgba(10,13,7,0.1) 30%, rgba(10,13,7,0.1) 70%, rgba(10,13,7,0.65) 100%);
+                linear-gradient(to top,
+                    rgba(10,13,7,0.92) 0%,
+                    rgba(10,13,7,0.4)  28%,
+                    rgba(10,13,7,0.05) 55%,
+                    rgba(10,13,7,0.25) 100%
+                );
         }
-        .photo-break__caption {
-            position: absolute; bottom: clamp(2rem, 4vw, 3.5rem); left: 50%; transform: translateX(-50%);
+        .cinema__content {
+            position: relative; z-index: 2;
+            width: 100%;
+            padding: 0 var(--gutter) clamp(4rem, 8vw, 7rem);
+        }
+        .cinema__inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: flex-end; justify-content: space-between;
+            gap: 3rem; flex-wrap: wrap;
+        }
+        .cinema__text {}
+        .cinema__label {
             font-family: var(--font-ui); font-weight: 400; font-size: 0.58rem;
             letter-spacing: 0.55em; text-transform: uppercase;
-            color: rgba(245,237,216,0.35);
-            white-space: nowrap;
+            color: rgba(245,237,216,0.35); margin-bottom: 1rem;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .cinema__label::before {
+            content: ''; width: 32px; height: 1px;
+            background: rgba(184,152,42,0.4);
+        }
+        .cinema__headline {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5.5vw, 5.2rem);
+            font-weight: 900; line-height: 0.92;
+            color: var(--dawn); letter-spacing: -0.025em;
+            max-width: 14ch;
+        }
+        .cinema__headline em {
+            font-style: italic; color: var(--gold-light);
+        }
+        .cinema__aside {
+            font-family: var(--font-body); font-weight: 300;
+            font-size: 1rem; line-height: 1.8;
+            color: rgba(245,237,216,0.45);
+            max-width: 34ch;
+            border-left: 1px solid rgba(184,152,42,0.2);
+            padding-left: 2rem;
+            align-self: flex-end;
+        }
+
+        /* Variant: field image — landscape orientation, different crop */
+        .cinema--field .cinema__img img {
+            object-position: center 55%;
         }
 
         /* ── ABOUT THE CLUB ── */
@@ -567,8 +615,8 @@
             width: 100%; height: 100%;
             object-fit: cover;
             object-position: center 60%;
-            opacity: 0.07;
-            filter: saturate(0.4);
+            opacity: 0.12;
+            filter: saturate(0.5);
         }
 
         /* Decorative background text */
@@ -901,10 +949,13 @@
             .tiers__grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
             .about__inner { grid-template-columns: 1fr; }
             .inquire__inner { grid-template-columns: 1fr; }
+            .cinema__inner { flex-direction: column; gap: 2rem; }
+            .cinema__aside { border-left: none; border-top: 1px solid rgba(184,152,42,0.2); padding-left: 0; padding-top: 1.5rem; }
         }
         @media (max-width: 640px) {
             .hero__frame { display: none; }
             .sticky-bar__text { display: none; }
+            .cinema { min-height: 500px; height: 85svh; }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -1069,14 +1120,24 @@
             </div>
         </section>
 
-        <!-- ════════ PHOTO BREAK — BIRDS ════════ -->
-        <div class="photo-break">
-            <img src="images/DuckClub_Birds_JonBoy.jpg"
-                 alt="Thousands of ducks working over a blind on the Grand Prairie, Stuttgart Arkansas"
-                 loading="lazy">
-            <div class="photo-break__veil"></div>
-            <span class="photo-break__caption">Grand Prairie · Stuttgart, Arkansas</span>
-        </div>
+        <!-- ════════ CINEMA — BIRDS ════════ -->
+        <section class="cinema fade">
+            <div class="cinema__img">
+                <img src="images/DuckClub_Birds_JonBoy.jpg"
+                     alt="Thousands of waterfowl working over a private blind on the Grand Prairie — Stuttgart, Arkansas"
+                     loading="lazy">
+            </div>
+            <div class="cinema__shade"></div>
+            <div class="cinema__content">
+                <div class="cinema__inner">
+                    <div class="cinema__text">
+                        <p class="cinema__label">Grand Prairie · Mississippi Flyway</p>
+                        <h2 class="cinema__headline">This is what <em>Stuttgart</em> looks like.</h2>
+                    </div>
+                    <p class="cinema__aside">Millions of birds winter here every year. The Grand Prairie isn't a selling point. It's a fact of geography. When you're in the blind, you understand why people come back every season.</p>
+                </div>
+            </div>
+        </section>
 
         <!-- ════════ ABOUT THE CLUB ════════ -->
         <section class="about" id="about">
@@ -1131,14 +1192,24 @@
             </div>
         </section>
 
-        <!-- ════════ PHOTO BREAK — FIELD ════════ -->
-        <div class="photo-break">
-            <img src="images/DuckClub_Field_JonBoy.jpg"
-                 alt="Flooded rice fields on the Arkansas Grand Prairie — private duck hunting grounds"
-                 loading="lazy">
-            <div class="photo-break__veil"></div>
-            <span class="photo-break__caption">Mississippi Flyway · Private Grounds</span>
-        </div>
+        <!-- ════════ CINEMA — FIELD ════════ -->
+        <section class="cinema cinema--field fade">
+            <div class="cinema__img">
+                <img src="images/DuckClub_Field_JonBoy.jpg"
+                     alt="Private flooded fields on the Arkansas Grand Prairie — Jonboy's Duck Club hunting grounds"
+                     loading="lazy">
+            </div>
+            <div class="cinema__shade"></div>
+            <div class="cinema__content">
+                <div class="cinema__inner">
+                    <div class="cinema__text">
+                        <p class="cinema__label">Private Land · Stuttgart, Arkansas</p>
+                        <h2 class="cinema__headline">Your blind.<br><em>Your season.</em></h2>
+                    </div>
+                    <p class="cinema__aside">This is what membership looks like on the ground. Private access, scouted daily, managed for one thing — putting your group on birds from opening day through January.</p>
+                </div>
+            </div>
+        </section>
 
         <!-- ════════ INQUIRE ════════ -->
         <section class="inquire" id="inquire">
@@ -1284,19 +1355,21 @@
         document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
 
-        // ── PARALLAX PHOTO BREAKS ──
-        const photoBreaks = document.querySelectorAll('.photo-break');
-        if (photoBreaks.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            window.addEventListener('scroll', () => {
-                photoBreaks.forEach(section => {
+        // ── PARALLAX — CINEMA SECTIONS ──
+        const cinemas = document.querySelectorAll('.cinema');
+        if (cinemas.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const onScroll = () => {
+                cinemas.forEach(section => {
                     const rect = section.getBoundingClientRect();
-                    const img = section.querySelector('img');
-                    if (!img) return;
                     if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-                    const progress = rect.top / window.innerHeight;
-                    img.style.transform = `translateY(${progress * 14}%)`;
+                    const img = section.querySelector('.cinema__img img');
+                    if (!img) return;
+                    const progress = (rect.top / window.innerHeight);
+                    img.style.transform = `translateY(${progress * 12}%) scale(1.08)`;
                 });
-            }, { passive: true });
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
         }
 
         // ── FAQ ACCORDION ──
