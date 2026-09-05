@@ -148,7 +148,7 @@
               }
             }
           ]
-        }
+        },
         {
           "@type": "BreadcrumbList",
           "itemListElement": [
@@ -173,7 +173,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/the-roost-hole-guide-service-favicon.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -186,9 +186,9 @@
             --dawn:   #F5EDD8;
             --gold:   #B8982A;
             --gold-light: #D4AF45;
-            --font-display: 'Playfair Display', Georgia, serif;
-            --font-ui:      'Barlow Condensed', sans-serif;
-            --font-body:    'Barlow', sans-serif;
+            --font-display: 'Bitter', Georgia, serif;
+            --font-ui:      'Source Sans 3', 'Segoe UI', Tahoma, sans-serif;
+            --font-body:    'Source Sans 3', 'Segoe UI', Tahoma, sans-serif;
             --ease: cubic-bezier(0.22, 1, 0.36, 1);
             --gutter: clamp(1.5rem, 5vw, 6rem);
         }
@@ -886,6 +886,71 @@
             .status-band__left { justify-content: center; }
             .status-band__right { justify-content: center; }
         }
+        /* ── FEATURE SPLIT (retriever) ── */
+        .feature {
+            background: var(--mud);
+            padding: clamp(5rem, 10vw, 9rem) var(--gutter);
+            position: relative; overflow: hidden;
+            border-top: 1px solid rgba(184,152,42,0.08);
+        }
+        .feature__inner {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 0.85fr 1fr;
+            gap: clamp(3rem, 6vw, 6rem); align-items: center;
+        }
+        /* Portrait image, framed to echo the hero's gold corner motif */
+        .feature__media {
+            position: relative;
+        }
+        .feature__media img {
+            width: 100%; height: auto;
+            aspect-ratio: 3 / 4; object-fit: cover;
+            object-position: center 42%;
+            display: block;
+        }
+        .feature__media::after {
+            content: '';
+            position: absolute; inset: 0;
+            box-shadow: inset 0 0 0 1px rgba(184,152,42,0.25);
+            pointer-events: none;
+        }
+        .feature__media-corner {
+            position: absolute; width: 22px; height: 22px; z-index: 2;
+        }
+        .feature__media-corner--tl { top: -1px; left: -1px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+        .feature__media-corner--br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+        .feature__media-cap {
+            position: absolute; left: 0; bottom: 0; right: 0;
+            padding: 2.5rem 1.5rem 1.25rem;
+            background: linear-gradient(to top, rgba(10,13,7,0.85), transparent);
+            font-family: var(--font-ui); font-weight: 400; font-size: 0.62rem;
+            letter-spacing: 0.28em; text-transform: uppercase;
+            color: rgba(245,237,216,0.75);
+        }
+        .feature__body {}
+        .feature__title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4.5vw, 3.6rem);
+            font-weight: 700; line-height: 1.08;
+            color: var(--dawn); letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+        .feature__title em { font-style: italic; color: var(--gold-light); }
+        .feature__lead {
+            font-family: var(--font-display); font-style: italic;
+            font-size: 1.2rem; line-height: 1.7;
+            color: rgba(245,237,216,0.82); margin-bottom: 1.4rem;
+        }
+        .feature__body p {
+            font-family: var(--font-body); font-weight: 400;
+            font-size: 1.02rem; line-height: 1.85;
+            color: rgba(245,237,216,0.6); margin-bottom: 1.2rem;
+        }
+        .feature__body p:last-child { margin-bottom: 0; }
+        @media (max-width: 900px) {
+            .feature__inner { grid-template-columns: 1fr; gap: 2.5rem; max-width: 560px; }
+        }
+
         /* ── FAQ ── */
         .faq {
             background: var(--ink);
@@ -984,7 +1049,7 @@
         <section class="hero">
             <div class="hero__bg">
                 <img src="images/DuckClub_JonBoy.jpg"
-                     alt="Jonathon Goins calling ducks at dawn in Stuttgart, Arkansas — Jonboy's Duck Club"
+                     alt="Jonathon Goins calling ducks at dawn in Stuttgart, Arkansas, Jonboy's Duck Club"
                      width="1920" height="1080" fetchpriority="high">
             </div>
             <div class="hero__vignette"></div>
@@ -1123,9 +1188,9 @@
         <!-- ════════ CINEMA — BIRDS ════════ -->
         <section class="cinema fade">
             <div class="cinema__img">
-                <img src="images/DuckClub_Birds_JonBoy.jpg"
-                     alt="Thousands of waterfowl working over a private blind on the Grand Prairie — Stuttgart, Arkansas"
-                     loading="lazy">
+                <img src="images/Stuttgart-arkansas-bird-flyby.jpg"
+                     alt="Thousands of waterfowl filling the sky over flooded rice fields on the Arkansas Grand Prairie near Stuttgart, Arkansas"
+                     width="2048" height="1536" loading="lazy">
             </div>
             <div class="cinema__shade"></div>
             <div class="cinema__content">
@@ -1135,6 +1200,27 @@
                         <h2 class="cinema__headline">This is what <em>Stuttgart</em> looks like.</h2>
                     </div>
                     <p class="cinema__aside">Millions of birds winter here every year. The Grand Prairie isn't a selling point. It's a fact of geography. When you're in the blind, you understand why people come back every season.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════ FEATURE — THE RETRIEVE ════════ -->
+        <section class="feature">
+            <div class="feature__inner">
+                <div class="feature__media fade">
+                    <span class="feature__media-corner feature__media-corner--tl" aria-hidden="true"></span>
+                    <span class="feature__media-corner feature__media-corner--br" aria-hidden="true"></span>
+                    <img src="images/dog-duck-retrieve-stuttgart-arkansas.jpg"
+                         alt="Fox red Labrador retriever bringing a duck back to hand through a decoy spread in Stuttgart, Arkansas"
+                         width="1536" height="2048" loading="lazy">
+                    <span class="feature__media-cap">Grand Prairie · Opening Week</span>
+                </div>
+                <div class="feature__body fade" style="transition-delay:0.12s">
+                    <p class="club-eyebrow" style="justify-content:flex-start;">A Morning in the Blind</p>
+                    <h2 class="feature__title">Birds work the spread. The dog does the rest.</h2>
+                    <p class="feature__lead">There's a rhythm to a Stuttgart morning that you don't forget.</p>
+                    <p>You're set before light. Decoys out, blind grassed, coffee going. Then the first flights come off the roost and everything you scouted for starts to happen. A good hunt isn't a stroke of luck out here. It's the reward for being in the right field, on the right day, with a guide who's already read the birds.</p>
+                    <p>And when a mallard folds over the decoys, a well-trained retriever turns a good shot into a clean recovery. That's the part members remember: not just the shooting, but the whole picture coming together on private water that's yours for the season.</p>
                 </div>
             </div>
         </section>
@@ -1195,9 +1281,9 @@
         <!-- ════════ CINEMA — FIELD ════════ -->
         <section class="cinema cinema--field fade">
             <div class="cinema__img">
-                <img src="images/DuckClub_Field_JonBoy.jpg"
-                     alt="Private flooded fields on the Arkansas Grand Prairie — Jonboy's Duck Club hunting grounds"
-                     loading="lazy">
+                <img src="images/duck-blind-stuttgart-arkansas-jonboy.jpg"
+                     alt="Grassed-up duck blind set in a decoy spread on private flooded fields at Jonboy's Duck Club in Stuttgart, Arkansas"
+                     width="2048" height="1536" loading="lazy">
             </div>
             <div class="cinema__shade"></div>
             <div class="cinema__content">
@@ -1206,7 +1292,7 @@
                         <p class="cinema__label">Private Land · Stuttgart, Arkansas</p>
                         <h2 class="cinema__headline">Your blind.<br><em>Your season.</em></h2>
                     </div>
-                    <p class="cinema__aside">This is what membership looks like on the ground. Private access, scouted daily, managed for one thing — putting your group on birds from opening day through January.</p>
+                    <p class="cinema__aside">This is what membership looks like on the ground. Private access, scouted daily, managed for one thing: putting your group on birds from opening day through January.</p>
                 </div>
             </div>
         </section>
@@ -1267,7 +1353,7 @@
                             <span class="faq__icon" aria-hidden="true">+</span>
                         </button>
                         <div class="faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <p itemprop="text">Both membership tiers include full guided access to private duck hunting grounds in Stuttgart, Arkansas for the 2026-27 season. Individual members get shared blind access with small groups throughout the season. Full blind members get exclusive access to a private blind for up to 6 hunters, meaning no strangers, no shared hunts — just your group on your schedule. All hunts are guided by Jonathon Goins.</p>
+                            <p itemprop="text">Both membership tiers include full guided access to private duck hunting grounds in Stuttgart, Arkansas for the 2026-27 season. Individual members get shared blind access with small groups throughout the season. Full blind members get exclusive access to a private blind for up to 6 hunters. No strangers, no shared hunts, just your group on your schedule. All hunts are guided by Jonathon Goins.</p>
                         </div>
                     </div>
 
@@ -1277,7 +1363,7 @@
                             <span class="faq__icon" aria-hidden="true">+</span>
                         </button>
                         <div class="faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <p itemprop="text">Stuttgart and the surrounding Grand Prairie are home to one of the greatest concentrations of migrating waterfowl in North America each winter. Members can expect mallards, pintail, gadwall, green-wing and blue-wing teal, widgeon, wood ducks, canvasback, redhead, and specklebelly geese throughout the season. The exact mix depends on conditions, but Stuttgart rarely disappoints — it sits where two major flyways converge near Bayou Meto and the White River National Wildlife Refuge.</p>
+                            <p itemprop="text">Stuttgart and the surrounding Grand Prairie are home to one of the greatest concentrations of migrating waterfowl in North America each winter. Members can expect mallards, pintail, gadwall, green-wing and blue-wing teal, widgeon, wood ducks, canvasback, redhead, and specklebelly geese throughout the season. The exact mix depends on conditions, but Stuttgart rarely disappoints. It sits where two major flyways converge near Bayou Meto and the White River National Wildlife Refuge.</p>
                         </div>
                     </div>
 
@@ -1324,7 +1410,6 @@
             <nav class="footer__links">
                 <a href="index.html">The Roost Hole</a>
                 <a href="bookings.html">Bookings</a>
-                <a href="merch.html">Merch</a>
                 <a href="tel:870-830-3633">Call</a>
                 <a href="sms:870-830-3633">Text</a>
             </nav>
