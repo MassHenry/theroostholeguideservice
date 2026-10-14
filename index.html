@@ -447,7 +447,7 @@
         .bar__call { min-height: 44px; padding: 0.5rem 1rem; font-size: 0.9375rem; }
 
         /* ── Hero ──────────────────────────────────────────────── */
-        .hero { padding-top: clamp(2.5rem, 5.5vw, 4.5rem); }
+        .hero { padding-block: clamp(2.5rem, 5.5vw, 4.5rem); }
         .hero h1 { max-width: 20ch; }
         .hero__mid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 19rem); gap: 2rem 4rem; align-items: end; margin: clamp(1.5rem, 3vw, 2.25rem) 0 clamp(2rem, 4vw, 3rem); }
         .hero__lede { font-size: clamp(1.125rem, 1.45vw, 1.3125rem); color: var(--on-dark); max-width: 34em; margin-bottom: 1.75rem; }
@@ -455,8 +455,7 @@
         .opener { border-left: 4px solid var(--straw); padding: 0.2rem 0 0.2rem 1.1rem; }
         .opener p { font-size: 1rem; color: var(--on-dark); }
         .opener b { display: block; font-stretch: 125%; font-weight: 800; font-size: 1.6rem; line-height: 1.05; margin: 0.2rem 0 0.4rem; color: var(--dawn); }
-        .hero__photo { height: clamp(300px, 62vh, 720px); background: var(--bark); }
-        .hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+        .hero__photo img { width: auto; height: auto; max-width: 100%; max-height: min(78vh, 760px); margin-inline: auto; }
 
         /* ── Sections ──────────────────────────────────────────── */
         .sec { padding-block: clamp(4rem, 9vw, 7rem); }
@@ -468,13 +467,10 @@
 
         /* ── Hunts ─────────────────────────────────────────────── */
         .hunts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(1.5rem, 3vw, 3rem); }
-        .hunt { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; }
-        .hunt img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--dawn); }
+        .hunt { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+        .hunt img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 30%; background: var(--dawn); }
         .hunt h3 { padding-top: 1.1rem; margin-bottom: 0.5rem; }
-        .hunt p { color: var(--sage); font-size: 1.0625rem; padding-bottom: 1rem; }
-        .fact { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line); padding: 0.65rem 0; font-size: 1rem; }
-        .fact dt { color: var(--sage); }
-        .fact dd { font-weight: 600; text-align: right; }
+        .hunt p { color: var(--sage); font-size: 1.0625rem; }
 
         /* ── Season calendar ───────────────────────────────────── */
         .cal__hint { display: none; font-size: 0.9375rem; color: var(--on-dark); margin-bottom: 1rem; }
@@ -703,7 +699,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__photo">
+            <div class="wrap hero__photo">
                 <img src="images/IMG_2052.jpeg" alt="Flooded rice field duck hunting at sunrise in Stuttgart, Arkansas" width="1920" height="1080" fetchpriority="high">
             </div>
         </section>
@@ -716,25 +712,19 @@
                 </div>
                 <div class="hunts">
                     <article class="hunt">
-                        <img src="images/IMG_2116.jpeg" alt="Duck hunt in a flooded rice field near Stuttgart, Arkansas" width="1200" height="900" loading="lazy">
+                        <img src="images/Successful_duck-hunt.png" alt="Limit of ducks after a guided flooded rice field hunt near Stuttgart, Arkansas" width="1200" height="900" loading="lazy">
                         <h3 class="d3">Flooded rice fields</h3>
                         <p>Stuttgart's signature hunt. Big spreads, shallow water, birds feet-down at first light.</p>
-                        <dl class="fact"><dt>Birds</dt><dd>Mallards, pintails, gadwall</dd></dl>
-                        <dl class="fact"><dt>Ground</dt><dd>Flooded harvested rice</dd></dl>
                     </article>
                     <article class="hunt">
-                        <img src="images/No_Limit_Goose_hunt.jpg" alt="Goose field hunt over a decoy spread in Arkansas" width="1200" height="900" loading="lazy">
+                        <img src="images/IMG_1832.jpeg" alt="Early morning duck decoy spread near Stuttgart, Arkansas" width="1200" height="900" loading="lazy">
                         <h3 class="d3">Field spreads</h3>
                         <p>Ducks and geese over large spreads, set where the birds are already feeding.</p>
-                        <dl class="fact"><dt>Birds</dt><dd>Specks, Canadas, mallards</dd></dl>
-                        <dl class="fact"><dt>Ground</dt><dd>Rice, corn, and bean fields</dd></dl>
                     </article>
                     <article class="hunt">
-                        <img src="images/IMG_1832.jpeg" alt="Early morning decoy spread for a layout hunt near Stuttgart" width="1200" height="900" loading="lazy">
+                        <img src="images/No_Limit_Goose_hunt.jpg" alt="Goose layout hunt in an Arkansas field" width="1200" height="900" loading="lazy">
                         <h3 class="d3">Layout hunts</h3>
                         <p>Lie flat, stay still, and watch them lock up from 400 yards out.</p>
-                        <dl class="fact"><dt>Birds</dt><dd>Ducks and Canada geese</dd></dl>
-                        <dl class="fact"><dt>Ground</dt><dd>Dry ag fields</dd></dl>
                     </article>
                 </div>
             </div>
@@ -813,7 +803,7 @@
                     <button class="shot shot--w" type="button"><img src="images/Goose_hunt_snow-stuttgart.png" alt="Snow goose hunt near Stuttgart, Arkansas" loading="lazy" width="520" height="340"></button>
                     <button class="shot" type="button"><img src="images/father-son-duck-hunt_arkansas.png" alt="Father and son duck hunt in Arkansas" loading="lazy" width="380" height="340"></button>
                     <button class="shot" type="button"><img src="images/Arkansas_Duck_Hunt.png" alt="Arkansas duck hunt success" loading="lazy" width="280" height="340"></button>
-                    <button class="shot shot--w" type="button"><img src="images/Successful_duck-hunt.png" alt="Limit of ducks after a guided hunt near Stuttgart" loading="lazy" width="520" height="340"></button>
+                    <button class="shot shot--w" type="button"><img src="images/IMG_2116.jpeg" alt="Duck hunt in a flooded rice field near Stuttgart, Arkansas" loading="lazy" width="520" height="340"></button>
                     <button class="shot shot--w" type="button"><img src="images/duck-hual.png" alt="Duck haul after a successful guided hunt" loading="lazy" width="380" height="340"></button>
                 </div>
             </div>
