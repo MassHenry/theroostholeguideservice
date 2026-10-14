@@ -49,7 +49,7 @@
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Flooded rice field duck hunting at sunrise in Stuttgart, Arkansas">
+    <meta property="og:image:alt" content="Hunting group with a full line of ducks after a guided hunt near Stuttgart, Arkansas">
     <meta property="og:site_name" content="The Roost Hole Guide Service">
     <meta property="og:locale" content="en_US">
     <meta property="og:updated_time" content="2026-10-14T00:00:00+00:00">
@@ -81,7 +81,7 @@
     <meta name="twitter:title" content="The Roost Hole Guide Service | Stuttgart Arkansas Duck Hunting">
     <meta name="twitter:description" content="Guided duck and goose hunting on Stuttgart's flooded rice fields. Mississippi Flyway. 15+ years. Guided by Jonathon Goins. 870-830-3633.">
     <meta name="twitter:image" content="https://www.theroostholeguideservice.com/images/IMG_2052.jpeg">
-    <meta name="twitter:image:alt" content="Duck hunting at sunrise over Stuttgart Arkansas flooded rice fields">
+    <meta name="twitter:image:alt" content="Hunting group with a full line of ducks after a guided hunt near Stuttgart, Arkansas">
 
     <!-- BING · YAHOO · WINDOWS · iOS -->
     <meta name="msnbot" content="index, follow">
@@ -122,7 +122,7 @@
             { "@type": "Place", "name": "Mississippi Flyway" }
           ],
           "image": [
-            { "@type": "ImageObject", "url": "https://www.theroostholeguideservice.com/images/IMG_2052.jpeg", "width": 1920, "height": 1080, "caption": "Flooded rice field duck hunting at sunrise in Stuttgart, Arkansas" },
+            { "@type": "ImageObject", "url": "https://www.theroostholeguideservice.com/images/IMG_2052.jpeg", "width": 1920, "height": 1080, "caption": "Hunting group with a full line of ducks after a guided hunt near Stuttgart, Arkansas" },
             { "@type": "ImageObject", "url": "https://www.theroostholeguideservice.com/images/jonathon-gains-profile-picture.jpg", "width": 500, "height": 667, "caption": "Jonathon Goins, lead guide, The Roost Hole Guide Service" }
           ],
           "logo": { "@type": "ImageObject", "url": "https://www.theroostholeguideservice.com/images/the-roost-hole-guide-service-favicon.jpg", "width": 180, "height": 180 },
@@ -369,7 +369,7 @@
     <!-- One type family: Archivo, using its width axis (expanded for headlines, normal for reading) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100..125,400..800;1,100,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&display=swap" rel="stylesheet">
 
     <style>
         /* ─────────────────────────────────────────────────────────────
@@ -391,6 +391,8 @@
             --dawn: #F5EDD8;
             --mist: #F9F5EC;
             --rust: #C4421C;
+            --rust-text: #A33717;
+            --rust-bright: #E0592E;
             --gold: #B8982A;
             --gold-light: #D4AF45;
             --line: rgba(46, 53, 40, 0.16);
@@ -408,12 +410,14 @@
         body { background: var(--mist); color: var(--ink); font-family: var(--f); font-size: 1.125rem; line-height: 1.55; font-stretch: 100%; -webkit-font-smoothing: antialiased; }
         img { display: block; max-width: 100%; height: auto; }
         a { color: inherit; text-underline-offset: 0.18em; }
+        a[href^="tel:"] { white-space: nowrap; }
         button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
         ul, ol { list-style: none; }
+        p { text-wrap: pretty; }
         [hidden] { display: none !important; }
         ::selection { background: var(--straw); color: var(--ink); }
         :focus-visible { outline: 3px solid var(--rust); outline-offset: 3px; }
-        .dark :focus-visible { outline-color: var(--straw); }
+        .dark :focus-visible, .bar :focus-visible, .foot :focus-visible, .callbar :focus-visible, .lb :focus-visible { outline-color: var(--straw); }
 
         .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gut); }
         .skip { position: absolute; left: 1rem; top: -80px; z-index: 100; background: var(--straw); color: var(--ink); padding: 0.75rem 1rem; font-weight: 700; text-decoration: none; }
@@ -427,13 +431,9 @@
 
         .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0.8rem 1.35rem; font-weight: 700; font-stretch: 112%; font-size: 1rem; line-height: 1.1; text-decoration: none; text-align: center; border: 2px solid currentColor; transition: background-color 0.15s, color 0.15s, border-color 0.15s; }
         .btn--straw { background: var(--straw); border-color: var(--straw); color: var(--ink); }
-        .btn--straw:hover { background: var(--wheat); border-color: var(--wheat); }
         .btn--gold { background: var(--gold-light); border-color: var(--gold-light); color: var(--ink); }
-        .btn--gold:hover { background: var(--wheat); border-color: var(--wheat); }
         .btn--line { color: var(--ink); border-color: var(--ink); }
-        .btn--line:hover { background: var(--ink); color: var(--mist); }
         .dark .btn--line { color: var(--dawn); border-color: rgba(245, 237, 216, 0.45); }
-        .dark .btn--line:hover { background: var(--dawn); border-color: var(--dawn); color: var(--ink); }
 
         /* ── Top bar ───────────────────────────────────────────── */
         .bar { position: sticky; top: 0; z-index: 40; background: var(--ink); color: var(--dawn); border-bottom: 1px solid var(--line-dark); }
@@ -441,21 +441,21 @@
         .brand { text-decoration: none; font-stretch: 125%; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.01em; line-height: 1; white-space: nowrap; color: var(--dawn); }
         .brand span { font-stretch: 100%; font-weight: 500; font-size: 0.9375rem; letter-spacing: 0; color: var(--reed); margin-left: 0.4rem; }
         .nav { display: flex; gap: 1.6rem; margin-left: auto; }
-        .nav a { font-size: 0.9375rem; font-weight: 500; text-decoration: none; color: var(--on-dark); padding: 0.35rem 0; border-bottom: 2px solid transparent; }
-        .nav a:hover { color: var(--dawn); border-bottom-color: var(--straw); }
+        .nav a { font-size: 0.9375rem; font-weight: 500; text-decoration: none; white-space: nowrap; color: var(--on-dark); padding: 0.35rem 0; border-bottom: 2px solid transparent; }
         .nav .nav__club { color: var(--gold-light); }
-        .bar__call { min-height: 44px; padding: 0.5rem 1rem; font-size: 0.9375rem; }
+        .bar__call { min-height: 44px; padding: 0.5rem 1rem; font-size: 0.9375rem; white-space: nowrap; }
+        .menu-btn { display: none; align-items: center; min-height: 44px; padding: 0.5rem 1rem; border: 2px solid rgba(245, 237, 216, 0.45); font-weight: 700; font-stretch: 112%; font-size: 0.9375rem; line-height: 1.1; color: var(--dawn); }
 
         /* ── Hero ──────────────────────────────────────────────── */
         .hero { padding-block: clamp(2.5rem, 5.5vw, 4.5rem); }
-        .hero h1 { max-width: 20ch; }
-        .hero__mid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 19rem); gap: 2rem 4rem; align-items: end; margin: clamp(1.5rem, 3vw, 2.25rem) 0 clamp(2rem, 4vw, 3rem); }
-        .hero__lede { font-size: clamp(1.125rem, 1.45vw, 1.3125rem); color: var(--on-dark); max-width: 34em; margin-bottom: 1.75rem; }
+        .hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2.5rem clamp(2rem, 5vw, 4.5rem); align-items: center; }
+        .hero .d1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+        .hero__lede { font-size: clamp(1.125rem, 1.45vw, 1.3125rem); color: var(--on-dark); max-width: 30em; margin: 1.5rem 0 1.75rem; }
         .cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-        .opener { border-left: 4px solid var(--straw); padding: 0.2rem 0 0.2rem 1.1rem; }
+        .opener { border-left: 4px solid var(--straw); padding: 0.2rem 0 0.2rem 1.1rem; margin-top: 2.25rem; }
         .opener p { font-size: 1rem; color: var(--on-dark); }
         .opener b { display: block; font-stretch: 125%; font-weight: 800; font-size: 1.6rem; line-height: 1.05; margin: 0.2rem 0 0.4rem; color: var(--dawn); }
-        .hero__photo img { width: auto; height: auto; max-width: 100%; max-height: min(78vh, 760px); margin-inline: auto; }
+        .hero__photo img { width: 100%; height: auto; max-height: min(82vh, 780px); object-fit: contain; object-position: right center; }
 
         /* ── Sections ──────────────────────────────────────────── */
         .sec { padding-block: clamp(4rem, 9vw, 7rem); }
@@ -467,10 +467,11 @@
 
         /* ── Hunts ─────────────────────────────────────────────── */
         .hunts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(1.5rem, 3vw, 3rem); }
-        .hunt { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+        #hunts .sec__head { margin-inline: auto; text-align: center; }
+        .hunt { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; text-align: center; }
         .hunt img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 30%; background: var(--dawn); }
         .hunt h3 { padding-top: 1.1rem; margin-bottom: 0.5rem; }
-        .hunt p { color: var(--sage); font-size: 1.0625rem; }
+        .hunt p { max-width: 32ch; margin-inline: auto; color: var(--sage); font-size: 1.0625rem; text-wrap: balance; }
 
         /* ── Season calendar ───────────────────────────────────── */
         .cal__hint { display: none; font-size: 0.9375rem; color: var(--on-dark); margin-bottom: 1rem; }
@@ -484,8 +485,7 @@
         .day--gap { border: 1.5px dashed rgba(245, 237, 216, 0.32); color: rgba(245, 237, 216, 0.42); text-decoration: line-through; }
         .day--past { border-color: rgba(245, 237, 216, 0.2); color: rgba(245, 237, 216, 0.4); }
         .day--open { border-color: var(--dawn); font-weight: 650; transition: background-color 0.12s, color 0.12s, border-color 0.12s; }
-        .day--open:hover { background: rgba(245, 237, 216, 0.12); }
-        .day--opener { border-color: var(--rust); }
+        .day--opener { border-color: var(--rust-bright); }
         .day--open[aria-pressed="true"] { background: var(--straw); border-color: var(--straw); color: var(--ink); font-weight: 800; }
         .day--today::after { content: ''; position: absolute; bottom: -6px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--straw); }
 
@@ -493,7 +493,7 @@
         .legend li { display: flex; align-items: center; gap: 0.55rem; }
         .legend i { display: inline-block; width: 20px; height: 20px; border-radius: 50%; }
         .l-open { border: 2px solid var(--dawn); }
-        .l-opener { border: 2px solid var(--rust); }
+        .l-opener { border: 2px solid var(--rust-bright); }
         .l-pick { background: var(--straw); }
         .l-gap { border: 1.5px dashed rgba(245, 237, 216, 0.5); }
 
@@ -502,7 +502,6 @@
         .pick__msg strong { font-weight: 700; color: var(--straw); }
         .pick__btns { display: flex; flex-wrap: wrap; gap: 0.6rem; }
         .sec--mud .btn--line { color: var(--dawn); border-color: rgba(245, 237, 216, 0.45); }
-        .sec--mud .btn--line:hover { background: var(--dawn); color: var(--ink); }
         .sec--mud :focus-visible { outline-color: var(--straw); }
 
         .splits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem clamp(1.5rem, 4vw, 3.5rem); margin-top: clamp(2.5rem, 5vw, 3.5rem); padding-top: 1.5rem; border-top: 1px solid var(--line-dark); }
@@ -524,27 +523,25 @@
         .shot--w { grid-column: span 2; }
         .shot--t { grid-row: span 2; }
         .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-        .shot:hover img { transform: scale(1.035); }
         .lb { margin: auto; padding: 0; border: 0; background: transparent; color: var(--dawn); max-width: min(94vw, 1400px); max-height: 94vh; overflow: visible; }
         .lb::backdrop { background: rgba(14, 18, 9, 0.95); }
         .lb img { width: auto; max-width: 100%; max-height: 82vh; margin-inline: auto; object-fit: contain; }
-        .lb__bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 0.75rem; font-size: 1rem; }
-        .lb__close { min-height: 44px; padding: 0.5rem 1rem; border: 2px solid var(--dawn); font-weight: 700; color: var(--dawn); }
-        .lb__close:hover { background: var(--dawn); color: var(--ink); }
+        .lb__bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem 1rem; margin-top: 0.75rem; font-size: 1rem; }
+        .lb__btns { display: flex; gap: 0.5rem; }
+        .lb__btn { min-height: 44px; padding: 0.5rem 1rem; border: 2px solid rgba(245, 237, 216, 0.45); font-weight: 700; color: var(--dawn); }
 
         /* ── Species & limits ──────────────────────────────────── */
-        .birds__h { font-stretch: 125%; font-weight: 800; font-size: 1.375rem; margin-bottom: 0.5rem; }
-        .birds + .birds__h { margin-top: 2.25rem; }
+        .birds__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.75rem; margin-bottom: 0.5rem; }
+        .birds + .birds__head { margin-top: 2.25rem; }
+        .birds__h { font-stretch: 125%; font-weight: 800; font-size: 1.375rem; }
+        .birds__head p { font-size: 0.9375rem; font-weight: 500; color: var(--sage); }
         .birds { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: clamp(1.25rem, 2.5vw, 2.25rem); border-top: 2px solid var(--ink); }
-        .bird { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; padding: 0.8rem 0; border-bottom: 1px solid var(--line); }
-        .bird dt { font-weight: 600; }
-        .bird dt a { text-decoration: none; }
-        .bird dt a:hover { color: var(--rust); text-decoration: underline; }
+        .bird { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; padding: 0.8rem 0; border-bottom: 1px solid var(--line); font-weight: 600; white-space: nowrap; }
+        .bird a { text-decoration: none; }
         .bird dd { font-stretch: 125%; font-weight: 800; font-size: 1.375rem; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
         .bird dd small { font-stretch: 100%; font-weight: 500; font-size: 0.8125rem; color: var(--sage); }
-        .bird dd.soft { font-stretch: 100%; font-weight: 500; font-size: 0.875rem; color: var(--sage); }
         .limits__note { margin-top: 1.5rem; font-size: 0.9375rem; color: var(--sage); }
-        .limits__note a { color: var(--rust); font-weight: 600; }
+        .limits__note a { color: var(--rust-text); font-weight: 600; }
 
         /* ── What to bring ─────────────────────────────────────── */
         .pack { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
@@ -557,7 +554,7 @@
         .check input::after { content: ''; width: 11px; height: 6px; border-left: 2.5px solid var(--straw); border-bottom: 2.5px solid var(--straw); transform: translateY(-1px) rotate(-45deg); opacity: 0; }
         .check input:checked { background: var(--bark); }
         .check input:checked::after { opacity: 1; }
-        .check input:checked + span { text-decoration: line-through; text-decoration-thickness: 2px; color: var(--reed); }
+        .check input:checked + span { text-decoration: line-through; text-decoration-thickness: 2px; color: var(--sage); }
         .webring { background: var(--ink); color: var(--dawn); padding: 1.75rem; }
         .webring h3 { font-size: 1rem; font-weight: 600; color: var(--reed); }
         .webring ul { margin-top: 0.5rem; font-stretch: 125%; font-weight: 800; font-size: clamp(2rem, 3.4vw, 2.75rem); line-height: 1.02; color: var(--straw); }
@@ -567,11 +564,10 @@
         /* ── Duck club ─────────────────────────────────────────── */
         .club { border-top: 3px solid var(--gold); }
         .club__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5.5rem); align-items: start; }
-        .club h2 { color: var(--dawn); }
         .club__intro { margin: 1.25rem 0 2rem; color: var(--on-dark); max-width: 28rem; font-size: clamp(1.125rem, 1.45vw, 1.3125rem); }
         .tiers li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.5rem 2rem; align-items: end; padding: 1.5rem 0; border-top: 1px solid var(--line-dark); }
         .tiers li:last-child { border-bottom: 1px solid var(--line-dark); }
-        .tier__name { font-stretch: 125%; font-weight: 800; font-size: 1.75rem; line-height: 1; }
+        .tier__name { font-stretch: 125%; font-weight: 800; font-size: clamp(1.375rem, 2.2vw, 1.75rem); line-height: 1; }
         .tier__what { font-size: 1rem; color: var(--on-dark); margin-top: 0.4rem; }
         .tier__price { font-stretch: 125%; font-weight: 800; font-size: clamp(2.25rem, 4vw, 3rem); line-height: 0.9; color: var(--gold-light); text-align: right; font-variant-numeric: tabular-nums; }
         .tier__price span { display: block; font-stretch: 100%; font-weight: 500; font-size: 0.875rem; color: var(--on-dark); margin-top: 0.35rem; }
@@ -581,7 +577,7 @@
         /* ── Reviews ───────────────────────────────────────────── */
         .reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem clamp(1.5rem, 4vw, 3.5rem); }
         .review { border-top: 3px solid var(--straw); padding-top: 1.25rem; }
-        .review blockquote p { font-stretch: 125%; font-weight: 800; font-size: clamp(1.4rem, 2.2vw, 1.85rem); line-height: 1.1; letter-spacing: -0.01em; }
+        .review blockquote p { text-wrap: balance; font-stretch: 125%; font-weight: 800; font-size: clamp(1.4rem, 2.2vw, 1.85rem); line-height: 1.1; letter-spacing: -0.01em; }
         .review figcaption { margin-top: 1rem; font-size: 0.9375rem; color: var(--sage); }
         .review figcaption b { color: var(--ink); }
 
@@ -593,11 +589,10 @@
         .faq-list summary::after { content: ''; flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--bark); background: linear-gradient(var(--bark), var(--bark)) center / 12px 2px no-repeat, linear-gradient(var(--bark), var(--bark)) center / 2px 12px no-repeat; }
         .faq-list details[open] summary::after { background: linear-gradient(var(--dawn), var(--dawn)) center / 12px 2px no-repeat, var(--bark); }
         .faq-answer { padding: 0 3.5rem 1.5rem 0; color: var(--sage); max-width: 44rem; }
-        .faq-answer a { color: var(--rust); font-weight: 600; }
+        .faq-answer a { color: var(--rust-text); font-weight: 600; }
 
         /* ── Booking ───────────────────────────────────────────── */
-        .book__num { display: inline-block; font-stretch: 125%; font-weight: 800; font-size: clamp(2.4rem, 9.4vw, 8rem); line-height: 0.9; letter-spacing: -0.02em; color: var(--straw); text-decoration: none; margin: 1.25rem 0 2rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
-        .book__num:hover { color: var(--wheat); }
+        .book__num { display: inline-block; font-stretch: 125%; font-weight: 800; font-size: clamp(2rem, 9.4vw, 8rem); line-height: 0.9; letter-spacing: -0.02em; color: var(--straw); text-decoration: none; margin: 1.25rem 0 2rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
         .book__meta { margin-top: 2rem; font-size: 0.9375rem; color: var(--on-dark); }
         .book__meta a { color: var(--dawn); font-weight: 600; }
 
@@ -608,49 +603,87 @@
         .foot address { font-style: normal; margin-top: 0.4rem; }
         .foot ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
         .foot a { color: var(--dawn); text-decoration: none; }
-        .foot a:hover { color: var(--straw); }
         .foot .foot__club { color: var(--gold-light); }
         .foot__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line-dark); font-size: 0.875rem; }
 
         .callbar { display: none; }
 
+        /* Hover effects only where there's a mouse; touch screens get a quick press effect instead */
+        @media (hover: hover) {
+            .btn--straw:hover { background: var(--wheat); border-color: var(--wheat); }
+            .btn--gold:hover { background: var(--wheat); border-color: var(--wheat); }
+            .btn--line:hover { background: var(--ink); color: var(--mist); }
+            .dark .btn--line:hover { background: var(--dawn); border-color: var(--dawn); color: var(--ink); }
+            .nav a:hover { color: var(--dawn); border-bottom-color: var(--straw); }
+            .menu-btn:hover { background: var(--dawn); border-color: var(--dawn); color: var(--ink); }
+            .day--open:not([aria-pressed="true"]):hover { background: rgba(245, 237, 216, 0.12); }
+            .sec--mud .btn--line:hover { background: var(--dawn); color: var(--ink); }
+            .shot:hover img { transform: scale(1.035); }
+            .lb__btn:hover { background: var(--dawn); border-color: var(--dawn); color: var(--ink); }
+            .bird a:hover { color: var(--rust-text); text-decoration: underline; }
+            .book__num:hover { color: var(--wheat); }
+            .foot a:hover { color: var(--straw); }
+        }
+        a, button, summary, label { -webkit-tap-highlight-color: transparent; }
+        .btn:active, .menu-btn:active, .lb__btn:active, .day--open:active, .callbar a:active { opacity: 0.8; }
+
         /* ── Responsive ────────────────────────────────────────── */
-        @media (max-width: 1080px) {
-            .nav { display: none; }
+        @media (max-width: 1200px) {
+            .bar__in { gap: 0.75rem; }
+            .menu-btn { display: inline-flex; }
+            .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 0.25rem var(--gut) 1rem; background: var(--ink); border-bottom: 1px solid var(--line-dark); box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35); }
+            .bar.is-open .nav { display: flex; }
+            .nav a { padding: 0.95rem 0; font-size: 1.0625rem; border-bottom: 1px solid var(--line-dark); }
+            .nav a:last-child { border-bottom: 0; }
+            .nav a:hover { border-bottom-color: var(--line-dark); }
             .bar__call { margin-left: auto; }
-            .guide, .pack, .club__grid { grid-template-columns: 1fr; }
-            .birds { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-            .guide__photo { max-width: 420px; }
-            .reviews { grid-template-columns: 1fr; max-width: 44rem; }
+        }
+        @media (min-width: 901px) and (max-width: 1279px) {
+            .checklist { grid-template-columns: 1fr; }
         }
         @media (max-width: 900px) {
-            .hero__mid { grid-template-columns: 1fr; align-items: start; }
-            .hunts { grid-template-columns: 1fr; row-gap: 3rem; }
+            .hero__grid { grid-template-columns: 1fr; }
+            .hero__photo img { max-height: 75vh; object-position: left center; }
+            .hunts { grid-template-columns: 1fr; row-gap: 3rem; max-width: 34rem; margin-inline: auto; }
             .hunt { display: block; grid-row: auto; }
             .cal__hint { display: block; }
             .cal { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1.5rem; margin-inline: calc(var(--gut) * -1); padding: 0 var(--gut) 0.75rem; scroll-padding-inline: var(--gut); }
             .month { flex: 0 0 min(84%, 380px); scroll-snap-align: start; }
-            .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: clamp(140px, 38vw, 230px); }
+            .splits { grid-template-columns: 1fr; }
+            .perks { grid-template-columns: 1fr; }
+            .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: clamp(140px, 38vw, 260px); }
+            .shot--w { grid-column: auto; }
+            .birds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .pack, .club__grid { grid-template-columns: 1fr; }
+            .reviews { grid-template-columns: 1fr; max-width: 44rem; }
         }
         @media (max-width: 760px) {
+            html { background: #070a06; }
             .callbar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; background: var(--ink); padding-bottom: env(safe-area-inset-bottom, 0px); border-top: 1px solid var(--line-dark); }
             .callbar a { display: flex; align-items: center; justify-content: center; min-height: 56px; font-weight: 700; font-stretch: 112%; text-decoration: none; }
             .callbar__call { background: var(--straw); color: var(--ink); }
             .callbar__text { color: var(--dawn); }
-            body { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
+            .foot { padding-bottom: calc(3rem + 56px + env(safe-area-inset-bottom, 0px)); }
             .bar__call { display: none; }
-            .splits { grid-template-columns: 1fr; }
-            .birds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .menu-btn { margin-left: auto; }
+        }
+        @media (max-width: 700px) {
+            .guide { grid-template-columns: 1fr; }
+            .guide__photo { max-width: 420px; }
+            .checklist { grid-template-columns: 1fr; }
         }
         @media (max-width: 560px) {
             body { font-size: 1.0625rem; }
             .brand span { display: none; }
             .d1 { font-stretch: 112%; }
-            .checklist, .perks { grid-template-columns: 1fr; }
+            .legend { display: grid; grid-template-columns: repeat(2, max-content); }
             .tiers li { grid-template-columns: 1fr; }
             .tier__price { text-align: left; }
             .faq-answer { padding-right: 0; }
             .pick { padding: 1.1rem; }
+        }
+        @media (max-width: 340px) {
+            .birds { grid-template-columns: 1fr; }
         }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
@@ -665,7 +698,7 @@
     <header class="bar">
         <div class="wrap bar__in">
             <a class="brand" href="/" aria-label="The Roost Hole Guide Service, home">The Roost Hole<span>Guide Service</span></a>
-            <nav class="nav" aria-label="Main navigation">
+            <nav class="nav" id="mainNav" aria-label="Main navigation">
                 <a href="#hunts">Hunts</a>
                 <a href="#season">Dates</a>
                 <a href="#about">Your guide</a>
@@ -675,6 +708,7 @@
                 <a class="nav__club" href="membership.html">Duck Club</a>
             </nav>
             <a class="btn btn--straw bar__call" href="tel:+18708303633">Call 870-830-3633</a>
+            <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mainNav">Menu</button>
         </div>
     </header>
 
@@ -682,25 +716,23 @@
 
         <!-- HERO (no loading screen, no slideshow) -->
         <section class="hero dark" aria-labelledby="hero-title">
-            <div class="wrap">
-                <h1 class="d1" id="hero-title">Guided duck hunts in Stuttgart, Arkansas</h1>
-                <div class="hero__mid">
-                    <div>
-                        <p class="hero__lede">Flooded rice, field spreads, and layout hunts in the Duck Capital of the World, guided by Jonathon Goins.</p>
-                        <div class="cta">
-                            <a class="btn btn--straw" href="tel:+18708303633">Call 870-830-3633</a>
-                            <a class="btn btn--line" href="#season">Pick your dates</a>
-                        </div>
+            <div class="wrap hero__grid">
+                <div class="hero__text">
+                    <h1 class="d1" id="hero-title">Guided duck hunts in Stuttgart, Arkansas</h1>
+                    <p class="hero__lede">Flooded rice, field spreads, and layout hunts in the Duck Capital of the World, guided by Jonathon Goins.</p>
+                    <div class="cta">
+                        <a class="btn btn--straw" href="tel:+18708303633">Call 870-830-3633</a>
+                        <a class="btn btn--line" href="#season">Pick your dates</a>
                     </div>
                     <div class="opener">
-                        <p id="openerLead">Season opens</p>
+                        <p id="openerLead">Duck season opens</p>
                         <b id="openerBig">Saturday, Nov. 21</b>
-                        <p id="openerSub">45 days out</p>
+                        <p id="openerSub">Now booking</p>
                     </div>
                 </div>
-            </div>
-            <div class="wrap hero__photo">
-                <img src="images/IMG_2052.jpeg" alt="Flooded rice field duck hunting at sunrise in Stuttgart, Arkansas" width="1920" height="1080" fetchpriority="high">
+                <figure class="hero__photo">
+                    <img src="images/IMG_2052.jpeg" alt="Hunting group with a full line of ducks after a guided hunt near Stuttgart, Arkansas" width="3024" height="4032" fetchpriority="high">
+                </figure>
             </div>
         </section>
 
@@ -712,12 +744,12 @@
                 </div>
                 <div class="hunts">
                     <article class="hunt">
-                        <img src="images/Successful_duck-hunt.png" alt="Limit of ducks after a guided flooded rice field hunt near Stuttgart, Arkansas" width="1200" height="900" loading="lazy">
+                        <img src="images/IMG_1832.jpeg" alt="Early morning duck decoy spread near Stuttgart, Arkansas" width="1200" height="900" loading="lazy">
                         <h3 class="d3">Flooded rice fields</h3>
                         <p>Stuttgart's signature hunt. Big spreads, shallow water, birds feet-down at first light.</p>
                     </article>
                     <article class="hunt">
-                        <img src="images/IMG_1832.jpeg" alt="Early morning duck decoy spread near Stuttgart, Arkansas" width="1200" height="900" loading="lazy">
+                        <img src="images/Successful_duck-hunt.png" alt="Limit of ducks after a guided hunt near Stuttgart, Arkansas" width="1200" height="900" loading="lazy">
                         <h3 class="d3">Field spreads</h3>
                         <p>Ducks and geese over large spreads, set where the birds are already feeding.</p>
                     </article>
@@ -738,7 +770,7 @@
                     <p>Tap the mornings you want, then text them to Jonathon.</p>
                 </div>
 
-                <p class="cal__hint">Swipe for December and January.</p>
+                <p class="cal__hint" id="calHint">Swipe to see all three months.</p>
                 <div class="cal" id="cal"></div>
 
                 <ul class="legend" aria-hidden="true">
@@ -791,20 +823,20 @@
                     <h2 class="d2" id="gallery-title">From the blind</h2>
                 </div>
                 <div class="wall">
-                    <button class="shot shot--t" type="button"><img src="images/IMG_1773.jpeg" alt="Northern shoveler in the duck blind, Stuttgart, Arkansas" loading="lazy" width="380" height="340"></button>
-                    <button class="shot shot--w" type="button"><img src="images/IMG_1790.jpeg" alt="Flooded rice field duck hunt, Stuttgart, Arkansas" loading="lazy" width="520" height="340"></button>
-                    <button class="shot" type="button"><img src="images/Group_Hunt_Duck_Snow.png" alt="Group duck hunt in snowy conditions near Stuttgart" loading="lazy" width="380" height="340"></button>
-                    <button class="shot shot--t" type="button"><img src="images/IMG_1851.jpeg" alt="Guided duck hunt in Stuttgart, Arkansas" loading="lazy" width="280" height="340"></button>
-                    <button class="shot" type="button"><img src="images/IMG_1854.jpeg" alt="Mixed bag of harvested waterfowl" loading="lazy" width="380" height="340"></button>
-                    <button class="shot shot--w" type="button"><img src="images/IMG_2057.jpeg" alt="Morning duck hunt harvest, Stuttgart" loading="lazy" width="520" height="340"></button>
-                    <button class="shot shot--t" type="button"><img src="images/IMG_2091.jpeg" alt="Hunters after a successful duck hunt" loading="lazy" width="280" height="340"></button>
-                    <button class="shot shot--w" type="button"><img src="images/IMG_2118.jpeg" alt="Waterfowl hunt group photo, Stuttgart, Arkansas" loading="lazy" width="520" height="340"></button>
-                    <button class="shot shot--t" type="button"><img src="images/Waterfowl_Success_Hunt.jpg" alt="Waterfowl hunt success" loading="lazy" width="280" height="340"></button>
-                    <button class="shot shot--w" type="button"><img src="images/Goose_hunt_snow-stuttgart.png" alt="Snow goose hunt near Stuttgart, Arkansas" loading="lazy" width="520" height="340"></button>
-                    <button class="shot" type="button"><img src="images/father-son-duck-hunt_arkansas.png" alt="Father and son duck hunt in Arkansas" loading="lazy" width="380" height="340"></button>
-                    <button class="shot" type="button"><img src="images/Arkansas_Duck_Hunt.png" alt="Arkansas duck hunt success" loading="lazy" width="280" height="340"></button>
-                    <button class="shot shot--w" type="button"><img src="images/IMG_2116.jpeg" alt="Duck hunt in a flooded rice field near Stuttgart, Arkansas" loading="lazy" width="520" height="340"></button>
-                    <button class="shot shot--w" type="button"><img src="images/duck-hual.png" alt="Duck haul after a successful guided hunt" loading="lazy" width="380" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot shot--t" type="button"><img src="images/IMG_1773.jpeg" alt="Northern shoveler in the duck blind, Stuttgart, Arkansas" loading="lazy" width="380" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot shot--w" type="button"><img src="images/IMG_1790.jpeg" alt="Flooded rice field duck hunt, Stuttgart, Arkansas" loading="lazy" width="520" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot" type="button"><img src="images/Group_Hunt_Duck_Snow.png" alt="Group duck hunt in snowy conditions near Stuttgart" loading="lazy" width="380" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot shot--t" type="button"><img src="images/IMG_1851.jpeg" alt="Guided duck hunt in Stuttgart, Arkansas" loading="lazy" width="280" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot" type="button"><img src="images/IMG_1854.jpeg" alt="Mixed bag of harvested waterfowl" loading="lazy" width="380" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot shot--w" type="button"><img src="images/IMG_2057.jpeg" alt="Morning duck hunt harvest, Stuttgart" loading="lazy" width="520" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot shot--t" type="button"><img src="images/IMG_2091.jpeg" alt="Hunters after a successful duck hunt" loading="lazy" width="280" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot shot--w" type="button"><img src="images/IMG_2118.jpeg" alt="Waterfowl hunt group photo, Stuttgart, Arkansas" loading="lazy" width="520" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot shot--t" type="button"><img src="images/Waterfowl_Success_Hunt.jpg" alt="Waterfowl hunt success" loading="lazy" width="280" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot shot--w" type="button"><img src="images/Goose_hunt_snow-stuttgart.png" alt="Snow goose hunt near Stuttgart, Arkansas" loading="lazy" width="520" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot" type="button"><img src="images/father-son-duck-hunt_arkansas.png" alt="Father and son duck hunt in Arkansas" loading="lazy" width="380" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot" type="button"><img src="images/Arkansas_Duck_Hunt.png" alt="Arkansas duck hunt success" loading="lazy" width="280" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot shot--w" type="button"><img src="images/IMG_2116.jpeg" alt="Duck hunt in a flooded rice field near Stuttgart, Arkansas" loading="lazy" width="520" height="340"></button>
+                    <button aria-haspopup="dialog" class="shot shot--w" type="button"><img src="images/duck-hual.png" alt="Duck haul after a successful guided hunt" loading="lazy" width="380" height="340"></button>
                 </div>
             </div>
         </section>
@@ -814,9 +846,11 @@
             <div class="wrap">
                 <div class="sec__head">
                     <h2 class="d2" id="species-title">What's flying</h2>
-                    <p>13 species work the Grand Prairie. You can keep 6 ducks a day, and these are the most of each.</p>
+                    <p>13 species work the Grand Prairie. You can keep 6 ducks a day, with these limits per species.</p>
                 </div>
-                <h3 class="birds__h">Ducks</h3>
+                <div class="birds__head">
+                    <h3 class="birds__h">Ducks</h3>
+                </div>
                 <dl class="birds">
                     <div class="bird"><dt><a href="https://www.allaboutbirds.org/guide/Mallard" target="_blank" rel="noopener noreferrer">Mallard</a></dt><dd>4 <small>(2 hens)</small></dd></div>
                     <div class="bird"><dt><a href="https://www.allaboutbirds.org/guide/Northern_Pintail" target="_blank" rel="noopener noreferrer">Pintail</a></dt><dd>3</dd></div>
@@ -829,12 +863,15 @@
                     <div class="bird"><dt><a href="https://www.allaboutbirds.org/guide/Green-winged_Teal" target="_blank" rel="noopener noreferrer">Teal</a></dt><dd>6</dd></div>
                     <div class="bird"><dt><a href="https://www.allaboutbirds.org/guide/Ring-necked_Duck" target="_blank" rel="noopener noreferrer">Ringneck</a></dt><dd>6</dd></div>
                 </dl>
-                <h3 class="birds__h">Geese</h3>
-                <dl class="birds">
-                    <div class="bird"><dt><a href="https://www.allaboutbirds.org/guide/Greater_White-fronted_Goose" target="_blank" rel="noopener noreferrer">Specklebelly</a></dt><dd class="soft">Varies</dd></div>
-                    <div class="bird"><dt><a href="https://www.allaboutbirds.org/guide/Canada_Goose" target="_blank" rel="noopener noreferrer">Canada goose</a></dt><dd class="soft">Varies</dd></div>
-                    <div class="bird"><dt><a href="https://www.allaboutbirds.org/guide/Snow_Goose" target="_blank" rel="noopener noreferrer">Snow goose</a></dt><dd class="soft">Varies</dd></div>
-                </dl>
+                <div class="birds__head">
+                    <h3 class="birds__h">Geese</h3>
+                    <p>Limits vary by species and season</p>
+                </div>
+                <ul class="birds birds--geese">
+                    <li class="bird"><a href="https://www.allaboutbirds.org/guide/Greater_White-fronted_Goose" target="_blank" rel="noopener noreferrer">Specklebelly</a></li>
+                    <li class="bird"><a href="https://www.allaboutbirds.org/guide/Canada_Goose" target="_blank" rel="noopener noreferrer">Canada goose</a></li>
+                    <li class="bird"><a href="https://www.allaboutbirds.org/guide/Snow_Goose" target="_blank" rel="noopener noreferrer">Snow goose</a></li>
+                </ul>
                 <p class="limits__note">Limits are set each year. Check <a href="https://www.agfc.com" target="_blank" rel="noopener noreferrer">agfc.com</a> and the <a href="https://www.fws.gov/species-groups/migratory-birds" target="_blank" rel="noopener noreferrer">U.S. Fish and Wildlife Service</a> before you hunt.</p>
             </div>
         </section>
@@ -949,7 +986,7 @@
                 <div class="faq-list">
                     <details>
                         <summary>When is duck season in Stuttgart, Arkansas?</summary>
-                        <div class="faq-answer"><p>Arkansas's 2026-27 duck, coot and merganser season runs in three splits: Nov. 21-29, Dec. 10-23, and Dec. 26, 2026 through Jan. 31, 2027, per the Arkansas Game and Fish Commission. Specklebelly and snow goose seasons open Oct. 31-Nov. 8 and then run with the duck splits; early Canada goose is Sept. 1-Oct. 15. Call Jonathon Goins at 870-830-3633 to book your dates.</p></div>
+                        <div class="faq-answer"><p>Arkansas's 2026-27 duck, coot and merganser season runs in three splits: Nov. 21-29, Dec. 10-23, and Dec. 26, 2026 through Jan. 31, 2027, per the Arkansas Game and Fish Commission. Specklebelly and snow goose seasons open Oct. 31-Nov. 8 and then run with the duck splits; early Canada goose is Sept. 1-Oct. 15. Call Jonathon Goins at <a href="tel:+18708303633">870-830-3633</a> to book your dates.</p></div>
                     </details>
                     <details>
                         <summary>How do I book a guided duck hunt in Stuttgart, Arkansas?</summary>
@@ -961,7 +998,7 @@
                     </details>
                     <details>
                         <summary>What license do I need to hunt in Arkansas?</summary>
-                        <div class="faq-answer"><p>All hunters are required to have a valid Arkansas hunting license. Purchase online at <a href="https://www.agfc.com" target="_blank" rel="noopener noreferrer">agfc.com</a> or by calling 800-364-4263. Contact Jonathon Goins at 870-830-3633 with any questions before your hunt.</p></div>
+                        <div class="faq-answer"><p>All hunters are required to have a valid Arkansas hunting license. Purchase online at <a href="https://www.agfc.com" target="_blank" rel="noopener noreferrer">agfc.com</a> or by calling <a href="tel:+18003644263">800-364-4263</a>. Contact Jonathon Goins at <a href="tel:+18708303633">870-830-3633</a> with any questions before your hunt.</p></div>
                     </details>
                     <details>
                         <summary>What should I bring on a Stuttgart duck hunt?</summary>
@@ -969,7 +1006,7 @@
                     </details>
                     <details>
                         <summary>Is lodging available for out-of-town hunters?</summary>
-                        <div class="faq-answer"><p>Yes, lodging is available for an additional fee for hunters traveling to Stuttgart, Arkansas. Call 870-830-3633 for current availability and rates. We can comfortably accommodate groups for multi-day hunts.</p></div>
+                        <div class="faq-answer"><p>Yes, lodging is available for an additional fee for hunters traveling to Stuttgart, Arkansas. Call <a href="tel:+18708303633">870-830-3633</a> for current availability and rates. We can comfortably accommodate groups for multi-day hunts.</p></div>
                     </details>
                     <details>
                         <summary>How many hunters are allowed per group?</summary>
@@ -1029,10 +1066,14 @@
     </nav>
 
     <dialog class="lb" id="lb" aria-label="Photo viewer">
-        <img id="lbImg" alt="">
+        <img id="lbImg" src="images/IMG_1773.jpeg" alt="" loading="lazy" decoding="async">
         <div class="lb__bar">
             <p id="lbCap"></p>
-            <button class="lb__close" id="lbClose" type="button">Close</button>
+            <div class="lb__btns">
+                <button class="lb__btn" id="lbPrev" type="button">Previous</button>
+                <button class="lb__btn" id="lbNext" type="button" autofocus>Next</button>
+                <button class="lb__btn" id="lbClose" type="button">Close</button>
+            </div>
         </div>
     </dialog>
 
@@ -1041,41 +1082,54 @@
         'use strict';
 
         var PHONE = '+18708303633';
-        /* 2026–27 Arkansas duck splits (AGFC). Update these three lines each season. */
+        /* 2026–27 Arkansas duck season (AGFC). Update these four lines each year. */
+        var SEASON = '2026–27';
         var SPLITS = [['2026-11-21', '2026-11-29'], ['2026-12-10', '2026-12-23'], ['2026-12-26', '2027-01-31']];
         var MONTHS = [[2026, 10], [2026, 11], [2027, 0]];
         var OPEN = SPLITS[0][0], CLOSE = SPLITS[SPLITS.length - 1][1];
 
+        var AP = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
+        var WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+        function $(id) { return document.getElementById(id); }
         function pad(n) { return (n < 10 ? '0' : '') + n; }
         function key(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
         function parse(k) { var p = k.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
-        function isOpen(k) { for (var i = 0; i < SPLITS.length; i++) { if (k >= SPLITS[i][0] && k <= SPLITS[i][1]) return true; } return false; }
+        function daysBetween(a, b) { return Math.round((parse(b) - parse(a)) / 86400000); }
+        function ap(k) { var d = parse(k); return AP[d.getMonth()] + ' ' + d.getDate(); }
+        function apLong(k) { return WEEKDAYS[parse(k).getDay()] + ', ' + ap(k); }
+        function splitOf(k) {
+            for (var i = 0; i < SPLITS.length; i++) { if (k >= SPLITS[i][0] && k <= SPLITS[i][1]) return SPLITS[i]; }
+            return null;
+        }
 
-        var now = new Date(); now.setHours(0, 0, 0, 0);
-        var TODAY = key(now);
+        var TODAY = key(new Date());
 
-        /* Opening-day countdown in the hero */
-        var lead = document.getElementById('openerLead'), big = document.getElementById('openerBig'), sub = document.getElementById('openerSub');
+        /* Countdown in the header: before the season, between splits, during, after */
+        var lead = $('openerLead'), big = $('openerBig'), sub = $('openerSub');
         if (big) {
-            var days = Math.round((parse(OPEN) - now) / 86400000);
-            if (days > 1) { sub.textContent = days + ' days out'; }
-            else if (days === 1) { sub.textContent = 'Tomorrow morning'; }
-            else if (TODAY <= CLOSE) {
+            var split = splitOf(TODAY), next = null;
+            for (var i = 0; i < SPLITS.length; i++) { if (SPLITS[i][0] > TODAY) { next = SPLITS[i][0]; break; } }
+            if (split) {
                 lead.textContent = 'Duck season';
                 big.textContent = 'Open now';
-                sub.textContent = isOpen(TODAY) ? 'Through Jan. 31' : 'Between splits';
+                sub.textContent = TODAY !== split[1] ? 'Through ' + ap(split[1]) : (split[1] === CLOSE ? 'Last day of the season' : 'Last day of this split');
+            } else if (next) {
+                var n = daysBetween(TODAY, next);
+                lead.textContent = next === OPEN ? 'Duck season opens' : 'Duck season reopens';
+                big.textContent = apLong(next);
+                sub.textContent = n === 1 ? 'Tomorrow morning' : n + ' days out';
             } else {
-                lead.textContent = '2026–27 season';
+                lead.textContent = 'Duck season';
                 big.textContent = 'Closed';
-                sub.textContent = 'Call about next season';
+                sub.textContent = 'Call or text about next season';
             }
         }
 
-        /* Season calendar: every open day is a button */
-        var cal = document.getElementById('cal');
-        var picked = [];
-        var shortFmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        /* Season calendar: every open morning from today on is a button */
+        var cal = $('cal'), picked = [];
         var longFmt = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+        var msg = $('pickMsg'), txt = $('pickText'), copyBtn = $('pickCopy'), clearBtn = $('pickClear');
 
         if (cal) {
             MONTHS.forEach(function (m) {
@@ -1083,8 +1137,9 @@
                 var first = new Date(y, mo, 1), count = new Date(y, mo + 1, 0).getDate();
                 var name = first.toLocaleString('en-US', { month: 'long' });
 
-                var box = document.createElement('section');
+                var box = document.createElement('div');
                 box.className = 'month';
+                box.setAttribute('role', 'group');
                 box.setAttribute('aria-label', name + ' ' + y);
                 var h = document.createElement('h3');
                 h.appendChild(document.createTextNode(name + ' '));
@@ -1101,7 +1156,7 @@
                 }
                 for (var d = 1; d <= count; d++) {
                     var dt = new Date(y, mo, d), k = key(dt), el;
-                    if (isOpen(k) && k >= TODAY) {
+                    if (splitOf(k) && k >= TODAY) {
                         el = document.createElement('button');
                         el.type = 'button';
                         el.className = 'day day--open';
@@ -1111,7 +1166,7 @@
                     } else {
                         el = document.createElement('span');
                         el.setAttribute('aria-hidden', 'true');
-                        el.className = 'day ' + (isOpen(k) ? 'day--past' : (k > OPEN && k < CLOSE ? 'day--gap' : 'day--off'));
+                        el.className = 'day ' + (splitOf(k) ? 'day--past' : (k > OPEN && k < CLOSE ? 'day--gap' : 'day--off'));
                     }
                     if (k === OPEN) el.className += ' day--opener';
                     if (k === TODAY) el.className += ' day--today';
@@ -1122,9 +1177,51 @@
                 cal.appendChild(box);
             });
 
+            var openDays = cal.querySelectorAll('.day--open');
+            var dayBtns = Array.prototype.slice.call(openDays);
+            /* Keyboard: the calendar is one Tab stop; arrow keys move between open mornings */
+            var focusDay = function (i) {
+                i = Math.max(0, Math.min(dayBtns.length - 1, i));
+                dayBtns.forEach(function (btn, j) { btn.tabIndex = j === i ? 0 : -1; });
+                dayBtns[i].focus();
+            };
+            dayBtns.forEach(function (btn, j) { btn.tabIndex = j === 0 ? 0 : -1; });
+            cal.addEventListener('keydown', function (e) {
+                var i = dayBtns.indexOf(document.activeElement);
+                if (i < 0) return;
+                var target = null;
+                if (e.key === 'ArrowRight') target = i + 1;
+                else if (e.key === 'ArrowLeft') target = i - 1;
+                else if (e.key === 'Home') target = 0;
+                else if (e.key === 'End') target = dayBtns.length - 1;
+                else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    var d0 = parse(dayBtns[i].getAttribute('data-date'));
+                    var want = key(new Date(d0.getFullYear(), d0.getMonth(), d0.getDate() + (e.key === 'ArrowDown' ? 7 : -7)));
+                    for (var j = 0; j < dayBtns.length; j++) {
+                        var dk = dayBtns[j].getAttribute('data-date');
+                        if (e.key === 'ArrowDown' && dk >= want) { target = j; break; }
+                        if (e.key === 'ArrowUp' && dk <= want) target = j;
+                    }
+                    if (target === null) target = i;
+                }
+                if (target === null) return;
+                e.preventDefault();
+                focusDay(target);
+            });
+            if (!openDays.length) {
+                /* Season's over: nothing left to pick */
+                msg.textContent = 'The ' + SEASON + ' season is over. Call or text Jonathon about next season.';
+                $('calHint').hidden = true;
+            } else if (cal.scrollWidth > cal.clientWidth + 1) {
+                /* Phones: months scroll sideways, so start on the first month with open mornings */
+                var month = openDays[0].closest('.month');
+                cal.scrollLeft = month.getBoundingClientRect().left - cal.firstElementChild.getBoundingClientRect().left;
+            }
+
             cal.addEventListener('click', function (ev) {
                 var btn = ev.target.closest ? ev.target.closest('.day--open') : null;
                 if (!btn) return;
+                dayBtns.forEach(function (x) { x.tabIndex = x === btn ? 0 : -1; });
                 var k = btn.getAttribute('data-date'), i = picked.indexOf(k);
                 if (i > -1) { picked.splice(i, 1); btn.setAttribute('aria-pressed', 'false'); }
                 else { picked.push(k); btn.setAttribute('aria-pressed', 'true'); }
@@ -1133,15 +1230,26 @@
             });
         }
 
-        var msg = document.getElementById('pickMsg'), txt = document.getElementById('pickText'),
-            copyBtn = document.getElementById('pickCopy'), clearBtn = document.getElementById('pickClear');
-
-        function pickedList() { return picked.map(function (k) { return shortFmt.format(parse(k)); }); }
+        /* Picked mornings as ranges: "Nov. 21–23, Dec. 12 and Dec. 31–Jan. 2" */
+        function pickedText() {
+            var runs = [], start = null, prev = null;
+            picked.forEach(function (k) {
+                if (prev && daysBetween(prev, k) === 1) { prev = k; return; }
+                if (start) runs.push([start, prev]);
+                start = prev = k;
+            });
+            if (start) runs.push([start, prev]);
+            var parts = runs.map(function (r) {
+                if (r[0] === r[1]) return ap(r[0]);
+                var sameMonth = parse(r[0]).getMonth() === parse(r[1]).getMonth();
+                return ap(r[0]) + '–' + (sameMonth ? parse(r[1]).getDate() : ap(r[1]));
+            });
+            return parts.length < 2 ? parts.join('') : parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1];
+        }
         function message() {
-            return 'Hi Jonathon, I found The Roost Hole online and want to book a hunt. Dates I’m looking at: ' + pickedList().join(', ') + '. Group size: ';
+            return 'Hi Jonathon, I found The Roost Hole online and want to book a hunt. Dates: ' + pickedText() + '. Group size: ';
         }
         function renderPick() {
-            if (!msg) return;
             if (!picked.length) {
                 msg.textContent = 'Tap the mornings you want.';
                 txt.textContent = 'Text Jonathon';
@@ -1150,10 +1258,10 @@
                 return;
             }
             msg.textContent = '';
-            var s = document.createElement('strong');
-            s.textContent = picked.length + (picked.length === 1 ? ' morning picked: ' : ' mornings picked: ');
-            msg.appendChild(s);
-            msg.appendChild(document.createTextNode(pickedList().join(', ')));
+            var strong = document.createElement('strong');
+            strong.textContent = picked.length + (picked.length === 1 ? ' morning picked: ' : ' mornings picked: ');
+            msg.appendChild(strong);
+            msg.appendChild(document.createTextNode(pickedText()));
             txt.textContent = 'Text these dates';
             txt.href = 'sms:' + PHONE + '?&body=' + encodeURIComponent(message());
             copyBtn.textContent = 'Copy message';
@@ -1170,31 +1278,56 @@
             picked = [];
             cal.querySelectorAll('[aria-pressed="true"]').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
             renderPick();
+            txt.focus();
         });
 
         /* Packing checklist counter */
-        var boxes = document.querySelectorAll('.check input'), packed = document.getElementById('packed');
+        var boxes = document.querySelectorAll('.check input'), packed = $('packed');
         function countPacked() {
             var n = 0;
             boxes.forEach(function (b) { if (b.checked) n++; });
             packed.textContent = n === boxes.length ? 'All packed' : n + ' of ' + boxes.length + ' packed';
         }
         boxes.forEach(function (b) { b.addEventListener('change', countPacked); });
+        countPacked();
 
-        /* Photo viewer */
-        var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
-        if (lb && typeof lb.showModal === 'function') {
-            document.querySelectorAll('.shot').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var im = btn.querySelector('img');
-                    lbImg.src = im.currentSrc || im.src;
-                    lbImg.alt = im.alt;
-                    lbCap.textContent = im.alt;
-                    lb.showModal();
-                });
+        /* Menu on tablets and phones */
+        var bar = document.querySelector('.bar'), menuBtn = $('menuBtn');
+        if (bar && menuBtn) {
+            var setMenu = function (open) {
+                bar.classList.toggle('is-open', open);
+                menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                menuBtn.textContent = open ? 'Close' : 'Menu';
+            };
+            menuBtn.addEventListener('click', function () { setMenu(!bar.classList.contains('is-open')); });
+            bar.querySelectorAll('.nav a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+            document.addEventListener('click', function (e) { if (bar.classList.contains('is-open') && !bar.contains(e.target)) setMenu(false); });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && bar.classList.contains('is-open')) { setMenu(false); menuBtn.focus(); }
             });
-            document.getElementById('lbClose').addEventListener('click', function () { lb.close(); });
+        }
+
+        /* Photo viewer: tap a photo, then Previous / Next or the arrow keys */
+        var lb = $('lb'), lbImg = $('lbImg'), lbCap = $('lbCap');
+        var shots = Array.prototype.slice.call(document.querySelectorAll('.shot')), cur = 0;
+        function show(i) {
+            cur = (i + shots.length) % shots.length;
+            var im = shots[cur].querySelector('img');
+            lbImg.src = im.currentSrc || im.src;
+            lbImg.alt = im.alt;
+            lbCap.textContent = im.alt + ' (' + (cur + 1) + ' of ' + shots.length + ')';
+        }
+        if (lb && typeof lb.showModal === 'function') {
+            shots.forEach(function (btn, i) { btn.addEventListener('click', function () { show(i); lb.showModal(); }); });
+            $('lbPrev').addEventListener('click', function () { show(cur - 1); });
+            $('lbNext').addEventListener('click', function () { show(cur + 1); });
+            $('lbClose').addEventListener('click', function () { lb.close(); });
             lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+            lb.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowLeft') { e.preventDefault(); show(cur - 1); }
+                else if (e.key === 'ArrowRight') { e.preventDefault(); show(cur + 1); }
+            });
+            lb.addEventListener('close', function () { shots[cur].focus(); });
         }
     })();
     </script>
