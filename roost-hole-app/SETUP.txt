@@ -1,0 +1,120 @@
+THE ROOST HOLE APP: GOING LIVE
+About 30 minutes, one time. Free. Your Firebase project can't charge you on the
+free plan, and no credit card is needed.
+
+Until step 3 is done the app runs in practice mode, and changes stay on one phone.
+Firebase moves its menus around now and then. If a name below doesn't match,
+look for the closest one.
+
+
+STEP 1. CREATE THE SHARED STORAGE (Firebase, from Google)
+This is what lets a blind you assign on your phone show up on a member's phone.
+
+  a. Go to console.firebase.google.com and sign in with a Google account.
+  b. Click "Add project" or "Create a project". Name it roost-hole.
+     Google Analytics and Gemini can be off.
+  c. Left menu: Databases & Storage > Firestore. Click "Create database".
+     If it asks for an edition, pick Standard. Pick a United States location.
+     Choose "production mode". Click Create.
+  d. Left menu: Security > Authentication. Click "Get started" if you see it.
+     On the Sign-in method tab, turn on "Email/Password" and save.
+     On the Users tab, click "Add user" one time. This one account is for all owners:
+       Email: owner@theroostholeguideservice.com  (no mail is ever sent to it)
+       Password: your owner code. This is what your people will type. Use at least 6
+       lowercase letters and numbers, no spaces, and make it hard to guess.
+  e. Then, on the Settings tab under User actions, turn off "Enable create (sign-up)"
+     if you see it. Nobody else needs an account.
+
+
+STEP 2. PASTE THE SECURITY RULES
+  a. Open firestore.rules from this download in any text editor (Notepad works).
+     It's already filled in. Don't change anything.
+  b. In Firebase: Firestore > Rules tab. Replace everything there with the
+     contents of the file. Click Publish.
+
+
+STEP 3. CONNECT THE APP
+  a. In Firebase, click the gear icon > Project settings.
+  b. Under "Your apps", click the web icon </>. Register it with any name.
+     Skip Firebase Hosting.
+  c. It shows a block of code. Find the values for apiKey and projectId.
+  d. Open app/config.js from this download and paste those two values between
+     the quotes. Save. (This key is meant to be public. The rules protect the data.)
+
+
+STEP 4. PUT IT ON YOUR WEBSITE
+  a. Upload the whole "app" folder to your website, next to your images folder,
+     so this address opens the app:
+     https://theroostholeguideservice.com/app/
+     If your web host won't take an uploaded folder, the app can live on Firebase
+     Hosting for free instead. Your site just links to it.
+  b. Add a button on your site that links to it. For example:
+     <a href="/app/">Get the App</a>
+  c. get-the-app-qr.png is a QR code to the same address. Print it for the lodge,
+     the truck, or a flyer.
+  d. Your site has its own date calendars ("Pick your dates" and "Check availability").
+     They don't read from the app. Point those buttons at /app/ so you only have
+     one calendar to keep up.
+
+
+STEP 5. SET IT UP BEFORE YOU SHARE THE LINK
+  a. Open the app. Tap Duck Club, then "Owner sign in" at the bottom, and type the owner
+     code. Each owner does this once on their own phone. There's no email or password
+     to type, and the phone remembers it.
+  b. Hunts tab: "Change my usual day" sets the hunts on every legal day.
+     It starts with a morning duck hunt and a morning goose hunt. Set your real
+     schedule first, because customers see this as soon as the app is live.
+  c. Tap any day to mark one hunt booked, or to add, change, or remove hunts on
+     that day. Removing every hunt closes the day.
+  d. Duck Club > Members: paste your names, one per line.
+  e. Duck Club > Blinds: tap + on a blind and tap names. Tap a name to move it.
+     Use "Assigning for" to change one day without touching the season blinds.
+  f. Check it on a second phone with no sign-in: book a hunt on yours and make
+     sure it shows as booked on the other.
+  g. Duck Club > Members: "Copy a text to send members" gives you the link and code.
+
+On an iPhone the home-screen app and Safari don't share anything, so add the app to
+your home screen first, then sign in there.
+
+
+HOW PEOPLE GET IT
+They open the link and add it to their home screen. No app store, account, or email.
+  - iPhone: Safari's Share menu, then Add to Home Screen. The app walks them through it.
+  - Android: the app shows an Install button, or it's in the browser's menu.
+  - Facebook's built-in browser can't install apps. The app tells them to open it in
+    their regular browser first.
+
+
+GOOD TO KNOW
+  - Anyone with the club code can see the blind list and names. If a member leaves,
+    use "Change the code" and send out the new one.
+  - Use first name and last initial if you want less on there.
+  - Owners can work at the same time. Their changes combine, even on the same day.
+    Only if two owners change the very same thing does the later save win, such as
+    both moving the same hunter or one booking a hunt the other just reopened.
+  - The owner code and the club code are different. The owner code lets someone change
+    things, so only give it to owners. Members only get the club code.
+  - Adding an owner: just give them the owner code.
+  - Removing an owner, or if the code gets out: change the owner code. In Firebase, go
+    to Authentication > Users, click the three dots on the account, and delete it. Then
+    add it again with the same email and a new code. If Firebase won't let you add it,
+    turn sign-up back on for a moment (step 1e). Phones using the old code get signed
+    out within about an hour, and every owner types the new code once.
+  - Same-day hunts drop off the customer calendar once they'd have started: morning
+    at 5 AM, midday at 10 AM, afternoon at 1 PM. You still see them.
+  - Bad signal won't lose your changes. The phone holds them and sends them when it
+    can, and tells you until it has.
+  - After you upload a new version, phones pick it up the second time they open the app.
+  - Next season: change the dates at the bottom of app/config.js and upload that file.
+  - Free plan limit: 50,000 reads a day, far more than this app will use. If it were
+    ever hit, the data pauses until the limit resets. You're never billed.
+
+
+TROUBLE?
+  - "Practice mode" still showing: config.js wasn't saved or uploaded, or a quote or
+    comma got removed from it.
+  - "The code worked, but the app can't open the club data": the rules weren't published,
+    or the account's email doesn't exactly match step 1d.
+  - "That code didn't work": check the account on the Users tab from step 1d. The code
+    has to be all lowercase there. If you can't remember it, change it the way shown
+    under Good to Know.
