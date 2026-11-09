@@ -796,6 +796,9 @@ button.rowlink{min-height:44px;align-items:center}
 .hunt b{display:block;font-weight:700}
 .hunt .sub{color:var(--straw);font-size:14px}
 .hunt.isbooked b{color:var(--straw)}
+.booker{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;margin-top:6px;font-size:14px;color:var(--bone)}
+.booker .bname{font-weight:700}
+.booker a{color:var(--bone);font-weight:600}
 .pill{font-size:13px;font-weight:700;padding:5px 9px;border-radius:3px;background:var(--rust);color:var(--rust-hi);white-space:nowrap}
 .pill.req{background:var(--reed2);color:var(--straw);border:1px solid var(--line)}
 .badge{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;margin-left:6px;border-radius:11px;background:var(--blaze);color:var(--blaze-ink);font:700 13px/1 var(--body);vertical-align:2px;letter-spacing:0}
@@ -834,6 +837,8 @@ nav.tabs button[aria-current=page]{color:var(--bone);border-top-color:var(--blaz
 .bignum.none{font-size:52px;line-height:1;color:var(--straw)}
 .bignum.many{font-size:clamp(52px,17vw,88px);flex-wrap:wrap;row-gap:4px}
 .blindhead{padding-top:12px;border-top:1px solid var(--line)}
+.blindname{font:700 20px/1.2 var(--display);text-transform:uppercase;letter-spacing:.02em;margin-top:6px;overflow-wrap:anywhere}
+.bname{font-size:13px;font-weight:700;color:var(--straw);margin-bottom:4px;overflow-wrap:anywhere}
 .datenav{display:grid;grid-template-columns:46px 1fr 46px;align-items:center;gap:6px;text-align:center}
 .datenav button{height:46px;border:1px solid var(--line);border-radius:4px;font-size:20px;font-weight:700;background:var(--reed2)}
 .datenav button:disabled{opacity:.35;cursor:default}
@@ -882,6 +887,14 @@ nav.tabs button[aria-current=page]{color:var(--bone);border-top-color:var(--blaz
 .mpin{width:34px;height:34px;border-radius:50%;background:var(--blaze);color:var(--blaze-ink);border:3px solid #fff;display:grid;place-items:center;font:900 17px/1 var(--display);box-shadow:0 2px 6px rgba(0,0,0,.55)}
 .mtruck{height:26px;padding:0 8px;border-radius:13px;background:var(--bone);color:var(--mud);border:2px solid var(--mud);display:grid;place-items:center;font:700 12px/1 var(--body);white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.55)}
 .mme{position:relative;width:80px;height:80px}
+.marea{position:absolute;transform:translate(-50%,-50%);padding:2px 8px;border-radius:10px;background:rgba(14,18,9,.62);color:#fff;font:700 12px/1.3 var(--body);white-space:nowrap;pointer-events:none}
+.mpark{position:absolute;display:flex;align-items:center;gap:5px;transform:translate(-16px,-16px);white-space:nowrap}
+.mpark b{width:32px;height:32px;border-radius:7px;background:#1f5fbf;color:#fff;border:3px solid #fff;display:grid;place-items:center;font:900 18px/1 var(--body);box-shadow:0 2px 6px rgba(0,0,0,.55)}
+.mpark span,.mspot{padding:2px 7px;border-radius:9px;background:rgba(14,18,9,.78);color:#fff;font:700 12px/1.3 var(--body)}
+.mspot{position:absolute;transform:translate(-50%,-50%);border:2px solid #fff;white-space:nowrap}
+.leaflet-popup-content{font:600 14px/1.4 var(--body);margin:10px 14px}
+.leaflet-popup-content a{font-weight:700}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .mme b{position:absolute;left:29px;top:29px;width:22px;height:22px;border-radius:50%;background:#4C9BFF;border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.4),0 2px 6px rgba(0,0,0,.5)}
 .mme .cone{position:absolute;inset:0;width:80px;height:80px;fill:rgba(76,155,255,.42);transition:transform .2s}
 .leaflet-container{background:#1d2617;font:inherit}
@@ -933,7 +946,7 @@ const SITE='https://theroostholeguideservice.com';
 const OWNER_ACCOUNT='owner@theroostholeguideservice.com'; // Owners never see this. They only type the owner code, which is this account's password.
 const HOSTED=!!window.ROOST_HOSTED, CONFIG=window.ROOST_CONFIG||{};
 const ON_SITE=HOSTED&&location.protocol==='https:'; // On the real website, not a copy opened on a computer.
-const VERSION='4';
+const VERSION='4.3';
 
 /* Kinds of hunts. A hunt's hour is when a same-day hunt stops being offered to customers. */
 const TIMES={Morning:5,Midday:10,Afternoon:13};
@@ -1014,7 +1027,33 @@ const whenText=ms=>ms?new Date(ms).toLocaleString('en-US',{month:'short',day:'nu
 
 /* Saved data shapes. Anything missing or left over from an earlier version gets cleaned up here. */
 const SAFE_ID=/^[\w-]+$/;
-const emptyClub=()=>({blinds:DEFAULT_BLINDS,members:[],season:{},days:{},spots:{},groups:{}});
+const emptyClub=()=>({blinds:DEFAULT_BLINDS,members:[],season:{},days:{},spots:{},groups:{},marks:[],names:{}});
+function cleanNames(names){ // What each blind is called, like "Diver hole". Blind number to name.
+  const out={};
+  for(const[n,v]of Object.entries(names||{})){const name=cleanGroup(v);if(/^[1-9]\d?$/.test(n)&&name)out[n]=name}
+  return out;
+}
+/* Marks an owner puts on the club map for every member: field outlines and lines, plus parking and other spots.
+   Each is a list of [latitude, longitude] points. They live with the club, so only people with the club code see them. */
+const MARK_KINDS={area:'Field outline',line:'Line',park:'Parking',spot:'Spot'};
+const MARK_COLOR='#ff3300', MAX_MARK_PTS=2000, MAX_MARKS=30, MAX_ALL_PTS=6000; // The whole club saves as one record, and Firebase refuses records over about 1 MB. This keeps fields and lines far under that.
+const isSpotMark=m=>m.kind==='park'||m.kind==='spot';
+const cleanMarkName=s=>typeof s==='string'?s.replace(/\s+/g,' ').trim().slice(0,40):'';
+const goodPoint=p=>Array.isArray(p)&&Number.isFinite(p[0])&&Number.isFinite(p[1])&&Math.abs(p[0])<=90&&Math.abs(p[1])<=180&&!(p[0]===0&&p[1]===0);
+function cleanMarks(list){
+  const out=[], seen=new Set();
+  let total=0;
+  for(const m of Array.isArray(list)?list:[]){
+    if(!m||!SAFE_ID.test(m.id)||seen.has(m.id)||!MARK_KINDS[m.kind])continue;
+    const pts=(Array.isArray(m.pts)?m.pts:[]).filter(goodPoint).slice(0,MAX_MARK_PTS).map(p=>[+p[0].toFixed(6),+p[1].toFixed(6)]);
+    if(pts.length<(m.kind==='area'?3:m.kind==='line'?2:1)||total+pts.length>MAX_ALL_PTS)continue;
+    total+=isSpotMark(m)?1:pts.length;
+    seen.add(m.id);
+    out.push({id:m.id,kind:m.kind,name:cleanMarkName(m.name)||MARK_KINDS[m.kind],color:/^#[0-9a-f]{6}$/i.test(m.color)?m.color.toLowerCase():MARK_COLOR,pts:isSpotMark(m)?pts.slice(0,1):pts});
+    if(out.length>=MAX_MARKS)break;
+  }
+  return out;
+}
 function cleanSpots(spots){ // Each blind can have a blind spot, a truck spot, and a note.
   const out={}, point=p=>p&&Number.isFinite(p.lat)&&Number.isFinite(p.lng)?{lat:p.lat,lng:p.lng,acc:Number(p.acc)||0}:null;
   for(const[n,v]of Object.entries(spots||{})){
@@ -1045,11 +1084,25 @@ function normalizeClub(c){
   c=c||{};
   const members=(Array.isArray(c.members)?c.members:[]).filter(m=>m&&SAFE_ID.test(m.id)&&typeof m.name==='string');
   const {season,days}=cleanBlinds(c.season,c.days);
-  return {blinds:Number(c.blinds)||DEFAULT_BLINDS,members,season,days,spots:cleanSpots(c.spots),groups:cleanGroups(c.groups,members)};
+  return {blinds:Number(c.blinds)||DEFAULT_BLINDS,members,season,days,spots:cleanSpots(c.spots),groups:cleanGroups(c.groups,members),marks:cleanMarks(c.marks),names:cleanNames(c.names)};
 }
 function cleanHunts(list){
   return (Array.isArray(list)?list:[]).filter(h=>h&&SAFE_ID.test(h.id)&&SPECIES[h.species])
-    .map(h=>({...h,time:Object.prototype.hasOwnProperty.call(TIMES,h.time)?h.time:'Morning',setup:h.setup||''}));
+    .map(h=>{
+      const o={...h,time:Object.prototype.hasOwnProperty.call(TIMES,h.time)?h.time:'Morning',setup:h.setup||''};
+      const who=Array.isArray(h.who)?[...new Set(h.who.filter(t=>typeof t==='string'&&/^[0-9a-z]{1,10}$/.test(t)))].slice(-6):[];
+      if(who.length)o.who=who;else delete o.who;
+      return o;
+    });
+}
+// A booked hunt's link to the approved request it's for, so owners see who it's for. The calendar is public, so the link is
+// a scramble of the request's name that can't be turned back into it: it doesn't lead anyone to the customer's name or number.
+const reqTag=id=>{let x=0x811c9dc5;for(let i=0;i<id.length;i++){x^=id.charCodeAt(i);x=Math.imul(x,16777619)>>>0}return x.toString(36)};
+const bookers=h=>(h.who||[]).map(t=>S.requests.find(r=>reqTag(r.id)===t)).filter(Boolean);
+function setHuntStatus(h,st){ // Reopening a hunt takes the customer's name off it. Booking it again before closing the day puts the name back, in case of a wrong tap.
+  if(st==='open'&&h.who){(sheet.unlinked=sheet.unlinked||{})[h.id]=h.who;delete h.who}
+  else if(st==='booked'&&!h.who&&sheet.unlinked&&sheet.unlinked[h.id])h.who=sheet.unlinked[h.id];
+  h.status=st;
 }
 function normalizePub(p){
   p=p||{};
@@ -1269,6 +1322,7 @@ function saveHunts(){
    so everything saved before still reads the same. A day's blinds replace the season's for that day. 0 on a day means off. */
 const asSet=v=>Array.isArray(v)?v:v?[v]:[];
 const packSet=list=>{const s=[...new Set(list.map(Number).filter(n=>Number.isInteger(n)&&n>0))].sort((a,b)=>a-b);return s.length>1?s:s[0]||0};
+const blindName=n=>(S.club&&S.club.names&&S.club.names[n])||'';
 const blindsText=list=>list.length>1?`Blinds ${list.slice(0,-1).join(', ')} and ${list[list.length-1]}`:list.length?`Blind ${list[0]}`:'';
 const seasonBlinds=id=>asSet(S.club&&S.club.season[id]);
 const seasonBlind=id=>seasonBlinds(id)[0]||0;
@@ -1392,13 +1446,15 @@ function mergeClub(b,m,t){
     return Object.keys(one).length?one:undefined;
   });
   const groups=keepKnown(mergeMaps(b.groups,m.groups,t.groups));
-  return {blinds:Math.max(pick(b.blinds,m.blinds,t.blinds),highest),members,season,days,spots,groups};
+  const marks=mergeList(b.marks||[],m.marks||[],t.marks||[]); // Each field or spot is added, changed or removed whole.
+  const names=mergeMaps(b.names||{},m.names||{},t.names||{});
+  return {blinds:Math.max(pick(b.blinds,m.blinds,t.blinds),highest),members,season,days,spots,groups,marks,names};
 }
 const bases={pub:LS.get('base:pub'),club:LS.get('base:club')};
-function keepNewer(raw){ // A phone still on an older version saves the club without blind locations or groups. This puts them back.
+function keepNewer(raw){ // A phone still on an older version saves the club without blind locations, groups, or fields and parking. This puts them back.
   if(!raw||!bases.club||!store.isOwner())return false;
   let healed=false;
-  for(const k of ['spots','groups']){
+  for(const k of ['spots','groups','marks','names']){
     const had=bases.club[k];
     if(!(k in raw)&&had&&Object.keys(had).length){raw[k]=had;healed=true}
   }
@@ -1573,13 +1629,13 @@ function drawFinder(){ // Updates only the finder, so the screen doesn't redraw 
   note.textContent=`${head}${finder.compass==null?' The arrow follows the way you\'re walking, so keep moving.':''} ${gps}`;
 }
 function spotActions(n,showNote=true){ // What a member or owner can do with a blind's saved spots.
-  const sp=spotOf(n), drive=sp.park||sp.blind;
+  const sp=spotOf(n), lot=!sp.park&&parkingFor(sp.blind), drive=sp.park||lot||sp.blind;
   if(!drive&&!sp.note)return '';
   const walk=sp.blind&&CAN_LOCATE&&finder.n!==n;
   return `<div class="stack">
     ${sp.note&&showNote?`<p style="overflow-wrap:anywhere"><span class="mute small">How to get there</span><br>${esc(sp.note)}</p>`:''}
     ${drive||walk?`<div class="row">
-      ${drive?`<a class="btn grow" href="${directionsUrl(drive)}" target="_blank" rel="noopener">${sp.park?'Drive to the truck spot':'Drive to Blind '+n}</a>`:''}
+      ${drive?`<a class="btn grow" href="${directionsUrl(drive)}" target="_blank" rel="noopener">${sp.park?'Drive to the truck spot':lot?'Drive to '+esc(lot.name):'Drive to Blind '+n}</a>`:''}
       ${walk?`<button class="btn primary grow" data-a="startFind" data-v="${n}">Walk to Blind ${n}</button>`:''}
     </div>`:''}
     ${finder.n===n?finderBlock():''}
@@ -1588,13 +1644,109 @@ function spotActions(n,showNote=true){ // What a member or owner can do with a b
   </div>`;
 }
 
+/* ---------- Fields and parking ---------- */
+const gpxColor=s=>{ // Some mapping apps write colors like rgba(255, 51, 0, 1).
+  const m=/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i.exec(s||''), h=/#([0-9a-f]{6})\b/i.exec(s||'');
+  if(m)return '#'+[m[1],m[2],m[3]].map(v=>Math.min(255,Number(v)).toString(16).padStart(2,'0')).join('');
+  return h?'#'+h[1].toLowerCase():MARK_COLOR;
+};
+function readGpx(text){ // Field outlines, lines and waypoints from a GPX file.
+  const doc=new DOMParser().parseFromString(String(text||''),'application/xml');
+  if(doc.getElementsByTagName('parsererror').length||!doc.documentElement||doc.documentElement.localName!=='gpx')throw new Error('notgpx');
+  const all=(el,tag)=>[...el.getElementsByTagNameNS('*',tag)];
+  const own=(el,tag)=>{const x=[...el.children].find(c=>c.localName===tag);return x?x.textContent.replace(/\s+/g,' ').trim():''};
+  const pt=e=>[Number(e.getAttribute('lat')),Number(e.getAttribute('lon'))];
+  const thin=list=>{if(list.length<=MAX_MARK_PTS)return list;const k=Math.ceil(list.length/MAX_MARK_PTS);return list.filter((x,i)=>i%k===0)};
+  const out=[];
+  for(const el of [...all(doc,'rte'),...all(doc,'trk')]){
+    let pts=all(el,el.localName==='rte'?'rtept':'trkpt').map(pt).filter(goodPoint);
+    if(pts.length<2)continue;
+    const first=pts[0], last=pts[pts.length-1], closed=pts.length>3&&first[0]===last[0]&&first[1]===last[1];
+    const kind=own(el,'type').toLowerCase()==='area'||closed?'area':'line';
+    if(kind==='area'&&closed)pts=pts.slice(0,-1); // The map closes an outline by itself.
+    if(pts.length<(kind==='area'?3:2))continue;
+    const color=all(el,'color')[0];
+    out.push({kind,name:own(el,'name'),color:gpxColor(color&&color.textContent),pts:thin(pts)});
+  }
+  for(const el of all(doc,'wpt')){
+    const p=pt(el), name=own(el,'name'), blind=/^blind\s*#?\s*(\d{1,2})\b[\s=:,.\-]*(.*)$/i.exec(name);
+    if(!goodPoint(p))continue;
+    if(blind&&Number(blind[1])>=1)out.push({kind:'blind',n:Number(blind[1]),name:blind[2],pts:[p]}); // "Blind 3" or "Blind 3 = Stump pond" is that blind's own spot.
+    else out.push({kind:/park/i.test(name)?'park':'spot',name,pts:[p]});
+  }
+  return out;
+}
+function readCoords(text){ // "34.4261, -91.82347" the way map apps show it. Either order works, and so does 34.4261 N, 91.82347 W.
+  const t=String(text||'');
+  if(/[°'"]/.test(t))return null; // Degrees, minutes and seconds would read as the wrong place.
+  const n=t.match(/-?\d{1,3}(?:\.\d+)?/g)||[];
+  if(n.length<2)return null;
+  let a=Number(n[0]), b=Number(n[1]);
+  if(/[\d.]\s*S\b/i.test(t)&&a>0)a=-a;
+  if(/[\d.]\s*W\b/i.test(t)&&b>0)b=-b;
+  if(Math.abs(a)>90&&Math.abs(b)<=90)[a,b]=[b,a];
+  return goodPoint([a,b])?[a,b]:null;
+}
+const andList=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
+function addMarks(list){ // Adds what's new and skips anything already on the map. Returns what was added.
+  const sig=m=>m.kind+JSON.stringify(m.pts), have=new Set(S.club.marks.map(sig)), added=[];
+  const fresh=word=>{for(let n=1;;n++)if(!S.club.marks.some(m=>m.name===word+' '+n))return word+' '+n}; // Field 1, Field 2... skipping names in use.
+  for(const raw of list){
+    if(S.club.marks.length>=MAX_MARKS){added.full=true;break}
+    const auto=!raw.name||/^(area|line|route|track|shape)\s+\d{1,2}\/\d{1,2}\/\d{2,4}/i.test(raw.name); // Mapping apps name new ones by the date drawn.
+    const m=cleanMarks([{...raw,id:newId(),name:auto&&raw.kind==='area'?fresh('Field'):auto&&raw.kind==='line'?fresh('Line'):raw.name}])[0];
+    if(!m||have.has(sig(m)))continue;
+    if(S.club.marks.reduce((n,x)=>n+x.pts.length,0)+m.pts.length>MAX_ALL_PTS){added.full=true;continue}
+    have.add(sig(m));
+    S.club.marks.push(m);
+    added.push(m);
+  }
+  return added;
+}
+function importGpx(text){
+  let found;
+  try{found=readGpx(text)}catch(e){toast('That isn\'t a GPX file. A field outline has to be saved as GPX to add it here.');return false}
+  if(!found.length){toast('That file has no field outlines, lines or spots in it.');return false}
+  const added=addMarks(found.filter(m=>m.kind!=='blind')), set=placeBlinds(found.filter(m=>m.kind==='blind'));
+  if(!added.length&&!set.length){toast(added.full?'The map is full. Remove a field or line first.':'Those are already on the map.');return false}
+  saveClub();
+  toast([added.length?`Added ${andList(added.map(m=>m.name))} to the map.`:'',set.length?`Saved where ${blindsText(set)} ${set.length>1?'are':'is'}.`:'',added.full?'The rest didn\'t fit: the map is full.':''].filter(Boolean).join(' '));
+  return true;
+}
+function placeBlinds(list){ // Puts blinds at typed-in coordinates, and names them. Returns the blind numbers that changed.
+  const c=S.club, set=[];
+  for(const x of list){
+    if(x.n>MAX_BLINDS)continue;
+    const at={lat:+x.pts[0][0].toFixed(6),lng:+x.pts[0][1].toFixed(6),acc:0}, sp=c.spots[x.n]||{}, name=cleanGroup(x.name);
+    const moved=!sp.blind||sp.blind.lat!==at.lat||sp.blind.lng!==at.lng, renamed=!!name&&c.names[x.n]!==name;
+    if(!moved&&!renamed)continue;
+    if(moved)c.spots[x.n]={...sp,blind:at};
+    if(renamed)c.names[x.n]=name;
+    if(x.n>c.blinds)c.blinds=x.n;
+    if(!set.includes(x.n))set.push(x.n);
+  }
+  return set.sort((a,b)=>a-b);
+}
+const markPts=()=>((S.club&&S.club.marks)||[]).flatMap(m=>m.pts.map(p=>({lat:p[0],lng:p[1]})));
+function nearMarkPts(points){ // The fields and parking around these spots, so their photos get saved for no signal too.
+  const all=markPts();
+  return points.length?all.filter(q=>points.some(p=>metersBetween(p,q)<5000)):all;
+}
+function parkingFor(p){ // The parking spot closest to a blind, for members whose blind has no truck spot of its own.
+  const lots=((S.club&&S.club.marks)||[]).filter(m=>m.kind==='park').map(m=>({lat:m.pts[0][0],lng:m.pts[0][1],name:m.name}));
+  if(!lots.length)return null;
+  if(!p)return lots[0];
+  const near=lots.reduce((a,b)=>metersBetween(p,a)<=metersBetween(p,b)?a:b);
+  return metersBetween(p,near)<5000?near:null; // Parking miles away belongs to a different farm.
+}
+
 /* ---------- Map ----------
    Aerial photos from the USDA and USGS: public domain, free, no account. The photos around a member's blinds are saved
    on the phone while there's signal, so the map works out in the field. Your position never leaves the phone. */
 const TILE_URL='https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}';
 const TILE_CACHE='roost-tiles', PHOTO_ZOOM=16; // The sharpest photos the service has. Closer than that, the map enlarges them.
 const CAN_MAP=CAN_LOCATE&&!!document.getElementById('leaflet-js');
-const mapState={open:false,map:null,pins:null,me:null,ring:null,line:null,watch:null,pos:null,course:null,follow:true,placed:false,key:'',area:'',turn:0,err:'',saving:null,saved:'',saveErr:false};
+const mapState={open:false,map:null,pins:null,marks:null,me:null,ring:null,line:null,watch:null,pos:null,course:null,follow:true,placed:false,key:'',area:'',turn:0,err:'',saving:null,saved:'',saveErr:false};
 function mapLib(){ // Not called leaflet: the library takes that name for itself. The map code ships inside the app, so it works with no signal. It only starts the first time a map opens.
   if(!window.L){const s=document.createElement('script');s.textContent=document.getElementById('leaflet-js').textContent;document.head.appendChild(s)}
   return window.L;
@@ -1645,13 +1797,16 @@ async function saveArea(points){ // Saves the photos while there's signal. If th
   }catch(e){mapState.saveErr=true}
   finally{if(mapState.saving===job)mapState.saving=null;drawMapInfo()}
 }
+function saveAreas(spots,wide){ // The blinds first, sharpest photos and all. Then the fields and parking around them.
+  return Promise.resolve(saveArea(spots)).then(()=>{if(wide.length>spots.length)return saveArea(wide)});
+}
 function saveMyArea(){ // A member's blinds for the rest of the season, saved at home so the map works in the field.
   if(!CAN_MAP||S.owner||!S.club||!S.memberId)return;
   const me=S.club.members.find(m=>m.id===S.memberId);
   if(!me)return;
   const blinds=new Set([...duckDays.filter(d=>d>=today()).flatMap(d=>blindsOn(me.id,d)),...seasonBlinds(me.id)]);
   const pts=[...blinds].flatMap(n=>[spotOf(n).blind,spotOf(n).park]).filter(Boolean);
-  if(pts.length)saveArea(pts);
+  if(pts.length)saveAreas(pts,pts.concat(nearMarkPts(pts)));
 }
 function mapView(){ // Sits outside the screen that redraws, so the map isn't rebuilt every time something changes.
   let v=document.getElementById('mapview');
@@ -1676,6 +1831,7 @@ function syncMap(){ // Called after every redraw. Opens, updates or closes the m
     mapState.map=L.map('mapbox',{maxZoom:19,minZoom:6,zoomSnap:0.5,tap:false,fadeAnimation:false}); // Photos show the moment they're there.
     L.tileLayer(TILE_URL,{maxNativeZoom:PHOTO_ZOOM,maxZoom:19,attribution:'Photos: USDA, USGS'}).addTo(mapState.map);
     mapState.map.attributionControl.setPrefix(false);
+    mapState.marks=L.layerGroup().addTo(mapState.map); // Under the blinds.
     mapState.pins=L.layerGroup().addTo(mapState.map);
     mapState.map.on('dragstart',()=>{mapState.follow=false});
     const box=document.getElementById('mapbox');
@@ -1687,16 +1843,16 @@ function syncMap(){ // Called after every redraw. Opens, updates or closes the m
     }).observe(box);
   }
   const mine=sheet.n!=null;
-  document.getElementById('maptitle').textContent=mine?`Blind ${sheet.n}`:'All blinds';
+  document.getElementById('maptitle').textContent=mine?`Blind ${sheet.n}${blindName(sheet.n)?' · '+blindName(sheet.n):''}`:mapPoints().length?'All blinds':'Fields and parking';
   document.getElementById('mapfit').textContent=mine?'Show blind':'Show all';
-  const pts=mapPoints(), key=sheet.n+'|'+JSON.stringify(pts);
-  if(key!==mapState.key){mapState.key=key;drawPins(pts);mapState.area=pts.length?areaTiles(pts.map(x=>x.p)).key:''}
+  const pts=mapPoints(), spots=pts.map(x=>x.p), wide=spots.concat(nearMarkPts(spots)), key=sheet.n+'|'+JSON.stringify(pts)+'|'+JSON.stringify((S.club.marks||[]).map(m=>[m.id,m.kind,m.name,m.color,m.pts.length,m.pts[0],m.pts[m.pts.length-1]]));
+  if(key!==mapState.key){mapState.key=key;drawPins(pts);drawMarks();mapState.area=wide.length?areaTiles(wide).key:''}
   if(first){
     Object.assign(mapState,{follow:true,moved:false,placed:false,err:'',pos:null,course:null,saveErr:false});
     mapState.map.invalidateSize();
     fitMap(false);
     startMapGps();
-    saveArea(pts.map(x=>x.p));
+    saveAreas(spots,wide);
     v.querySelector('[data-a=closeSheet]').focus({preventScroll:true});
   }
   drawMe();
@@ -1724,8 +1880,28 @@ function drawPins(pts){
     }).addTo(mapState.pins);
   }
 }
-function fitMap(withMe){ // Shows the blind and truck spot, plus you when you're nearby.
-  const map=mapState.map, me=mapState.pos, pts=mapPoints().map(x=>[x.p.lat,x.p.lng]);
+function drawMarks(){ // Field outlines and lines, then parking and other spots. Tap a spot for directions.
+  const L=window.L;
+  mapState.marks.clearLayers();
+  for(const m of S.club.marks||[]){
+    const ll=m.pts.map(p=>[p[0],p[1]]);
+    if(m.kind==='area'){
+      L.polygon(ll,{color:m.color,weight:3,opacity:.95,fillColor:m.color,fillOpacity:.08,interactive:false,className:'mfield'}).addTo(mapState.marks);
+      L.marker(L.latLngBounds(ll).getCenter(),{icon:L.divIcon({className:'',html:`<div class="marea">${esc(m.name)}</div>`,iconSize:[0,0]}),interactive:false,keyboard:false,zIndexOffset:-500}).addTo(mapState.marks);
+    }else if(m.kind==='line'){
+      L.polyline(ll,{color:m.color,weight:4,opacity:.95,interactive:false,className:'mline'}).addTo(mapState.marks);
+    }else{
+      const park=m.kind==='park';
+      L.marker(ll[0],{icon:L.divIcon({className:'',html:park?`<div class="mpark"><b>P</b><span>${esc(m.name)}</span></div>`:`<div class="mspot">${esc(m.name)}</div>`,iconSize:[0,0]}),title:m.name,keyboard:false,zIndexOffset:100})
+        .bindPopup(`<b>${esc(m.name)}</b><br><a href="${directionsUrl({lat:ll[0][0],lng:ll[0][1]})}" target="_blank" rel="noopener">Directions</a>`,{closeButton:false})
+        .addTo(mapState.marks);
+    }
+  }
+}
+function fitMap(withMe){ // Shows the blind and truck spot, plus you when you're nearby. The map of every blind shows the fields and parking too.
+  const map=mapState.map, me=mapState.pos;
+  let pts=mapPoints().map(x=>[x.p.lat,x.p.lng]);
+  if(sheet&&sheet.n==null||!pts.length)pts=pts.concat(markPts().map(q=>[q.lat,q.lng]));
   if(withMe&&me&&(!pts.length||pts.some(p=>metersBetween(me,{lat:p[0],lng:p[1]})<5000)))pts.push([me.lat,me.lng]);
   if(!pts.length)map.setView(me?[me.lat,me.lng]:[34.5,-91.55],me?17:12);
   else if(pts.length===1)map.setView(pts[0],17);
@@ -2356,9 +2532,9 @@ function memberView(){
   };
   const seasonText=home.length>1?`Your season blinds are ${home.slice(0,-1).join(', ')} and ${home[home.length-1]}`:`Your season blind is ${home.length?'Blind '+home[0]:'not set yet'}`;
   const blindBlock=mineAll.length
-    ?`<div><p class="mute small">${many?'Your blinds':'Your blind'}</p><div class="bignum${many?' many':''}"><span class="unit">${many?'Blinds':'Blind'}</span> ${many?mineAll.slice(0,-1).join(', ')+' &amp; '+mineAll[mineAll.length-1]:mineAll[0]}</div></div>
+    ?`<div><p class="mute small">${many?'Your blinds':'Your blind'}</p><div class="bignum${many?' many':''}"><span class="unit">${many?'Blinds':'Blind'}</span> ${many?mineAll.slice(0,-1).join(', ')+' &amp; '+mineAll[mineAll.length-1]:mineAll[0]}</div>${!many&&blindName(mineAll[0])?`<p class="blindname">${esc(blindName(mineAll[0]))}</p>`:''}</div>
       ${o!==undefined?`<p class="small" style="color:var(--blaze);font-weight:600">This day only. ${seasonText}.</p>`:''}
-      ${mineAll.map(n=>`${many?`<h3 class="blindhead">Blind ${n}</h3>`:''}${company(n)}${spotActions(n)}`).join('')}`
+      ${mineAll.map(n=>`${many?`<h3 class="blindhead">Blind ${n}${blindName(n)?` <span class="mute">${esc(blindName(n))}</span>`:''}</h3>`:''}${company(n)}${spotActions(n)}`).join('')}`
     :o===0
       ?`<div class="bignum none">Off this day</div><p class="mute small">Text Jonathon with any questions.</p>`
       :`<div class="bignum none">No blind yet</div><p class="mute small">Jonathon will post it here. Text him with any questions.</p>`;
@@ -2394,7 +2570,7 @@ function blindsView(){
       :`<div class="chips">${on.length?on.map(m=>chip(m,n)).join(''):'<span class="empty">Open</span>'}</div>`;
     if(on.length)used++;
     rows+=`<div class="blind"><div class="n">${n}${on.length?`<span class="cap${over?' over':''}">${on.length} of ${seatsFor(parts)}</span>`:''}</div>
-      ${body}
+      <div>${blindName(n)?`<div class="bname">${esc(blindName(n))}</div>`:''}${body}</div>
       <button class="plus" data-a="addTo" data-v="${n}" aria-label="Add hunters to blind ${n}">+</button></div>`;
   }
   return `
@@ -2413,13 +2589,54 @@ function locationsView(){
   for(let n=1;n<=c.blinds;n++){
     const sp=spotOf(n);
     if(sp.blind)saved++;
-    rows+=`<button class="who" data-a="openSpot" data-v="${n}" aria-label="Blind ${n}, ${spotStatus(sp)}"><span>Blind ${n}</span><span>${spotStatus(sp)}</span></button>`;
+    rows+=`<button class="who" data-a="openSpot" data-v="${n}" aria-label="Blind ${n}, ${spotStatus(sp)}"><span>Blind ${n}${blindName(n)?` <span class="mute">${esc(blindName(n))}</span>`:''}</span><span>${spotStatus(sp)}</span></button>`;
   }
   return `
   <div class="stack"><p class="mute">Stand at a blind, tap its number, then tap <b>Use my location</b>. It works with no signal and sends when you have signal again.</p>
   <p class="small mute">Members see only the blind they're on that day.</p>
-  ${CAN_MAP&&saved?'<button class="btn wide" data-a="openMap" data-v="">See all blinds on the map</button>':''}</div>
+  ${CAN_MAP&&(saved||(c.marks||[]).length)?`<button class="btn wide" data-a="openMap" data-v="">${saved?'See all blinds on the map':'See the map'}</button>`:''}</div>
+  ${marksBlock()}
   <section><p class="small mute" style="padding-bottom:8px;border-bottom:1px solid var(--line)">${saved} of ${c.blinds} blinds saved</p>${rows}</section>`;
+}
+function marksBlock(){ // Field outlines and parking, for everyone's map.
+  const list=S.club.marks||[];
+  return `<section class="panel" aria-labelledby="markshead"><h3 id="markshead">Fields and parking</h3>
+    <p class="small mute">These show on every member's map. Add a field outline from a GPX file, or paste its text.</p>
+    ${list.length?`<div>${list.map(m=>`<button class="who" data-a="openMark" data-v="${esc(m.id)}"><span>${esc(m.name)}</span><span>${MARK_KINDS[m.kind]}</span></button>`).join('')}</div>`:''}
+    <div class="row"><button class="btn grow" data-a="pickGpx">Add a field file</button><button class="btn grow" data-a="newSpot">Add parking</button></div>
+    <button class="link" data-a="togglePaste" aria-expanded="${!!S.pasteOpen}" style="justify-self:start">Or paste the GPX text</button>
+    ${S.pasteOpen?'<form class="stack" data-f="pasteGpx"><label for="gpxtext" class="vh">GPX text</label><textarea id="gpxtext" placeholder="Paste the whole file, starting with &lt;?xml"></textarea><button class="btn">Add it</button></form>':''}
+  </section>`;
+}
+const findMark=()=>sheet&&(S.club.marks||[]).find(m=>m.id===sheet.id);
+function markSheet(){
+  const m=findMark();
+  if(!m)return sheetWrap('Removed','<p class="mute">That isn\'t on the map anymore.</p><button class="btn wide" data-a="closeSheet">Done</button>');
+  const spot=isSpotMark(m), p=m.pts[0];
+  const note=sheet.msg?`<p class="${sheet.msgWarn?'warn':'small mute'}">${esc(sheet.msg)}</p>`:'';
+  return sheetWrap(esc(m.name),`${note}
+    <form class="row" data-f="renameMark" style="flex-wrap:nowrap"><input id="markname" type="text" maxlength="40" value="${esc(m.name)}" aria-label="Name"><button class="btn sm" style="flex:none">Rename</button></form>
+    ${spot?`<div class="stack" style="gap:6px"><span class="fieldname">What it is</span><div class="seg" role="group" aria-label="What it is"><button data-a="markKind" data-v="park" aria-pressed="${m.kind==='park'}">Parking</button><button data-a="markKind" data-v="spot" aria-pressed="${m.kind==='spot'}">Other spot</button></div>
+      <p class="small mute">${m.kind==='park'?'Members whose blind has no truck spot get directions here.':'Shows on the map with its name.'}</p></div>
+      <p class="small mute">At ${p[0]}, ${p[1]}</p>
+      <div class="row"><a class="btn grow" href="${directionsUrl({lat:p[0],lng:p[1]})}" target="_blank" rel="noopener">Directions</a>${CAN_LOCATE?`<button class="btn grow" data-a="markHere"${sheet.capturing?' disabled':''}>${sheet.capturing?'Getting GPS&hellip;':'Move it to where I am'}</button>`:''}</div>`
+     :`<p class="small mute">${m.kind==='area'?'A field outline':'A line'} with ${m.pts.length} points.</p>`}
+    ${CAN_MAP?'<button class="btn wide" data-a="openMap" data-v="">See it on the map</button>':''}
+    ${S.confirm==='mark'?'<button class="btn" data-a="rmMark">Yes, take it off the map</button>':'<button class="link" data-a="askConfirm" data-v="mark" style="justify-self:start">Remove from the map</button>'}
+    <button class="btn wide" data-a="closeSheet">Done</button>`);
+}
+function newSpotSheet(){
+  const note=sheet.msg?`<p class="${sheet.msgWarn?'warn':'small mute'}">${esc(sheet.msg)}</p>`:'';
+  const hasLot=(S.club.marks||[]).some(m=>m.kind==='park');
+  return sheetWrap('Add parking or a spot',`${note}
+    <form class="stack" data-f="addSpot">
+      <label for="spname">Name<input id="spname" type="text" maxlength="40" value="${hasLot?'':'Parking'}" placeholder="Parking, Gate, Boat ramp"></label>
+      <label for="spwhere">Where<input id="spwhere" type="text" inputmode="text" autocomplete="off" placeholder="34.4261, -91.82347"></label>
+      <p class="small mute">Type or paste the coordinates${CAN_LOCATE?', or stand there and use your location':''}. A name with "park" in it is where members get directions to.</p>
+      <button class="btn primary wide">Add it</button>
+    </form>
+    ${CAN_LOCATE?`<button class="btn wide" data-a="addSpotHere"${sheet.capturing?' disabled':''}>${sheet.capturing?'Getting GPS&hellip;':'Use where I am now'}</button>`:''}
+    <button class="btn wide" data-a="closeSheet">Cancel</button>`);
 }
 function rosterView(){
   const c=S.club;
@@ -2473,8 +2690,9 @@ function manageDaySheet(d){
   const hunts=labelled(usual?[...S.pub.usual].sort(byTime):huntsOn(d));
   const rows=hunts.map(h=>{
     const b=h.status==='booked', ed=sheet.edit===h.id;
+    const who=b&&!usual?bookers(h).map(r=>`<span class="booker"><span><span class="bname">${esc(r.name)}</span>, ${r.hunters} hunter${r.hunters>1?'s':''}</span><a href="tel:${esc(phoneDigits(r.phone))}">Call</a><a href="${smsTo(phoneDigits(r.phone),'')}">Text</a></span>`).join(''):'';
     const status=usual?'':`<div class="seg status" role="group" aria-label="${esc(h.label)} status"><button data-a="setStatus" data-v="${h.id}|open" aria-pressed="${!b}">Open</button><button data-a="setStatus" data-v="${h.id}|booked" aria-pressed="${b}">Booked</button></div>`;
-    return `<div class="hunt${b?' isbooked':''}"><div><b>${esc(h.label)}</b><span class="row" style="gap:8px"><span class="sub">${esc(h.setup||'Setup not set')}</span>${ed?'':`<button class="link tight" data-a="editHunt" data-v="${h.id}" aria-label="Change ${esc(h.label)}">Change</button>`}</span></div>${status}${ed?huntEditor(h,d):''}</div>`;
+    return `<div class="hunt${b?' isbooked':''}"><div><b>${esc(h.label)}</b><span class="row" style="gap:8px"><span class="sub">${esc(h.setup||'Setup not set')}</span>${ed?'':`<button class="link tight" data-a="editHunt" data-v="${h.id}" aria-label="Change ${esc(h.label)}">Change</button>`}</span>${who}</div>${status}${ed?huntEditor(h,d):''}</div>`;
   }).join('');
   const changed=Object.keys(S.pub.days).filter(x=>x>=today()&&huntDays.includes(x)).length;
   const intro=usual
@@ -2555,7 +2773,7 @@ function installSheet(){
 }
 function spotBlock(kind,label){
   const n=sheet.n, p=spotOf(n)[kind], busy=sheet.capturing===kind, other=sheet.capturing&&!busy, ask=S.confirm==='replace:'+kind;
-  const saved=p?`Saved, good to about ${toYards(p.acc)} yards.`:'Not set.';
+  const saved=p?(p.acc?`Saved, good to about ${toYards(p.acc)} yards.`:'Saved from coordinates.'):'Not set.';
   let btn='';
   if(CAN_LOCATE){
     btn=busy?`<button class="btn wide" disabled>Getting GPS&hellip;</button><span class="small mute">With no signal this can take up to a minute. Stay put.</span>`
@@ -2568,6 +2786,7 @@ function spotSheet(){
   const n=sheet.n, sp=spotOf(n);
   const note=sheet.msg?`<p class="${sheet.msgWarn?'warn':'small mute'}">${esc(sheet.msg)}</p>`:'';
   return sheetWrap(`Blind ${n}`,`${CAN_LOCATE?'':'<p class="small mute">Saving a location only works in the live app, on your phone at the blind.</p>'}${note}
+    <form class="row" data-f="blindName" style="flex-wrap:nowrap"><input id="bname" type="text" maxlength="30" value="${esc(blindName(n))}" placeholder="Name, like Stump pond" aria-label="Name for Blind ${n}"><button class="btn sm" style="flex:none">Save name</button></form>
     ${spotBlock('blind','The blind')}
     ${spotBlock('park','Truck spot (where to park)')}
     <form class="stack" data-f="spotNote"><label for="snote">How to get there<textarea id="snote" maxlength="200" placeholder="Example: Park at the gate, walk the north levee.">${esc(sp.note||'')}</textarea></label><button class="btn wide">Save note</button></form>
@@ -2587,6 +2806,8 @@ function sheetView(){
     case 'install':return installSheet();
     case 'text':return textSheet();
     case 'spot':return spotSheet();
+    case 'mark':return markSheet();
+    case 'newSpot':return newSpotSheet();
     case 'request':return requestSheet();
     case 'sent':return sentSheet();
   }
@@ -2623,7 +2844,7 @@ function syncTabHistory(to){ // Back from Duck Club returns to Hunts before leav
 function paint(){
   const key=keyOf(document.activeElement);
   const kept={};
-  document.querySelectorAll('#app input[id],#app textarea[id]').forEach(el=>{kept[el.id]=el.value});
+  document.querySelectorAll('#app input[id]:not([type=file]),#app textarea[id]').forEach(el=>{kept[el.id]=el.value}); // A file picker refuses having its value put back.
   const prev=document.querySelector('.sheet'), sheetTop=prev?prev.scrollTop:0;
   const shield=sheet?' inert':'';
   document.getElementById('app').innerHTML=`
@@ -2671,8 +2892,8 @@ const actions={
   setFilter(v){S.filter=v},
   openDay(v){sheet={type:'day',d:v,edit:null}},
   pickHunt(v){S.picks.has(v)?S.picks.delete(v):S.picks.add(v);LS.set('picks',[...S.picks])},
-  setStatus(v){const[id,st]=v.split('|'),h=findHunt(id);if(h){h.status=st;saveHunts()}},
-  allStatus(v){dayList(sheet.d).forEach(h=>{h.status=v});saveHunts()},
+  setStatus(v){const[id,st]=v.split('|'),h=findHunt(id);if(h){setHuntStatus(h,st);saveHunts()}},
+  allStatus(v){dayList(sheet.d).forEach(h=>setHuntStatus(h,v));saveHunts()},
   editHunt(v){sheet.edit=v||null},
   addHunt(){
     const d=sheet.d, h={id:newId(),time:'Morning',species:legal('duck',d)?'duck':'goose',setup:''};
@@ -2700,16 +2921,19 @@ const actions={
     if(!S.pubReady){toast('The calendar hasn\'t loaded yet. Try again when you have signal.');return}
     const live=r.hunts.filter(x=>x.d>=today()&&huntsOn(x.d).some(h=>h.id===x.id));
     if(!live.length){toast('Those hunts aren\'t on the calendar anymore, so there\'s nothing to book. Decline it, or put the hunt back first.');return}
-    let booked=0;
-    const days=new Set();
+    const tag=reqTag(r.id), days=new Set();
+    let booked=0, linked=0;
     for(const x of live){
       const h=dayList(x.d).find(h=>h.id===x.id);
-      if(h&&h.status!=='booked'){h.status='booked';booked++;days.add(x.d)}
+      if(!h)continue;
+      if(h.status!=='booked'){h.status='booked';booked++}
+      if(!(h.who||[]).includes(tag)){h.who=[...(h.who||[]),tag].slice(-6);linked++}
+      days.add(x.d);
     }
     days.forEach(tidyDay);
-    if(booked)savePub();
+    if(booked||linked)savePub();
     decide(r,'approved');
-    toast(booked?`Booked. Text ${firstName(r.name)} to let them know.`:'Approved. Those hunts were already booked.');
+    toast(booked?`Booked. Text ${firstName(r.name)} to let them know.`:`Approved. Those hunts were already booked, and now show ${firstName(r.name)}'s name.`);
   },
   declineRequest(v){
     const r=S.requests.find(x=>x.id===v);
@@ -2746,6 +2970,46 @@ const actions={
   },
   mapFit(){mapState.follow=false;mapState.moved=false;fitMap(true)},
   openSpot(v){S.confirm=null;sheet={type:'spot',n:Number(v)}},
+  togglePaste(){S.pasteOpen=!S.pasteOpen},
+  pickGpx(){ // The file picker sits outside the screen that redraws, so it's still there when the file comes back.
+    let f=document.getElementById('gpxfile');
+    if(!f){
+      f=document.createElement('input');
+      Object.assign(f,{type:'file',id:'gpxfile',className:'vh',tabIndex:-1});
+      f.setAttribute('aria-hidden','true');
+      f.dataset.c='gpxFile';
+      document.body.appendChild(f);
+    }
+    f.click();
+  },
+  openMark(v){S.confirm=null;sheet={type:'mark',id:v}},
+  newSpot(){S.confirm=null;sheet={type:'newSpot'}},
+  markKind(v){const m=findMark();if(m&&isSpotMark(m)){m.kind=v==='park'?'park':'spot';saveClub()}},
+  rmMark(){const m=findMark();if(m){S.club.marks=S.club.marks.filter(x=>x!==m);toast(`Took ${m.name} off the map.`)}S.confirm=null;sheet=null;saveClub()},
+  async markHere(){ // Stand at the spot and move it here.
+    const id=sheet.id;
+    sheet.capturing=true;sheet.msg='';render();
+    try{
+      const p=await captureGps(), m=(S.club.marks||[]).find(x=>x.id===id);
+      if(!sheet||sheet.type!=='mark'||sheet.id!==id||!m)return;
+      m.pts=[[+p.lat.toFixed(6),+p.lng.toFixed(6)]];
+      sheet.capturing=false;sheet.msgWarn=p.acc>30;
+      sheet.msg=sheet.msgWarn?`Moved, but GPS is only good to about ${toYards(p.acc)} yards right now. Wait a minute out in the open and try again.`:'Moved to where you are.';
+      saveClub();
+    }catch(e){if(sheet&&sheet.type==='mark'){sheet.capturing=false;sheet.msgWarn=true;sheet.msg=geoError(e)}}
+  },
+  async addSpotHere(){
+    const name=cleanMarkName(document.getElementById('spname').value)||'Parking';
+    sheet.capturing=true;sheet.msg='';render();
+    try{
+      const p=await captureGps();
+      if(!sheet||sheet.type!=='newSpot')return;
+      const added=addMarks([{kind:/park/i.test(name)?'park':'spot',name,pts:[[p.lat,p.lng]]}]);
+      sheet=null;
+      if(added.length){saveClub();toast(`Added ${added[0].name} where you're standing.${p.acc>30?` GPS was only good to about ${toYards(p.acc)} yards.`:''}`)}
+      else toast(added.full?'The map is full. Remove a field or line first.':'That spot is already on the map.');
+    }catch(e){if(sheet&&sheet.type==='newSpot'){sheet.capturing=false;sheet.msgWarn=true;sheet.msg=geoError(e)}}
+  },
   async saveSpot(kind){
     const n=sheet.n;
     S.confirm=null;
@@ -2885,6 +3149,11 @@ document.addEventListener('click',async e=>{
 document.addEventListener('change',e=>{
   const c=e.target.dataset.c;
   if(c==='scope'){S.scope=e.target.value;render()}
+  if(c==='gpxFile'){
+    const f=e.target.files&&e.target.files[0];
+    e.target.value='';
+    if(f&&S.club)(f.size>5e6?Promise.reject(new Error('big')):new Response(f).text()).then(t=>{importGpx(t);render()}).catch(()=>toast('Couldn\'t read that file. Try again, or paste its text instead.')); // Response reads files on older iPhones too.
+  }
   if(c==='hTime'||c==='hSetup'){
     const h=findHunt(e.target.dataset.id);
     if(h){h[c==='hTime'?'time':'setup']=e.target.value;saveHunts()}
@@ -2928,6 +3197,28 @@ addEventListener('popstate',()=>{
   }
 });
 const forms={
+  blindName(){ // What a blind is called. Blank takes the name off.
+    const n=sheet.n, name=cleanGroup(document.getElementById('bname').value), c=S.club;
+    if(name===(c.names[n]||''))return;
+    if(name)c.names[n]=name;else delete c.names[n];
+    saveClub();
+    toast(name?`Blind ${n} is now called ${name}.`:`Took the name off Blind ${n}.`);
+  },
+  renameMark(){const m=findMark(), name=cleanMarkName(document.getElementById('markname').value);if(m&&name&&name!==m.name){m.name=name;saveClub();toast('Renamed.')}},
+  addSpot(){
+    const name=cleanMarkName(document.getElementById('spname').value)||'Parking', at=readCoords(document.getElementById('spwhere').value);
+    if(!at){sheet.msgWarn=true;sheet.msg='Type the coordinates like this: 34.4261, -91.82347';return}
+    const added=addMarks([{kind:/park/i.test(name)?'park':'spot',name,pts:[at]}]);
+    if(!added.length){sheet.msgWarn=true;sheet.msg=added.full?'The map is full. Remove a field or line first.':'That spot is already on the map.';return}
+    sheet=null;
+    saveClub();
+    toast(`Added ${added[0].name} to the map.`);
+  },
+  pasteGpx(){ // Cleared first, so the redraw after adding doesn't put the text back. If nothing was added, it stays for fixing.
+    const box=document.getElementById('gpxtext'), text=box.value;
+    box.value='';
+    if(!importGpx(text)){const now=document.getElementById('gpxtext');if(now)now.value=text}
+  },
   spotNote(){
     const n=sheet.n, note=document.getElementById('snote').value.trim().slice(0,200), sp={...spotOf(n)};
     if(note)sp.note=note;else delete sp.note;
