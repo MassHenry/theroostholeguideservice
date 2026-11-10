@@ -2,7 +2,7 @@
 // When a new version arrives, open screens reload onto it, so nobody keeps working in an old copy.
 // Shared data (the calendar and the blinds) never goes through here.
 const SCOPE = self.registration.scope;
-const CACHE = 'roost-b6e4a5ecad:' + SCOPE;
+const CACHE = 'roost-8dfb178c6d:' + SCOPE;
 const ASSETS = ["./", "config.js", "manifest.webmanifest", "fonts/fonts.css", "fonts/big-shoulders-display-latin-800-normal.woff2", "fonts/big-shoulders-display-latin-900-normal.woff2", "fonts/barlow-latin-400-normal.woff2", "fonts/barlow-latin-500-normal.woff2", "fonts/barlow-latin-600-normal.woff2", "fonts/barlow-latin-700-normal.woff2", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"];
 
 // Some web hosts redirect /index.html to /. A browser refuses a saved page that was redirected, so save a clean copy.

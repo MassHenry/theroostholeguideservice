@@ -2,6 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <script>(function(){var p=location.pathname,b=document.createElement('base');b.href=/\.html$/.test(p)?p.replace(/[^/]*$/,''):(p.endsWith('/')?p:p+'/');document.head.appendChild(b)})()</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="text-scale" content="scale">
 <meta name="theme-color" content="#0E1209">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Open hunt dates and Duck Club blind assignments for The Roost Hole Guide Service in Stuttgart, Arkansas.">
@@ -687,17 +688,17 @@ svg.leaflet-image-layer.leaflet-interactive path {
 :root{
   color-scheme:dark;
   --mud:#0E1209; --reed:#191F12; --reed2:#242C1A; --line:#3F4A30; --field:#69755A;
-  --bone:#F0EBDB; --straw:#BABDA5; --dim:#8A8F79;
-  --mallard:#1F5A43; --rust:#55241B; --rust-hi:#F7B3A2;
-  --markbg:rgba(240,235,219,.14); --markbg-pick:rgba(28,13,2,.2);
-  --blaze:#FF7A1F; --blaze-ink:#1C0D02;
+  --bone:#F0EBDB; --straw:#BABDA5; --dim:#A6AB93; --hint:#8A8F79;
+  --mallard:#1C543E; --rust:#55241B; --rust-hi:#F7B3A2;
+  --markbg:rgba(240,235,219,.1); --markbg-pick:rgba(255,255,255,.3);
+  --blaze:#FF7A1F; --blaze-ink:#1C0D02; --blaze-text:#FF9A55;
   --scrim:rgba(5,7,3,.72);
   --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
   --body:"Barlow","Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;touch-action:manipulation}
-body{background:var(--mud);color:var(--bone);font:400 16px/1.45 var(--body);margin:0}
+body{background:var(--mud);color:var(--bone);font:400 1.125rem/1.45 var(--body);margin:0}
 body.locked{overflow:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--mud)}
 button,a{-webkit-tap-highlight-color:rgba(255,122,31,.25)}
@@ -710,52 +711,53 @@ a{color:inherit}
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--mud);border-bottom:1px solid var(--line)}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
 .mark{font:900 26px/1 var(--display);letter-spacing:.02em;text-transform:uppercase;min-width:0}
-.mark small{display:block;font:500 12px/1.3 var(--body);letter-spacing:.04em;color:var(--straw);text-transform:none;margin-top:2px}
-.call{display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:15px;text-decoration:none;border:1px solid var(--line);padding:0 14px;border-radius:4px;white-space:nowrap}
+.mark small{display:block;font:500 .875rem/1.3 var(--body);letter-spacing:.04em;color:var(--straw);text-transform:none;margin-top:2px}
+.call{display:inline-flex;align-items:center;min-height:44px;font-weight:700;font-size:1.0625rem;text-decoration:none;border:1px solid var(--line);padding:0 14px;border-radius:4px;white-space:nowrap}
 main{padding-block:16px 150px;display:grid;gap:20px}
 main>*{min-width:0}
 h1,h2,h3{margin:0;font-family:var(--display);text-transform:uppercase;letter-spacing:.015em;line-height:1.05;text-wrap:balance}
 h1{font-weight:900;font-size:36px}
-h2{font-weight:800;font-size:26px}
-h3{font-weight:800;font-size:20px}
+h2{font-weight:800;font-size:max(26px,1.5rem)}
+h3{font-weight:800;font-size:max(20px,1.2rem)}
 p{margin:0}
 .mute{color:var(--straw)}
-.small{font-size:14px}
+.small{font-size:1rem}
 .stack{display:grid;gap:10px}
 .stack.tight{gap:4px}
 .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .between{justify-content:space-between}
 .grow{flex:1 1 auto;min-width:0}
 .panel{background:var(--reed);border:1px solid var(--line);border-radius:6px;padding:14px;display:grid;gap:10px}
-.note{border:1px solid var(--line);border-left:4px solid var(--blaze);padding:10px 12px;font-size:14px;display:grid;gap:8px;background:var(--reed)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 16px;border-radius:4px;font-weight:700;text-decoration:none;text-align:center;border:1px solid var(--line);background:var(--reed2)}
+.note{border:1px solid var(--line);border-left:4px solid var(--blaze);padding:10px 12px;font-size:1rem;display:grid;gap:8px;background:var(--reed)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:4px 16px;border-radius:4px;font-weight:700;text-decoration:none;text-align:center;border:1px solid var(--line);background:var(--reed2)}
 .btn.primary{background:var(--blaze);border-color:var(--blaze);color:var(--blaze-ink)}
 .btn.wide{width:100%}
 .btn:disabled{opacity:.6;cursor:default}
-.btn.sm{min-height:44px;padding:0 12px;font-size:14px}
+.btn.sm{min-height:44px;padding:2px 12px;font-size:1rem}
 .btn.on{background:var(--blaze);border-color:var(--blaze);color:var(--blaze-ink)}
-.link{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:3px;color:var(--straw);font-size:14px}
-.link.tight{min-height:30px}
-label{font-weight:600;font-size:14px;display:grid;gap:6px}
-input[type=text],input[type=tel],input[type=email],input[type=password],select,textarea{width:100%;min-height:46px;background:var(--mud);border:1px solid var(--field);border-radius:4px;padding:10px 12px;font-size:16px;font-weight:500}
-::placeholder{color:var(--dim);opacity:1}
+.closer{display:inline-flex;align-items:center;justify-content:center;flex:none;min-height:44px;min-width:64px;padding:0 14px;border:1px solid var(--line);border-radius:4px;background:var(--reed2);font-weight:700}
+.link{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:3px;color:var(--straw);font-size:1rem}
+.link.tight{min-height:44px;min-width:44px;justify-content:center}
+label{font-weight:600;font-size:1rem;display:grid;gap:6px}
+input[type=text],input[type=tel],input[type=email],input[type=password],select,textarea{width:100%;min-height:48px;background:var(--mud);border:1px solid var(--field);border-radius:4px;padding:10px 12px;font-size:1.125rem;font-weight:500}
+::placeholder{color:var(--hint);opacity:1}
 textarea{min-height:96px;resize:vertical}
-.err{color:var(--rust-hi);font-size:14px;font-weight:600}
+.err{color:var(--rust-hi);font-weight:600}
 .steps{margin:0;padding-left:22px;display:grid;gap:8px}
 
 /* Install */
 .installbar{display:flex;align-items:center;gap:8px;background:var(--reed);border:1px solid var(--line);border-radius:6px;padding:10px 4px 10px 12px}
 .installbar b{display:block;font-weight:700;line-height:1.25}
-.installbar span{display:block;font-size:13px;color:var(--straw);line-height:1.3}
+.installbar span{display:block;font-size:.9375rem;color:var(--straw);line-height:1.3}
 .installbar .btn{white-space:nowrap;flex:none}
-.dismiss{width:36px;height:44px;font-size:22px;line-height:1;color:var(--straw);flex:none}
+.dismiss{width:44px;height:44px;font-size:22px;line-height:1;color:var(--straw);flex:none}
 
 /* Calendar */
 .opener{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
 .opener>div{min-width:0}
 .opener b{font:900 44px/.95 var(--display);text-transform:uppercase;display:block}
 .opener .days{font:800 20px/1.05 var(--display);color:var(--blaze);text-transform:uppercase;text-align:right;white-space:nowrap;flex:none}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--straw)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.9375rem;color:var(--straw)}
 .legend>span{display:inline-flex;align-items:center;gap:6px}
 .swatch{width:14px;height:14px;border-radius:2px;display:inline-block;background:var(--mallard)}
 .swatch.part,.d.part{background:linear-gradient(135deg,var(--mallard) 0 50%,var(--rust) 50% 100%)}
@@ -763,11 +765,11 @@ textarea{min-height:96px;resize:vertical}
 .swatch.ring{outline:2px solid var(--blaze);outline-offset:-2px}
 .month{display:grid;gap:8px}
 .grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
-.dow{font-size:12px;font-weight:600;color:var(--dim);text-align:center}
-.d{aspect-ratio:1;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;border-radius:3px;font-weight:700;font-size:15px;line-height:1.1;font-variant-numeric:tabular-nums;width:100%;min-width:0;overflow:hidden}
+.dow{font-size:min(.875rem,4vw);font-weight:600;color:var(--dim);text-align:center}
+.d{aspect-ratio:1;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;border-radius:3px;font-weight:700;font-size:min(1.0625rem,4.7vw);line-height:1.1;font-variant-numeric:tabular-nums;width:100%;min-width:0;overflow:hidden}
 .d:focus-visible{outline-offset:-3px}
-.marks{display:flex;gap:2px;font:700 11px/1 var(--body);text-decoration:none}
-.legend .marks{font-size:12px}
+.marks{display:flex;gap:2px;font:700 min(.8125rem,3.5vw)/1 var(--body);text-decoration:none}
+.legend .marks{font-size:.875rem}
 .marks i{font-style:normal;padding:1px 2px;border-radius:2px;background:var(--markbg)}
 .marks i.x{text-decoration:line-through;background:none;opacity:.8}
 .d.closed{color:var(--dim);font-weight:500}
@@ -778,6 +780,7 @@ button.d:disabled{cursor:default}
 .d.booked{background:var(--rust);color:var(--rust-hi)}
 .d.none{border:1px dashed var(--line);color:var(--straw)}
 .d.pick{background:var(--blaze);color:var(--blaze-ink);font-weight:800}
+.d.open .marks i,.d.part .marks i,.d.booked .marks i{background:rgba(0,0,0,.3)}
 .d.pick .marks i{background:var(--markbg-pick)}
 .d.opening{outline:2px solid var(--blaze);outline-offset:-2px}
 .d.pick.opening{outline-color:var(--bone)}
@@ -794,30 +797,32 @@ button.rowlink{min-height:44px;align-items:center}
 .hunt{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
 .hunt>div{min-width:0}
 .hunt b{display:block;font-weight:700}
-.hunt .sub{color:var(--straw);font-size:14px}
+.hunt .sub{color:var(--straw);font-size:1rem}
 .hunt.isbooked b{color:var(--straw)}
-.booker{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;margin-top:6px;font-size:14px;color:var(--bone)}
+.booker{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;margin-top:6px;font-size:1rem;color:var(--bone)}
 .booker .bname{font-weight:700}
 .booker a{color:var(--bone);font-weight:600}
-.pill{font-size:13px;font-weight:700;padding:5px 9px;border-radius:3px;background:var(--rust);color:var(--rust-hi);white-space:nowrap}
+.pill{font-size:.9375rem;font-weight:700;padding:5px 9px;border-radius:3px;background:var(--rust);color:var(--rust-hi);white-space:nowrap}
 .pill.req{background:var(--reed2);color:var(--straw);border:1px solid var(--line)}
-.badge{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;margin-left:6px;border-radius:11px;background:var(--blaze);color:var(--blaze-ink);font:700 13px/1 var(--body);vertical-align:2px;letter-spacing:0}
+.badge{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;margin-left:6px;border-radius:11px;background:var(--blaze);color:var(--blaze-ink);font:700 .9375rem/1 var(--body);vertical-align:2px;letter-spacing:0}
 .reqcard{display:grid;gap:8px}
 .reqcard a{color:var(--bone);font-weight:600}
+.reqcard a,.booker a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
 .reqlist{margin:0;padding-left:18px;display:grid;gap:4px}
-.rqwarn{color:var(--rust-hi);font-weight:700;font-size:13px}
+.rqwarn{color:var(--rust-hi);font-weight:700;font-size:.9375rem}
 .myreqs{display:grid;border-top:1px solid var(--line)}
 .myreq{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;padding:10px 0;border-bottom:1px solid var(--line)}
 .myreq>div{flex:1 1 170px;min-width:0;font-weight:600}
 .myreq .rq{flex:none;color:var(--straw)}
 .myreq .rq.approved{color:var(--bone);font-weight:700}
 .myreq .rq.declined,.myreq .rq.gone{color:var(--rust-hi);font-weight:700}
-.answered summary{cursor:pointer;color:var(--straw);font-weight:600;font-size:14px;padding:6px 0}
+.answered summary{cursor:pointer;color:var(--straw);font-weight:600;font-size:1rem;padding:6px 0}
 .answered[open] summary{margin-bottom:8px}
 .hedit{grid-column:1/-1;display:grid;gap:10px;background:var(--reed2);padding:12px;border-radius:4px}
-.fieldname{font-weight:600;font-size:14px}
+.fieldname{font-weight:600;font-size:1rem}
 .seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--line);border-radius:4px;overflow:hidden}
-.seg button{min-height:44px;font-weight:600;font-size:14px;color:var(--straw);border-right:1px solid var(--line);padding:0 4px}
+.seg button{min-height:44px;font-weight:600;font-size:min(1rem,4.1vw);color:var(--straw);border-right:1px solid var(--line);padding:0 4px}
+.seg:not(:has(button:nth-child(4))) button{font-size:min(1rem,5.4vw)} /* Two or three choices have room for bigger words. */
 .seg button:last-child{border-right:0}
 .seg button:focus-visible{outline-offset:-3px}
 .seg button[aria-pressed=true]{background:var(--bone);color:var(--mud);font-weight:700}
@@ -837,39 +842,53 @@ nav.tabs button[aria-current=page]{color:var(--bone);border-top-color:var(--blaz
 .bignum.none{font-size:52px;line-height:1;color:var(--straw)}
 .bignum.many{font-size:clamp(52px,17vw,88px);flex-wrap:wrap;row-gap:4px}
 .blindhead{padding-top:12px;border-top:1px solid var(--line)}
-.blindname{font:700 20px/1.2 var(--display);text-transform:uppercase;letter-spacing:.02em;margin-top:6px;overflow-wrap:anywhere}
-.bname{font-size:13px;font-weight:700;color:var(--straw);margin-bottom:4px;overflow-wrap:anywhere}
+.notice{display:grid;gap:4px;padding:12px 14px;border:1px solid var(--blaze);border-left-width:4px;border-radius:10px;background:rgba(255,120,30,.08)}
+.notice .k{font-size:.875rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--blaze-text)}
+.notice p{font-weight:600;white-space:pre-line;overflow-wrap:anywhere}
+.wx{display:grid;gap:8px;margin-bottom:6px}
+.wxhead{font-size:.875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--straw)}
+.wxrow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px}
+.wxt{display:grid;gap:2px;align-content:start;padding:10px 10px 9px;border:1px solid var(--line);border-radius:10px;min-width:0}
+.wxt .k{font-size:.875rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--straw)}
+.wxt b{font:900 clamp(22px,7.5vw,30px)/1 var(--display)}
+.wxt .s{font-size:.875rem;line-height:1.25;overflow-wrap:anywhere}
+.heads{font-weight:700;color:var(--bone)}
+.gname .heads{margin-left:2px}
+.chip.guest{border-style:dashed;font-weight:500}
+.guestrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.blindname{font:700 max(20px,1.2rem)/1.2 var(--display);text-transform:uppercase;letter-spacing:.02em;margin-top:6px;overflow-wrap:anywhere}
+.bname{font-size:.9375rem;font-weight:700;color:var(--straw);margin-bottom:4px;overflow-wrap:anywhere}
 .datenav{display:grid;grid-template-columns:46px 1fr 46px;align-items:center;gap:6px;text-align:center}
 .datenav button{height:46px;border:1px solid var(--line);border-radius:4px;font-size:20px;font-weight:700;background:var(--reed2)}
 .datenav button:disabled{opacity:.35;cursor:default}
-.datenav b{font:800 22px/1.05 var(--display);text-transform:uppercase}
-.blind{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.datenav b{font:800 max(22px,1.3rem)/1.05 var(--display);text-transform:uppercase}
+.blind{display:grid;grid-template-columns:minmax(44px,auto) minmax(0,1fr) 44px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
 .blind .n{font:900 32px/1 var(--display);text-align:center;font-variant-numeric:tabular-nums}
-.blind .cap{display:block;font:600 12px/1 var(--body);color:var(--straw);margin-top:3px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.blind .cap{display:block;font:600 .875rem/1 var(--body);color:var(--straw);margin-top:3px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .blind .cap.over{color:var(--rust-hi)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
-.chip{min-height:40px;padding:4px 10px;border-radius:3px;background:var(--reed2);border:1px solid var(--line);font-weight:600;font-size:14px;text-align:left;overflow-wrap:anywhere}
-.chip.today{border-color:var(--blaze);color:var(--blaze)}
+.chip{min-height:44px;padding:4px 10px;border-radius:3px;background:var(--reed2);border:1px solid var(--line);font-weight:600;font-size:1rem;text-align:left;overflow-wrap:anywhere}
+.chip.today{border-color:var(--blaze);color:var(--blaze-text)}
 .chip.ex{border-style:dashed}
 .groups{display:grid;gap:10px;min-width:0}
 .grp{display:grid;gap:4px;min-width:0}
-.gname{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--straw);overflow-wrap:anywhere}
+.gname{font-size:.875rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--straw);overflow-wrap:anywhere}
 .gname.over{color:var(--rust-hi)}
-.gtag{display:block;font-size:12px;font-weight:600;color:var(--straw)}
-.empty{color:var(--dim);font-size:14px}
+.gtag{display:block;font-size:.875rem;font-weight:600;color:var(--straw)}
+.empty{color:var(--dim);font-size:1rem}
 .plus{width:44px;height:44px;border:1px solid var(--line);border-radius:4px;font-size:24px;font-weight:600;background:var(--reed2)}
 .stepper{display:inline-flex;align-items:center;gap:10px}
 .stepper button{width:44px;height:44px;border:1px solid var(--line);border-radius:4px;font-size:20px;font-weight:700;background:var(--reed2)}
 .stepper b{font:800 24px/1 var(--display);min-width:28px;text-align:center}
 .who{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;min-height:50px;padding:8px 2px;border-bottom:1px solid var(--line);text-align:left;font-weight:600}
 .who>span:first-child{min-width:0;overflow-wrap:anywhere}
-.who>span:last-child{font-weight:500;font-size:14px;color:var(--straw);white-space:nowrap}
-.who[aria-pressed=true]>span:last-child{color:var(--blaze);font-weight:700}
+.who>span:last-child{font-weight:500;font-size:1rem;color:var(--straw);white-space:nowrap}
+.who[aria-pressed=true]>span:last-child{color:var(--blaze-text);font-weight:700}
 .code{font:800 26px/1.1 var(--display);letter-spacing:.04em;overflow-wrap:anywhere;user-select:all}
 .price{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:8px 0;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
 .price b{font-weight:600}
 .price em{font-style:normal;font-weight:700}
-.price span{grid-column:1/-1;color:var(--straw);font-size:14px}
+.price span{grid-column:1/-1;color:var(--straw);font-size:1rem}
 
 /* Finding a blind */
 .finder{display:grid;gap:8px;justify-items:center;text-align:center;background:var(--reed2);border-radius:4px;padding:14px}
@@ -882,17 +901,17 @@ nav.tabs button[aria-current=page]{color:var(--bone);border-top-color:var(--blaz
 .mapinfo{display:grid;gap:6px;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:var(--reed);border-top:1px solid var(--line)}
 .mapinfo .dist{font-size:clamp(19px,6vw,26px);line-height:1.1}
 .mapinfo .row{flex-wrap:nowrap;gap:8px}
-.mapinfo .btn{min-height:44px;padding:0 10px;font-size:15px}
+.mapinfo .btn{min-height:44px;padding:0 10px;font-size:1.0625rem}
 .mapinfo p:empty{display:none}
 .mpin{width:34px;height:34px;border-radius:50%;background:var(--blaze);color:var(--blaze-ink);border:3px solid #fff;display:grid;place-items:center;font:900 17px/1 var(--display);box-shadow:0 2px 6px rgba(0,0,0,.55)}
-.mtruck{height:26px;padding:0 8px;border-radius:13px;background:var(--bone);color:var(--mud);border:2px solid var(--mud);display:grid;place-items:center;font:700 12px/1 var(--body);white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.55)}
+.mtruck{height:28px;padding:0 9px;border-radius:14px;background:var(--bone);color:var(--mud);border:2px solid var(--mud);display:grid;place-items:center;font:700 14px/1 var(--body);white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.55)}
 .mme{position:relative;width:80px;height:80px}
-.marea{position:absolute;transform:translate(-50%,-50%);padding:2px 8px;border-radius:10px;background:rgba(14,18,9,.62);color:#fff;font:700 12px/1.3 var(--body);white-space:nowrap;pointer-events:none}
+.marea{position:absolute;transform:translate(-50%,-50%);padding:2px 8px;border-radius:10px;background:rgba(14,18,9,.62);color:#fff;font:700 14px/1.3 var(--body);white-space:nowrap;pointer-events:none}
 .mpark{position:absolute;display:flex;align-items:center;gap:5px;transform:translate(-16px,-16px);white-space:nowrap}
 .mpark b{width:32px;height:32px;border-radius:7px;background:#1f5fbf;color:#fff;border:3px solid #fff;display:grid;place-items:center;font:900 18px/1 var(--body);box-shadow:0 2px 6px rgba(0,0,0,.55)}
-.mpark span,.mspot{padding:2px 7px;border-radius:9px;background:rgba(14,18,9,.78);color:#fff;font:700 12px/1.3 var(--body)}
+.mpark span,.mspot{padding:2px 7px;border-radius:9px;background:rgba(14,18,9,.78);color:#fff;font:700 14px/1.3 var(--body)}
 .mspot{position:absolute;transform:translate(-50%,-50%);border:2px solid #fff;white-space:nowrap}
-.leaflet-popup-content{font:600 14px/1.4 var(--body);margin:10px 14px}
+.leaflet-popup-content{font:600 16px/1.4 var(--body);margin:10px 14px}
 .leaflet-popup-content a{font-weight:700}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .mme b{position:absolute;left:29px;top:29px;width:22px;height:22px;border-radius:50%;background:#4C9BFF;border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.4),0 2px 6px rgba(0,0,0,.5)}
@@ -902,16 +921,16 @@ nav.tabs button[aria-current=page]{color:var(--bone);border-top-color:var(--blaz
 .leaflet-touch .leaflet-bar{border:1px solid var(--line)}
 .leaflet-control-attribution{background:rgba(14,18,9,.7)!important;color:var(--straw)!important;font-size:11px}
 .spot{display:grid;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}
-.warn{color:var(--blaze);font-size:14px;font-weight:600}
+.warn{color:var(--blaze-text);font-size:1rem;font-weight:600}
 @media (prefers-reduced-motion:reduce){.arrow{transition:none}}
 
 /* Phones set to a large display size can be under 340 points wide. */
 @media (max-width:339px){
-  .marks{font-size:10px;gap:1px}
+  .marks{gap:1px}
   .marks i{padding:0 1px}
-  .d{font-size:14px;gap:1px}
+  .d{gap:1px}
   .grid{gap:3px}
-  .seg button{font-size:13px;padding:0 2px}
+  .seg button{padding:0 2px}
   .mark{font-size:22px}
   .opener b{font-size:36px}
   h1{font-size:30px}
@@ -925,11 +944,15 @@ nav.tabs button[aria-current=page]{color:var(--bone);border-top-color:var(--blaz
 .pick-blinds{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 .pick-blinds button{min-height:56px;border:1px solid var(--line);border-radius:4px;background:var(--reed2);display:grid;place-content:center;gap:2px}
 .pick-blinds b{font:900 24px/1 var(--display)}
-.pick-blinds small{font-size:11px;color:var(--straw);font-variant-numeric:tabular-nums}
+.pick-blinds small{font-size:.8125rem;color:var(--straw);font-variant-numeric:tabular-nums}
 .pick-blinds button[aria-pressed=true]{background:var(--blaze);color:var(--blaze-ink);border-color:var(--blaze)}
 .pick-blinds button[aria-pressed=true] small{color:var(--blaze-ink)}
-.toast{position:fixed;left:50%;transform:translateX(-50%);width:max-content;top:calc(72px + env(safe-area-inset-top,0px));z-index:30;background:var(--bone);color:var(--mud);font-weight:600;font-size:14px;padding:9px 14px;border-radius:4px;max-width:calc(100% - 32px);text-align:center}
-.toast button{text-decoration:underline;font-weight:700;min-height:28px;margin-left:4px}
+.textsize{display:grid;gap:6px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);width:max-content;top:calc(6px + env(safe-area-inset-top,0px));z-index:30;background:var(--bone);color:var(--mud);font-weight:600;font-size:1rem;padding:10px 14px;border-radius:4px;max-width:min(calc(100% - 24px),496px);text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.6)}
+/* A short message sits over the app's name for a few seconds, where it can't cover a button someone needs.
+   "Not saved yet" stays until it's saved, so it gets a strip of its own above the tabs. */
+.toast.stuck{top:auto;bottom:calc(60px + env(safe-area-inset-bottom,0px));left:0;right:0;transform:none;width:auto;max-width:none;border-radius:0;z-index:8;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2px 10px;padding:6px 16px;box-shadow:none}
+.toast button{font-weight:700;min-height:44px;padding:0 14px;border:2px solid var(--mud);border-radius:4px}
 @media (prefers-reduced-motion:no-preference){.sheet:not(.noanim){animation:up .16s ease-out}@keyframes up{from{transform:translateY(24px);opacity:.6}}}
 </style>
 
@@ -946,7 +969,7 @@ const SITE='https://theroostholeguideservice.com';
 const OWNER_ACCOUNT='owner@theroostholeguideservice.com'; // Owners never see this. They only type the owner code, which is this account's password.
 const HOSTED=!!window.ROOST_HOSTED, CONFIG=window.ROOST_CONFIG||{};
 const ON_SITE=HOSTED&&location.protocol==='https:'; // On the real website, not a copy opened on a computer.
-const VERSION='4.3';
+const VERSION='4.7';
 
 /* Kinds of hunts. A hunt's hour is when a same-day hunt stops being offered to customers. */
 const TIMES={Morning:5,Midday:10,Afternoon:13};
@@ -1027,7 +1050,12 @@ const whenText=ms=>ms?new Date(ms).toLocaleString('en-US',{month:'short',day:'nu
 
 /* Saved data shapes. Anything missing or left over from an earlier version gets cleaned up here. */
 const SAFE_ID=/^[\w-]+$/;
-const emptyClub=()=>({blinds:DEFAULT_BLINDS,members:[],season:{},days:{},spots:{},groups:{},marks:[],names:{}});
+const emptyClub=()=>({blinds:DEFAULT_BLINDS,members:[],season:{},days:{},spots:{},groups:{},marks:[],names:{},notice:{text:'',at:0}});
+const MAX_NOTICE=200;
+function cleanNotice(n){ // The owner's announcement to members. One at a time, with when it was posted.
+  const text=n&&typeof n.text==='string'?n.text.replace(/[ \t]+/g,' ').replace(/\s*\n\s*/g,'\n').trim().slice(0,MAX_NOTICE):'';
+  return {text,at:text?Number(n.at)||0:0};
+}
 function cleanNames(names){ // What each blind is called, like "Diver hole". Blind number to name.
   const out={};
   for(const[n,v]of Object.entries(names||{})){const name=cleanGroup(v);if(/^[1-9]\d?$/.test(n)&&name)out[n]=name}
@@ -1084,7 +1112,7 @@ function normalizeClub(c){
   c=c||{};
   const members=(Array.isArray(c.members)?c.members:[]).filter(m=>m&&SAFE_ID.test(m.id)&&typeof m.name==='string');
   const {season,days}=cleanBlinds(c.season,c.days);
-  return {blinds:Number(c.blinds)||DEFAULT_BLINDS,members,season,days,spots:cleanSpots(c.spots),groups:cleanGroups(c.groups,members),marks:cleanMarks(c.marks),names:cleanNames(c.names)};
+  return {blinds:Number(c.blinds)||DEFAULT_BLINDS,members,season,days,spots:cleanSpots(c.spots),groups:cleanGroups(c.groups,members),marks:cleanMarks(c.marks),names:cleanNames(c.names),notice:cleanNotice(c.notice)};
 }
 function cleanHunts(list){
   return (Array.isArray(list)?list:[]).filter(h=>h&&SAFE_ID.test(h.id)&&SPECIES[h.species])
@@ -1278,7 +1306,8 @@ const S={
   owner:false, huntView:'manage', ownerView:'blinds', scope:'season',
   loaded:false, busy:null, joinErr:'', signInOpen:false, signInErr:'', confirm:null,
   installHidden:LS.get('installHidden',false),
-  requests:LS.get('cache:requests',[]), reqErr:'', mine:LS.get('myRequests',[])
+  requests:LS.get('cache:requests',[]), reqErr:'', mine:LS.get('myRequests',[]),
+  guests:LS.get('cache:guests',{}), guestErr:'', wx:LS.get('cache:wx',null)
 };
 const managing=()=>S.owner&&S.huntView==='manage';
 const newRequests=()=>S.owner?S.requests.filter(r=>r.status==='new'&&r.hunts.some(h=>h.d>=today())).length:0;
@@ -1379,6 +1408,84 @@ function groupsIn(list){ // Hunters on one blind, split into their groups. Hunte
   return out;
 }
 const seatsFor=parts=>CAPACITY*Math.max(1,parts.length);
+
+/* Guests: extra names a member adds to their own group, like a buddy they're bringing. Members can't change the club
+   itself, so guests are kept in a record of their own that anyone with the club code can add to. It's member id to names. */
+const MAX_GUESTS=5;
+function cleanGuests(raw){
+  const out={};
+  for(const[id,list]of Object.entries((raw&&raw.by)||{})){
+    if(!SAFE_ID.test(id)||!Array.isArray(list))continue;
+    const names=[];
+    for(const v of list){const n=cleanGroup(v);if(n&&names.length<MAX_GUESTS&&!names.some(x=>x.toLowerCase()===n.toLowerCase()))names.push(n)}
+    if(names.length)out[id]=names;
+  }
+  return out;
+}
+const guestsOf=id=>(S.guests&&S.guests[id])||[];
+const headCount=list=>list.reduce((n,m)=>n+1+guestsOf(m.id).length,0); // Hunters and the guests they're bringing.
+const hunters=k=>`${k} hunter${k===1?'':'s'}`;
+function applyGuestOp(by,op){ // One change: add a name under a member, or take it off. Doing it twice changes nothing more.
+  const cur=(by[op.id]||[]).filter(x=>x.toLowerCase()!==op.name.toLowerCase());
+  if(op.t==='add'&&cur.length<MAX_GUESTS)cur.push(op.name);
+  const out={...by};
+  if(cur.length)out[op.id]=cur;else delete out[op.id];
+  return out;
+}
+let sendingGuests=false;
+async function sendGuestOps(){ // One change at a time: read what's there, make the change, save only if nobody else saved in between.
+  if(sendingGuests||!store)return;
+  sendingGuests=true;
+  let sent=0;
+  try{
+    for(let guard=0;guard<200;guard++){
+      const op=LS.get('guestOut',[])[0];
+      if(!op)break;
+      let done=false;
+      for(let tries=0;tries<4&&!done;tries++){
+        const path='guests/'+op.code, raw=await timed(store.get(path)), next={by:applyGuestOp(cleanGuests(raw),op)};
+        try{if(raw)await timed(store.set(path,next,true));else await timed(store.add(path,next));done=true}
+        catch(e){if(!e.conflict)throw e}
+      }
+      if(!done)break;
+      LS.set('guestOut',LS.get('guestOut',[]).slice(1));
+      sent++;
+    }
+    if(sent)S.guestErr=''; // With nothing to send, what the last read found out still stands.
+  }catch(e){S.guestErr=e.status===403?'rules':'signal'}
+  finally{sendingGuests=false}
+}
+async function refreshGuests(){
+  if(!store||!S.code)return;
+  try{
+    let by=cleanGuests(await timed(store.get('guests/'+S.code)));
+    for(const op of LS.get('guestOut',[]))if(op.code===S.code)by=applyGuestOp(by,op); // Changes from this phone that haven't sent yet.
+    S.guests=by;
+    LS.set('cache:guests',by);
+    if(S.guestErr==='rules')S.guestErr='';
+  }catch(e){if(e.status===403)S.guestErr='rules'}
+}
+async function changeGuests(op){ // Shows right away, then saves. If the app's rules don't allow it yet, it's put back and says so.
+  const before=S.guests;
+  S.guests=applyGuestOp(S.guests,op);
+  LS.set('cache:guests',S.guests);
+  LS.set('guestOut',[...LS.get('guestOut',[]),{...op,code:S.code}]);
+  render();
+  await sendGuestOps();
+  if(S.guestErr==='rules'){
+    S.guests=before;
+    LS.set('cache:guests',before);
+    LS.set('guestOut',[]);
+    const why='Adding names isn\'t turned on yet. Text Jonathon.';
+    if(sheet&&(sheet.type==='guests'||sheet.type==='guest')){sheet.msg=why;sheet.msgWarn=true}else toast(why);
+  }else if(S.guestErr==='signal')toast('Saved on this phone. It sends when you have signal.');
+}
+function myParty(n){ // The group the member on this phone sits with on blind n, the day they're looking at.
+  const me=S.club.members.find(m=>m.id===S.memberId);
+  if(!me)return null;
+  const parts=groupsIn(onBlind(n,S.memberDay));
+  return {me,parts,mine:parts.find(g=>g.members.some(x=>x.id===me.id))||{name:'',members:[me]}};
+}
 const inGroup=(m,g)=>groupOf(m.id).toLowerCase()===g.toLowerCase();
 function setGroup(id,name){
   const c=S.club, g=cleanGroup(name), known=groupNames().find(x=>x.toLowerCase()===g.toLowerCase());
@@ -1448,13 +1555,14 @@ function mergeClub(b,m,t){
   const groups=keepKnown(mergeMaps(b.groups,m.groups,t.groups));
   const marks=mergeList(b.marks||[],m.marks||[],t.marks||[]); // Each field or spot is added, changed or removed whole.
   const names=mergeMaps(b.names||{},m.names||{},t.names||{});
-  return {blinds:Math.max(pick(b.blinds,m.blinds,t.blinds),highest),members,season,days,spots,groups,marks,names};
+  const notice=pick(b.notice||{text:'',at:0},m.notice||{text:'',at:0},t.notice||{text:'',at:0});
+  return {blinds:Math.max(pick(b.blinds,m.blinds,t.blinds),highest),members,season,days,spots,groups,marks,names,notice};
 }
 const bases={pub:LS.get('base:pub'),club:LS.get('base:club')};
 function keepNewer(raw){ // A phone still on an older version saves the club without blind locations, groups, or fields and parking. This puts them back.
   if(!raw||!bases.club||!store.isOwner())return false;
   let healed=false;
-  for(const k of ['spots','groups','marks','names']){
+  for(const k of ['spots','groups','marks','names','notice']){
     const had=bases.club[k];
     if(!(k in raw)&&had&&Object.keys(had).length){raw[k]=had;healed=true}
   }
@@ -1644,6 +1752,52 @@ function spotActions(n,showNote=true){ // What a member or owner can do with a b
   </div>`;
 }
 
+/* ---------- Weather ----------
+   The National Weather Service's free forecast for the home farm, where most of the blinds are (rounded off, about
+   15 miles west of Stuttgart). Weather only: no shooting hours, sunrise or sunset, because those have to come from
+   Arkansas Game and Fish. */
+const WX={lat:34.43,lng:-91.79}, WX_KEY=WX.lat+','+WX.lng;
+const arkansasHour=ms=>Number(new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'numeric',hourCycle:'h23'}).format(ms));
+const arkansasDay=ms=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).format(ms);
+let wxBusy=false;
+async function refreshWeather(){ // At most every half hour. Any trouble just leaves the last forecast showing.
+  if(wxBusy||!HOSTED||(S.wx&&S.wx.p===WX_KEY&&Date.now()-S.wx.at<30*60e3))return;
+  wxBusy=true;
+  try{
+    const kept=LS.get('wxUrl');
+    let url=kept&&kept.p===WX_KEY?kept.url:''; // Looked up again if the spot ever changes.
+    if(!url){
+      const r=await timed(fetch(`https://api.weather.gov/points/${WX.lat},${WX.lng}`));
+      if(!r.ok)throw new Error('wx');
+      url=((await r.json()).properties||{}).forecastHourly;
+      if(!/^https:\/\/api\.weather\.gov\//.test(url||''))throw new Error('wx');
+      LS.set('wxUrl',{p:WX_KEY,url});
+    }
+    const r=await timed(fetch(url));
+    if(!r.ok){if(r.status===404)LS.set('wxUrl',null);throw new Error('wx')}
+    const hours=((((await r.json()).properties||{}).periods)||[]).map(p=>({t:Date.parse(p.startTime),temp:Number(p.temperature),wind:String(p.windSpeed||''),dir:String(p.windDirection||''),sky:String(p.shortForecast||''),rain:Number(p.probabilityOfPrecipitation&&p.probabilityOfPrecipitation.value)||0}))
+      .filter(h=>Number.isFinite(h.t)&&Number.isFinite(h.temp)).slice(0,72);
+    if(!hours.length)throw new Error('wx');
+    S.wx={at:Date.now(),p:WX_KEY,hours};
+    LS.set('cache:wx',S.wx);
+    render();
+  }catch(e){}
+  finally{wxBusy=false}
+}
+function weatherBlock(){ // Nothing shows until there's a forecast.
+  const now=Date.now(), hours=S.wx&&S.wx.p===WX_KEY&&Array.isArray(S.wx.hours)?S.wx.hours:[];
+  const cur=hours.find(h=>now>=h.t&&now<h.t+36e5);
+  if(!cur)return '';
+  const early=hours.find(h=>h.t>now&&arkansasHour(h.t)===6), when=early&&(arkansasDay(early.t)===today()?'This morning':'Tomorrow');
+  const mph=h=>(String(h.wind).match(/(\d+)(?!.*\d)/)||['',''])[1];
+  const tile=(k,b,sub)=>`<div class="wxt"><span class="k">${k}</span><b>${b}</b><span class="s">${sub}</span></div>`;
+  return `<section class="wx" aria-label="Weather at the farm">
+    <p class="wxhead">Weather at the farm</p>
+    <div class="wxrow">${tile('Now',`${Math.round(cur.temp)}&deg;`,esc(cur.sky))}${tile('Wind',`${esc(cur.dir)} ${esc(mph(cur))}`.trim()||'Calm','mph')}${tile('Rain',`${Math.round(cur.rain)}%`,'chance')}</div>
+    ${early?`<p class="small mute">${when} at 6 AM: ${Math.round(early.temp)}&deg;, wind ${esc(early.dir)} ${esc(early.wind)}, ${Math.round(early.rain)}% chance of rain.</p>`:''}
+  </section>`;
+}
+
 /* ---------- Fields and parking ---------- */
 const gpxColor=s=>{ // Some mapping apps write colors like rgba(255, 51, 0, 1).
   const m=/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i.exec(s||''), h=/#([0-9a-f]{6})\b/i.exec(s||'');
@@ -1814,7 +1968,7 @@ function mapView(){ // Sits outside the screen that redraws, so the map isn't re
   v=document.createElement('div');
   v.id='mapview';v.className='mapview';v.hidden=true;
   v.setAttribute('role','dialog');v.setAttribute('aria-modal','true');v.setAttribute('aria-labelledby','maptitle');
-  v.innerHTML=`<div class="mapbar"><h2 id="maptitle"></h2><button class="link" data-a="closeSheet">Close</button></div>
+  v.innerHTML=`<div class="mapbar"><h2 id="maptitle"></h2><button class="closer" data-a="closeSheet">Close</button></div>
     <div class="mapbox" id="mapbox"></div>
     <div class="mapinfo"><div class="dist" id="mapdist" aria-live="polite"></div><p class="small mute" id="mapnote"></p>
       <div class="row"><button class="btn grow" data-a="mapMe">Center on me</button><button class="btn grow" data-a="mapFit" id="mapfit"></button></div>
@@ -2074,10 +2228,11 @@ function toast(msg,{retry=false,quiet=false}={}){
   if(quiet&&Date.now()<toastUntil)return;
   const el=document.getElementById('live');
   el.hidden=false;
-  el.innerHTML=esc(msg)+(retry?' <button data-a="retry">Try now</button>':'');
+  el.classList.toggle('stuck',retry);
+  el.innerHTML=`<span>${esc(msg)}</span>`+(retry?' <button data-a="retry">Try now</button>':'');
   clearTimeout(toastT);
   if(retry){toastUntil=Infinity;return}
-  const ms=Math.max(1800,msg.length*55);
+  const ms=Math.min(12000,Math.max(4000,msg.length*90)); // Long enough to read without hurrying. A tap puts it away sooner.
   toastUntil=quiet?0:Date.now()+ms;
   toastT=setTimeout(()=>{el.hidden=true;toastUntil=0},ms);
 }
@@ -2212,6 +2367,8 @@ async function refreshClub(){
 function forgetClub(){
   S.code=null;
   S.club=null;
+  S.guests={};
+  LS.set('cache:guests',null);
   LS.set('code',null);
   LS.set('cache:club',null);
   setMember(null);
@@ -2247,14 +2404,17 @@ async function refreshAll(quiet){
   flush();
   if(S.memberDay<today())S.memberDay=nextDuckDay();
   const club=S.owner&&(!S.code||!S.club)?loadOwner().catch(()=>{S.clubStale=true}):refreshClub();
-  await Promise.all([refreshPublic(),club,refreshRequests(quiet===true),refreshMine()]);
+  await Promise.all([refreshPublic(),club.then(refreshGuests),refreshRequests(quiet===true),refreshMine()]);
   sendDecisions();
+  sendGuestOps();
+  refreshWeather();
   S.loaded=true;
   signInEnded(); // A read can find out the sign-in ended. Say so now, not at the next save.
   render();
   saveMyArea();
 }
 async function boot(){
+  fitText();
   render();
   store=await pickStore();
   render();
@@ -2263,15 +2423,23 @@ async function boot(){
   const club=S.owner
     ?loadOwner().catch(()=>{S.clubStale=true})
     :refreshClub();
-  await Promise.all([refreshPublic(),club,refreshRequests(),refreshMine()]);
+  refreshWeather();
+  await Promise.all([refreshPublic(),club.then(refreshGuests),refreshRequests(),refreshMine()]);
+  sendGuestOps();
   S.loaded=true;
   signInEnded();
   render();
   flush();
   sendDecisions();
   saveMyArea();
+  document.getElementById('live').addEventListener('click',e=>{ // Tap a message to put it away.
+    if(e.target.closest('button')||toastUntil===Infinity)return;
+    clearTimeout(toastT);e.currentTarget.hidden=true;toastUntil=0;
+  });
+  addEventListener('resize',fitText);
   document.addEventListener('visibilitychange',()=>{
     if(document.hidden)return;
+    fitText();
     keepAwake();
     refreshAll();
   });
@@ -2362,9 +2530,10 @@ function seasonDates(){
   return `<section class="splits" aria-label="Season dates">${early}${splits}</section>`;
 }
 function contactBlock(){
-  return `<section class="stack"><h2>Call or text Jonathon</h2><p style="font-size:22px;font-weight:700;user-select:all">${PHONE_TXT}</p>
+  return `<section class="stack"><h2>Call or text Jonathon</h2><p style="font-size:max(22px,1.4rem);font-weight:700;user-select:all">${PHONE_TXT}</p>
     <div class="row"><a class="btn grow" href="tel:${PHONE}">Call</a><a class="btn grow" href="sms:${PHONE}">Text</a></div>
-    <p class="small mute">Bring your Arkansas license, HIP registration, and state and federal duck stamps. Decoys, blinds, and calling are on us. <a href="${SITE}">Full details</a></p>
+    <p class="small mute">Bring your Arkansas license, HIP registration, and state and federal duck stamps. Decoys, blinds, and calling are on us.</p>
+    <a class="link" href="${SITE}" style="justify-self:start">Full details on the website</a>
     ${HOSTED&&!standalone()?'<button class="link" data-a="install" style="justify-self:start">Put this app on your phone</button>':''}
     <p class="small" style="color:var(--dim)">App version ${VERSION}</p>
   </section>`;
@@ -2452,7 +2621,7 @@ function requestCard(r){
   }).join('');
   const who=esc(firstName(r.name));
   return `<div class="panel reqcard">
-    <div class="row between"><b style="font-size:18px">${esc(r.name)}</b><span class="small mute">${r.hunters} hunter${r.hunters>1?'s':''}</span></div>
+    <div class="row between"><b style="font-size:1.25rem">${esc(r.name)}</b><span class="small mute">${r.hunters} hunter${r.hunters>1?'s':''}</span></div>
     <div class="row" style="gap:16px"><a href="tel:${esc(phoneDigits(r.phone))}">${esc(r.phone)}</a><a href="${smsTo(phoneDigits(r.phone),'')}">Text ${who}</a></div>
     <ul class="reqlist">${rows}</ul>
     ${r.status==='new'
@@ -2509,7 +2678,7 @@ function whoView(){
   const head=S.owner
     ?`<div class="stack"><h2>Pick a member</h2><p class="mute">See the app the way they see it.</p></div>`
     :`<div class="stack"><h1>Which one are you?</h1><p class="mute">Tap your name once. This phone remembers it.</p></div>`;
-  return `${head}
+  return `${S.owner?'':noticeBlock()}${head}
   ${c.members.length?`<div>${c.members.map(m=>`<button class="who" data-a="iAm" data-v="${esc(m.id)}"><span>${esc(m.name)}</span><span></span></button>`).join('')}</div>`
     :`<p class="mute">${S.owner?'Add your members first.':`The member list isn't in yet. Check back soon, or text Jonathon at ${PHONE_TXT}.`}</p>`}
   ${S.owner?'':`<button class="link" data-a="leave" style="justify-self:start">Use a different club code</button>`}
@@ -2525,20 +2694,27 @@ function memberView(){
   const company=n=>{ // Who else is on blind n. When a blind holds more than one group, each member sees theirs first.
     const parts=groupsIn(onBlind(n,day)), mine=parts.find(g=>g.members.some(x=>x.id===me.id))||{name:'',members:[me]};
     const others=parts.filter(g=>g!==mine), mates=mine.members.filter(m=>m.id!==me.id);
-    return mine.name||others.length
-      ?`<div><p class="mute small">${mine.name?'Your group: '+esc(mine.name):'With you'}</p><p style="font-weight:600">${names(mates)}</p></div>
-        ${others.map(g=>`<div><p class="mute small">Also in Blind ${n}${g.name?': '+esc(g.name):''}</p><p style="font-weight:600">${names(g.members)}</p></div>`).join('')}`
-      :`<div><p class="mute small">In the blind with you</p><p style="font-weight:600">${names(mates)}</p></div>`;
+    const crew=(list,skip)=>{ // Everyone in a group but the member, each followed by the guests they're bringing.
+      const out=[];
+      for(const m of list){if(m!==skip)out.push(esc(m.name));for(const g of guestsOf(m.id))out.push(`${esc(g)} <span class="mute small">(guest)</span>`)}
+      return out.length?out.join(', '):'Nobody else yet';
+    };
+    const add=`<button class="btn wide" data-a="openGuests" data-v="${n}">${headCount(mine.members)>mine.members.length?'Change the names in your group':'Add a name to your group'}</button>`;
+    return (mine.name||others.length
+      ?`<div><p class="mute small">${mine.name?'Your group: '+esc(mine.name):'With you'} <span class="heads">${hunters(headCount(mine.members))}</span></p><p style="font-weight:600">${crew(mine.members,me)}</p></div>
+        ${others.map(g=>`<div><p class="mute small">Also in Blind ${n}${g.name?': '+esc(g.name):''} <span class="heads">${hunters(headCount(g.members))}</span></p><p style="font-weight:600">${crew(g.members)}</p></div>`).join('')}`
+      :`<div><p class="mute small">In the blind with you <span class="heads">${hunters(headCount(mine.members))}</span></p><p style="font-weight:600">${crew(mine.members,me)}</p></div>`)+add;
   };
   const seasonText=home.length>1?`Your season blinds are ${home.slice(0,-1).join(', ')} and ${home[home.length-1]}`:`Your season blind is ${home.length?'Blind '+home[0]:'not set yet'}`;
   const blindBlock=mineAll.length
     ?`<div><p class="mute small">${many?'Your blinds':'Your blind'}</p><div class="bignum${many?' many':''}"><span class="unit">${many?'Blinds':'Blind'}</span> ${many?mineAll.slice(0,-1).join(', ')+' &amp; '+mineAll[mineAll.length-1]:mineAll[0]}</div>${!many&&blindName(mineAll[0])?`<p class="blindname">${esc(blindName(mineAll[0]))}</p>`:''}</div>
-      ${o!==undefined?`<p class="small" style="color:var(--blaze);font-weight:600">This day only. ${seasonText}.</p>`:''}
+      ${o!==undefined?`<p class="small" style="color:var(--blaze-text);font-weight:600">This day only. ${seasonText}.</p>`:''}
       ${mineAll.map(n=>`${many?`<h3 class="blindhead">Blind ${n}${blindName(n)?` <span class="mute">${esc(blindName(n))}</span>`:''}</h3>`:''}${company(n)}${spotActions(n)}`).join('')}`
     :o===0
       ?`<div class="bignum none">Off this day</div><p class="mute small">Text Jonathon with any questions.</p>`
       :`<div class="bignum none">No blind yet</div><p class="mute small">Jonathon will post it here. Text him with any questions.</p>`;
   return `
+  ${noticeBlock()}
   <div class="stack tight"><p class="mute">Good to see you</p><h1>${esc(me.name)}</h1></div>
   <div class="blindcard">
     <div class="datenav"><button data-a="memberDay" data-v="${duckDays[i-1]||''}" ${i<=0?'disabled':''} aria-label="Previous hunt day">&lsaquo;</button><b>${day==='season'?'This season':fmt(day,{weekday:'long',month:'short',day:'numeric'})}</b><button data-a="memberDay" data-v="${duckDays[i+1]||''}" ${i>=duckDays.length-1?'disabled':''} aria-label="Next hunt day">&rsaquo;</button></div>
@@ -2550,10 +2726,25 @@ function memberView(){
   <div class="row" style="gap:16px"><button class="link" data-a="switchMember">Not ${esc(me.name)}?</button>${S.owner?'':`<button class="link" data-a="leave">Leave club on this phone</button>`}</div>
   ${signInBlock()}`;
 }
+const noticeWhen=ms=>ms?new Date(ms).toLocaleString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'';
+function noticeBlock(){ // What members see at the top of Duck Club.
+  const n=S.club&&S.club.notice;
+  if(!n||!n.text)return '';
+  return `<div class="notice" role="note"><span class="k">From Jonathon${n.at?` &middot; ${noticeWhen(n.at)}`:''}</span><p>${esc(n.text)}</p></div>`;
+}
+function noticeForm(){ // Owners post it from the Blinds screen.
+  const n=S.club.notice;
+  return `<section class="panel" aria-labelledby="noticehead"><h3 id="noticehead">Announcement</h3>
+    <form class="stack" data-f="postNotice"><label for="noticetext" class="vh">Announcement to members</label><textarea id="noticetext" maxlength="${MAX_NOTICE}" placeholder="Example: Levee road is washed out. Park at the gate.">${esc(n.text)}</textarea>
+    <div class="row"><button class="btn primary grow">${n.text?'Post the change':'Post to members'}</button>${n.text?'<button type="button" class="btn grow" data-a="clearNotice">Take it down</button>':''}</div></form>
+    <p class="small mute">${n.text?`Up since ${noticeWhen(n.at)}. Members see it at the top of Duck Club until you take it down.`:'Members see it at the top of Duck Club until you take it down.'}</p>
+  </section>`;
+}
 function sampleNote(){
   if(!S.club.members.some(m=>m.sample))return '';
   return `<div class="note"><span>The dashed names are examples so you can see how it works. They aren't real members.</span><button class="btn sm" data-a="clearSamples">Remove the examples</button></div>`;
 }
+const guestChips=m=>guestsOf(m.id).map(g=>`<button class="chip guest" data-a="openGuest" data-v="${esc(m.id)}|${esc(g)}" aria-label="${esc(g)}, guest of ${esc(m.name)}">${esc(g)}</button>`).join('');
 function chip(m,n=0){ // A hunter on two blinds has a name tag on each, and tapping one changes only that blind.
   const diff=S.scope!=='season'&&override(m.id,S.scope)!==undefined;
   return `<button class="chip${diff?' today':''}${m.sample?' ex':''}" data-a="moveMember" data-v="${esc(m.id)}|${n}">${esc(m.name)}</button>`;
@@ -2564,17 +2755,19 @@ function blindsView(){
     `<optgroup label="${SPLIT_NAMES[i]||'Split '+(i+1)}">${duckDays.filter(d=>d>=f&&d<=t).map(d=>`<option value="${d}"${d===day?' selected':''}>${fmt(d)}${c.days[d]?' (changes)':''}</option>`).join('')}</optgroup>`).join('');
   let rows='', used=0;
   for(let n=1;n<=c.blinds;n++){
-    const on=onBlind(n,day), parts=groupsIn(on), over=parts.some(g=>g.members.length>CAPACITY);
-    const body=on.length&&(parts.length>1||parts[0].name) // Named groups get a heading each. A blind with no groups looks the way it always has.
-      ?`<div class="groups">${parts.map(g=>`<div class="grp"><span class="gname${g.members.length>CAPACITY?' over':''}">${g.name?esc(g.name):'No group'}</span><div class="chips">${g.members.map(m=>chip(m,n)).join('')}</div></div>`).join('')}</div>`
-      :`<div class="chips">${on.length?on.map(m=>chip(m,n)).join(''):'<span class="empty">Open</span>'}</div>`;
+    const on=onBlind(n,day), parts=groupsIn(on), over=parts.some(g=>headCount(g.members)>CAPACITY);
+    const body=on.length&&(parts.length>1||parts[0].name) // Named groups get a heading each, with how many are in it.
+      ?`<div class="groups">${parts.map(g=>`<div class="grp"><span class="gname${headCount(g.members)>CAPACITY?' over':''}">${g.name?esc(g.name):'No group'} <span class="heads">${headCount(g.members)}</span></span><div class="chips">${g.members.map(m=>chip(m,n)+guestChips(m)).join('')}</div></div>`).join('')}</div>`
+      :`<div class="chips">${on.length?on.map(m=>chip(m,n)+guestChips(m)).join(''):'<span class="empty">Open</span>'}</div>`;
     if(on.length)used++;
-    rows+=`<div class="blind"><div class="n">${n}${on.length?`<span class="cap${over?' over':''}">${on.length} of ${seatsFor(parts)}</span>`:''}</div>
+    rows+=`<div class="blind"><div class="n">${n}${on.length?`<span class="cap${over?' over':''}">${headCount(on)} of ${seatsFor(parts)}</span>`:''}</div>
       <div>${blindName(n)?`<div class="bname">${esc(blindName(n))}</div>`:''}${body}</div>
       <button class="plus" data-a="addTo" data-v="${n}" aria-label="Add hunters to blind ${n}">+</button></div>`;
   }
   return `
   ${sampleNote()}
+  ${noticeForm()}
+  ${S.guestErr==='rules'?'<p class="note">Members can\'t add guest names yet. This version needs the new security rules pasted into Firebase. See UPDATING in the setup notes.</p>':''}
   <label for="scope">Assigning for<select id="scope" data-c="scope">${opts}</select></label>
   <p class="small mute">${day==='season'?'Everyone stays on these blinds all season unless you change a single day.':`Changes here apply to ${fmt(day)} only. Orange names differ from their season blind.`}</p>
   ${c.members.length?'':`<div class="note"><span>Add your members first, then put them on blinds.</span><button class="btn sm" data-a="ownerView" data-v="roster">Add members</button></div>`}
@@ -2607,6 +2800,22 @@ function marksBlock(){ // Field outlines and parking, for everyone's map.
     <button class="link" data-a="togglePaste" aria-expanded="${!!S.pasteOpen}" style="justify-self:start">Or paste the GPX text</button>
     ${S.pasteOpen?'<form class="stack" data-f="pasteGpx"><label for="gpxtext" class="vh">GPX text</label><textarea id="gpxtext" placeholder="Paste the whole file, starting with &lt;?xml"></textarea><button class="btn">Add it</button></form>':''}
   </section>`;
+}
+function guestsSheet(){ // A member's own group: who they're bringing.
+  const party=myParty(sheet.n), note=sheet.msg?`<p class="${sheet.msgWarn?'warn':'small mute'}">${esc(sheet.msg)}</p>`:'';
+  if(!party)return sheetWrap('Your group','<button class="btn wide" data-a="closeSheet">Done</button>');
+  const {me,mine}=party, k=headCount(mine.members);
+  const rows=mine.members.flatMap(m=>guestsOf(m.id).map(g=>`<div class="guestrow"><span><b>${esc(g)}</b><br><span class="mute small">${m.id===me.id?'Added by you':'With '+esc(m.name)}</span></span><button class="btn sm" data-a="rmGuest" data-v="${esc(m.id)}|${esc(g)}" aria-label="Remove ${esc(g)}">Remove</button></div>`)).join('');
+  return sheetWrap(mine.name?esc(mine.name):'Your group',`<p class="small mute">${hunters(k)} in your group on Blind ${sheet.n}. A blind holds ${CAPACITY}. Add anyone you're bringing so Jonathon knows. Names stay until someone takes them off.</p>${note}
+    ${rows}
+    <form class="row" data-f="addGuest" style="flex-wrap:nowrap"><input id="guestname" type="text" maxlength="30" autocomplete="off" placeholder="Guest's name" aria-label="Guest's name"><button class="btn sm primary" style="flex:none">Add</button></form>
+    <button class="btn wide" data-a="closeSheet">Done</button>`);
+}
+function guestSheet(){ // An owner tapped a guest's name on a blind.
+  const m=S.club.members.find(x=>x.id===sheet.id), here=m&&guestsOf(m.id).includes(sheet.name), note=sheet.msg?`<p class="warn">${esc(sheet.msg)}</p>`:'';
+  return sheetWrap(esc(sheet.name),`${note}<p class="small mute">${here?`A guest of ${esc(m.name)}. Members add guests to their own group from their phone.`:'That name isn\'t in the group anymore.'}</p>
+    ${here?`<button class="btn" data-a="rmGuest" data-v="${esc(m.id)}|${esc(sheet.name)}">Take ${esc(sheet.name)} off</button>`:''}
+    <button class="btn wide" data-a="closeSheet">Done</button>`);
 }
 const findMark=()=>sheet&&(S.club.marks||[]).find(m=>m.id===sheet.id);
 function markSheet(){
@@ -2665,7 +2874,7 @@ function clubView(){
 
 /* ---------- Sheets ---------- */
 function sheetWrap(title,body){
-  return `<div class="scrim" data-a="closeSheet"><div class="sheet" tabindex="-1" role="dialog" aria-modal="true" aria-label="${title}" data-stop><div class="row between" style="flex-wrap:nowrap"><h2>${title}</h2><button class="link" data-a="closeSheet" style="flex:none">Close</button></div>${body}</div></div>`;
+  return `<div class="scrim" data-a="closeSheet"><div class="sheet" tabindex="-1" role="dialog" aria-modal="true" aria-label="${title}" data-stop><div class="row between" style="flex-wrap:nowrap"><h2>${title}</h2><button class="closer" data-a="closeSheet">Close</button></div>${body}</div></div>`;
 }
 const gooseNote=d=>gooseOnlyDays.includes(d)?`<p class="small mute">Specklebelly and snow geese only.${duckDays.length?` Canada geese open ${monthDay(duckDays[0])}.`:''}</p>`:'';
 function customerDaySheet(d){
@@ -2713,7 +2922,7 @@ function groupPicker(m){ // A hunter's group is the same every day.
     <p class="small mute">People in a group are listed together on their blind. A blind can hold more than one group, up to ${CAPACITY} hunters each.</p></div>`;
 }
 function addSheet(){
-  const c=S.club, n=sheet.n, day=S.scope, on=onBlind(n,day), count=on.length, parts=groupsIn(on), over=parts.some(g=>g.members.length>CAPACITY);
+  const c=S.club, n=sheet.n, day=S.scope, on=onBlind(n,day), count=headCount(on), parts=groupsIn(on), over=parts.some(g=>headCount(g.members)>CAPACITY);
   const rows=sheet.order.map(id=>c.members.find(m=>m.id===id)).filter(Boolean).map(m=>{
     const all=blindsOn(m.id,day), here=all.includes(n), elsewhere=all.filter(x=>x!==n), g=groupOf(m.id);
     return `<button class="who" data-a="assignHere" data-v="${esc(m.id)}" aria-pressed="${here}"><span>${esc(m.name)}${g?`<small class="gtag">${esc(g)}</small>`:''}</span><span>${here?(elsewhere.length?'Here and '+blindsText(elsewhere):'On this blind'):elsewhere.length?blindsText(elsewhere):'Not on a blind'}</span></button>`;
@@ -2734,7 +2943,7 @@ function moveSheet(){
   const cur=blindsOn(m.id,day), from=cur.includes(sheet.from)?sheet.from:0, several=from&&cur.length>1;
   let grid='';
   for(let n=1;n<=c.blinds;n++){
-    const on=onBlind(n,day), k=on.length, seats=seatsFor(groupsIn(on));
+    const on=onBlind(n,day), k=headCount(on), seats=seatsFor(groupsIn(on));
     grid+=`<button data-a="moveTo" data-v="${n}" aria-pressed="${cur.includes(n)}" aria-label="Blind ${n}, ${k} of ${seats}"><b>${n}</b><small>${k}/${seats}</small></button>`;
   }
   const actions=day==='season'
@@ -2806,6 +3015,8 @@ function sheetView(){
     case 'install':return installSheet();
     case 'text':return textSheet();
     case 'spot':return spotSheet();
+    case 'guests':return guestsSheet();
+    case 'guest':return guestSheet();
     case 'mark':return markSheet();
     case 'newSpot':return newSpotSheet();
     case 'request':return requestSheet();
@@ -2841,6 +3052,33 @@ function syncTabHistory(to){ // Back from Duck Club returns to Hunts before leav
     history.back();
   }
 }
+/* Text size. The app follows the phone's own text-size setting, and has its own "bigger text" button for people who never set one.
+   A wide phone can go bigger than a narrow one before words stop fitting. */
+const BIG_TEXT=1.25;
+function phoneTextScale(){
+  const de=document.documentElement, was=de.style.fontSize;
+  de.style.fontSize='';
+  let s=parseFloat(getComputedStyle(de).fontSize)/16; // Android grows this with the phone's setting.
+  de.style.fontSize=was;
+  try{
+    if(window.CSS&&CSS.supports('font','-apple-system-body')){ // iPhone: this font is 17 at the standard setting.
+      const p=document.createElement('p');
+      p.style.cssText='font:-apple-system-body;position:absolute;visibility:hidden';
+      document.body.appendChild(p);
+      s=Math.max(s,parseFloat(getComputedStyle(p).fontSize)/17);
+      p.remove();
+    }
+  }catch(e){}
+  return s>0?s:1;
+}
+const textCap=()=>Math.min(1.4,Math.max(1,innerWidth/270));
+const textScale=big=>Math.min(textCap(),Math.max(1,phoneTextScale()*(big?BIG_TEXT:1)));
+function fitText(){document.documentElement.style.fontSize=(16*textScale(LS.get('bigText'))).toFixed(2)+'px'}
+function textSizeBlock(){
+  const on=!!LS.get('bigText');
+  if(!on&&textScale(true)-textScale(false)<0.08)return ''; // Already as big as this screen can fit.
+  return `<section class="textsize"><button class="btn wide" data-a="bigText" aria-pressed="${on}">${on?'Make the text smaller':'Make the text bigger'}</button></section>`;
+}
 function paint(){
   const key=keyOf(document.activeElement);
   const kept={};
@@ -2849,7 +3087,7 @@ function paint(){
   const shield=sheet?' inert':'';
   document.getElementById('app').innerHTML=`
   <header class="top"${shield}><div class="wrap"><div class="mark">The Roost Hole<small>Guide Service, Stuttgart, Arkansas</small></div><a class="call" href="tel:${PHONE}">Call</a></div></header>
-  <main class="wrap"${shield}>${S.tab==='hunts'?huntsView():clubView()}</main>
+  <main class="wrap"${shield}>${weatherBlock()}${S.tab==='hunts'?huntsView():clubView()}${textSizeBlock()}</main>
   <div${shield}>${pickBar()}</div>
   <nav class="tabs" aria-label="Main"${shield}><div class="wrap"><button data-a="tab" data-v="hunts" ${S.tab==='hunts'?'aria-current="page"':''}>Non-club members${newRequests()?`<span class="badge" aria-label="${newRequests()} new request${newRequests()>1?'s':''}">${newRequests()}</span>`:''}</button><button data-a="tab" data-v="club" ${S.tab==='club'?'aria-current="page"':''}>Duck Club</button></div></nav>
   ${sheetView()}`;
@@ -2950,6 +3188,7 @@ const actions={
     }else sheet={type:'install'};
   },
   hideInstall(){S.installHidden=true;LS.set('installHidden',true)},
+  bigText(){LS.set('bigText',LS.get('bigText')?null:true);fitText()},
   async copyLink(){const url=appUrl();sheet=null;await copy(url,'Link copied. Paste it into your browser.','The app link')},
   iAm(v){setMember(v);S.memberDay=nextDuckDay()},
   switchMember(){setMember(null)},
@@ -2971,6 +3210,21 @@ const actions={
   mapFit(){mapState.follow=false;mapState.moved=false;fitMap(true)},
   openSpot(v){S.confirm=null;sheet={type:'spot',n:Number(v)}},
   togglePaste(){S.pasteOpen=!S.pasteOpen},
+  clearNotice(){
+    S.club.notice={text:'',at:0};
+    const box=document.getElementById('noticetext');
+    if(box)box.value=''; // So the redraw doesn't put the old words back in the box.
+    saveClub();
+    toast('Taken down.');
+  },
+  openGuests(v){sheet={type:'guests',n:Number(v)}},
+  openGuest(v){const i=v.indexOf('|');sheet={type:'guest',id:v.slice(0,i),name:v.slice(i+1)}},
+  async rmGuest(v){
+    const i=v.indexOf('|'), was=sheet&&sheet.type==='guest';
+    if(sheet)sheet.msg='';
+    await changeGuests({t:'rm',id:v.slice(0,i),name:v.slice(i+1)});
+    if(was&&sheet&&sheet.type==='guest'&&!sheet.msg)sheet=null;
+  },
   pickGpx(){ // The file picker sits outside the screen that redraws, so it's still there when the file comes back.
     let f=document.getElementById('gpxfile');
     if(!f){
@@ -3117,6 +3371,8 @@ const actions={
       const latest=await timed(store.get('clubs/'+old)); // Bring along anything another owner just changed.
       if(latest){keepNewer(latest);S.club=normalizeClub(latest)}
       await timed(store.set('clubs/'+code,S.club));
+      const party=await timed(store.get('guests/'+old)).catch(()=>null); // Members' guests come along to the new code.
+      if(party)await timed(store.set('guests/'+code,party)).catch(()=>{});
       await timed(store.set('owner/settings',{code,retire:old}));
     }catch(e){toast('The code did not change. Check your signal and try again.');return}
     setBase('club',S.club);
@@ -3127,6 +3383,7 @@ const actions={
     try{ // If this part fails, the app finishes it the next time the owner opens it.
       await timed(store.del('clubs/'+old));
       await timed(store.set('owner/settings',{code}));
+      await timed(store.del('guests/'+old));
     }catch(e){}
   },
   retry(){document.getElementById('live').hidden=true;toastUntil=0;flush()},
@@ -3197,6 +3454,26 @@ addEventListener('popstate',()=>{
   }
 });
 const forms={
+  postNotice(){
+    const text=cleanNotice({text:document.getElementById('noticetext').value,at:1}).text, c=S.club;
+    if(!text){toast('Type the announcement first.');return}
+    if(text===c.notice.text){toast('That\'s already up.');return}
+    c.notice={text,at:Date.now()};
+    saveClub();
+    toast('Posted. Members see it the next time they open the app.');
+  },
+  async addGuest(){
+    const box=document.getElementById('guestname'), name=cleanGroup(box.value), party=myParty(sheet.n);
+    if(!name||!party)return;
+    const {me,mine}=party, k=headCount(mine.members);
+    sheet.msgWarn=true;
+    if(mine.members.some(m=>guestsOf(m.id).some(g=>g.toLowerCase()===name.toLowerCase())||m.name.toLowerCase()===name.toLowerCase())){sheet.msg=`${name} is already in your group.`;return}
+    if(k>=CAPACITY){sheet.msg=`That would make ${k+1} in your group, and a blind holds ${CAPACITY}. Text Jonathon if you need more room.`;return}
+    if(guestsOf(me.id).length>=MAX_GUESTS){sheet.msg=`You can add up to ${MAX_GUESTS} names.`;return}
+    sheet.msg='';
+    box.value='';
+    await changeGuests({t:'add',id:me.id,name});
+  },
   blindName(){ // What a blind is called. Blank takes the name off.
     const n=sheet.n, name=cleanGroup(document.getElementById('bname').value), c=S.club;
     if(name===(c.names[n]||''))return;
@@ -3242,6 +3519,7 @@ const forms={
         S.clubStale=false;
         LS.set('code',code);
         cacheClub();
+        refreshGuests().then(render);
       }
     }catch(err){S.joinErr='No signal right now. Try again when you have service.'}
     S.busy=null;
@@ -3260,6 +3538,7 @@ const forms={
       S.huntView='manage';
       flush();
       refreshRequests().then(()=>{sendDecisions();render()});
+      refreshGuests().then(render);
     }catch(err){
       await store.signOut();
       S.owner=false;
