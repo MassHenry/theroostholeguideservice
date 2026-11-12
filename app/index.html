@@ -852,6 +852,19 @@ nav.tabs button[aria-current=page]{color:var(--bone);border-top-color:var(--blaz
 .wxt .k{font-size:.875rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--straw)}
 .wxt b{font:900 clamp(22px,7.5vw,30px)/1 var(--display)}
 .wxt .s{font-size:.875rem;line-height:1.25;overflow-wrap:anywhere}
+.comingyes{display:grid;gap:10px;padding:12px;border-radius:6px;background:var(--mallard);color:var(--bone)}
+.yes{color:var(--bone);font-weight:700}
+.chip .ck{font-weight:800}
+.d.plan{background:var(--reed2);border:1px solid var(--line);color:var(--bone)}
+.d.plan .marks i{background:none;padding:0}
+.d.plan[aria-pressed=false] .marks{visibility:hidden}
+.d.plan[aria-pressed=true]{background:var(--blaze);border-color:var(--blaze);color:var(--blaze-ink);font-weight:800}
+.comingrow{display:grid;gap:2px;padding:8px 0;border-top:1px solid var(--line)}
+.comingrow p{overflow-wrap:anywhere}
+/* Stays at the bottom of the sheet while the calendar scrolls under it. The sheet gives up its own bottom padding so the bar can sit flush. */
+.sheet.flush{padding-bottom:0;max-height:90%}
+.planbar{position:sticky;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 -16px;padding:10px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--reed);border-top:1px solid var(--line)}
+.planbar .btn{flex:none;min-width:96px}
 .heads{font-weight:700;color:var(--bone)}
 .gname .heads{margin-left:2px}
 .chip.guest{border-style:dashed;font-weight:500}
@@ -867,7 +880,7 @@ nav.tabs button[aria-current=page]{color:var(--bone);border-top-color:var(--blaz
 .blind .cap{display:block;font:600 .875rem/1 var(--body);color:var(--straw);margin-top:3px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .blind .cap.over{color:var(--rust-hi)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
-.chip{min-height:44px;padding:4px 10px;border-radius:3px;background:var(--reed2);border:1px solid var(--line);font-weight:600;font-size:1rem;text-align:left;overflow-wrap:anywhere}
+.chip{min-height:44px;min-width:44px;padding:4px 10px;border-radius:3px;background:var(--reed2);border:1px solid var(--line);font-weight:600;font-size:1rem;text-align:left;overflow-wrap:anywhere}
 .chip.today{border-color:var(--blaze);color:var(--blaze-text)}
 .chip.ex{border-style:dashed}
 .groups{display:grid;gap:10px;min-width:0}
@@ -921,7 +934,7 @@ nav.tabs button[aria-current=page]{color:var(--bone);border-top-color:var(--blaz
 .leaflet-touch .leaflet-bar{border:1px solid var(--line)}
 .leaflet-control-attribution{background:rgba(14,18,9,.7)!important;color:var(--straw)!important;font-size:11px}
 .spot{display:grid;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}
-.warn{color:var(--blaze-text);font-size:1rem;font-weight:600}
+.warn{color:var(--blaze-text);font-weight:600}
 @media (prefers-reduced-motion:reduce){.arrow{transition:none}}
 
 /* Phones set to a large display size can be under 340 points wide. */
@@ -969,7 +982,7 @@ const SITE='https://theroostholeguideservice.com';
 const OWNER_ACCOUNT='owner@theroostholeguideservice.com'; // Owners never see this. They only type the owner code, which is this account's password.
 const HOSTED=!!window.ROOST_HOSTED, CONFIG=window.ROOST_CONFIG||{};
 const ON_SITE=HOSTED&&location.protocol==='https:'; // On the real website, not a copy opened on a computer.
-const VERSION='4.7';
+const VERSION='5.1';
 
 /* Kinds of hunts. A hunt's hour is when a same-day hunt stops being offered to customers. */
 const TIMES={Morning:5,Midday:10,Afternoon:13};
@@ -1021,6 +1034,7 @@ function expand(ranges){
   return out;
 }
 const duckDays=expand(DUCK_AND_GOOSE);
+const duckDaySet=new Set(duckDays); // The hunting days. Members can't say they're coming on any other day.
 const gooseOnlyDays=expand(GOOSE_ONLY);
 const huntDays=[...new Set([...gooseOnlyDays,...duckDays])].sort();
 const MONTHS=[...new Set(huntDays.map(d=>d.slice(0,7)))].map(k=>{const[y,m]=k.split('-').map(Number);return[y,m-1]});
@@ -1029,9 +1043,17 @@ const nextDuckDay=()=>duckDays.find(d=>d>=today())||duckDays[duckDays.length-1]|
 
 /* Small helpers */
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const lsMem=new Map(); // What the phone refused to store (full, or a privacy setting blocks it). Kept until the app closes, so taps still work.
 const LS={
-  get(k,f=null){try{const v=localStorage.getItem('roost.'+k);return v==null?f:JSON.parse(v)}catch(e){return f}},
-  set(k,v){try{v==null?localStorage.removeItem('roost.'+k):localStorage.setItem('roost.'+k,JSON.stringify(v))}catch(e){}}
+  get(k,f=null){
+    if(lsMem.has(k)){const v=lsMem.get(k);return v==null?f:JSON.parse(v)}
+    try{const v=localStorage.getItem('roost.'+k);return v==null?f:JSON.parse(v)}catch(e){return f}
+  },
+  set(k,v){
+    const s=v==null?null:JSON.stringify(v);
+    try{s==null?localStorage.removeItem('roost.'+k):localStorage.setItem('roost.'+k,s);lsMem.delete(k)}
+    catch(e){lsMem.set(k,s)}
+  }
 };
 const timed=(p,ms=10000)=>Promise.race([p,new Promise((_,r)=>setTimeout(()=>r(new Error('timeout')),ms))]);
 function normCode(s){
@@ -1307,7 +1329,8 @@ const S={
   loaded:false, busy:null, joinErr:'', signInOpen:false, signInErr:'', confirm:null,
   installHidden:LS.get('installHidden',false),
   requests:LS.get('cache:requests',[]), reqErr:'', mine:LS.get('myRequests',[]),
-  guests:LS.get('cache:guests',{}), guestErr:'', wx:LS.get('cache:wx',null)
+  guests:LS.get('cache:guests',{}), guestErr:'', wx:LS.get('cache:wx',null),
+  plans:{}, planBase:{}, planErr:'', comingAll:false
 };
 const managing=()=>S.owner&&S.huntView==='manage';
 const newRequests=()=>S.owner?S.requests.filter(r=>r.status==='new'&&r.hunts.some(h=>h.d>=today())).length:0;
@@ -1479,6 +1502,136 @@ async function changeGuests(op){ // Shows right away, then saves. If the app's r
     const why='Adding names isn\'t turned on yet. Text Jonathon.';
     if(sheet&&(sheet.type==='guests'||sheet.type==='guest')){sheet.msg=why;sheet.msgWarn=true}else toast(why);
   }else if(S.guestErr==='signal')toast('Saved on this phone. It sends when you have signal.');
+}
+/* Days members say they're coming. Kept the same way as guests: a record of its own, found by the club code, that members can
+   add to without being able to change the club. It sits beside the guests record under a name of its own, so the security rules
+   that allow guests already allow it, and a phone still on an older version never touches it. None of it goes on the public calendar.
+   It's member id to their days. A member's days are packed small: the first day (days since 1970, three characters in base 36), then
+   one bit for each day after it, written as hex. A whole season is about 20 characters however many days are picked, so even a
+   big club stays far inside what one record may hold. */
+const planPath=code=>'guests/'+code+'-days';
+const MAX_PLAN_DAYS=150, MAX_PLAN_SPAN=800, PLAN_ROOM=19900;
+const dayNum=d=>{const[y,m,x]=d.split('-').map(Number);return Math.round(Date.UTC(y,m-1,x)/864e5)};
+const numDay=n=>{const t=new Date(n*864e5);return `${t.getUTCFullYear()}-${pad(t.getUTCMonth()+1)}-${pad(t.getUTCDate())}`};
+function packDays(days){ // Sorted days in, a short string out.
+  if(!days.length)return '';
+  const base=dayNum(days[0]), bits=[];
+  for(const d of days){
+    const i=dayNum(d)-base;
+    if(i<0||i>=MAX_PLAN_SPAN)continue;
+    while(bits.length<=i>>2)bits.push(0);
+    bits[i>>2]|=1<<(i&3);
+  }
+  return base.toString(36).padStart(3,'0')+bits.map(x=>x.toString(16)).join('');
+}
+function unpackDays(s){ // And back. Anything that isn't one of these strings gives no days.
+  if(typeof s!=='string'||!/^[0-9a-z]{3}[0-9a-f]+$/.test(s)||s.length>3+MAX_PLAN_SPAN/4)return [];
+  const base=parseInt(s.slice(0,3),36), out=[];
+  for(let i=3;i<s.length;i++){
+    const x=parseInt(s[i],16);
+    for(let b=0;b<4;b++)if(x&(1<<b))out.push(numDay(base+(i-3)*4+b));
+  }
+  return out.slice(0,MAX_PLAN_DAYS);
+}
+function cleanPlans(raw){ // Anyone with the club code can write this, so nothing in it is trusted until it's checked here.
+  const out={};
+  for(const[id,v]of Object.entries((raw&&raw.by)||{})){
+    if(!SAFE_ID.test(id))continue;
+    const days=unpackDays(v).filter(d=>duckDaySet.has(d)); // Hunting days only, whoever wrote it.
+    if(days.length)out[id]=days;
+  }
+  return out;
+}
+const packPlans=by=>({by:Object.fromEntries(Object.entries(by).filter(([,days])=>days.length).map(([id,days])=>[id,packDays(days)]))});
+function dropPast(by){ // Days gone by come off whenever anyone saves, so the record never grows from one season to the next.
+  const t=parse(today());
+  t.setDate(t.getDate()-1);
+  const from=iso(t), out={};
+  for(const[id,days]of Object.entries(by)){const keep=days.filter(d=>d>=from);if(keep.length)out[id]=keep}
+  return out;
+}
+function applyPlanOp(by,op){ // One change: a member is coming on a day, or isn't. Doing it twice changes nothing more.
+  const cur=(by[op.id]||[]).filter(d=>d!==op.d);
+  if(op.on&&cur.length<MAX_PLAN_DAYS)cur.push(op.d);
+  cur.sort();
+  const out={...by};
+  if(cur.length)out[op.id]=cur;else delete out[op.id];
+  return out;
+}
+const comingOn=(id,d)=>!!(S.plans[id]&&S.plans[id].includes(d));
+const comingList=d=>S.club.members.filter(m=>comingOn(m.id,d));
+const planDays=()=>{const t=today();return duckDays.filter(d=>d>=t)}; // The days a member can still pick.
+const pendingPlans=()=>LS.get('planOut',[]).filter(op=>op.code===S.code);
+const planWaiting=()=>S.planErr==='signal'&&pendingPlans().length>0;
+function showPlans(base){ // What the club has, plus this phone's changes that haven't sent yet.
+  S.planBase=base;
+  LS.set('cache:plans',packPlans(base));
+  let by=base;
+  for(const op of pendingPlans())by=applyPlanOp(by,op);
+  S.plans=by;
+}
+let sendingPlans=false, planSeq=0, planEpoch=0, lastPlanTap={k:'',at:-1e9};
+async function sendPlanOps(){ // Everything waiting goes in one save: read what's there, make the changes, save only if nobody else saved in between.
+  if(sendingPlans||!store)return;
+  sendingPlans=true;
+  let sent=0;
+  try{
+    for(let guard=0;guard<50;guard++){
+      const all=LS.get('planOut',[]);
+      if(!all.length)break;
+      const code=all[0].code, batch=all.filter(op=>op.code===code), keys=new Set(batch.map(op=>op.k)), path=planPath(code);
+      let done=false, next=null;
+      for(let tries=0;tries<4&&!done;tries++){
+        const raw=await timed(store.get(path));
+        next=dropPast(cleanPlans(raw));
+        for(const op of batch)next=applyPlanOp(next,op);
+        const body=packPlans(next);
+        if(JSON.stringify(body).length>PLAN_ROOM)throw Object.assign(new Error('full'),{full:true});
+        try{if(raw)await timed(store.set(path,body,true));else await timed(store.add(path,body));done=true}
+        catch(e){if(!e.conflict)throw e}
+      }
+      if(!done)throw new Error('busy'); // Other phones kept saving first. It tries again shortly.
+      LS.set('planOut',LS.get('planOut',[]).filter(op=>!keys.has(op.k))); // A day tapped again while this was sending has a newer change still waiting.
+      planEpoch++;
+      if(code===S.code)showPlans(next);
+      sent+=batch.length;
+    }
+    if(sent)S.planErr=''; // With nothing to send, what the last read found out still stands.
+  }catch(e){S.planErr=e.full?'full':e.status===403?'rules':'signal'}
+  finally{sendingPlans=false}
+}
+async function refreshPlans(){
+  if(!store||!S.code)return;
+  const at=planEpoch, code=S.code;
+  try{
+    const base=cleanPlans(await timed(store.get(planPath(code))));
+    if(planEpoch!==at||sendingPlans||code!==S.code)return; // A change from this phone was saved while this was loading. That save is the newer picture.
+    showPlans(base);
+    if(S.planErr==='rules')S.planErr='';
+  }catch(e){if(e.status===403)S.planErr='rules'}
+}
+async function pushPlans(quiet){ // Sends what's waiting. If the app's rules don't allow it yet, the screen goes back to what the club has and says so.
+  if(sendingPlans||!LS.get('planOut',[]).length)return; // A send already under way picks up the newest change when it comes back around.
+  await sendPlanOps();
+  if(S.planErr==='rules'||S.planErr==='full'){
+    const why=S.planErr==='full'?'The club\'s list of days is full. Text Jonathon.':'Picking days isn\'t turned on yet. Text Jonathon.';
+    LS.set('planOut',LS.get('planOut',[]).filter(op=>op.code!==S.code));
+    showPlans(S.planBase);
+    if(sheet&&sheet.type==='plans')sheet.msg=why;else toast(why);
+  }else if(S.planErr==='signal'&&!quiet)toast('Saved on this phone. It sends when you have signal.');
+  render();
+}
+function queuePlans(id,days,on){ // Shows right away, then saves.
+  if(!S.code||!id)return;
+  days=days.filter(d=>duckDaySet.has(d)); // Never a day outside the season.
+  let out=LS.get('planOut',[]);
+  for(const d of days){
+    out=out.filter(op=>!(op.code===S.code&&op.id===id&&op.d===d)); // The newest tap on a day replaces an older one still waiting.
+    if(sendingPlans||(S.planBase[id]||[]).includes(d)!==on)out.push({code:S.code,id,d,on,k:Date.now().toString(36)+(planSeq++)+Math.random().toString(36).slice(2,7)});
+  }
+  LS.set('planOut',out);
+  showPlans(S.planBase);
+  pushPlans();
 }
 function myParty(n){ // The group the member on this phone sits with on blind n, the day they're looking at.
   const me=S.club.members.find(m=>m.id===S.memberId);
@@ -2369,6 +2522,9 @@ function forgetClub(){
   S.club=null;
   S.guests={};
   LS.set('cache:guests',null);
+  S.plans={};
+  S.planBase={};
+  LS.set('cache:plans',null);
   LS.set('code',null);
   LS.set('cache:club',null);
   setMember(null);
@@ -2404,9 +2560,10 @@ async function refreshAll(quiet){
   flush();
   if(S.memberDay<today())S.memberDay=nextDuckDay();
   const club=S.owner&&(!S.code||!S.club)?loadOwner().catch(()=>{S.clubStale=true}):refreshClub();
-  await Promise.all([refreshPublic(),club.then(refreshGuests),refreshRequests(quiet===true),refreshMine()]);
+  await Promise.all([refreshPublic(),club.then(()=>Promise.all([refreshGuests(),refreshPlans()])),refreshRequests(quiet===true),refreshMine()]);
   sendDecisions();
   sendGuestOps();
+  pushPlans(true);
   refreshWeather();
   S.loaded=true;
   signInEnded(); // A read can find out the sign-in ended. Say so now, not at the next save.
@@ -2415,6 +2572,8 @@ async function refreshAll(quiet){
 }
 async function boot(){
   fitText();
+  showPlans(cleanPlans(LS.get('cache:plans')));
+  for(const k of ['cache:birds','birdOut'])LS.set(k,null); // Left on the phone by version 5.0's bird count, which was taken out.
   render();
   store=await pickStore();
   render();
@@ -2424,8 +2583,9 @@ async function boot(){
     ?loadOwner().catch(()=>{S.clubStale=true})
     :refreshClub();
   refreshWeather();
-  await Promise.all([refreshPublic(),club.then(refreshGuests),refreshRequests(),refreshMine()]);
+  await Promise.all([refreshPublic(),club.then(()=>Promise.all([refreshGuests(),refreshPlans()])),refreshRequests(),refreshMine()]);
   sendGuestOps();
+  pushPlans(true);
   S.loaded=true;
   signInEnded();
   render();
@@ -2444,7 +2604,7 @@ async function boot(){
     refreshAll();
   });
   addEventListener('online',()=>refreshAll());
-  setInterval(flush,20000);
+  setInterval(()=>{flush();if(!document.hidden)pushPlans(true)},20000); // Changes that couldn't send keep trying.
   setInterval(()=>{ // Owners see each other's changes without having to reopen the app.
     const typing=document.activeElement&&document.activeElement.matches('input,textarea,select');
     if(S.owner&&!document.hidden&&!sheet&&!dirty.size&&!typing)refreshAll(true);
@@ -2696,7 +2856,7 @@ function memberView(){
     const others=parts.filter(g=>g!==mine), mates=mine.members.filter(m=>m.id!==me.id);
     const crew=(list,skip)=>{ // Everyone in a group but the member, each followed by the guests they're bringing.
       const out=[];
-      for(const m of list){if(m!==skip)out.push(esc(m.name));for(const g of guestsOf(m.id))out.push(`${esc(g)} <span class="mute small">(guest)</span>`)}
+      for(const m of list){if(m!==skip)out.push(esc(m.name)+(comingOn(m.id,day)?' <span class="yes small">(coming)</span>':''));for(const g of guestsOf(m.id))out.push(`${esc(g)} <span class="mute small">(guest)</span>`)}
       return out.length?out.join(', '):'Nobody else yet';
     };
     const add=`<button class="btn wide" data-a="openGuests" data-v="${n}">${headCount(mine.members)>mine.members.length?'Change the names in your group':'Add a name to your group'}</button>`;
@@ -2718,13 +2878,84 @@ function memberView(){
   <div class="stack tight"><p class="mute">Good to see you</p><h1>${esc(me.name)}</h1></div>
   <div class="blindcard">
     <div class="datenav"><button data-a="memberDay" data-v="${duckDays[i-1]||''}" ${i<=0?'disabled':''} aria-label="Previous hunt day">&lsaquo;</button><b>${day==='season'?'This season':fmt(day,{weekday:'long',month:'short',day:'numeric'})}</b><button data-a="memberDay" data-v="${duckDays[i+1]||''}" ${i>=duckDays.length-1?'disabled':''} aria-label="Next hunt day">&rsaquo;</button></div>
+    ${comingBlock(me,day,o===0)}
     ${blindBlock}
   </div>
+  ${myDaysBlock(me)}
   ${changes.length?`<section class="stack"><h3>Days that differ</h3><div class="splits">${changes.map(d=>{const x=asSet(override(me.id,d));return `<div><b>${fmt(d)}</b><i>${x.length?blindsText(x):'Off'}</i></div>`}).join('')}</div></section>`:''}
   <a class="btn wide" href="sms:${PHONE}">Text Jonathon</a>
   <p class="small mute">${S.clubStale?`No signal right now. This is the last copy saved on this phone${when?`, from ${when}`:''}.`:`Works with no signal once it has loaded.${when?` Updated ${when}.`:''}`}</p>
   <div class="row" style="gap:16px"><button class="link" data-a="switchMember">Not ${esc(me.name)}?</button>${S.owner?'':`<button class="link" data-a="leave">Leave club on this phone</button>`}</div>
   ${signInBlock()}`;
+}
+function comingBlock(me,day,off){ // The one question on a member's day: are you coming? Not asked on a day the owner has them off.
+  if(off||!planDays().includes(day))return '';
+  if(!comingOn(me.id,day))return `<button class="btn primary wide" data-a="setPlan" data-v="${day}">I'm coming this day</button>`;
+  return `<div class="comingyes"><p><b><span aria-hidden="true">&#10003;</span> You're coming this day.</b> ${planWaiting()?'It sends to Jonathon when you have signal.':'Jonathon can see it.'}</p>
+    <button class="btn wide" data-a="setPlan" data-v="${day}">I can't make it after all</button></div>`;
+}
+function myDaysBlock(me){ // Every day the member has said they're coming. Days only: which blind is the owner's call, made after he sees who's coming.
+  if(!planDays().length)return '';
+  const open=planDays(), mine=(S.plans[me.id]||[]).filter(d=>open.includes(d)), show=mine.slice(0,6), more=mine.length-show.length;
+  const off=d=>override(me.id,d)===0;
+  return `<section class="stack" aria-labelledby="mydays"><h3 id="mydays">Days you're coming${mine.length?` (${mine.length})`:''}</h3>
+    ${mine.length
+      ?`<div class="splits">${show.map(d=>`<div><b>${fmt(d)}</b>${off(d)?'<i>Off this day</i>':''}</div>`).join('')}</div>${more?`<p class="small mute">And ${more} more.</p>`:''}`
+      :`<p class="mute">None yet. Pick the days you plan to hunt so Jonathon knows who to expect.</p>`}
+    <button class="btn wide" data-a="openPlans">${mine.length?'Add or change days':'Pick my days'}</button>
+    ${planWaiting()?'<p class="warn">Not sent yet. It sends when you have signal.</p>':''}
+  </section>`;
+}
+function plansSheet(){ // A member picks their days on a calendar of the season. Each tap saves by itself.
+  const me=S.club&&S.club.members.find(m=>m.id===S.memberId), title=S.owner?'Days they\'re coming':'Days you\'re coming';
+  if(!me)return sheetWrap(title,'<button class="btn wide" data-a="closeSheet">Done</button>');
+  const open=planDays(), mine=new Set((S.plans[me.id]||[]).filter(d=>open.includes(d))), k=mine.size;
+  const months=[...new Set(open.map(d=>d.slice(0,7)))].map(key=>{
+    const[y,m]=key.split('-').map(Number), lead=new Date(y,m-1,1).getDay(), count=new Date(y,m,0).getDate();
+    const cells=[];
+    for(let i=0;i<lead;i++)cells.push(null);
+    for(let d=1;d<=count;d++)cells.push(`${key}-${pad(d)}`);
+    let rows='';
+    for(let i=0;i<cells.length;i+=7){ // Only the weeks with a day that can be picked, so there's less to scroll past.
+      const week=cells.slice(i,i+7);
+      if(!week.some(s=>s&&open.includes(s)))continue;
+      rows+=week.map(s=>{
+        if(!s)return '<span></span>';
+        const n=Number(s.slice(8));
+        if(!open.includes(s))return `<span class="d closed" aria-hidden="true">${n}</span>`;
+        const on=mine.has(s);
+        return `<button class="d plan" data-a="setPlan" data-v="${s}" aria-pressed="${on}" aria-label="${fmt(s)}${on?', coming':''}"${s===today()?' aria-current="date"':''}>${n}<span class="marks" aria-hidden="true"><i>&#10003;</i></span></button>`;
+      }).join('');
+    }
+    return `<section class="month"><h3>${new Date(y,m-1,1).toLocaleDateString('en-US',{month:'long',year:'numeric'})}</h3><div class="grid">${['S','M','T','W','T','F','S'].map(x=>`<span class="dow" aria-hidden="true">${x}</span>`).join('')}${rows}</div></section>`;
+  }).join('');
+  return sheetWrap(title,`<p class="small mute">${S.owner?`Tap the days ${esc(me.name)} plans to hunt.`:'Tap the days you plan to hunt.'} Tap a day again to take it off.</p>
+    ${sheet.msg?`<p class="warn">${esc(sheet.msg)}</p>`:''}
+    <div class="row" role="group" aria-label="Quick picks"><button class="btn sm" data-a="planAll" data-v="weekends">Every Saturday and Sunday</button><button class="btn sm" data-a="planAll" data-v="every">Every day</button>${k?`<button class="btn sm" data-a="planClear">${sheet.sure?`Yes, take all ${k} off`:'Take all off'}</button>`:''}</div>
+    ${months}
+    <div class="planbar"><p><b>${k}</b> day${k===1?'':'s'} picked${planWaiting()?'<br><span class="warn">Not sent yet. It sends when you have signal.</span>':''}</p><button class="btn primary" data-a="closeSheet">Done</button></div>`,'flush');
+}
+function comingPanel(){ // Owners: how many members have said they're coming, day by day.
+  const days=planDays();
+  if(!days.length||!S.club.members.length)return '';
+  const show=S.comingAll?days:days.slice(0,4);
+  return `<section class="panel" aria-labelledby="cominghead"><h3 id="cominghead">Who's coming</h3>
+    <div class="splits">${show.map(d=>{const k=comingList(d).length;return `<button class="rowlink" data-a="openComing" data-v="${d}"><b>${fmt(d)}</b><i>${k?`${k} coming`:'Nobody yet'} <span aria-hidden="true">&rsaquo;</span></i></button>`}).join('')}</div>
+    ${days.length>4?`<button class="link" data-a="comingAll" style="justify-self:start">${S.comingAll?'Show fewer days':`Show all ${days.length} days`}</button>`:''}
+    <p class="small mute">Members pick the days they plan to hunt on their own phone. Tap a day to see the names.</p>
+  </section>`;
+}
+function comingSheet(){ // Who said they're coming on one day. Names only: saying "I'm coming" doesn't put anyone on a blind.
+  const d=sheet.d, c=S.club, list=comingList(d), yes=new Set(list.map(m=>m.id)), rest=c.members.filter(m=>!yes.has(m.id));
+  const extra=list.reduce((n,m)=>n+guestsOf(m.id).length,0);
+  const name=m=>{const g=guestsOf(m.id).length;return esc(m.name)+(g?` <span class="mute small">+${g} guest${g===1?'':'s'}</span>`:'')};
+  const rows=list.length?`<div class="comingrow"><b>Coming</b><p>${list.map(name).join(', ')}</p></div>`:'';
+  return sheetWrap(fmt(d,{weekday:'long',month:'short',day:'numeric'}),`
+    <p>${list.length?`<b>${list.length} member${list.length===1?' says':'s say'}</b> they're coming.${extra?` With the guests on their lists, that's ${hunters(list.length+extra)}.`:''}`:'Nobody has said they\'re coming this day yet.'}</p>
+    ${rows}
+    ${rest.length?`<div class="comingrow"><b class="mute">Haven't said (${rest.length})</b><p class="mute">${rest.map(m=>esc(m.name)).join(', ')}</p></div>`:''}
+    <button class="btn wide" data-a="scopeTo" data-v="${d}">Set blinds for this day</button>
+    <button class="btn wide" data-a="closeSheet">Done</button>`);
 }
 const noticeWhen=ms=>ms?new Date(ms).toLocaleString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'';
 function noticeBlock(){ // What members see at the top of Duck Club.
@@ -2746,13 +2977,13 @@ function sampleNote(){
 }
 const guestChips=m=>guestsOf(m.id).map(g=>`<button class="chip guest" data-a="openGuest" data-v="${esc(m.id)}|${esc(g)}" aria-label="${esc(g)}, guest of ${esc(m.name)}">${esc(g)}</button>`).join('');
 function chip(m,n=0){ // A hunter on two blinds has a name tag on each, and tapping one changes only that blind.
-  const diff=S.scope!=='season'&&override(m.id,S.scope)!==undefined;
-  return `<button class="chip${diff?' today':''}${m.sample?' ex':''}" data-a="moveMember" data-v="${esc(m.id)}|${n}">${esc(m.name)}</button>`;
+  const diff=S.scope!=='season'&&override(m.id,S.scope)!==undefined, yes=S.scope!=='season'&&comingOn(m.id,S.scope); // On a single day, a check mark shows who said they're coming.
+  return `<button class="chip${diff?' today':''}${m.sample?' ex':''}" data-a="moveMember" data-v="${esc(m.id)}|${n}"${yes?` aria-label="${esc(m.name)}, coming"`:''}>${yes?'<span class="ck" aria-hidden="true">&#10003;</span> ':''}${esc(m.name)}</button>`;
 }
 function blindsView(){
   const c=S.club, day=S.scope, loose=c.members.filter(m=>!blindsOn(m.id,day).length);
   const opts=`<option value="season"${day==='season'?' selected':''}>Whole season</option>`+DUCK_AND_GOOSE.map(([f,t],i)=>
-    `<optgroup label="${SPLIT_NAMES[i]||'Split '+(i+1)}">${duckDays.filter(d=>d>=f&&d<=t).map(d=>`<option value="${d}"${d===day?' selected':''}>${fmt(d)}${c.days[d]?' (changes)':''}</option>`).join('')}</optgroup>`).join('');
+    `<optgroup label="${SPLIT_NAMES[i]||'Split '+(i+1)}">${duckDays.filter(d=>d>=f&&d<=t).map(d=>{const k=d>=today()?comingList(d).length:0;return `<option value="${d}"${d===day?' selected':''}>${fmt(d)}${k?`, ${k} coming`:''}${c.days[d]?' (changes)':''}</option>`}).join('')}</optgroup>`).join('');
   let rows='', used=0;
   for(let n=1;n<=c.blinds;n++){
     const on=onBlind(n,day), parts=groupsIn(on), over=parts.some(g=>headCount(g.members)>CAPACITY);
@@ -2767,9 +2998,11 @@ function blindsView(){
   return `
   ${sampleNote()}
   ${noticeForm()}
-  ${S.guestErr==='rules'?'<p class="note">Members can\'t add guest names yet. This version needs the new security rules pasted into Firebase. See UPDATING in the setup notes.</p>':''}
+  ${comingPanel()}
+  ${S.guestErr==='rules'||S.planErr==='rules'?'<p class="note">Members can\'t add guest names or pick their days yet. This version needs the new security rules pasted into Firebase. See UPDATING in the setup notes.</p>':''}
   <label for="scope">Assigning for<select id="scope" data-c="scope">${opts}</select></label>
   <p class="small mute">${day==='season'?'Everyone stays on these blinds all season unless you change a single day.':`Changes here apply to ${fmt(day)} only. Orange names differ from their season blind.`}</p>
+  ${day!=='season'&&day>=today()&&c.members.length?`<p class="small">${comingList(day).length?`<b>${comingList(day).length} of ${c.members.length}</b> members say they're coming this day. They have a check mark.`:'Nobody has said they\'re coming this day yet.'}</p>`:''}
   ${c.members.length?'':`<div class="note"><span>Add your members first, then put them on blinds.</span><button class="btn sm" data-a="ownerView" data-v="roster">Add members</button></div>`}
   ${loose.length?`<section class="stack"><h3>Not on a blind (${loose.length})</h3><div class="chips">${loose.map(m=>chip(m)).join('')}</div></section>`:''}
   <section><p class="small mute" style="padding-bottom:8px;border-bottom:1px solid var(--line)">${used} of ${c.blinds} blinds in use</p>${rows}</section>
@@ -2873,8 +3106,8 @@ function clubView(){
 }
 
 /* ---------- Sheets ---------- */
-function sheetWrap(title,body){
-  return `<div class="scrim" data-a="closeSheet"><div class="sheet" tabindex="-1" role="dialog" aria-modal="true" aria-label="${title}" data-stop><div class="row between" style="flex-wrap:nowrap"><h2>${title}</h2><button class="closer" data-a="closeSheet">Close</button></div>${body}</div></div>`;
+function sheetWrap(title,body,kind=''){
+  return `<div class="scrim" data-a="closeSheet"><div class="sheet${kind?' '+kind:''}" tabindex="-1" role="dialog" aria-modal="true" aria-label="${title}" data-stop><div class="row between" style="flex-wrap:nowrap"><h2>${title}</h2><button class="closer" data-a="closeSheet">Close</button></div>${body}</div></div>`;
 }
 const gooseNote=d=>gooseOnlyDays.includes(d)?`<p class="small mute">Specklebelly and snow geese only.${duckDays.length?` Canada geese open ${monthDay(duckDays[0])}.`:''}</p>`:'';
 function customerDaySheet(d){
@@ -3017,6 +3250,8 @@ function sheetView(){
     case 'spot':return spotSheet();
     case 'guests':return guestsSheet();
     case 'guest':return guestSheet();
+    case 'plans':return plansSheet();
+    case 'coming':return comingSheet();
     case 'mark':return markSheet();
     case 'newSpot':return newSpotSheet();
     case 'request':return requestSheet();
@@ -3217,6 +3452,33 @@ const actions={
     saveClub();
     toast('Taken down.');
   },
+  openPlans(){sheet={type:'plans',msg:'',sure:false}},
+  setPlan(d){ // A member's own phone, or an owner in Member view putting days in for someone who called. Each tap flips the day.
+    if(!S.memberId||!planDays().includes(d))return;
+    const now=performance.now(), k=S.memberId+'|'+d;
+    if(lastPlanTap.k===k&&now-lastPlanTap.at<500)return; // A shaky double tap counts once, so a day doesn't flip on and straight back off.
+    lastPlanTap={k,at:now};
+    if(sheet&&sheet.type==='plans'){sheet.msg='';sheet.sure=false}
+    queuePlans(S.memberId,[d],!comingOn(S.memberId,d));
+  },
+  planAll(v){
+    if(!S.memberId)return;
+    sheet.msg='';sheet.sure=false;
+    queuePlans(S.memberId,planDays().filter(d=>(v==='every'||[0,6].includes(parse(d).getDay()))&&!comingOn(S.memberId,d)),true);
+  },
+  planClear(){ // Asks once more first.
+    if(!S.memberId)return;
+    if(!sheet.sure){sheet.sure=true;return}
+    sheet.sure=false;sheet.msg='';
+    queuePlans(S.memberId,(S.plans[S.memberId]||[]).filter(d=>planDays().includes(d)),false);
+  },
+  openComing(v){sheet={type:'coming',d:v}},
+  comingAll(){S.comingAll=!S.comingAll},
+  scopeTo(v){
+    S.scope=v;
+    sheet=null;
+    setTimeout(()=>{const el=document.getElementById('scope');if(el)el.scrollIntoView({block:'center'})},0);
+  },
   openGuests(v){sheet={type:'guests',n:Number(v)}},
   openGuest(v){const i=v.indexOf('|');sheet={type:'guest',id:v.slice(0,i),name:v.slice(i+1)}},
   async rmGuest(v){
@@ -3373,17 +3635,21 @@ const actions={
       await timed(store.set('clubs/'+code,S.club));
       const party=await timed(store.get('guests/'+old)).catch(()=>null); // Members' guests come along to the new code.
       if(party)await timed(store.set('guests/'+code,party)).catch(()=>{});
+      const coming=await timed(store.get(planPath(old))).catch(()=>null); // And the days they said they're coming.
+      if(coming)await timed(store.set(planPath(code),coming)).catch(()=>{});
       await timed(store.set('owner/settings',{code,retire:old}));
     }catch(e){toast('The code did not change. Check your signal and try again.');return}
     setBase('club',S.club);
     S.code=code;
     LS.set('code',code);
+    LS.set('planOut',LS.get('planOut',[]).map(op=>op.code===old?{...op,code}:op));
     S.confirm=null;
     toast('New code is live. Send it to your members.');
     try{ // If this part fails, the app finishes it the next time the owner opens it.
       await timed(store.del('clubs/'+old));
       await timed(store.set('owner/settings',{code}));
       await timed(store.del('guests/'+old));
+      await timed(store.del(planPath(old)));
     }catch(e){}
   },
   retry(){document.getElementById('live').hidden=true;toastUntil=0;flush()},
@@ -3519,7 +3785,9 @@ const forms={
         S.clubStale=false;
         LS.set('code',code);
         cacheClub();
+        showPlans({});
         refreshGuests().then(render);
+        refreshPlans().then(render);
       }
     }catch(err){S.joinErr='No signal right now. Try again when you have service.'}
     S.busy=null;
@@ -3539,6 +3807,7 @@ const forms={
       flush();
       refreshRequests().then(()=>{sendDecisions();render()});
       refreshGuests().then(render);
+      refreshPlans().then(render);
     }catch(err){
       await store.signOut();
       S.owner=false;
